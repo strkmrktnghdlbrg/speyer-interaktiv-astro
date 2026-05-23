@@ -1,0 +1,35 @@
+# Build-Output
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Cloudflare / Wrangler
+.wrangler/
+.dev.vars
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build-Artefakte (per Konvention im Projektordner abgelegt, nicht versioniert)
+releases/
+*.zip
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Astro
+.astro

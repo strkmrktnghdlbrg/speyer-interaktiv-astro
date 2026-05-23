@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import { categories } from "../../data/categories";
+import { sightsByCategory } from "../../data/sights";
+import { restaurantsByCategory } from "../../data/restaurants";
+import { city } from "../../data/city";
+
+const withCounts = categories
+  .map((c, idx) => ({
+    ...c,
+    count: sightsByCategory(c.slug).length + restaurantsByCategory(c.slug).length,
+    hue: ((idx % 5) + 1),
+  }))
+  .filter((c) => c.count > 0);
+---
+
+<BaseLayout
+  title={`${city.name} nach Kategorien`}
+  description={`${city.name} nach Interessen entdecken: Wahrzeichen, Museen, Kirchen, Parks, Familienspots und Feste.`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Kategorien" }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Themen</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {city.name} nach Kategorien
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        Alle Sehenswürdigkeiten gebündelt nach Interesse. Der Kaiserdom und romanische Kirchen,
+        die wichtigsten Museen, die schönsten Parks, Feste und mehr.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {withCounts.map((c) => (
+        <a href={`/kategorien/${c.slug}/`} class="card group block">
+          <div class="aspect-[4/3] relative overflow-hidden">
+            <HueGradient hue={c.hue} label={c.name} />
+          </div>
+          <div class="p-5">
+            <h2
+              class="text-xl font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors"
+              style="color: var(--color-deep-plum);"
+            >
+              {c.name}
+            </h2>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+              {c.shortDesc}
+            </p>
+            <p class="text-xs font-bold" style="color: var(--color-accent);">
+              {c.count} {c.count === 1 ? "Eintrag" : "Einträge"} →
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

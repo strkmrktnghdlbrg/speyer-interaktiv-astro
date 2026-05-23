@@ -1,0 +1,30 @@
+# Cron-Worker für News-Pipeline
+# ------------------------------
+# Liest 1x täglich um 6:00 UTC (=7:00 Berlin Winter, 8:00 Sommer) die
+# RSS-Feeds, dedupt gegen D1, lässt Claude rewriten, schreibt zurück.
+#
+# Deploy:
+#   wrangler deploy --config worker/wrangler.toml
+#
+# Lokal testen:
+#   wrangler dev --config worker/wrangler.toml --test-scheduled
+#
+# Secret setzen:
+#   wrangler secret put ANTHROPIC_API_KEY --config worker/wrangler.toml
+
+name = "speyer-news-cron"
+main = "cron.ts"
+compatibility_date = "2025-05-01"
+compatibility_flags = ["nodejs_compat"]
+
+# 1x täglich 6:00 UTC (= 7:00 Berlin Winter, 8:00 Berlin Sommer)
+[triggers]
+crons = ["0 6 * * *"]
+
+# Gleiche D1-DB wie die Astro-App
+[[d1_databases]]
+binding = "DB"
+database_name = "speyer-news"
+database_id = "REPLACE_WITH_SAME_ID_AS_PAGES_PROJECT"
+
+# ANTHROPIC_API_KEY wird per `wrangler secret put` gesetzt, nicht hier.

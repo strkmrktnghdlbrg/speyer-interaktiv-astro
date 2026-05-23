@@ -1,0 +1,43 @@
+/* ===================================================================
+   BRAND.CSS — Stadt-spezifisches Overlay über global.css
+   ===================================================================
+   Wird in BaseLayout.astro NACH global.css importiert.
+
+   Stadt: SPEYER
+   Charakter: Kaiserdom-Stadt, Sandstein-Rot, romanisch-historisch,
+              warm, würdevoll. Tausend Jahre Geschichte, aber lesbar
+              modern aufbereitet.
+   =================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap");
+
+@theme {
+  /* === AKZENT — Domstein-Rot ===
+     Inspiriert vom warmen Rotsandstein des Kaiserdoms. Tiefer und
+     wärmer als Karneval-Rot, weniger reizend als Signal-Rot.       */
+  --color-accent: #a8323f;
+  --color-accent-hover: #8a2734;
+  --color-accent-tint: #fbeaec;
+  --color-accent-contrast: #ffffff;
+
+  /* === SCHRIFT ===
+     Fraunces (Display) verleiht Überschriften ein leicht historisches,
+     fast lithographisches Gefühl — passt zur 2000-jährigen Stadt.
+     Inter bleibt Body — universell lesbar.                          */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fraunces", "Inter", ui-serif, Georgia, serif;
+
+  /* === HUE-PALETTE für Stadtteil-Gradienten ===
+     5 Stimmungen, alle mit Speyerer Sandstein/Rhein/Pfalz-Unterton.
+     1 = Domstein-Rot (Altstadt-Anker, passt zur Akzentfarbe)
+     2 = Rhein-Stahlblau (Nord/Rheinhafen — Wasser, Hafen)
+     3 = Vogelgesang-Grün (Süd — Naherholung, Parkanlagen)
+     4 = Salier-Burgunder (West — historisch, fürstlich)
+     5 = Sandocker (Südwest — Klöster, Bildung, weicher Sand)        */
+  --hue-1: linear-gradient(135deg, #fbeaec 0%, #f0a4af 50%, #a8323f 100%);
+  --hue-2: linear-gradient(135deg, #e6f2f8 0%, #7eb6d4 50%, #2a6f97 100%);
+  --hue-3: linear-gradient(135deg, #ecfdf5 0%, #86efac 50%, #15803d 100%);
+  --hue-4: linear-gradient(135deg, #fdf2f8 0%, #c084a0 50%, #6b1f3a 100%);
+  --hue-5: linear-gradient(135deg, #fef6e0 0%, #f0c474 50%, #b45309 100%);
+}

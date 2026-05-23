@@ -1,0 +1,163 @@
+---
+import { Image } from "astro:assets";
+import { city } from "../data/city";
+import { features } from "../data/features";
+import logo from "../assets/branding/logo.svg";
+
+const navItems = [
+  { href: "/sehenswuerdigkeiten/", label: "Sehenswürdigkeiten", enabled: true },
+  { href: "/hotels/", label: "Hotels", enabled: true },
+  { href: "/restaurants/", label: "Restaurants", enabled: true },
+  { href: "/stadtteile/", label: "Stadtteile", enabled: true },
+  { href: "/reiseplaner/", label: "Reiseplaner", enabled: features.reiseplaner.enabled },
+  { href: "/wissenswertes/", label: "Wissenswertes", enabled: true },
+  { href: "/feste/", label: "Feste", enabled: true },
+  { href: "/news/", label: "News", enabled: features.news.enabled },
+].filter((item) => item.enabled);
+---
+
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[var(--color-lavender-ash)]">
+  <div class="container-page">
+    <div class="flex items-center justify-between h-16 gap-4 md:gap-6">
+      <a
+        href="/"
+        class="flex items-center shrink-0"
+        style="color: var(--color-accent);"
+        aria-label={`${city.name}-Interaktiv Startseite`}
+      >
+        <Image
+          src={logo}
+          alt={`${city.name}-Interaktiv`}
+          width={280}
+          height={64}
+          class="h-10 w-auto"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Hauptnavigation">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-3 py-2 text-sm font-semibold rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]"
+            style="color: var(--color-shadow-graphite);"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Desktop Search -->
+      <div class="hidden md:flex items-center gap-2 flex-1 max-w-xs">
+        <div class="relative w-full">
+          <input
+            type="search"
+            placeholder={`Suche in ${city.name}…`}
+            class="w-full bg-transparent border-b-2 pb-1.5 pt-2 px-1 text-sm focus:outline-none transition-colors"
+            style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
+            onfocus="this.style.borderColor='var(--color-accent)'"
+            onblur="this.style.borderColor='var(--color-lavender-ash)'"
+          />
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="/werben/" class="btn-outline hidden sm:inline-flex">
+          Werben
+        </a>
+
+        <!-- Mobile Menu Toggle (sichtbar bis lg) -->
+        <button
+          id="mobile-menu-toggle"
+          type="button"
+          class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Menü öffnen"
+        >
+          <svg class="icon-open w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--color-shadow-graphite);">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg class="icon-close w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--color-shadow-graphite);">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Panel -->
+  <div
+    id="mobile-menu"
+    class="lg:hidden hidden border-t border-[var(--color-lavender-ash)] bg-white max-h-[calc(100vh-4rem)] overflow-y-auto"
+    aria-label="Mobile Navigation"
+  >
+    <nav class="container-page py-4 space-y-1">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="block px-4 py-3 text-base font-semibold rounded-xl transition-colors hover:bg-[var(--color-porcelain-mist)]"
+          style="color: var(--color-shadow-graphite);"
+        >
+          {item.label}
+        </a>
+      ))}
+
+      <!-- Mobile-Suche (unter 768px sonst nicht sichtbar) -->
+      <div class="md:hidden pt-2">
+        <input
+          type="search"
+          placeholder={`Suche in ${city.name}…`}
+          class="w-full bg-transparent border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none transition-colors"
+          style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
+          onfocus="this.style.borderColor='var(--color-accent)'"
+          onblur="this.style.borderColor='var(--color-lavender-ash)'"
+        />
+      </div>
+
+      <!-- Mobile-only Werben-CTA (unter 640px sonst nicht sichtbar) -->
+      <a
+        href="/werben/"
+        class="sm:hidden block mt-2 px-4 py-3 text-base font-semibold rounded-xl text-white text-center"
+        style="background: var(--color-accent);"
+      >
+        Werben
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script is:inline>
+  (() => {
+    const toggle = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    if (!toggle || !menu) return;
+
+    const iconOpen = toggle.querySelector(".icon-open");
+    const iconClose = toggle.querySelector(".icon-close");
+
+    const setOpen = (open) => {
+      menu.classList.toggle("hidden", !open);
+      iconOpen?.classList.toggle("hidden", open);
+      iconClose?.classList.toggle("hidden", !open);
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+
+    toggle.addEventListener("click", () => {
+      setOpen(menu.classList.contains("hidden"));
+    });
+
+    // ESC schließt das Menü
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.classList.contains("hidden")) setOpen(false);
+    });
+
+    // Beim Wechsel auf Desktop-Breite Menü automatisch schließen
+    const mq = window.matchMedia("(min-width: 1024px)");
+    mq.addEventListener("change", (e) => {
+      if (e.matches) setOpen(false);
+    });
+  })();
+</script>

@@ -1,0 +1,94 @@
+---
+/**
+ * GetYourGuide-Widget — drei Modi.
+ * ---------------------------------
+ *  - "city"          : Top-Touren der Stadt (Homepage, Reiseplaner-Tag).
+ *                      Pflicht: cityQuery (z.B. "Speyer") ODER locationId.
+ *  - "activities"    : Touren passend zu einer Suchanfrage. Sight-Detail-Default.
+ *                      Pflicht: q (Suchbegriff, meist Sight-Name + Stadt).
+ *  - "availability"  : Verfügbarkeit + Buchung für EINE konkrete GYG-Activity.
+ *                      Pflicht: activityId.
+ *
+ * Das Script-Tag wird einmalig in BaseLayout geladen — diese Komponente
+ * rendert nur den data-gyg-*-Placeholder, den GYG zur Laufzeit ersetzt.
+ *
+ * Tracking-Tipp: `cmp` als sprechende ID setzen (z.B. "sight-kaiserdom"),
+ * dann lässt sich im GYG-Dashboard pro Platzierung auswerten.
+ */
+import { affiliate, gygEnabled } from "../data/affiliate";
+
+interface Props {
+  mode: "city" | "activities" | "availability";
+  /** Für mode=city: Stadt-Name als Query (z.B. "Speyer") */
+  cityQuery?: string;
+  /** Für mode=city: konkrete GYG-Location-ID (Alternative zu cityQuery) */
+  locationId?: string;
+  /** Für mode=activities: Suchbegriff */
+  q?: string;
+  /** Für mode=availability: konkrete Activity-ID */
+  activityId?: string;
+  /** Anzahl Items im Widget (Default 3) */
+  numberOfItems?: number;
+  /** Tracking-Kampagnen-ID, sprechend (z.B. "homepage", "sight-kaiserdom") */
+  cmp?: string;
+  /** Optionaler Titel über dem Widget */
+  title?: string;
+  /** Lead-Text unter dem Titel */
+  lead?: string;
+}
+
+const {
+  mode,
+  cityQuery,
+  locationId,
+  q,
+  activityId,
+  numberOfItems = 3,
+  cmp,
+  title,
+  lead,
+} = Astro.props;
+
+const widgetType = mode === "availability" ? "availability" : mode;
+const frameType =
+  mode === "availability" ? "availability" : mode === "city" ? "city" : "activities";
+const frameUrl = `https://widget.getyourguide.com/default/${frameType}.frame`;
+---
+
+{gygEnabled && (
+  <section class="my-12">
+    {title && (
+      <div class="mb-6 max-w-3xl">
+        <p class="eyebrow mb-2">Touren & Tickets</p>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-deep-plum);">
+          {title}
+        </h2>
+        {lead && (
+          <p class="text-base leading-relaxed" style="color: var(--color-shadow-graphite);">
+            {lead}
+          </p>
+        )}
+      </div>
+    )}
+
+    <div
+      data-gyg-href={frameUrl}
+      data-gyg-locale-code={affiliate.getYourGuide.locale}
+      data-gyg-currency="EUR"
+      data-gyg-widget={widgetType}
+      data-gyg-partner-id={affiliate.getYourGuide.partnerId}
+      data-gyg-number-of-items={mode === "availability" ? undefined : String(numberOfItems)}
+      data-gyg-cmp={cmp ?? "default"}
+      data-gyg-q={mode === "activities" ? q : mode === "city" ? cityQuery : undefined}
+      data-gyg-location-id={mode === "city" ? locationId : undefined}
+      data-gyg-tour-id={mode === "availability" ? activityId : undefined}
+      data-gyg-variant={mode === "availability" ? "horizontal" : undefined}
+      class="gyg-widget-host rounded-2xl overflow-hidden"
+    ></div>
+
+    <p class="text-[11px] mt-3 leading-relaxed" style="color: var(--color-slate-steel);">
+      * Touren & Tickets von GetYourGuide. Beim Buchen über die Marker erhalten
+      wir eine Provision, du zahlst keinen Cent mehr.
+    </p>
+  </section>
+)}

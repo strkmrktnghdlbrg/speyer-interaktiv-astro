@@ -1,0 +1,52 @@
+---
+import ContentImage from "./ContentImage.astro";
+import type { Sight } from "../data/sights";
+import { getDistrict } from "../data/districts";
+
+interface Props {
+  sight: Sight;
+}
+
+const { sight } = Astro.props;
+const district = getDistrict(sight.district);
+const priceLabel =
+  sight.priceFrom === null ? "Eintritt frei" : `ab ${sight.priceFrom} €`;
+---
+
+<a href={`/sehenswuerdigkeiten/${sight.slug}/`} class="card group block">
+  <div class="aspect-[4/3] relative overflow-hidden">
+    <ContentImage
+      imgKey={sight.imageKey}
+      fallbackHue={sight.imageHue}
+      fallbackLabel={sight.name}
+      imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute top-3 left-3">
+      <span class="pill bg-white/95 backdrop-blur-sm">
+        {sight.type}
+      </span>
+    </div>
+    {sight.priceFrom === null && (
+      <div class="absolute top-3 right-3">
+        <span class="pill-accent">Gratis</span>
+      </div>
+    )}
+  </div>
+  <div class="p-3">
+    <p class="text-xs font-semibold mb-1" style="color: var(--color-slate-steel);">
+      {district?.name ?? sight.district}
+    </p>
+    <h3
+      class="text-base font-bold tracking-tight leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
+      style="color: var(--color-deep-plum);"
+    >
+      {sight.name}
+    </h3>
+    <p class="text-xs leading-relaxed line-clamp-2 mb-2" style="color: var(--color-shadow-graphite);">
+      {sight.shortDesc}
+    </p>
+    <p class="text-xs font-semibold" style="color: var(--color-accent);">
+      {priceLabel}
+    </p>
+  </div>
+</a>

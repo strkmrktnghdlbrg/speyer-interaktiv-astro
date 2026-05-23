@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import { feste } from "../../data/feste";
+import { city } from "../../data/city";
+
+const title = `Feste & Veranstaltungen in ${city.name}`;
+const description = `Wiederkehrende Stadtfeste in ${city.name}: Altdeutscher Weihnachtsmarkt, Fastnacht und weitere Höhepunkte des Speyerer Jahres.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="container-page py-10">
+    <Breadcrumbs items={[
+      { label: "Startseite", href: "/" },
+      { label: "Feste" },
+    ]} />
+
+    <header class="mb-10">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="font-family: var(--font-display);">
+        Feste in {city.name}
+      </h1>
+      <p class="text-lg text-ink-700 max-w-3xl leading-relaxed">
+        Vom Altdeutschen Weihnachtsmarkt rund um den Dom bis zur Pfälzer
+        Fastnacht: die wiederkehrenden Stadtfeste, die {city.name} prägen.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {feste.map((f) => (
+        <a
+          href={`/feste/${f.slug}/`}
+          class="group block rounded-2xl border border-ink-100 bg-white overflow-hidden transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
+        >
+          <div class="aspect-[4/3] relative">
+            <HueGradient hue={f.imageHue} label={f.name} />
+          </div>
+          <div class="p-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2">
+              {f.termin}
+            </p>
+            <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">
+              {f.name}
+            </h2>
+            <p class="text-sm text-ink-700 leading-relaxed">
+              {f.shortDesc}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

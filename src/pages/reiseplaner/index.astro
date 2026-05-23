@@ -1,0 +1,63 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { guides } from "../../data/guides";
+import { city } from "../../data/city";
+---
+
+<BaseLayout
+  title={`Reiseplaner für ${city.name}`}
+  description={`Vorgeplante ${city.name}-Reisen für jeden Anlass: 2 Tage als Erstbesuch, Wochenende mit Kindern. Fertige Tagespläne mit Hotels und Restaurants.`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Reiseplaner" }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Routen</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        Reiseplaner für {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        Fertige Routen für Erstbesuche, kurze Wochenenden und besondere Anlässe.
+        Tagespläne mit konkreten Sehenswürdigkeiten, Restaurant-Tipps und Hotel-Empfehlungen,
+        zum Direkt-Loslaufen.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {guides.map((g) => (
+        <a href={`/reiseplaner/${g.slug}/`} class="card group block overflow-hidden">
+          <div class="aspect-[4/3] sm:aspect-[16/9] relative overflow-hidden">
+            <ContentImage
+              imgKey={g.imageKey}
+              fallbackHue={g.imageHue}
+              fallbackLabel={g.title}
+              imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute top-4 left-4 flex flex-wrap gap-2">
+              <span class="pill-accent">{g.duration} Tage</span>
+              <span class="pill bg-white/95 backdrop-blur-sm">{g.audience}</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h2
+              class="text-2xl font-bold tracking-tight mb-3 group-hover:text-[var(--color-accent)] transition-colors"
+              style="color: var(--color-deep-plum);"
+            >
+              {g.title}
+            </h2>
+            <p class="text-base leading-relaxed" style="color: var(--color-shadow-graphite);">
+              {g.shortDesc}
+            </p>
+            {g.bestSeason && (
+              <p class="mt-4 text-xs font-semibold" style="color: var(--color-slate-steel);">
+                Beste Reisezeit: <span style="color: var(--color-inkwell-purple);">{g.bestSeason}</span>
+              </p>
+            )}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

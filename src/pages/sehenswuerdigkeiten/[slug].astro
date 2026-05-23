@@ -1,0 +1,187 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import RelatedItems from "../../components/RelatedItems.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import { sights, getSight } from "../../data/sights";
+import { getDistrict } from "../../data/districts";
+import { topHotelsByDistrict } from "../../data/hotels";
+import { getCategory } from "../../data/categories";
+import { city } from "../../data/city";
+import HotelCard from "../../components/HotelCard.astro";
+
+export function getStaticPaths() {
+  return sights.map((s) => ({ params: { slug: s.slug } }));
+}
+
+const { slug } = Astro.params;
+const sight = getSight(slug!)!;
+const district = getDistrict(sight.district)!;
+const nearbyHotels = topHotelsByDistrict(sight.district, 3);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: sight.name,
+  description: sight.longDesc,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: city.name,
+    addressRegion: "RP",
+    addressCountry: "DE",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: sight.coordinates[0],
+    longitude: sight.coordinates[1],
+  },
+  isAccessibleForFree: sight.priceFrom === null,
+  ...(sight.openingHours ? { openingHours: sight.openingHours } : {}),
+  ...(sight.websiteUrl ? { url: sight.websiteUrl } : {}),
+};
+---
+
+<BaseLayout title={sight.name} description={sight.shortDesc}>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={sight.imageKey}
+        fallbackHue={sight.imageHue}
+        fallbackLabel={sight.name}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        items={[
+          { label: city.name, href: "/" },
+          { label: "Sehenswürdigkeiten", href: "/sehenswuerdigkeiten/" },
+          { label: district.name, href: `/stadtteile/${district.slug}/` },
+          { label: sight.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{sight.type}</span>
+            <a href={`/stadtteile/${district.slug}/`} class="pill-accent hover:underline">
+              {district.name}
+            </a>
+            {sight.priceFrom === null && <span class="pill-accent">Eintritt frei</span>}
+            {sight.categories.map((c) => {
+              const cat = getCategory(c);
+              return cat ? (
+                <a href={`/kategorien/${c}/`} class="pill hover:underline">
+                  {cat.name}
+                </a>
+              ) : null;
+            })}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {sight.name}
+          </h1>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {sight.shortDesc}
+          </p>
+
+          <div class="prose max-w-none">
+            <p class="text-base leading-relaxed" style="color: var(--color-inkwell-purple);">
+              {sight.longDesc}
+            </p>
+          </div>
+
+          {sight.websiteUrl && (
+            <div class="mt-6">
+              <a href={sight.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-outline">
+                Offizielle Website →
+              </a>
+            </div>
+          )}
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start space-y-5">
+          <div class="card p-5">
+            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+              Auf einen Blick
+            </h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Stadtteil</dt>
+                <dd style="color: var(--color-inkwell-purple);">{district.name}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Kategorie</dt>
+                <dd style="color: var(--color-inkwell-purple);">{sight.type}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Eintritt</dt>
+                <dd style="color: var(--color-inkwell-purple);">
+                  {sight.priceFrom === null ? "Kostenlos" : `ab ${sight.priceFrom} €`}
+                </dd>
+              </div>
+              {sight.openingHours && (
+                <div class="flex justify-between gap-3">
+                  <dt class="font-semibold shrink-0" style="color: var(--color-slate-steel);">Öffnung</dt>
+                  <dd class="text-right" style="color: var(--color-inkwell-purple);">{sight.openingHours}</dd>
+                </div>
+              )}
+            </dl>
+          </div>
+
+          {nearbyHotels.length > 0 && (
+            <div class="card p-5">
+              <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+                Hotels in der Nähe
+              </h3>
+              <ul class="space-y-3">
+                {nearbyHotels.map((h) => (
+                  <li>
+                    <a href={`/hotels/${h.slug}/`} class="block hover:underline" style="text-underline-offset: 3px;">
+                      <p class="text-sm font-bold" style="color: var(--color-deep-plum);">
+                        {h.name}
+                      </p>
+                      <p class="text-xs mt-0.5" style="color: var(--color-slate-steel);">
+                        {"★".repeat(h.stars)} · ab {h.priceFrom} €/Nacht
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+
+      {sight.gygActivityId ? (
+        <GetYourGuideWidget
+          mode="availability"
+          activityId={sight.gygActivityId}
+          numberOfItems={3}
+          cmp={`sight-${sight.slug}`}
+          title={`Tickets & Touren für ${sight.name}`}
+          lead="Direkt online buchen, Skip-the-Line wo verfügbar, kostenfrei stornierbar."
+        />
+      ) : (
+        <GetYourGuideWidget
+          mode="activities"
+          q={`${sight.name} ${city.name}`}
+          numberOfItems={3}
+          cmp={`sight-${sight.slug}`}
+          title={`Passende Touren rund um ${sight.name}`}
+          lead="Geführte Touren und Tickets von GetYourGuide."
+        />
+      )}
+
+      <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

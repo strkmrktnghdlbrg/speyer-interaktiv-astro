@@ -1,0 +1,159 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import RestaurantCard from "../../components/RestaurantCard.astro";
+import { restaurants, getRestaurant, restaurantsByDistrict } from "../../data/restaurants";
+import { getDistrict } from "../../data/districts";
+import { getCategory } from "../../data/categories";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return restaurants.map((r) => ({ params: { slug: r.slug } }));
+}
+
+const { slug } = Astro.params;
+const restaurant = getRestaurant(slug!)!;
+const district = getDistrict(restaurant.district)!;
+const related = restaurantsByDistrict(restaurant.district)
+  .filter((r) => r.slug !== restaurant.slug)
+  .slice(0, 4);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: restaurant.name,
+  description: restaurant.longDesc,
+  servesCuisine: restaurant.cuisine,
+  priceRange: restaurant.priceLevel,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: city.name,
+    addressRegion: "RP",
+    addressCountry: "DE",
+  },
+  ...(restaurant.openingHours ? { openingHours: restaurant.openingHours } : {}),
+  ...(restaurant.websiteUrl ? { url: restaurant.websiteUrl } : {}),
+  ...(restaurant.reservation !== undefined
+    ? { acceptsReservations: restaurant.reservation }
+    : {}),
+};
+---
+
+<BaseLayout title={restaurant.name} description={restaurant.shortDesc}>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={restaurant.imageKey}
+        fallbackHue={restaurant.imageHue}
+        fallbackLabel={restaurant.name}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        items={[
+          { label: city.name, href: "/" },
+          { label: "Restaurants", href: "/restaurants/" },
+          { label: district.name, href: `/stadtteile/${district.slug}/` },
+          { label: restaurant.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{restaurant.cuisine}</span>
+            <span class="pill">{restaurant.priceLevel}</span>
+            <a href={`/stadtteile/${district.slug}/`} class="pill-accent hover:underline">
+              {district.name}
+            </a>
+            {restaurant.reservation && <span class="pill-accent">Reservierung möglich</span>}
+            {restaurant.categories.map((c) => {
+              const cat = getCategory(c);
+              return cat ? (
+                <a href={`/kategorien/${c}/`} class="pill hover:underline">
+                  {cat.name}
+                </a>
+              ) : null;
+            })}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {restaurant.name}
+          </h1>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {restaurant.shortDesc}
+          </p>
+
+          <p class="text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            {restaurant.longDesc}
+          </p>
+
+          {restaurant.websiteUrl && (
+            <div class="mt-6">
+              <a href={restaurant.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-outline">
+                Website besuchen →
+              </a>
+            </div>
+          )}
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          <div class="card p-5">
+            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+              Auf einen Blick
+            </h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Stadtteil</dt>
+                <dd style="color: var(--color-inkwell-purple);">{district.name}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Küche</dt>
+                <dd style="color: var(--color-inkwell-purple);">{restaurant.cuisine}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Preisklasse</dt>
+                <dd class="font-bold" style="color: var(--color-accent);">{restaurant.priceLevel}</dd>
+              </div>
+              {restaurant.openingHours && (
+                <div class="flex justify-between gap-3">
+                  <dt class="font-semibold shrink-0" style="color: var(--color-slate-steel);">Öffnung</dt>
+                  <dd class="text-right" style="color: var(--color-inkwell-purple);">{restaurant.openingHours}</dd>
+                </div>
+              )}
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">Reservierung</dt>
+                <dd style="color: var(--color-inkwell-purple);">
+                  {restaurant.reservation === false
+                    ? "Walk-in only"
+                    : restaurant.reservation === true
+                      ? "Empfohlen"
+                      : "—"}
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+
+      {related.length > 0 && (
+        <section class="py-12 border-t border-[var(--color-lavender-ash)] mt-10">
+          <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+            Weitere Restaurants in {district.name}
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {related.map((r) => <RestaurantCard restaurant={r} />)}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

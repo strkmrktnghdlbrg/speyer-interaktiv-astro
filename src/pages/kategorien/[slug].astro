@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SightCard from "../../components/SightCard.astro";
+import RestaurantCard from "../../components/RestaurantCard.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import { categories, getCategory } from "../../data/categories";
+import { sightsByCategory } from "../../data/sights";
+import { restaurantsByCategory } from "../../data/restaurants";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return categories
+    .filter((c) =>
+      sightsByCategory(c.slug).length > 0 ||
+      restaurantsByCategory(c.slug).length > 0
+    )
+    .map((c) => ({ params: { slug: c.slug } }));
+}
+
+const { slug } = Astro.params;
+const category = getCategory(slug!)!;
+const sights = sightsByCategory(slug!);
+const restaurants = restaurantsByCategory(slug!);
+const totalCount = sights.length + restaurants.length;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${category.name} in ${city.name}`,
+  description: category.shortDesc,
+  numberOfItems: totalCount,
+  itemListElement: [
+    ...sights.map((s, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "TouristAttraction",
+        name: s.name,
+        url: new URL(`/sehenswuerdigkeiten/${s.slug}/`, Astro.site!).toString(),
+      },
+    })),
+    ...restaurants.map((r, i) => ({
+      "@type": "ListItem",
+      position: sights.length + i + 1,
+      item: {
+        "@type": "Restaurant",
+        name: r.name,
+        url: new URL(`/restaurants/${r.slug}/`, Astro.site!).toString(),
+      },
+    })),
+  ],
+};
+---
+
+<BaseLayout
+  title={`${category.name} in ${city.name}`}
+  description={`Alle ${category.name.toLowerCase()} in ${city.name} auf einen Blick. ${category.shortDesc}`}
+>
+  <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[50vh] overflow-hidden">
+    <HueGradient hue={((sights[0]?.imageHue ?? 1))} label={category.name} />
+  </div>
+
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Kategorien", href: "/kategorien/" },
+        { label: category.name },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-12">
+      <p class="eyebrow mb-2">Kategorie</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {category.name} in {city.name}
+      </h1>
+      <p class="text-xl leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {category.shortDesc}. {totalCount} {totalCount === 1 ? "Eintrag" : "Einträge"} aus dem Portal.
+      </p>
+    </div>
+
+    {sights.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+          {sights.length === 1 ? "Sehenswürdigkeit" : "Sehenswürdigkeiten"} ({sights.length})
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {sights.map((s) => <SightCard sight={s} />)}
+        </div>
+      </section>
+    )}
+
+    {restaurants.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+          Restaurants ({restaurants.length})
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {restaurants.map((r) => <RestaurantCard restaurant={r} />)}
+        </div>
+      </section>
+    )}
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

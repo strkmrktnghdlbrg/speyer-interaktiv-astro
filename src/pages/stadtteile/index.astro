@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DistrictCard from "../../components/DistrictCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { districts } from "../../data/districts";
+import { city } from "../../data/city";
+---
+
+<BaseLayout title={`Stadtteile in ${city.name}`} description={`Alle Stadtteile und Quartiere von ${city.name} im Überblick. Von der Altstadt über Speyer-Nord bis zum Rheinhafen.`}>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Stadtteile" }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Quartiere</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        Stadtteile in {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        Jeder Stadtteil hat seinen eigenen Charakter. Hier findest du Sehenswürdigkeiten,
+        Hotels und Restaurants gebündelt pro Quartier.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {districts.map((d) => <DistrictCard district={d} />)}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#a8323f"/>
+  <g fill="#ffffff">
+    <!-- Mittlerer Vierungsturm mit Spitze -->
+    <path d="M30 6 L34 6 L34 14 L36 14 L36 22 L28 22 L28 14 L30 14 Z"/>
+    <!-- Linker Westturm -->
+    <path d="M10 26 L18 26 L18 18 L20 18 L20 14 L8 14 L8 18 L10 18 Z M10 26 L10 52 L18 52 L18 26 Z"/>
+    <!-- Rechter Westturm -->
+    <path d="M46 26 L54 26 L54 18 L56 18 L56 14 L44 14 L44 18 L46 18 Z M46 26 L46 52 L54 52 L54 26 Z"/>
+    <!-- Mittelschiff -->
+    <path d="M20 32 L44 32 L44 52 L20 52 Z"/>
+    <!-- Sockel -->
+    <rect x="6" y="52" width="52" height="6" rx="1"/>
+  </g>
+</svg>

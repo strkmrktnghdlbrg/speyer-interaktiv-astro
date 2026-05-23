@@ -1,0 +1,98 @@
+---
+import { Image } from "astro:assets";
+import { city } from "../data/city";
+import { districts } from "../data/districts";
+import { categories } from "../data/categories";
+import { features } from "../data/features";
+import logo from "../assets/branding/logo.svg";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-20 border-t border-[var(--color-lavender-ash)] bg-[var(--color-porcelain-mist)]">
+  <div class="container-page py-14">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="inline-flex mb-4" style="color: var(--color-accent);" aria-label="Zur Startseite">
+          <Image
+            src={logo}
+            alt={`${city.name}-Interaktiv`}
+            width={280}
+            height={64}
+            class="h-12 w-auto"
+          />
+        </a>
+        <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">
+          {city.description.short}
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
+          Stadtteile
+        </h4>
+        <ul class="space-y-2">
+          {districts.slice(0, 8).map((d) => (
+            <li>
+              <a
+                href={`/stadtteile/${d.slug}/`}
+                class="text-sm hover:underline"
+                style="color: var(--color-shadow-graphite); text-underline-offset: 3px;"
+              >
+                {d.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
+          Kategorien
+        </h4>
+        <ul class="space-y-2">
+          {categories.slice(0, 8).map((c) => (
+            <li>
+              <a
+                href={`/kategorien/${c.slug}/`}
+                class="text-sm hover:underline"
+                style="color: var(--color-shadow-graphite); text-underline-offset: 3px;"
+              >
+                {c.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
+          Service
+        </h4>
+        <ul class="space-y-2">
+          {features.werben.enabled && (
+            <li><a href="/werben/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Werben auf {city.name}-Interaktiv</a></li>
+          )}
+          {features.reiseplaner.enabled && (
+            <li><a href="/reiseplaner/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Reiseplaner</a></li>
+          )}
+          <li><a href="/kategorien/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Kategorien</a></li>
+          {features.news.enabled && (
+            <li><a href="/news/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Aktuelle News</a></li>
+          )}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-[var(--color-lavender-ash)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <p class="text-xs" style="color: var(--color-slate-steel);">
+        © {year} {city.name}-Interaktiv. Inhalte unter Quellenangabe.
+      </p>
+      <div class="flex items-center gap-5">
+        <a href="/impressum/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">Impressum</a>
+        <a href="/datenschutz/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">Datenschutz</a>
+        <a href="/agb/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>

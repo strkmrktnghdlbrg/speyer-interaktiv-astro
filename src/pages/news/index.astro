@@ -1,0 +1,58 @@
+---
+export const prerender = false;
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { listNews } from "../../lib/news/repository";
+import { features } from "../../data/features";
+import { city } from "../../data/city";
+
+if (!features.news.enabled) {
+  return Astro.redirect("/", 302);
+}
+
+const runtime = Astro.locals.runtime;
+const rows = await listNews(runtime?.env.DB, 60);
+
+const items = rows.map((r) => ({
+  slug: r.slug,
+  title: r.title,
+  lead: r.lead,
+  summary: r.summary,
+  category: r.category as any,
+  district: r.district ?? undefined,
+  publishedAt: r.published_at,
+  source: {
+    name: r.source_name,
+    url: r.source_url,
+    publishedAt: r.source_published_at,
+  },
+  imageHue: r.image_hue,
+  imageKey: r.image_key ?? undefined,
+}));
+---
+
+<BaseLayout
+  title={`News aus ${city.name}`}
+  description={`Aktuelle Kurz-Zusammenfassungen lokaler Nachrichten aus ${city.name}. Mit Quellen-Attribution und Link zum Originalartikel.`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "News" }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Aktuelles</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        News aus {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        Kompakte Zusammenfassungen lokaler Nachrichten aus der Rheinpfalz, dem SWR
+        und Pressemitteilungen der Stadt. Jeder Artikel mit Link zur Originalquelle.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {items.map((n) => <NewsCard item={n} />)}
+    </div>
+  </div>
+</BaseLayout>

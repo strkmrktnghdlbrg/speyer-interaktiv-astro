@@ -1,0 +1,116 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import BookingCTA from "../../components/BookingCTA.astro";
+import RelatedItems from "../../components/RelatedItems.astro";
+import Stay22Map from "../../components/Stay22Map.astro";
+import { hotels, getHotel } from "../../data/hotels";
+import { getDistrict } from "../../data/districts";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return hotels.map((h) => ({ params: { slug: h.slug } }));
+}
+
+const { slug } = Astro.params;
+const hotel = getHotel(slug!)!;
+const district = getDistrict(hotel.district)!;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  name: hotel.name,
+  description: hotel.longDesc,
+  starRating: { "@type": "Rating", ratingValue: hotel.stars },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: hotel.rating,
+    bestRating: 10,
+    reviewCount: hotel.reviews,
+  },
+  priceRange: `ab ${hotel.priceFrom} EUR`,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: "DE" },
+};
+---
+
+<BaseLayout title={hotel.name} description={hotel.shortDesc}>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <HueGradient hue={hotel.imageHue} label={hotel.name} />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        items={[
+          { label: city.name, href: "/" },
+          { label: "Hotels", href: "/hotels/" },
+          { label: district.name, href: `/stadtteile/${district.slug}/` },
+          { label: hotel.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{"★".repeat(hotel.stars)}</span>
+            <a href={`/stadtteile/${district.slug}/`} class="pill-accent hover:underline">
+              {district.name}
+            </a>
+            {hotel.guestFavorite && <span class="pill-accent">★ Gästeliebling</span>}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {hotel.name}
+          </h1>
+
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-1.5">
+              <span class="text-2xl font-bold" style="color: var(--color-accent);">
+                {hotel.rating.toFixed(1)}
+              </span>
+              <span class="text-sm" style="color: var(--color-slate-steel);">/ 10</span>
+            </div>
+            <span style="color: var(--color-lavender-ash);">·</span>
+            <p class="text-sm" style="color: var(--color-shadow-graphite);">
+              {hotel.reviews} Bewertungen auf Booking.com
+            </p>
+          </div>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {hotel.shortDesc}
+          </p>
+
+          <p class="text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            {hotel.longDesc}
+          </p>
+
+          <h2 class="text-xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+            Ausstattung
+          </h2>
+          <div class="flex flex-wrap gap-2 mb-8">
+            {hotel.amenities.map((a) => (
+              <span class="pill">{a}</span>
+            ))}
+          </div>
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          <BookingCTA hotel={hotel} />
+        </aside>
+      </div>
+
+      <Stay22Map
+        title={`Hotels rund um ${hotel.name}`}
+        lead={`Live-Preise und Verfügbarkeit für ${district.name} und Umgebung.`}
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        zoom={15}
+      />
+
+      <RelatedItems district={hotel.district} excludeSlug={hotel.slug} type="hotels" title="Weitere Hotels in der Umgebung" />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

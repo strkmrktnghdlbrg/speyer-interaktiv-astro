@@ -1,0 +1,47 @@
+---
+import ContentImage from "./ContentImage.astro";
+import type { Restaurant } from "../data/restaurants";
+import { getDistrict } from "../data/districts";
+
+interface Props {
+  restaurant: Restaurant;
+}
+
+const { restaurant } = Astro.props;
+const district = getDistrict(restaurant.district);
+---
+
+<a href={`/restaurants/${restaurant.slug}/`} class="card group block">
+  <div class="aspect-[4/3] relative overflow-hidden">
+    <ContentImage
+      imgKey={restaurant.imageKey}
+      fallbackHue={restaurant.imageHue}
+      fallbackLabel={restaurant.name}
+      imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+    <div class="absolute top-3 left-3">
+      <span class="pill bg-white/95 backdrop-blur-sm">
+        {restaurant.cuisine}
+      </span>
+    </div>
+    <div class="absolute top-3 right-3">
+      <span class="pill bg-white/95 backdrop-blur-sm font-bold">
+        {restaurant.priceLevel}
+      </span>
+    </div>
+  </div>
+  <div class="p-3">
+    <p class="text-xs font-semibold mb-1" style="color: var(--color-slate-steel);">
+      {district?.name ?? restaurant.district}
+    </p>
+    <h3
+      class="text-base font-bold tracking-tight leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
+      style="color: var(--color-deep-plum);"
+    >
+      {restaurant.name}
+    </h3>
+    <p class="text-xs leading-relaxed line-clamp-2" style="color: var(--color-shadow-graphite);">
+      {restaurant.shortDesc}
+    </p>
+  </div>
+</a>

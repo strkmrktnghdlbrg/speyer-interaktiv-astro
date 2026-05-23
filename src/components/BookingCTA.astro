@@ -1,0 +1,36 @@
+---
+import type { Hotel } from "../data/hotels";
+
+interface Props {
+  hotel: Hotel;
+}
+
+const { hotel } = Astro.props;
+---
+
+<div
+  class="rounded-2xl p-5 sm:p-6"
+  style="background: var(--color-porcelain-mist); border: 1px solid var(--color-lavender-ash);"
+>
+  <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--color-slate-steel);">
+    Direkt buchen
+  </p>
+  <div class="flex items-baseline gap-2 mb-4">
+    <span class="text-3xl font-bold" style="color: var(--color-deep-plum);">
+      {hotel.priceFrom} €
+    </span>
+    <span class="text-sm" style="color: var(--color-slate-steel);">/ Nacht ab</span>
+  </div>
+  <a
+    href={hotel.bookingUrl}
+    rel="nofollow noopener sponsored"
+    target="_blank"
+    class="btn-primary w-full"
+  >
+    Auf Booking.com prüfen →
+  </a>
+  <p class="text-[11px] mt-3 leading-relaxed" style="color: var(--color-slate-steel);">
+    * Affiliate-Link: Beim Buchen über diesen Link erhalten wir eine
+    Provision, du zahlst keinen Cent mehr.
+  </p>
+</div>

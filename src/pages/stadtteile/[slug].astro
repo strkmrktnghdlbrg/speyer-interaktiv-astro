@@ -1,0 +1,137 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import SightCard from "../../components/SightCard.astro";
+import HotelCard from "../../components/HotelCard.astro";
+import RestaurantCard from "../../components/RestaurantCard.astro";
+import DistrictCard from "../../components/DistrictCard.astro";
+import { districts, getDistrict } from "../../data/districts";
+import { sightsByDistrict } from "../../data/sights";
+import { hotelsByDistrict, topHotelsByDistrict } from "../../data/hotels";
+import { restaurantsByDistrict } from "../../data/restaurants";
+import { city } from "../../data/city";
+
+export function getStaticPaths() {
+  return districts.map((d) => ({ params: { slug: d.slug } }));
+}
+
+const { slug } = Astro.params;
+const district = getDistrict(slug!)!;
+const sights = sightsByDistrict(district.slug);
+const hotels = topHotelsByDistrict(district.slug, 8);
+const restaurants = restaurantsByDistrict(district.slug).slice(0, 8);
+const otherDistricts = districts.filter((d) => d.slug !== district.slug).slice(0, 4);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  name: `${district.name} in ${city.name}`,
+  description: district.longDesc,
+  containedInPlace: { "@type": "City", name: city.name },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: district.coordinates[0],
+    longitude: district.coordinates[1],
+  },
+};
+---
+
+<BaseLayout title={`${district.name} – Stadtteil in ${city.name}`} description={district.shortDesc}>
+  <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+    <ContentImage
+      imgKey={district.imageKey}
+      fallbackHue={district.hue}
+      fallbackLabel={district.name}
+      showCredit
+      loading="eager"
+      imgClass="w-full h-full object-cover"
+    />
+  </div>
+
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Stadtteile", href: "/stadtteile/" },
+        { label: district.name },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-12">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {district.characterTags.map((tag) => (
+          <span class="pill">{tag}</span>
+        ))}
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        {district.name}
+      </h1>
+      <p class="text-xl leading-relaxed mb-6" style="color: var(--color-shadow-graphite);">
+        {district.shortDesc}
+      </p>
+      <p class="text-base leading-relaxed" style="color: var(--color-inkwell-purple);">
+        {district.longDesc}
+      </p>
+    </div>
+
+    {sights.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            Sehenswürdigkeiten in {district.name}
+          </h2>
+          <a href="/sehenswuerdigkeiten/" class="link-accent font-semibold text-sm hidden sm:inline-flex">
+            Alle Sights →
+          </a>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {sights.map((s) => <SightCard sight={s} />)}
+        </div>
+      </section>
+    )}
+
+    {hotels.length > 0 && (
+      <section class="mb-16 -mx-4 sm:-mx-6 px-4 sm:px-8 py-10 rounded-3xl" style="background: var(--color-porcelain-mist);">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            Hotels in {district.name}
+          </h2>
+          <a href="/hotels/" class="link-accent font-semibold text-sm hidden sm:inline-flex">
+            Alle Hotels →
+          </a>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {hotels.map((h) => <HotelCard hotel={h} />)}
+        </div>
+      </section>
+    )}
+
+    {restaurants.length > 0 && (
+      <section class="mb-16">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            Restaurants in {district.name}
+          </h2>
+          <a href="/restaurants/" class="link-accent font-semibold text-sm hidden sm:inline-flex">
+            Alle Restaurants →
+          </a>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {restaurants.map((r) => <RestaurantCard restaurant={r} />)}
+        </div>
+      </section>
+    )}
+
+    <section>
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+        Andere Stadtteile entdecken
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {otherDistricts.map((d) => <DistrictCard district={d} />)}
+      </div>
+    </section>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

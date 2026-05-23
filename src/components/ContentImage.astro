@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+import HueGradient from "./HueGradient.astro";
+import { getImage } from "../data/images";
+
+interface Props {
+  imgKey?: string;
+  fallbackHue?: number;
+  fallbackLabel?: string;
+  className?: string;
+  imgClass?: string;
+  loading?: "lazy" | "eager";
+  showCredit?: boolean;
+  aspect?: string;
+  sizes?: string;          // Responsive sizes-Hint (z.B. "(min-width: 1024px) 25vw, 50vw")
+  widths?: number[];       // Generierte Breite-Varianten (Default: [400, 800, 1200, 1600])
+}
+
+const {
+  imgKey,
+  fallbackHue = 1,
+  fallbackLabel,
+  className = "",
+  imgClass = "w-full h-full object-cover",
+  loading = "lazy",
+  showCredit = false,
+  aspect,
+  sizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw",
+  widths = [400, 800, 1200, 1600],
+} = Astro.props;
+
+const entry = imgKey ? getImage(imgKey) : undefined;
+const wrapperClass = aspect ? `${aspect} ${className}` : className;
+---
+
+{entry ? (
+  <figure class={`relative ${wrapperClass}`}>
+    <Image
+      src={entry.src}
+      alt={entry.alt}
+      widths={widths}
+      sizes={sizes}
+      loading={loading}
+      decoding="async"
+      format="webp"
+      quality={78}
+      class={imgClass}
+    />
+
+    {showCredit && entry.credit && (
+      <figcaption class="absolute bottom-0 left-0 right-0 px-3 py-2 text-[10px] text-white/85 bg-gradient-to-t from-black/70 to-transparent">
+        Foto: <a
+          href={entry.credit.sourceUrl}
+          rel="nofollow noopener"
+          target="_blank"
+          class="underline hover:text-white"
+        >{entry.credit.author}</a>
+        {" · "}
+        <a
+          href={entry.credit.licenseUrl}
+          rel="nofollow noopener"
+          target="_blank"
+          class="underline hover:text-white"
+        >{entry.credit.license}</a>
+      </figcaption>
+    )}
+  </figure>
+) : (
+  <div class={`relative ${wrapperClass}`}>
+    <HueGradient hue={fallbackHue} label={fallbackLabel} />
+  </div>
+)}

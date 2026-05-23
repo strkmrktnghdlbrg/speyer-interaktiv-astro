@@ -1,0 +1,36 @@
+---
+interface Props {
+  sourceName: string;
+  sourceUrl: string;
+  sourceDate: string;
+}
+
+const { sourceName, sourceUrl, sourceDate } = Astro.props;
+const formattedDate = new Date(sourceDate).toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<div
+  class="rounded-2xl p-5 sm:p-6 my-8"
+  style="background: var(--color-porcelain-mist); border: 1px solid var(--color-lavender-ash);"
+>
+  <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: var(--color-accent);">
+    Quelle
+  </p>
+  <p class="text-sm leading-relaxed mb-4" style="color: var(--color-inkwell-purple);">
+    Diese Zusammenfassung basiert auf einem Bericht von
+    <strong>{sourceName}</strong> vom {formattedDate}.
+    Den vollständigen Originalartikel mit allen Details findest du hier:
+  </p>
+  <a
+    href={sourceUrl}
+    rel="nofollow noopener"
+    target="_blank"
+    class="btn-primary"
+  >
+    Originalartikel auf {sourceName} lesen →
+  </a>
+</div>

@@ -1,0 +1,211 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SightCard from "../components/SightCard.astro";
+import HotelCard from "../components/HotelCard.astro";
+import RestaurantCard from "../components/RestaurantCard.astro";
+import DistrictCard from "../components/DistrictCard.astro";
+import NewsCard from "../components/NewsCard.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
+import { city } from "../data/city";
+import { affiliate } from "../data/affiliate";
+import { features } from "../data/features";
+import { sights } from "../data/sights";
+import { hotels } from "../data/hotels";
+import { restaurants } from "../data/restaurants";
+import { districts } from "../data/districts";
+import { recentNews } from "../data/news";
+
+const topSights = sights.slice(0, 4);
+const topHotels = hotels.slice(0, 4);
+const topRestaurants = restaurants.slice(0, 4);
+const featuredDistricts = districts.slice(0, 4);
+const latestNews = recentNews(3);
+---
+
+<BaseLayout title={city.name} description={city.description.short}>
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, var(--color-deep-plum) 0%, var(--color-inkwell-purple) 60%, var(--color-accent) 100%);"
+  >
+    <div class="absolute inset-0 opacity-20" aria-hidden="true">
+      <div class="absolute top-10 left-10 w-72 h-72 rounded-full" style="background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(240,85,55,0.5) 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="container-page py-20 sm:py-28 lg:py-32 relative">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-4">
+          Das Stadtportal für {city.name}
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
+          Was läuft heute in {city.name}?
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl leading-relaxed text-white/85 max-w-2xl">
+          {city.description.long}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/sehenswuerdigkeiten/" class="btn-primary bg-white" style="color: var(--color-accent); background: #ffffff;">
+            Sehenswürdigkeiten entdecken
+          </a>
+          <a href={features.reiseplaner.enabled ? "/reiseplaner/" : "/hotels/"} class="btn-ghost bg-white/10 border-white/30 text-white hover:bg-white/20" style="color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);">
+            {features.reiseplaner.enabled ? "Reiseplaner" : "Hotels"}
+          </a>
+        </div>
+        <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
+          {[
+            { label: "Sehenswürdigkeiten", value: city.stats.sights },
+            { label: "Hotels", value: city.stats.hotels },
+            { label: "Restaurants", value: city.stats.restaurants },
+            { label: "Stadtteile", value: city.stats.districts },
+          ].map((s) => (
+            <div>
+              <dd class="text-3xl font-bold text-white">{s.value}</dd>
+              <dt class="text-xs uppercase tracking-widest text-white/70 mt-1">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Sehenswürdigkeiten</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          {city.name} in einem Tag erleben
+        </h2>
+      </div>
+      <a href="/sehenswuerdigkeiten/" class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        Alle Sights →
+      </a>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {topSights.map((s) => <SightCard sight={s} />)}
+    </div>
+  </section>
+
+  <section class="section container-page" style="background: var(--color-porcelain-mist); border-radius: 24px;">
+    <div class="px-4 sm:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="eyebrow mb-2">Hotels</p>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            Übernachten mit Stil
+          </h2>
+        </div>
+        <a href="/hotels/" class="hidden sm:inline-flex link-accent font-semibold text-sm">
+          Alle Hotels →
+        </a>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {topHotels.map((h) => <HotelCard hotel={h} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Essen gehen</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          Weinstube, Brauhaus und Sterne-Küche
+        </h2>
+      </div>
+      <a href="/restaurants/" class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        Alle Restaurants →
+      </a>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {topRestaurants.map((r) => <RestaurantCard restaurant={r} />)}
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">Stadtteile</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          {city.name} nach Quartier
+        </h2>
+      </div>
+      <a href="/stadtteile/" class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        Alle Stadtteile →
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {featuredDistricts.map((d) => <DistrictCard district={d} />)}
+    </div>
+  </section>
+
+  <section class="container-page">
+    <GetYourGuideWidget
+      mode="city"
+      cityQuery={affiliate.getYourGuide.cityQuery}
+      numberOfItems={4}
+      cmp="homepage-city"
+      title={`Top-Touren in ${city.name}`}
+      lead={`Die meistgebuchten Erlebnisse für deine ${city.name}-Reise. Tickets direkt online buchen, kostenfrei stornierbar.`}
+    />
+  </section>
+
+  {features.news.enabled && (
+    <section class="section container-page">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="eyebrow mb-2">Aktuelles</p>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            News aus der Stadt
+          </h2>
+        </div>
+        <a href="/news/" class="hidden sm:inline-flex link-accent font-semibold text-sm">
+          Alle News →
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {latestNews.map((n) => <NewsCard item={n} />)}
+      </div>
+    </section>
+  )}
+
+  <section class="section container-page">
+    <div
+      class="relative overflow-hidden rounded-3xl p-8 sm:p-12"
+      style="background: linear-gradient(120deg, var(--color-accent) 0%, var(--color-accent-hover) 100%);"
+    >
+      <div class="relative grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">
+            Für Unternehmen
+          </p>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight mb-4">
+            Werbe vor Speyerer Lesern pro Monat
+          </h2>
+          <p class="text-white/90 leading-relaxed mb-6">
+            Premium-Listings, Banner-Werbung in Stadtteil-Hubs oder Sponsoring
+            unseres Newsletters. Drei Tier-Pakete für jedes Budget.
+          </p>
+          <a href="/werben/" class="btn-primary bg-white" style="color: var(--color-accent); background: white;">
+            Werbe-Pakete ansehen →
+          </a>
+        </div>
+        <div class="hidden md:block">
+          <div class="grid grid-cols-2 gap-3">
+            {[
+              { label: "Basic", price: "0 €", desc: "Free-Listing" },
+              { label: "Premium", price: "49 €", desc: "pro Monat" },
+              { label: "Featured", price: "149 €", desc: "pro Monat" },
+              { label: "Banner", price: "ab 250 €", desc: "pro Monat" },
+            ].map((t) => (
+              <div class="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
+                <p class="text-xs font-bold uppercase tracking-widest text-white/70 mb-1">{t.label}</p>
+                <p class="text-2xl font-bold text-white">{t.price}</p>
+                <p class="text-xs text-white/70 mt-0.5">{t.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

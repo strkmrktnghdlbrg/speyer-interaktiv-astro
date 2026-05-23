@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /werben/buchen
+Disallow: /api/
+Disallow: /dashboard/
+
+Sitemap: https://speyer-interaktiv.de/sitemap-index.xml

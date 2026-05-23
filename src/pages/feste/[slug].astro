@@ -1,0 +1,40 @@
+---
+import BlogArticle from "../../layouts/BlogArticle.astro";
+import { feste, getFest } from "../../data/feste";
+
+export function getStaticPaths() {
+  return feste.map((f) => ({ params: { slug: f.slug } }));
+}
+
+const { slug } = Astro.params;
+const item = getFest(slug!)!;
+---
+
+<BlogArticle
+  title={item.name}
+  lead={item.lead}
+  description={item.shortDesc}
+  category="Fest"
+>
+  <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2">
+    {item.termin}
+  </p>
+
+  <p class="text-ink-700 leading-relaxed">
+    {item.lead}
+  </p>
+
+  {item.websiteUrl && (
+    <p class="mt-6">
+      <a
+        href={item.websiteUrl}
+        rel="nofollow noopener"
+        target="_blank"
+        class="inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+        style="background: var(--color-accent);"
+      >
+        Offizielle Website {item.name} →
+      </a>
+    </p>
+  )}
+</BlogArticle>

@@ -1,0 +1,78 @@
+# Cloudflare Pages Redirects — echte HTTP 301
+# --------------------------------------------
+# Cloudflare Pages liest dieses File AUTOMATISCH und erzeugt echte
+# 301-Statuscodes (anstelle Astros HTML-Meta-Refresh).
+# Format: <quelle> <ziel> <statuscode>
+#
+# Pflegen synchron mit astro.config.mjs `redirects: {...}`. Bei
+# Abweichung gewinnt _redirects (greift VOR Astro-Build).
+
+# === Sehenswürdigkeiten ===
+/dom                                                /sehenswuerdigkeiten/kaiserdom                          301
+/der-kaiserdom                                      /sehenswuerdigkeiten/kaiserdom                          301
+/kaiser-und-mariendom                               /sehenswuerdigkeiten/kaiserdom                          301
+/altpoertel                                         /sehenswuerdigkeiten/altpoertel                         301
+/das-historische-museum-der-pfalz                   /sehenswuerdigkeiten/historisches-museum-der-pfalz      301
+/das-technik-museum                                 /sehenswuerdigkeiten/technik-museum                     301
+/die-dreifaltigkeitskirche                          /sehenswuerdigkeiten/dreifaltigkeitskirche              301
+/die-gedaechtniskirche-der-protestation             /sehenswuerdigkeiten/gedaechtniskirche                  301
+/juedisches-erbe                                    /sehenswuerdigkeiten/judenhof                           301
+/das-adenauerpark-und-die-mittelalterlichen-stadtmauern  /sehenswuerdigkeiten/adenauerpark                  301
+/die-alte-muenze                                    /sehenswuerdigkeiten/alte-muenze                        301
+/das-fischertor                                     /sehenswuerdigkeiten/fischertor                         301
+/rathaus                                            /sehenswuerdigkeiten/rathaus                            301
+/pfaelzische-landesbibliothek                       /sehenswuerdigkeiten/pfaelzische-landesbibliothek       301
+/stadtbefestigung                                   /sehenswuerdigkeiten/adenauerpark                       301
+/historische-gasthaeuser                            /wissenswertes/historische-gasthaeuser                  301
+/altstadt                                           /stadtteile/altstadt                                    301
+
+# === Themen / Wissenswertes ===
+/roemisches-speyer                                  /wissenswertes/roemisches-speyer                        301
+/mittelalterliches-speyer                           /wissenswertes/mittelalterliches-speyer                 301
+/zeitalter-der-reformation                          /wissenswertes/reformation                              301
+/dreissigjaehrigen-krieg                            /wissenswertes/dreissigjaehriger-krieg                  301
+/die-salier                                         /wissenswertes/salier                                   301
+/die-hexenverfolgung                                /wissenswertes/hexenverfolgung                          301
+/die-baukunst                                       /wissenswertes/baukunst                                 301
+/archaeologische-funde                              /wissenswertes/archaeologische-funde                    301
+/kulturerbe                                         /wissenswertes/kulturerbe                               301
+/die-landung-des-grafen-zeppelin                    /wissenswertes/zeppelin-landung                         301
+/kriegsdenkmaeler                                   /wissenswertes/kriegsdenkmaeler                         301
+/bim-speyer-zukunft                                 /wissenswertes/bim-speyer-zukunft                       301
+/weshalb-du-einen-makler-beauftragen-solltest       /wissenswertes/makler-beauftragen                       301
+/hochzeitsplanung                                   /wissenswertes/hochzeitsplanung                         301
+
+# === Feste / Veranstaltungen ===
+/der-speyerer-weihnachtsmarkt                       /feste/weihnachtsmarkt                                  301
+/speyerer-fastnacht                                 /feste/fastnacht                                        301
+
+# === Hotels-Stadtteile (alte WP-Subpages) ===
+/hotels-in-speyer                                   /hotels                                                 301
+/hotels-in-speyer/hotels-in-speyer-altstadt         /stadtteile/altstadt                                    301
+/hotels-in-speyer/hotels-speyer-kernstadt           /stadtteile/altstadt                                    301
+/hotels-in-speyer/hotels-speyer-nord                /stadtteile/nord                                        301
+/hotels-in-speyer/hotels-speyer-sud                 /stadtteile/sued                                        301
+/hotels-in-speyer/hotels-speyer-west                /stadtteile/west                                        301
+/hotels-in-speyer/hotels-speyer-erlach              /stadtteile/erlach                                      301
+/hotels-in-speyer/hotels-speyer-im-neuen-rheinhafen /stadtteile/rheinhafen                                  301
+/hotels-in-speyer/unterkunft-speyer-ost             /stadtteile/erlach                                      301
+/hotels-in-speyer/unterkunft-speyer-edith-stein-viertel /stadtteile/edith-stein-viertel                     301
+/hotels-in-speyer/unterkunft-speyer-schifferstadt-grenze /stadtteile/sued                                   301
+
+# === WP-Kategorien /thema/* ===
+/thema/sehenswuerdigkeiten                          /sehenswuerdigkeiten                                    301
+/thema/tourismus                                    /sehenswuerdigkeiten                                    301
+/thema/veranstaltungen                              /feste                                                  301
+/thema/dienstleistungen                             /branchen                                               301
+/thema/immobilien                                   /wissenswertes                                          301
+/thema/hochzeitsplanung                             /wissenswertes/hochzeitsplanung                         301
+/thema/technologie                                  /wissenswertes                                          301
+/thema/leben-in-speyer                              /wissenswertes                                          301
+/thema/freizeit                                     /sehenswuerdigkeiten                                    301
+
+# WP-Sitemap-URLs (Yoast) → neue Sitemap
+/wp-sitemap.xml                                     /sitemap-index.xml                                      301
+/sitemap.xml                                        /sitemap-index.xml                                      301
+/post-sitemap.xml                                   /sitemap-index.xml                                      301
+/page-sitemap.xml                                   /sitemap-index.xml                                      301
+/category-sitemap.xml                               /sitemap-index.xml                                      301

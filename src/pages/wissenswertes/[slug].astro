@@ -1,0 +1,36 @@
+---
+import BlogArticle from "../../layouts/BlogArticle.astro";
+import { wissenswertes, getWissen } from "../../data/wissenswertes";
+import { getEntry, render } from "astro:content";
+
+export function getStaticPaths() {
+  return wissenswertes.map((w) => ({ params: { slug: w.slug } }));
+}
+
+const { slug } = Astro.params;
+const item = getWissen(slug!)!;
+const entry = await getEntry("wissenswertes", slug!);
+const Content = entry ? (await render(entry)).Content : null;
+---
+
+<BlogArticle
+  title={item.title}
+  lead={item.lead}
+  description={item.shortDesc}
+  category="Wissenswertes"
+  publishedAt={item.publishedAt}
+>
+  {Content ? <Content /> : (
+    <>
+      <p class="text-ink-700 leading-relaxed">{item.lead}</p>
+      {item.legacyWpUrl && (
+        <p class="mt-6 text-sm text-ink-500 italic">
+          Der ausführliche Artikel wird derzeit migriert. Original:
+          <a href={item.legacyWpUrl} rel="nofollow noopener" target="_blank" class="underline hover:text-[var(--color-accent)]">
+            {item.legacyWpUrl}
+          </a>
+        </p>
+      )}
+    </>
+  )}
+</BlogArticle>

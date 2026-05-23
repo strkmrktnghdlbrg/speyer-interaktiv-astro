@@ -1,0 +1,81 @@
+# koeln-interaktiv.de — Apache-Konfiguration
+# -------------------------------------------
+# Wird beim Astro-Build automatisch nach dist/.htaccess kopiert.
+# Auf Hostinger / klassische Apache-Server hochladen.
+
+RewriteEngine On
+
+# ---- HTTPS-Force ----
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ---- Legacy-URL-Redirects (WordPress → Astro) ----
+# WP-Kategorie-Prefix /thema/ entfernen
+RewriteRule ^thema/suggestion-records/?$ /suggestion-records/ [R=301,L]
+
+# ---- Trailing-Slash-Konsistenz ----
+# Astro baut Directory-URLs (z.B. /hotels/excelsior-hotel-ernst/index.html).
+# Apache leitet ohne-Slash → mit-Slash automatisch um (DirectorySlash on).
+# Wir setzen es trotzdem explizit, falls Hostinger das ändert.
+DirectorySlash On
+
+# ---- 404-Page ----
+ErrorDocument 404 /404.html
+
+# ---- Browser-Cache ----
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                          "access plus 1 month"
+  ExpiresByType text/html                 "access plus 5 minutes"
+  ExpiresByType application/xml           "access plus 1 hour"
+  ExpiresByType text/css                  "access plus 1 month"
+  ExpiresByType application/javascript    "access plus 1 month"
+  ExpiresByType image/webp                "access plus 6 months"
+  ExpiresByType image/jpeg                "access plus 6 months"
+  ExpiresByType image/png                 "access plus 6 months"
+  ExpiresByType image/svg+xml             "access plus 6 months"
+  ExpiresByType image/x-icon              "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+</IfModule>
+
+# ---- GZIP-Kompression ----
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml
+  AddOutputFilterByType DEFLATE text/css application/javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml
+</IfModule>
+
+# ---- Security-Headers ----
+<IfModule mod_headers.c>
+  Header set X-Frame-Options              "SAMEORIGIN"
+  Header set X-Content-Type-Options       "nosniff"
+  Header set Referrer-Policy              "strict-origin-when-cross-origin"
+  Header set Permissions-Policy           "geolocation=(self), camera=(), microphone=()"
+
+  # HSTS für https-only (12 Monate, mit Subdomains)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  # Caching der statischen Assets nochmal explizit für CDN
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|woff2|css|js)$">
+    Header set Cache-Control "public, max-age=15552000, immutable"
+  </FilesMatch>
+
+  # HTML kürzer cachen damit Updates ankommen
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=300, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---- ads.txt explizit als text/plain ausliefern (AdSense-Pflicht) ----
+<FilesMatch "ads\.txt$">
+  Header set Content-Type "text/plain"
+</FilesMatch>
+
+# ---- robots.txt + sitemap als text/xml ----
+<FilesMatch "robots\.txt$">
+  Header set Content-Type "text/plain"
+</FilesMatch>
+<FilesMatch "sitemap.*\.xml$">
+  Header set Content-Type "application/xml"
+</FilesMatch>

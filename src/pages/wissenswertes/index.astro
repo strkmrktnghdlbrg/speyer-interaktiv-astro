@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import HueGradient from "../../components/HueGradient.astro";
+import { wissenswertes } from "../../data/wissenswertes";
+import { city } from "../../data/city";
+
+const title = `Wissenswertes über ${city.name}`;
+const description = `Hintergrund-Artikel zur Geschichte und Kultur ${city.name}s: vom Römerlager über die Salier bis zum UNESCO-Welterbe.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="container-page py-10">
+    <Breadcrumbs items={[
+      { label: "Startseite", href: "/" },
+      { label: "Wissenswertes" },
+    ]} />
+
+    <header class="mb-10">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="font-family: var(--font-display);">
+        Wissenswertes über {city.name}
+      </h1>
+      <p class="text-lg text-ink-700 max-w-3xl leading-relaxed">
+        Hintergrund-Artikel zu {wissenswertes.length} Themen rund um {city.name}s
+        Geschichte, Architektur und Kultur. Vom römischen Noviomagus bis zur
+        modernen Domstadt am Rhein.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {wissenswertes.map((w) => (
+        <a
+          href={`/wissenswertes/${w.slug}/`}
+          class="group block rounded-2xl border border-ink-100 bg-white overflow-hidden transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
+        >
+          <div class="aspect-[4/3] relative">
+            <HueGradient hue={w.imageHue} label={w.title} />
+          </div>
+          <div class="p-5">
+            <h2 class="text-lg font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">
+              {w.title}
+            </h2>
+            <p class="text-sm text-ink-700 leading-relaxed line-clamp-3">
+              {w.shortDesc}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

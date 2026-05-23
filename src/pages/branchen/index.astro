@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { features } from "../../data/features";
+import { city } from "../../data/city";
+
+// Branchen-Verzeichnis ist Phase 2 (Self-Service-Listings über Stripe).
+// Solange Feature-Flag aus → einfache „Demnächst"-Landing.
+const isLive = features.branchen.enabled;
+---
+
+<BaseLayout
+  title={`Branchenverzeichnis ${city.name}`}
+  description={`Lokales Branchenbuch für ${city.name}: Handwerk, Dienstleister, Gastronomie. Phase 2 mit Self-Service-Listings.`}
+  noindex={!isLive}
+>
+  <main class="container-page py-10">
+    <Breadcrumbs items={[
+      { label: "Startseite", href: "/" },
+      { label: "Branchen" },
+    ]} />
+
+    <header class="mb-10">
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="font-family: var(--font-display);">
+        Branchenverzeichnis {city.name}
+      </h1>
+
+      {!isLive ? (
+        <div class="rounded-2xl border border-ink-100 bg-ink-50 p-6 max-w-3xl">
+          <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2">
+            Demnächst
+          </p>
+          <p class="text-ink-700 leading-relaxed">
+            Das Branchenverzeichnis für {city.name} wird derzeit aufgebaut.
+            Lokale Handwerker, Dienstleister, Gastronomie und Einzelhandel
+            werden hier mit Standard-Listing kostenfrei aufgenommen,
+            Premium-Listings sind optional. Du betreibst ein Speyerer
+            Unternehmen und möchtest gelistet werden?
+          </p>
+          <a
+            href="/werben/"
+            class="mt-4 inline-flex items-center gap-1.5 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-colors"
+            style="background: var(--color-accent);"
+          >
+            Werbe-Optionen ansehen →
+          </a>
+        </div>
+      ) : (
+        <p class="text-lg text-ink-700 max-w-3xl leading-relaxed">
+          Lokales Branchenbuch für {city.name}. Filterbar nach Kategorie und Stadtteil.
+        </p>
+      )}
+    </header>
+  </main>
+</BaseLayout>

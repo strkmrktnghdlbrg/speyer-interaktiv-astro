@@ -1,0 +1,27 @@
+# Cloudflare Pages-Konfiguration für speyer-interaktiv.de
+# --------------------------------------------------------
+# Diese Datei deklariert die D1-Datenbank, die sowohl von der Astro-App
+# (Pages Functions) als auch vom Cron-Worker (separate Konfig in worker/)
+# gelesen wird.
+#
+# News-Pipeline ist Phase-2 — solange `features.news.enabled = false` in
+# src/data/features.ts steht, wird die D1 noch nicht angesprochen.
+#
+# Nach Cloudflare Pages-Setup:
+#   wrangler d1 create speyer-news
+#   → ID unten in database_id eintragen
+#   wrangler d1 migrations apply speyer-news --remote --persist
+#
+# Lokal entwickeln:
+#   wrangler d1 migrations apply speyer-news --local
+#   npm run dev   (platformProxy in astro.config.mjs aktiviert lokales D1)
+
+name = "speyer-interaktiv"
+compatibility_date = "2025-05-01"
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "speyer-news"
+database_id = "REPLACE_AFTER_WRANGLER_D1_CREATE"
+migrations_dir = "migrations"

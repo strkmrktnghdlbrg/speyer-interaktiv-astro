@@ -1,0 +1,134 @@
+---
+export const prerender = false;
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ContentImage from "../../components/ContentImage.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import AttributionFooter from "../../components/AttributionFooter.astro";
+import NewsCard from "../../components/NewsCard.astro";
+import { getNewsBySlug, listNews } from "../../lib/news/repository";
+import { getDistrict } from "../../data/districts";
+import { features } from "../../data/features";
+import { city } from "../../data/city";
+
+if (!features.news.enabled) {
+  return Astro.redirect("/", 302);
+}
+
+const { slug } = Astro.params;
+const runtime = Astro.locals.runtime;
+const row = await getNewsBySlug(runtime?.env.DB, slug!);
+
+if (!row) {
+  return Astro.redirect("/news/", 302);
+}
+
+const district = row.district ? getDistrict(row.district) : null;
+const allRows = await listNews(runtime?.env.DB, 20);
+const related = allRows.filter((n) => n.slug !== row.slug).slice(0, 3).map((r) => ({
+  slug: r.slug,
+  title: r.title,
+  lead: r.lead,
+  summary: r.summary,
+  category: r.category as any,
+  district: r.district ?? undefined,
+  publishedAt: r.published_at,
+  source: { name: r.source_name, url: r.source_url, publishedAt: r.source_published_at },
+  imageHue: r.image_hue,
+  imageKey: r.image_key ?? undefined,
+}));
+
+const formattedDate = new Date(row.published_at).toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  headline: row.title,
+  description: row.lead,
+  datePublished: row.published_at,
+  mainEntityOfPage: Astro.url.toString(),
+  publisher: {
+    "@type": "Organization",
+    name: `${city.name}-Interaktiv`,
+  },
+  citation: {
+    "@type": "CreativeWork",
+    name: row.source_name,
+    url: row.source_url,
+  },
+};
+---
+
+<BaseLayout title={row.title} description={row.lead}>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={row.image_key ?? undefined}
+        fallbackHue={row.image_hue}
+        fallbackLabel={row.category}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10 max-w-3xl">
+      <Breadcrumbs
+        items={[
+          { label: city.name, href: "/" },
+          { label: "News", href: "/news/" },
+          { label: row.title },
+        ]}
+      />
+
+      <div class="flex flex-wrap items-center gap-2 mb-4">
+        <span class="pill-accent">{row.category}</span>
+        {district && (
+          <a href={`/stadtteile/${district.slug}/`} class="pill hover:underline">
+            {district.name}
+          </a>
+        )}
+        <time datetime={row.published_at} class="text-xs ml-1" style="color: var(--color-slate-steel);">
+          {formattedDate}
+        </time>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-balance leading-tight mb-6" style="color: var(--color-deep-plum);">
+        {row.title}
+      </h1>
+
+      <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+        {row.lead}
+      </p>
+
+      <div class="prose max-w-none">
+        <p class="text-base leading-relaxed whitespace-pre-line" style="color: var(--color-inkwell-purple);">
+          {row.summary}
+        </p>
+      </div>
+
+      <AttributionFooter
+        sourceName={row.source_name}
+        sourceUrl={row.source_url}
+        sourceDate={row.source_published_at}
+      />
+
+      {related.length > 0 && (
+        <section class="pt-10 border-t border-[var(--color-lavender-ash)]">
+          <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+            Weitere News aus {city.name}
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {related.map((r) => <NewsCard item={r} />)}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

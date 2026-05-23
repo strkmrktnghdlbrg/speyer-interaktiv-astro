@@ -1,0 +1,68 @@
+---
+import ContentImage from "./ContentImage.astro";
+import type { NewsItem } from "../data/news";
+
+interface Props {
+  item: NewsItem;
+  variant?: "default" | "compact";
+}
+
+const { item, variant = "default" } = Astro.props;
+const date = new Date(item.publishedAt).toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "short",
+});
+---
+
+{variant === "default" ? (
+  <a href={`/news/${item.slug}/`} class="card group block">
+    <div class="aspect-[4/3] relative overflow-hidden">
+      <ContentImage
+        imgKey={item.imageKey}
+        fallbackHue={item.imageHue}
+        fallbackLabel={item.category}
+        imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div class="absolute top-3 left-3">
+        <span class="pill bg-white/95 backdrop-blur-sm">{item.category}</span>
+      </div>
+    </div>
+    <div class="p-4">
+      <div class="flex items-center gap-2 mb-2 text-xs" style="color: var(--color-slate-steel);">
+        <time datetime={item.publishedAt}>{date}</time>
+        <span>·</span>
+        <span>Quelle: {item.source.name}</span>
+      </div>
+      <h3
+        class="text-base font-bold tracking-tight leading-snug mb-2 group-hover:text-[var(--color-accent)] transition-colors line-clamp-2"
+        style="color: var(--color-deep-plum);"
+      >
+        {item.title}
+      </h3>
+      <p class="text-sm leading-relaxed line-clamp-2" style="color: var(--color-shadow-graphite);">
+        {item.lead}
+      </p>
+    </div>
+  </a>
+) : (
+  <a href={`/news/${item.slug}/`} class="flex gap-3 group">
+    <div class="shrink-0 w-20 h-20 rounded-xl overflow-hidden">
+      <ContentImage
+        imgKey={item.imageKey}
+        fallbackHue={item.imageHue}
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+    <div class="flex-1 min-w-0">
+      <p class="text-[11px] font-semibold mb-1" style="color: var(--color-accent);">
+        {item.category} · {date}
+      </p>
+      <h4
+        class="text-sm font-bold leading-snug line-clamp-2 group-hover:underline"
+        style="color: var(--color-deep-plum); text-underline-offset: 3px;"
+      >
+        {item.title}
+      </h4>
+    </div>
+  </a>
+)}
