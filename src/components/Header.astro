@@ -19,35 +19,18 @@ const navItems = [
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[var(--color-lavender-ash)]">
   <div class="container-page">
     <div class="flex items-center justify-between h-16 gap-4 md:gap-6">
-      <a
-        href="/"
-        class="flex items-center shrink-0"
-        style="color: var(--color-accent);"
-        aria-label={`${city.name}-Interaktiv Startseite`}
-      >
-        <Image
-          src={logo}
-          alt={`${city.name}-Interaktiv`}
-          width={280}
-          height={64}
-          class="h-10 w-auto"
-        />
+      <a href="/" class="flex items-center shrink-0" style="color: var(--color-accent);" aria-label={`${city.name}-Interaktiv Startseite`}>
+        <Image src={logo} alt={`${city.name}-Interaktiv`} width={280} height={64} class="h-10 w-auto" />
       </a>
 
-      <!-- Desktop Nav -->
       <nav class="hidden lg:flex items-center gap-1" aria-label="Hauptnavigation">
         {navItems.map((item) => (
-          <a
-            href={item.href}
-            class="px-3 py-2 text-sm font-semibold rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]"
-            style="color: var(--color-shadow-graphite);"
-          >
+          <a href={item.href} class="px-3 py-2 text-sm font-semibold rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-shadow-graphite);">
             {item.label}
           </a>
         ))}
       </nav>
 
-      <!-- Desktop Search -->
       <div class="hidden md:flex items-center gap-2 flex-1 max-w-xs">
         <div class="relative w-full">
           <input
@@ -62,102 +45,165 @@ const navItems = [
       </div>
 
       <div class="flex items-center gap-2 shrink-0">
-        <a href="/werben/" class="btn-outline hidden sm:inline-flex">
-          Werben
-        </a>
-
-        <!-- Mobile Menu Toggle (sichtbar bis lg) -->
+        <a href="/werben/" class="btn-outline hidden lg:inline-flex">Werben</a>
         <button
-          id="mobile-menu-toggle"
           type="button"
-          class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]"
-          aria-controls="mobile-menu"
+          id="mobile-menu-toggle"
           aria-expanded="false"
+          aria-controls="mobile-menu"
           aria-label="Menü öffnen"
+          class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-[var(--color-lavender-ash)] hover:bg-[var(--color-porcelain-mist)] transition-colors"
+          style="color: var(--color-shadow-graphite);"
         >
-          <svg class="icon-open w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--color-shadow-graphite);">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg class="icon-close w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--color-shadow-graphite);">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/>
           </svg>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile Menu Panel -->
-  <div
+  <div id="mobile-menu-backdrop" class="lg:hidden mobile-menu-backdrop" aria-hidden="true"></div>
+
+  <aside
     id="mobile-menu"
-    class="lg:hidden hidden border-t border-[var(--color-lavender-ash)] bg-white max-h-[calc(100vh-4rem)] overflow-y-auto"
+    class="lg:hidden mobile-menu-panel"
+    role="dialog"
+    aria-modal="true"
     aria-label="Mobile Navigation"
+    aria-hidden="true"
   >
-    <nav class="container-page py-4 space-y-1">
-      {navItems.map((item) => (
-        <a
-          href={item.href}
-          class="block px-4 py-3 text-base font-semibold rounded-xl transition-colors hover:bg-[var(--color-porcelain-mist)]"
-          style="color: var(--color-shadow-graphite);"
-        >
-          {item.label}
-        </a>
-      ))}
-
-      <!-- Mobile-Suche (unter 768px sonst nicht sichtbar) -->
-      <div class="md:hidden pt-2">
-        <input
-          type="search"
-          placeholder={`Suche in ${city.name}…`}
-          class="w-full bg-transparent border-2 rounded-xl px-4 py-2.5 text-sm focus:outline-none transition-colors"
-          style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
-          onfocus="this.style.borderColor='var(--color-accent)'"
-          onblur="this.style.borderColor='var(--color-lavender-ash)'"
-        />
-      </div>
-
-      <!-- Mobile-only Werben-CTA (unter 640px sonst nicht sichtbar) -->
-      <a
-        href="/werben/"
-        class="sm:hidden block mt-2 px-4 py-3 text-base font-semibold rounded-xl text-white text-center"
-        style="background: var(--color-accent);"
-      >
-        Werben
+    <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--color-lavender-ash)] shrink-0">
+      <a href="/" class="flex items-center shrink-0" aria-label={`${city.name}-Interaktiv Startseite`}>
+        <Image src={logo} alt={`${city.name}-Interaktiv`} width={280} height={64} class="h-8 w-auto" />
       </a>
+      <button
+        type="button"
+        id="mobile-menu-close"
+        aria-label="Menü schließen"
+        class="inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-[var(--color-porcelain-mist)] transition-colors"
+        style="color: var(--color-shadow-graphite);"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="px-5 py-3 border-b border-[var(--color-lavender-ash)] shrink-0">
+      <input
+        type="search"
+        placeholder={`Suche in ${city.name}…`}
+        class="w-full rounded-full py-2.5 px-4 text-sm focus:outline-none"
+        style="background: var(--color-porcelain-mist); color: var(--color-inkwell-purple);"
+      />
+    </div>
+
+    <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label="Hauptnavigation mobil">
+      <ul class="space-y-1">
+        {navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="flex items-center justify-between px-4 py-3 rounded-xl text-base font-semibold transition-colors hover:bg-[var(--color-porcelain-mist)]"
+              style="color: var(--color-inkwell-purple);"
+            >
+              <span>{item.label}</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color: var(--color-slate-steel);">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-6 pt-6 border-t border-[var(--color-lavender-ash)]">
+        <p class="px-4 mb-2 text-xs uppercase tracking-widest font-bold" style="color: var(--color-slate-steel);">Service</p>
+        <ul class="space-y-1">
+          <li><a href="/impressum/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Impressum</a></li>
+          <li><a href="/datenschutz/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Datenschutz</a></li>
+          <li><a href="/kontakt/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Kontakt</a></li>
+        </ul>
+      </div>
     </nav>
-  </div>
+
+    <div class="px-5 py-4 border-t border-[var(--color-lavender-ash)] shrink-0" style="background: var(--color-porcelain-mist);">
+      <a href="/werben/" class="btn-primary w-full justify-center">Werben auf {city.name}-Interaktiv</a>
+    </div>
+  </aside>
 </header>
 
+<style>
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 60;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 220ms ease, visibility 0s linear 220ms;
+  }
+  .mobile-menu-backdrop.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 220ms ease, visibility 0s linear 0s;
+  }
+  .mobile-menu-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(88vw, 380px);
+    background: #ffffff;
+    border-left: 1px solid var(--color-lavender-ash);
+    box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+    z-index: 70;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 260ms;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .mobile-menu-panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform 260ms cubic-bezier(0.22, 1, 0.36, 1), visibility 0s linear 0s;
+  }
+</style>
+
 <script is:inline>
-  (() => {
-    const toggle = document.getElementById("mobile-menu-toggle");
-    const menu = document.getElementById("mobile-menu");
-    if (!toggle || !menu) return;
-
-    const iconOpen = toggle.querySelector(".icon-open");
-    const iconClose = toggle.querySelector(".icon-close");
-
-    const setOpen = (open) => {
-      menu.classList.toggle("hidden", !open);
-      iconOpen?.classList.toggle("hidden", open);
-      iconClose?.classList.toggle("hidden", !open);
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Menü schließen" : "Menü öffnen");
-      document.body.style.overflow = open ? "hidden" : "";
-    };
-
-    toggle.addEventListener("click", () => {
-      setOpen(menu.classList.contains("hidden"));
+  (function () {
+    var toggle = document.getElementById('mobile-menu-toggle');
+    var closeBtn = document.getElementById('mobile-menu-close');
+    var menu = document.getElementById('mobile-menu');
+    var backdrop = document.getElementById('mobile-menu-backdrop');
+    if (!toggle || !menu || !backdrop || !closeBtn) return;
+    var openState = false;
+    function setOpen(open) {
+      openState = open;
+      menu.classList.toggle('is-open', open);
+      backdrop.classList.toggle('is-open', open);
+      menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+    toggle.addEventListener('click', function () { setOpen(!openState); });
+    closeBtn.addEventListener('click', function () { setOpen(false); toggle.focus(); });
+    backdrop.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && openState) { setOpen(false); toggle.focus(); }
     });
-
-    // ESC schließt das Menü
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !menu.classList.contains("hidden")) setOpen(false);
+    menu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setOpen(false); });
     });
-
-    // Beim Wechsel auf Desktop-Breite Menü automatisch schließen
-    const mq = window.matchMedia("(min-width: 1024px)");
-    mq.addEventListener("change", (e) => {
-      if (e.matches) setOpen(false);
-    });
+    var mq = window.matchMedia('(min-width: 1024px)');
+    function handleResize(e) { if (e.matches && openState) setOpen(false); }
+    if (mq.addEventListener) mq.addEventListener('change', handleResize);
+    else mq.addListener(handleResize);
   })();
 </script>
