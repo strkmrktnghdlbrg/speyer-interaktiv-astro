@@ -1,29 +1,123 @@
-# koeln-interaktiv.de — Apache-Konfiguration
-# -------------------------------------------
+# speyer-interaktiv.de — Apache-Konfiguration
+# --------------------------------------------
 # Wird beim Astro-Build automatisch nach dist/.htaccess kopiert.
-# Auf Hostinger / klassische Apache-Server hochladen.
+# Auf all-inkl / Hostinger / klassische Apache-Server hochladen.
+#
+# WICHTIG beim Upload: Bei Hostinger File-Manager auf
+# "Versteckte Dateien anzeigen" stellen, sonst wird die .htaccess
+# nicht hochgeladen (führender Punkt versteckt sie).
 
 RewriteEngine On
 
-# ---- HTTPS-Force ----
+# ============================================================
+#  HTTPS-Force (alle http-Aufrufe auf https)
+# ============================================================
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# ---- Legacy-URL-Redirects (WordPress → Astro) ----
-# WP-Kategorie-Prefix /thema/ entfernen
-RewriteRule ^thema/suggestion-records/?$ /suggestion-records/ [R=301,L]
+# ============================================================
+#  Optional: www.speyer-interaktiv.de  →  speyer-interaktiv.de
+#  (Wenn auch www-Variante gewünscht, diesen Block auskommentiert lassen)
+# ============================================================
+# RewriteCond %{HTTP_HOST} ^www\.speyer-interaktiv\.de$ [NC]
+# RewriteRule ^(.*)$ https://speyer-interaktiv.de/$1 [L,R=301]
 
-# ---- Trailing-Slash-Konsistenz ----
-# Astro baut Directory-URLs (z.B. /hotels/excelsior-hotel-ernst/index.html).
-# Apache leitet ohne-Slash → mit-Slash automatisch um (DirectorySlash on).
-# Wir setzen es trotzdem explizit, falls Hostinger das ändert.
+# ============================================================
+#  301-Redirects: alte WordPress-URLs auf neue Astro-Routen
+# ============================================================
+
+# ---- Sehenswürdigkeiten (Sights aus WP-Posts) ----
+RewriteRule ^dom/?$                                              /sehenswuerdigkeiten/kaiserdom/ [R=301,L]
+RewriteRule ^der-kaiserdom/?$                                    /sehenswuerdigkeiten/kaiserdom/ [R=301,L]
+RewriteRule ^kaiser-und-mariendom/?$                             /sehenswuerdigkeiten/kaiserdom/ [R=301,L]
+RewriteRule ^altpoertel/?$                                       /sehenswuerdigkeiten/altpoertel/ [R=301,L]
+RewriteRule ^das-historische-museum-der-pfalz/?$                 /sehenswuerdigkeiten/historisches-museum-der-pfalz/ [R=301,L]
+RewriteRule ^das-technik-museum/?$                               /sehenswuerdigkeiten/technik-museum/ [R=301,L]
+RewriteRule ^die-dreifaltigkeitskirche/?$                        /sehenswuerdigkeiten/dreifaltigkeitskirche/ [R=301,L]
+RewriteRule ^die-gedaechtniskirche-der-protestation/?$           /sehenswuerdigkeiten/gedaechtniskirche/ [R=301,L]
+RewriteRule ^juedisches-erbe/?$                                  /sehenswuerdigkeiten/judenhof/ [R=301,L]
+RewriteRule ^das-adenauerpark-und-die-mittelalterlichen-stadtmauern/?$ /sehenswuerdigkeiten/adenauerpark/ [R=301,L]
+RewriteRule ^die-alte-muenze/?$                                  /sehenswuerdigkeiten/alte-muenze/ [R=301,L]
+RewriteRule ^das-fischertor/?$                                   /sehenswuerdigkeiten/fischertor/ [R=301,L]
+RewriteRule ^rathaus/?$                                          /sehenswuerdigkeiten/rathaus/ [R=301,L]
+RewriteRule ^pfaelzische-landesbibliothek/?$                     /sehenswuerdigkeiten/pfaelzische-landesbibliothek/ [R=301,L]
+RewriteRule ^stadtbefestigung/?$                                 /sehenswuerdigkeiten/adenauerpark/ [R=301,L]
+RewriteRule ^historische-gasthaeuser/?$                          /wissenswertes/historische-gasthaeuser/ [R=301,L]
+RewriteRule ^altstadt/?$                                         /stadtteile/altstadt/ [R=301,L]
+
+# ---- Themen / Wissenswertes (Geschichts-Posts) ----
+RewriteRule ^roemisches-speyer/?$                                /wissenswertes/roemisches-speyer/ [R=301,L]
+RewriteRule ^mittelalterliches-speyer/?$                         /wissenswertes/mittelalterliches-speyer/ [R=301,L]
+RewriteRule ^zeitalter-der-reformation/?$                        /wissenswertes/reformation/ [R=301,L]
+RewriteRule ^dreissigjaehrigen-krieg/?$                          /wissenswertes/dreissigjaehriger-krieg/ [R=301,L]
+RewriteRule ^die-salier/?$                                       /wissenswertes/salier/ [R=301,L]
+RewriteRule ^die-hexenverfolgung/?$                              /wissenswertes/hexenverfolgung/ [R=301,L]
+RewriteRule ^die-baukunst/?$                                     /wissenswertes/baukunst/ [R=301,L]
+RewriteRule ^archaeologische-funde/?$                            /wissenswertes/archaeologische-funde/ [R=301,L]
+RewriteRule ^kulturerbe/?$                                       /wissenswertes/kulturerbe/ [R=301,L]
+RewriteRule ^die-landung-des-grafen-zeppelin/?$                  /wissenswertes/zeppelin-landung/ [R=301,L]
+RewriteRule ^kriegsdenkmaeler/?$                                 /wissenswertes/kriegsdenkmaeler/ [R=301,L]
+RewriteRule ^bim-speyer-zukunft/?$                               /wissenswertes/bim-speyer-zukunft/ [R=301,L]
+RewriteRule ^weshalb-du-einen-makler-beauftragen-solltest/?$     /wissenswertes/makler-beauftragen/ [R=301,L]
+RewriteRule ^hochzeitsplanung/?$                                 /wissenswertes/hochzeitsplanung/ [R=301,L]
+
+# ---- Feste / Veranstaltungen ----
+RewriteRule ^der-speyerer-weihnachtsmarkt/?$                     /feste/weihnachtsmarkt/ [R=301,L]
+RewriteRule ^speyerer-fastnacht/?$                               /feste/fastnacht/ [R=301,L]
+
+# ---- Hotels-Stadtteile (alte WP-Subpages) ----
+RewriteRule ^hotels-in-speyer/?$                                                 /hotels/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-in-speyer-altstadt/?$                       /stadtteile/altstadt/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-kernstadt/?$                         /stadtteile/altstadt/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-nord/?$                              /stadtteile/nord/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-sud/?$                               /stadtteile/sued/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-west/?$                              /stadtteile/west/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-erlach/?$                            /stadtteile/erlach/ [R=301,L]
+RewriteRule ^hotels-in-speyer/hotels-speyer-im-neuen-rheinhafen/?$               /stadtteile/rheinhafen/ [R=301,L]
+RewriteRule ^hotels-in-speyer/unterkunft-speyer-ost/?$                           /stadtteile/erlach/ [R=301,L]
+RewriteRule ^hotels-in-speyer/unterkunft-speyer-edith-stein-viertel/?$           /stadtteile/edith-stein-viertel/ [R=301,L]
+RewriteRule ^hotels-in-speyer/unterkunft-speyer-schifferstadt-grenze/?$          /stadtteile/sued/ [R=301,L]
+
+# ---- WP-Kategorien /thema/* ----
+RewriteRule ^thema/sehenswuerdigkeiten/?$                        /sehenswuerdigkeiten/ [R=301,L]
+RewriteRule ^thema/tourismus/?$                                  /sehenswuerdigkeiten/ [R=301,L]
+RewriteRule ^thema/veranstaltungen/?$                            /feste/ [R=301,L]
+RewriteRule ^thema/dienstleistungen/?$                           /branchen/ [R=301,L]
+RewriteRule ^thema/immobilien/?$                                 /wissenswertes/ [R=301,L]
+RewriteRule ^thema/hochzeitsplanung/?$                           /wissenswertes/hochzeitsplanung/ [R=301,L]
+RewriteRule ^thema/technologie/?$                                /wissenswertes/ [R=301,L]
+RewriteRule ^thema/leben-in-speyer/?$                            /wissenswertes/ [R=301,L]
+RewriteRule ^thema/freizeit/?$                                   /sehenswuerdigkeiten/ [R=301,L]
+
+# ---- WP-Sitemap-URLs (Yoast) auf neue Sitemap ----
+RewriteRule ^wp-sitemap\.xml$                                    /sitemap-index.xml [R=301,L]
+RewriteRule ^post-sitemap\.xml$                                  /sitemap-index.xml [R=301,L]
+RewriteRule ^page-sitemap\.xml$                                  /sitemap-index.xml [R=301,L]
+RewriteRule ^category-sitemap\.xml$                              /sitemap-index.xml [R=301,L]
+
+# ============================================================
+#  WordPress-Cleanup: typische WP-Pfade auf 410 / Homepage
+# ============================================================
+# WP-Admin und xmlrpc dürfen nicht aufrufbar bleiben
+RewriteRule ^wp-admin/?  /                  [R=301,L]
+RewriteRule ^wp-login\.php$  /               [R=301,L]
+RewriteRule ^xmlrpc\.php$  -                 [R=410,L]
+
+# ============================================================
+#  Trailing-Slash + Directory-Index
+# ============================================================
 DirectorySlash On
+DirectoryIndex index.html
 
-# ---- 404-Page ----
+# ============================================================
+#  404-Page
+# ============================================================
 ErrorDocument 404 /404.html
 
-# ---- Browser-Cache ----
+# ============================================================
+#  Browser-Cache
+# ============================================================
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresDefault                          "access plus 1 month"
@@ -32,6 +126,7 @@ ErrorDocument 404 /404.html
   ExpiresByType text/css                  "access plus 1 month"
   ExpiresByType application/javascript    "access plus 1 month"
   ExpiresByType image/webp                "access plus 6 months"
+  ExpiresByType image/avif                "access plus 6 months"
   ExpiresByType image/jpeg                "access plus 6 months"
   ExpiresByType image/png                 "access plus 6 months"
   ExpiresByType image/svg+xml             "access plus 6 months"
@@ -39,14 +134,18 @@ ErrorDocument 404 /404.html
   ExpiresByType font/woff2                "access plus 1 year"
 </IfModule>
 
-# ---- GZIP-Kompression ----
+# ============================================================
+#  GZIP-Kompression
+# ============================================================
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml
   AddOutputFilterByType DEFLATE text/css application/javascript application/json
   AddOutputFilterByType DEFLATE image/svg+xml application/xml
 </IfModule>
 
-# ---- Security-Headers ----
+# ============================================================
+#  Security-Headers
+# ============================================================
 <IfModule mod_headers.c>
   Header set X-Frame-Options              "SAMEORIGIN"
   Header set X-Content-Type-Options       "nosniff"
@@ -56,23 +155,23 @@ ErrorDocument 404 /404.html
   # HSTS für https-only (12 Monate, mit Subdomains)
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
 
-  # Caching der statischen Assets nochmal explizit für CDN
-  <FilesMatch "\.(webp|jpg|jpeg|png|svg|woff2|css|js)$">
+  # Caching der statischen Assets nochmal explizit
+  <FilesMatch "\.(webp|avif|jpg|jpeg|png|svg|woff2|css|js)$">
     Header set Cache-Control "public, max-age=15552000, immutable"
   </FilesMatch>
 
-  # HTML kürzer cachen damit Updates ankommen
+  # HTML kürzer cachen, damit Updates ankommen
   <FilesMatch "\.html$">
     Header set Cache-Control "public, max-age=300, must-revalidate"
   </FilesMatch>
 </IfModule>
 
-# ---- ads.txt explizit als text/plain ausliefern (AdSense-Pflicht) ----
+# ============================================================
+#  Content-Types für AdSense / SEO
+# ============================================================
 <FilesMatch "ads\.txt$">
   Header set Content-Type "text/plain"
 </FilesMatch>
-
-# ---- robots.txt + sitemap als text/xml ----
 <FilesMatch "robots\.txt$">
   Header set Content-Type "text/plain"
 </FilesMatch>
