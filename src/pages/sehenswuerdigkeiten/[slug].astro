@@ -4,6 +4,7 @@ import ContentImage from "../../components/ContentImage.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { sights, getSight } from "../../data/sights";
 import { getDistrict } from "../../data/districts";
 import { topHotelsByDistrict } from "../../data/hotels";
@@ -178,6 +179,14 @@ const schema = {
           lead="Geführte Touren und Tickets von GetYourGuide."
         />
       )}
+
+      <Stay22NearbyHotels
+        lat={sight.coordinates[0]}
+        lng={sight.coordinates[1]}
+        near={sight.name}
+        radius={1500}
+        limit={4}
+      />
 
       <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
     </div>

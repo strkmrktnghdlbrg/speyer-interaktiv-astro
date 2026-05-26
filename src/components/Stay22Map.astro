@@ -4,10 +4,10 @@
  * -------------------
  * Eingebettete Hotel-Karte mit Stay22-Affiliate-Tracking. Funktioniert
  * sowohl als Stadt-Übersicht (auf /hotels/) als auch als Hotel-spezifische
- * Karte (auf /hotels/[slug] zentriert auf den Stadtteil des Hotels).
+ * Karte (auf /hotels/[slug] zentriert auf den Bezirk des Hotels).
  *
  * Doku: https://stay22.com/help — Standard-Embed via iframe.
- * Wir nutzen die maincolor-Option, damit Marker/UI in der Brand-Akzentfarbe stehen.
+ * Wir nutzen die maincolor-Option, damit Marker/UI in Domstein-Rot stehen.
  *
  * lmaID kommt aus src/data/affiliate.ts (nicht hardcoden!).
  */
@@ -37,15 +37,28 @@ const {
   lead,
 } = Astro.props;
 
-const accentHex = "c8102e"; // ohne # für Stay22 maincolor-Parameter
-const params = new URLSearchParams({
+/**
+ * Embed-URL-Auflösung:
+ * 1. Wenn affiliate.stay22.mapEmbedId gesetzt → vorkonfiguriertes
+ *    Stay22-Widget verwenden (https://stay22.com/embed/<id>).
+ *    Branding, Pins und Default-View sind dann im Stay22-Dashboard
+ *    gesetzt. Robuster als die Parameter-Variante.
+ * 2. Fallback: Parameter-Schema mit lat/lng/zoom/maincolor.
+ *    Wird gebraucht, wenn Hotel-Detail-Seiten ein abweichendes
+ *    Zentrum brauchen und noch kein eigenes Widget angelegt wurde.
+ */
+const embedId = affiliate.stay22.mapEmbedId;
+const accentHex = "a8323f"; // Domstein-Rot, ohne # für Stay22 maincolor
+const fallbackParams = new URLSearchParams({
   aid: affiliate.stay22.lmaId,
   lat: String(lat),
   lng: String(lng),
   zoom: String(zoom),
   maincolor: accentHex,
 });
-const embedUrl = `https://www.stay22.com/embed/widget?${params.toString()}`;
+const embedUrl = embedId
+  ? `https://stay22.com/embed/${embedId}`
+  : `https://www.stay22.com/embed/widget?${fallbackParams.toString()}`;
 ---
 
 {stay22Enabled && (
@@ -76,10 +89,5 @@ const embedUrl = `https://www.stay22.com/embed/widget?${params.toString()}`;
         allow="geolocation"
       ></iframe>
     </div>
-
-    <p class="text-[11px] mt-3 leading-relaxed" style="color: var(--color-slate-steel);">
-      * Karte powered by Stay22. Beim Buchen über die Marker erhalten wir
-      eine Provision, du zahlst keinen Cent mehr.
-    </p>
   </section>
 )}

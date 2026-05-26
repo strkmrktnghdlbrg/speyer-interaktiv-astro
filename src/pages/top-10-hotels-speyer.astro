@@ -1,0 +1,230 @@
+---
+/**
+ * SEO-Landing "Top 10 Hotels Köln".
+ * ----------------------------------
+ * Dedizierte Page für die Suchanfrage "beste Hotels Köln" /
+ * "Top Hotels Köln" / "Hotels Köln Empfehlung".
+ *
+ * Pattern aus dem Stay22-Playbook:
+ *   - minguestrating: 8.5 (nur Top-bewertete)
+ *   - minstarrating: 4
+ *   - sortiert nach Booking-Score (Stay22 Default)
+ *   - 1× pro 6h Rebuild via GitHub Action Cron
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { searchAccommodations, type Stay22Accommodation } from "../lib/stay22";
+import { affiliate } from "../data/affiliate";
+import { city } from "../data/city";
+
+const lmaId = affiliate.stay22.lmaId;
+let hotels: Stay22Accommodation[] | null = null;
+try {
+  hotels = await searchAccommodations({
+    provider: "booking",
+    address: `${city.name}, Deutschland`,
+    type: "hotel",
+    // Speyer ist klein, das Inventar entsprechend übersichtlich.
+    // 7.8 als Schwelle ergibt eine saubere Bestenliste ohne leere Treffer.
+    // Stay22 sortiert intern bereits nach Booking-Score.
+    minguestrating: 7.8,
+    limit: 10,
+    currency: "EUR",
+    lang: "de",
+    aid: lmaId,
+    campaign: lmaId,
+  });
+} catch (err) {
+  console.error("[top-10-hotels] Stay22-Fetch:", err);
+}
+
+const top = hotels && hotels.length > 0 ? hotels.slice(0, 10) : [];
+const buildDate = new Date().toLocaleDateString("de-DE", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const description = `Die 10 bestbewerteten Hotels in ${city.name} — Live-Preise von Booking.com via Stay22. Sortiert nach Gäste-Score ab 7.8. Aktualisiert ${buildDate}.`;
+
+// JSON-LD ItemList für Top-10
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Top 10 Hotels in ${city.name}`,
+  description,
+  numberOfItems: top.length,
+  itemListElement: top.map((h, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Hotel",
+      name: h.name,
+      url: h.deepLink || h.link,
+      ...(h.starRating
+        ? { starRating: { "@type": "Rating", ratingValue: h.starRating } }
+        : {}),
+      ...(h.rating?.score
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: h.rating.score,
+              bestRating: 10,
+              ...(h.rating.count ? { ratingCount: h.rating.count } : {}),
+            },
+          }
+        : {}),
+    },
+  })),
+};
+---
+
+<BaseLayout title={`Die 10 besten Hotels in ${city.name}`} description={description}>
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+    is:inline
+  />
+
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Hotels", href: "/hotels/" },
+        { label: "Top 10" },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Bestenliste</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        Die 10 besten Hotels in {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+        Wir sortieren live nach Booking.com-Gäste-Score (Schwelle 7.8 von 10).
+        Preise und Bewertungen kommen direkt aus dem Stay22-Inventar und
+        werden alle 6 Stunden automatisch aktualisiert.
+      </p>
+      <p class="text-sm" style="color: var(--color-slate-steel);">
+        Stand: {buildDate}
+      </p>
+    </div>
+
+    {top.length === 0 ? (
+      <div class="card p-6 max-w-3xl">
+        <p style="color: var(--color-shadow-graphite);">
+          Stay22 liefert gerade keine Live-Daten. Schau in unseren
+          <a href="/hotels/" class="link-accent font-semibold">Hotel-Index</a> für
+          die kuratierte Auswahl.
+        </p>
+      </div>
+    ) : (
+      <ol class="space-y-6">
+        {top.map((h, i) => (
+          <li class="card overflow-hidden grid sm:grid-cols-[260px_1fr] gap-0">
+            {h.image && (
+              <div class="aspect-[4/3] sm:aspect-auto sm:h-full overflow-hidden bg-[var(--color-porcelain-mist)]">
+                <img
+                  src={h.image}
+                  alt={h.name}
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="w-full h-full object-cover"
+                />
+              </div>
+            )}
+            <div class="p-5 sm:p-6 flex flex-col">
+              <div class="flex items-start gap-3 mb-3">
+                <span
+                  class="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full font-bold text-sm"
+                  style="background: var(--color-accent-tint); color: var(--color-accent);"
+                >
+                  {i + 1}
+                </span>
+                <div class="flex-1">
+                  <div class="flex flex-wrap items-center gap-2 mb-1.5">
+                    {h.starRating && (
+                      <span class="text-xs font-bold" style="color: var(--color-accent);">
+                        {"★".repeat(Math.round(h.starRating))}
+                      </span>
+                    )}
+                    {h.rating?.score && (
+                      <span class="pill-accent text-[10px]">
+                        {h.rating.score.toFixed(1)} / 10
+                        {h.rating.count && ` · ${h.rating.count} Bewertungen`}
+                      </span>
+                    )}
+                  </div>
+                  <h2 class="text-xl font-bold leading-tight mb-1" style="color: var(--color-deep-plum);">
+                    {h.name}
+                  </h2>
+                  {h.address?.areaName && (
+                    <p class="text-xs" style="color: var(--color-slate-steel);">
+                      {h.address.areaName}{h.address.cityName ? `, ${h.address.cityName}` : ""}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {h.rating?.description && (
+                <p class="text-sm mb-4 italic" style="color: var(--color-shadow-graphite);">
+                  „{h.rating.description}"
+                </p>
+              )}
+
+              <div class="mt-auto flex flex-wrap items-end justify-between gap-3 pt-2">
+                {(h.price?.formattedPerNight || h.price?.formattedTotal) && (
+                  <div>
+                    <p class="text-xs" style="color: var(--color-slate-steel);">ab</p>
+                    <p class="text-2xl font-bold" style="color: var(--color-deep-plum);">
+                      {h.price?.formattedPerNight ?? h.price?.formattedTotal}
+                      <span class="text-xs font-normal ml-1" style="color: var(--color-slate-steel);">
+                        {h.price?.formattedPerNight ? "/ Nacht" : "gesamt"}
+                      </span>
+                    </p>
+                  </div>
+                )}
+                <a
+                  href={h.deepLink || h.link || "#"}
+                  target="_blank"
+                  rel="sponsored noopener nofollow"
+                  class="btn-primary"
+                >
+                  Verfügbarkeit prüfen →
+                </a>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
+
+    <div class="mt-12 max-w-3xl">
+      <h2 class="text-2xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        Wie wir die Top 10 zusammenstellen
+      </h2>
+      <p class="text-base leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+        Wir nutzen die Stay22-API gegen Booking.com-Inventar und filtern auf
+        einen Gäste-Score von 8.0 von 10 oder besser. Sortiert wird nach
+        dem Booking.com-internen Ranking, das
+        Bewertungen, Buchungshäufigkeit und Beliebtheit kombiniert.
+      </p>
+      <p class="text-base leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+        Da Preise und Verfügbarkeit täglich schwanken, wird diese Seite alle
+        6 Stunden automatisch neu gebaut. Es kann also sein, dass ein Hotel
+        beim nächsten Besuch nicht mehr in der Liste auftaucht, weil ein
+        anderes besser bewertet wurde oder das ursprüngliche Hotel ausgebucht ist.
+      </p>
+      <p class="text-base leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+        Suchst du gezielter? Schau in unseren
+        <a href="/hotels/" class="link-accent font-semibold">vollständigen Hotel-Index</a>
+        mit Stadtteil-Filter, oder in unsere Saison-Pages für
+        <a href="/hotels-speyer-brezelfest/" class="link-accent font-semibold">Brezelfest</a>,
+        <a href="/hotels-speyer-weihnachtsmarkt/" class="link-accent font-semibold">Weihnachtsmarkt</a>,
+        <a href="/hotels-speyer-fastnacht/" class="link-accent font-semibold">Fastnacht</a>
+        und <a href="/hotels-speyer-silvester/" class="link-accent font-semibold">Silvester</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,194 @@
+---
+/**
+ * Saison-/Event-Landing-Pages für Stay22-Hotels.
+ * ------------------------------------------------
+ * URL-Schema:  /hotels-koeln-karneval/
+ *              /hotels-koeln-weihnachtsmarkt/
+ *              /hotels-koeln-cologne-pride/
+ *              /hotels-koeln-silvester/
+ *              /hotels-koeln-lit-cologne/
+ *              /hotels-koeln-gamescom/
+ *
+ * Jede Page übergibt konkrete checkin/checkout-Daten an Stay22 und
+ * zeigt damit ECHTE Wochenend-Preise statt generischer Anker.
+ *
+ * Cron alle 6h (siehe .github/workflows/deploy.yml) hält die Preise frisch.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { events, isUpcoming, type CityEvent } from "../data/events";
+import { searchAccommodations, type Stay22Accommodation } from "../lib/stay22";
+import { affiliate } from "../data/affiliate";
+import { city } from "../data/city";
+
+export function getStaticPaths() {
+  return events.map((e) => ({
+    params: { event: e.slug },
+    props: { event: e },
+  }));
+}
+
+interface Props {
+  event: CityEvent;
+}
+
+const { event } = Astro.props as Props;
+const upcoming = isUpcoming(event);
+const lmaId = affiliate.stay22.lmaId;
+
+let hotels: Stay22Accommodation[] | null = null;
+if (upcoming) {
+  try {
+    hotels = await searchAccommodations({
+      provider: "booking",
+      ...(event.lat && event.lng
+        ? { lat: event.lat, lng: event.lng, radius: event.radius ?? 2500 }
+        : { address: event.address }),
+      type: "hotel",
+      checkin: event.checkin,
+      checkout: event.checkout,
+      minguestrating: 7.5,
+      max: event.maxPricePerNight,
+      limit: event.limit ?? 12,
+      currency: "EUR",
+      lang: "de",
+      aid: lmaId,
+      campaign: lmaId,
+    });
+  } catch (err) {
+    console.error(`[Event ${event.slug}] Stay22-Fetch:`, err);
+  }
+}
+
+const visible = hotels && hotels.length > 0 ? hotels.slice(0, event.limit ?? 12) : [];
+const checkinFmt = new Date(event.checkin).toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+const checkoutFmt = new Date(event.checkout).toLocaleDateString("de-DE", {
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+});
+const nights = Math.round(
+  (new Date(event.checkout).getTime() - new Date(event.checkin).getTime()) /
+    (1000 * 60 * 60 * 24),
+);
+---
+
+<BaseLayout title={event.title} description={event.description}>
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Hotels", href: "/hotels/" },
+        { label: event.eyebrow },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-8">
+      <p class="eyebrow mb-2">{event.eyebrow}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {event.title}
+      </h1>
+      <p class="text-lg leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
+        {event.intro}
+      </p>
+      <div class="flex flex-wrap items-center gap-3 text-sm" style="color: var(--color-slate-steel);">
+        <span class="pill">Anreise: {checkinFmt}</span>
+        <span class="pill">Abreise: {checkoutFmt}</span>
+        <span class="pill">{nights} {nights === 1 ? "Nacht" : "Nächte"}</span>
+      </div>
+    </div>
+
+    {!upcoming && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-shadow-graphite);">
+          Dieses Event liegt in der Vergangenheit. Sobald der Termin für die
+          nächste Saison feststeht, aktualisieren wir die Preise hier.
+          Schau dir solange unseren <a href="/hotels/" class="link-accent font-semibold">Hotel-Index</a> an.
+        </p>
+      </div>
+    )}
+
+    {upcoming && visible.length === 0 && (
+      <div class="card p-6 max-w-3xl mb-8">
+        <p class="text-sm" style="color: var(--color-shadow-graphite);">
+          Aktuell zeigt Stay22 keine verfügbaren Hotels für diesen Zeitraum.
+          Das kann an später Anfrage oder ausgebuchten Hotels liegen.
+          Probier unseren <a href="/hotels/" class="link-accent font-semibold">vollständigen Hotel-Index</a>
+          oder die <a href="/hotels-speyer-weihnachtsmarkt/" class="link-accent font-semibold">anderen Saison-Pages</a>.
+        </p>
+      </div>
+    )}
+
+    {upcoming && visible.length > 0 && (
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {visible.map((h) => (
+          <a
+            href={h.deepLink || h.link || "#"}
+            target="_blank"
+            rel="sponsored noopener nofollow"
+            class="card group block overflow-hidden hover:shadow-lg transition-all"
+          >
+            {h.image && (
+              <div class="aspect-[4/3] overflow-hidden bg-[var(--color-porcelain-mist)]">
+                <img
+                  src={h.image}
+                  alt={h.name}
+                  loading="lazy"
+                  decoding="async"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            )}
+            <div class="p-4">
+              <div class="flex items-center gap-2 mb-1.5">
+                {h.starRating && (
+                  <span class="text-xs font-bold" style="color: var(--color-accent);">
+                    {"★".repeat(Math.round(h.starRating))}
+                  </span>
+                )}
+                {h.rating?.score && (
+                  <span class="pill-accent text-[10px]">{h.rating.score.toFixed(1)} / 10</span>
+                )}
+              </div>
+              <h3
+                class="font-bold text-sm leading-tight mb-1.5 line-clamp-2 group-hover:text-[var(--color-accent)] transition-colors"
+                style="color: var(--color-deep-plum);"
+              >
+                {h.name}
+              </h3>
+              {h.address?.areaName && (
+                <p class="text-[11px] mb-2" style="color: var(--color-slate-steel);">
+                  {h.address.areaName}
+                </p>
+              )}
+              {(h.price?.formattedTotal || h.price?.formattedPerNight) && (
+                <p class="text-sm font-semibold" style="color: var(--color-deep-plum);">
+                  {h.price?.formattedTotal ?? h.price?.formattedPerNight}
+                  {h.price?.formattedTotal && (
+                    <span class="text-xs font-normal" style="color: var(--color-slate-steel);">
+                      {" "}gesamt
+                    </span>
+                  )}
+                </p>
+              )}
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+
+    {upcoming && visible.length > 0 && (
+      <p class="text-[11px] mt-6 leading-relaxed max-w-3xl" style="color: var(--color-slate-steel);">
+        * Preise und Verfügbarkeit live via Stay22 → Booking.com.
+        Bei Buchung über diese Links erhalten wir eine Provision —
+        für dich entstehen keine Mehrkosten. Preise gelten für den
+        Zeitraum {checkinFmt} – {checkoutFmt}, {nights} {nights === 1 ? "Nacht" : "Nächte"}.
+      </p>
+    )}
+  </div>
+</BaseLayout>

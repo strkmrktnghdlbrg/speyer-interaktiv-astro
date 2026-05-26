@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import HotelCard from "../../components/HotelCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Stay22Map from "../../components/Stay22Map.astro";
+import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
 
@@ -30,6 +31,27 @@ const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
       zoom={13}
     />
 
+    <Stay22TopHotels
+      title={`Aktuell bestbewertete Hotels in ${city.name}`}
+      lead="Live von Booking.com via Stay22. Frische Preise und Bewertungen, aktualisiert bei jedem Build."
+      limit={8}
+    />
+
+    <div class="my-6 flex flex-wrap items-center gap-3">
+      <a href="/top-10-hotels-speyer/" class="btn-outline">
+        Top 10 Hotels in {city.name} →
+      </a>
+      <a href="/hotels-speyer-brezelfest/" class="btn-outline">
+        Hotels zum Brezelfest →
+      </a>
+      <a href="/hotels-speyer-weihnachtsmarkt/" class="btn-outline">
+        Hotels zum Weihnachtsmarkt →
+      </a>
+    </div>
+
+    <h2 class="text-2xl font-bold tracking-tight mt-12 mb-6" style="color: var(--color-deep-plum);">
+      Kuratierte Hotel-Auswahl
+    </h2>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {sorted.map((h) => <HotelCard hotel={h} />)}
     </div>
