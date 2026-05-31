@@ -147,6 +147,91 @@ export const events: CityEvent[] = [
     maxPricePerNight: 400,
     limit: 12,
   },
+  {
+    slug: "ostern",
+    title: "Hotels in Speyer zu Ostern",
+    eyebrow: "Ostern 2027",
+    intro:
+      "Ostern in der Kaiserdom-Stadt: feierliche Messen und Domkonzerte über die Kar- und Ostertage, dazu Speyers Altstadt im Frühling. Hotels in Dom-Nähe füllen sich schnell.",
+    description:
+      "Hotels in Speyer zu Ostern 2027 — Live-Preise für Karfreitag bis Ostermontag. Domnahe Unterkünfte in der Altstadt.",
+    checkin: "2027-03-26",
+    checkout: "2027-03-29",
+    address: "Speyer Altstadt, Deutschland",
+    lat: 49.3173,
+    lng: 8.4427,
+    radius: 2500,
+    maxPricePerNight: 300,
+    limit: 12,
+  },
+  {
+    slug: "muttertag",
+    title: "Hotels in Speyer zum Muttertag",
+    eyebrow: "Muttertag 2027",
+    intro:
+      "Muttertag in Speyer: Frühlings-Wochenende mit Pfälzer Wein, Maximilianstraßen-Bummel und Spaziergang am Rhein. Wellness-Hotels in der Region buchen Mütter-Töchter-Pakete.",
+    description:
+      "Hotels in Speyer zum Muttertag 2027 — Live-Preise für das Mai-Wochenende. Ideal für Frühlings-Trips und Wellness-Auszeiten.",
+    checkin: "2027-05-07",
+    checkout: "2027-05-09",
+    address: "Speyer, Deutschland",
+    lat: 49.3175,
+    lng: 8.4413,
+    radius: 5000,
+    maxPricePerNight: 280,
+    limit: 12,
+  },
+  {
+    slug: "fronleichnam",
+    title: "Hotels in Speyer zu Fronleichnam",
+    eyebrow: "Fronleichnam 2027",
+    intro:
+      "Fronleichnamsprozession vom Kaiserdom durch die Altstadt — eine der traditionsreichsten in der Pfalz. Die Tage rund um den Feiertag werden gern als verlängertes Wochenende genutzt.",
+    description:
+      "Hotels in Speyer zu Fronleichnam 2027 — Live-Preise für das verlängerte Feiertags-Wochenende. Domnahe Unterkünfte.",
+    checkin: "2027-05-26",
+    checkout: "2027-05-30",
+    address: "Speyer Altstadt, Deutschland",
+    lat: 49.3173,
+    lng: 8.4427,
+    radius: 2500,
+    maxPricePerNight: 280,
+    limit: 12,
+  },
+  {
+    slug: "rhein-in-flammen",
+    title: "Hotels in Speyer zu Rhein in Flammen",
+    eyebrow: "Rhein in Flammen 2026",
+    intro:
+      "Wenn das große Feuerwerk-Spektakel über dem Mittelrhein stattfindet, sucht halb Süddeutschland Schlafplätze in Rhein-Nähe. Speyer ist als Pfalz-Basis ideal für Tagesausflüge ans Spektakel und für Rheinkreuzfahrten.",
+    description:
+      "Hotels in Speyer zu Rhein in Flammen 2026 — Live-Preise für das August-Wochenende. Übernachtungs-Basis für die Pfalz-Tour.",
+    checkin: "2026-08-14",
+    checkout: "2026-08-16",
+    address: "Speyer, Deutschland",
+    lat: 49.3253,
+    lng: 8.4541,
+    radius: 5000,
+    maxPricePerNight: 300,
+    limit: 12,
+  },
+  {
+    slug: "geschaeftsreise",
+    title: "Hotels in Speyer für Geschäftsreisen",
+    eyebrow: "Business-Trip — diese Woche",
+    intro:
+      "Geschäftsreise nach Speyer, Schifferstadt, Hockenheim oder zur Universität für Verwaltungswissenschaften: zentrale Hotels mit Konferenzräumen, WLAN, ruhigem Schlaf. Live-Preise für die kommenden Werktage.",
+    description:
+      "Geschäftshotels in Speyer — Live-Preise für die nächste Geschäftswoche. Konferenzräume, Parkplätze, ruhige Zimmer.",
+    checkin: "2026-06-08",
+    checkout: "2026-06-12",
+    address: "Speyer, Deutschland",
+    lat: 49.3175,
+    lng: 8.4413,
+    radius: 5000,
+    maxPricePerNight: 250,
+    limit: 12,
+  },
 ];
 
 /** Hilfreich um Pages dynamisch zu verstecken, wenn checkin vorbei ist. */

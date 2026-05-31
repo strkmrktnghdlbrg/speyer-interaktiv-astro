@@ -88,6 +88,29 @@ export interface Stay22SearchOptions {
 
 const API_BASE = "https://api.stay22.com/v1";
 
+/**
+ * In-Memory-Cache pro Build-Run.
+ * Verhindert doppelte Calls für gleiche URLs (typisch: viele Sights/Events
+ * teilen sich Stadt-Zentrum-Koordinaten).
+ */
+const responseCache = new Map<string, Stay22Accommodation[] | null>();
+
+/**
+ * Globaler Throttle. Stay22 erlaubt ~1 Call/s, sonst HTTP 429.
+ * Wir warten 1200ms zwischen Calls — entspricht ~50 req/min.
+ */
+let lastCallAt = 0;
+const MIN_INTERVAL_MS = 1200;
+
+async function throttle(): Promise<void> {
+  const now = Date.now();
+  const wait = lastCallAt + MIN_INTERVAL_MS - now;
+  if (wait > 0) {
+    await new Promise((r) => setTimeout(r, wait));
+  }
+  lastCallAt = Date.now();
+}
+
 function getApiKey(): string | null {
   // @ts-expect-error — import.meta.env existiert in Astro/Vite
   const viteKey = typeof import.meta !== "undefined" ? import.meta.env?.STAY22_API_KEY : undefined;
@@ -215,6 +238,14 @@ export async function searchAccommodations(
 
   const url = `${API_BASE}/accommodations?${params.toString()}`;
 
+  // Cache-Hit: return identical result without API call
+  if (responseCache.has(url)) {
+    return responseCache.get(url) ?? null;
+  }
+
+  // Throttle, damit wir die Rate-Limit-Grenze (~1 req/s) nicht reissen
+  await throttle();
+
   try {
     const res = await fetch(url, {
       headers: {
@@ -228,6 +259,30 @@ export async function searchAccommodations(
       console.error(
         `[stay22] API ${res.status} für ${options.address ?? "lat/lng-search"}: ${body.slice(0, 200)}`,
       );
+      // Retry once with backoff on 429 (rate limit)
+      if (res.status === 429) {
+        await new Promise((r) => setTimeout(r, 3000));
+        lastCallAt = Date.now();
+        const retry = await fetch(url, {
+          headers: { "X-API-Key": apiKey, Accept: "application/json" },
+        });
+        if (retry.ok) {
+          const data = await retry.json();
+          const results = Array.isArray(data) ? data : (data?.results ?? []);
+          const meta = !Array.isArray(data) ? data?.meta : undefined;
+          const normalized = results
+            .map((r: any) => normalize(r, meta || {}))
+            .filter((h: Stay22Accommodation) => {
+              if (minGuest !== undefined && (h.rating?.score ?? 0) < minGuest) return false;
+              if (minStar !== undefined && (h.starRating ?? 0) < minStar) return false;
+              return true;
+            })
+            .slice(0, userLimit);
+          responseCache.set(url, normalized);
+          return normalized;
+        }
+      }
+      responseCache.set(url, null);
       return null;
     }
 
@@ -248,9 +303,12 @@ export async function searchAccommodations(
       normalized = normalized.filter((h) => (h.starRating ?? 0) >= minStar);
     }
 
-    return normalized.slice(0, userLimit);
+    const final = normalized.slice(0, userLimit);
+    responseCache.set(url, final);
+    return final;
   } catch (err) {
     console.error("[stay22] Fetch fehlgeschlagen:", err);
+    responseCache.set(url, null);
     return null;
   }
 }

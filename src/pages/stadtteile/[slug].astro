@@ -6,6 +6,7 @@ import SightCard from "../../components/SightCard.astro";
 import HotelCard from "../../components/HotelCard.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import DistrictCard from "../../components/DistrictCard.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { districts, getDistrict } from "../../data/districts";
 import { sightsByDistrict } from "../../data/sights";
 import { hotelsByDistrict, topHotelsByDistrict } from "../../data/hotels";
@@ -106,6 +107,14 @@ const schema = {
         </div>
       </section>
     )}
+
+    <Stay22NearbyHotels
+      lat={district.coordinates[0]}
+      lng={district.coordinates[1]}
+      near={district.name}
+      radius={2000}
+      limit={4}
+    />
 
     {restaurants.length > 0 && (
       <section class="mb-16">

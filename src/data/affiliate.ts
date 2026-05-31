@@ -2,41 +2,34 @@
  * Affiliate-Konfiguration pro Projekt.
  * --------------------------------------
  * Stay22 lmaID + GetYourGuide Partner-ID sind pro Projekt individuell.
- * Beim Setup vom Projekt-Owner einholen, NIEMALS aus anderem Portal
- * übernehmen — sonst landen Provisionen auf dem falschen Konto.
- *
- * Solange enabled=false oder ID leer ist: Snippet wird NICHT geladen
- * (Dev/Staging-Schutz, DSGVO-Hygiene).
  *
  * Stay22 Direct Travel API:
- *   STAY22_API_KEY als Env-Var bzw. Cloudflare-Secret setzen, sonst
- *   liefern die Stay22*-Components keine Live-Hotels (graceful degrade).
+ *   STAY22_API_KEY als Env-Var bzw. Hosting-Secret setzen (siehe .env.example).
+ *   Wenn nicht gesetzt: graceful degradation, statische Hotels bleiben sichtbar.
+ *
+ * Stay22 lmaID (= aid-Query-Param):
+ *   Wird an Stay22-API/Snippet als Tracking-Identifier mitgegeben. Speyer nutzt
+ *   die UUID-Komponente des API-Tokens als aid (Stay22-Konvention bei
+ *   Single-Account-Setups).
  */
 
 export const affiliate = {
   stay22: {
-    // TODO: lmaID vom Speyer-Stay22-Account beim User nachreichen.
-    // Erst dann auf enabled: true setzen.
-    lmaId: "",
-    enabled: false,
+    // Stay22-Account-Identifier (aus API-Antwort verifiziert).
+    // Wird vom Stay22-Snippet als ?lmaid=... mitgegeben.
+    lmaId: "starkmarketinggmbh",
+    enabled: true,
     /**
-     * Optionale, im Stay22-Dashboard vorgebaute Widget-ID.
-     * Wenn gesetzt, nutzt <Stay22Map> das vorkonfigurierte Embed
-     * (https://stay22.com/embed/<id>) statt die Parameter-URL.
-     * Branding und Pin-Konfiguration kommen dann aus dem Dashboard.
+     * Optionale, im Stay22-Dashboard vorgebaute Widget-ID für die Map.
+     * Solange leer: Parameter-Fallback (lat/lng/zoom/maincolor).
      */
     mapEmbedId: "",
   },
   getYourGuide: {
-    // TODO: Speyer GYG Partner-ID nachreichen (im GYG-Partner-Dashboard
-    // unter "Tools & Widgets" — alphanumerisch, ~7 Zeichen)
+    // TODO: GYG Partner-ID nachreichen
     partnerId: "",
     locale: "de-DE",
     enabled: false,
-    /**
-     * Default-Query für das Städte-Widget. GetYourGuide löst "Speyer"
-     * via eigener Geo-Suche zur Speyer-Location auf.
-     */
     cityQuery: "Speyer",
   },
 };

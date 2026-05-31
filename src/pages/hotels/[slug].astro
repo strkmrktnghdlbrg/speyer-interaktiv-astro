@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import BookingCTA from "../../components/BookingCTA.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import Stay22Map from "../../components/Stay22Map.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
@@ -106,6 +107,14 @@ const schema = {
         lat={district.coordinates[0]}
         lng={district.coordinates[1]}
         zoom={15}
+      />
+
+      <Stay22NearbyHotels
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        near={hotel.name}
+        radius={1500}
+        limit={4}
       />
 
       <RelatedItems district={hotel.district} excludeSlug={hotel.slug} type="hotels" title="Weitere Hotels in der Umgebung" />

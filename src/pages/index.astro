@@ -6,6 +6,7 @@ import RestaurantCard from "../components/RestaurantCard.astro";
 import DistrictCard from "../components/DistrictCard.astro";
 import NewsCard from "../components/NewsCard.astro";
 import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
+import Stay22TopHotels from "../components/Stay22TopHotels.astro";
 import { city } from "../data/city";
 import { affiliate } from "../data/affiliate";
 import { features } from "../data/features";
@@ -100,6 +101,14 @@ const latestNews = recentNews(3);
       </div>
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {topHotels.map((h) => <HotelCard hotel={h} />)}
+      </div>
+
+      <div class="mt-10">
+        <Stay22TopHotels
+          title={`Live verfügbar in ${city.name}`}
+          lead="Aktuell bestbewertete Hotels mit Live-Preisen via Stay22. Frisch beim letzten Build aktualisiert."
+          limit={4}
+        />
       </div>
     </div>
   </section>

@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { guides, getGuide, type SlotType } from "../../data/guides";
 import { getSight } from "../../data/sights";
 import { getHotel } from "../../data/hotels";
@@ -214,6 +215,12 @@ const schema = {
           )}
         </section>
       ))}
+
+      <Stay22TopHotels
+        title={`Aktuell verfügbare Hotels in ${city.name}`}
+        lead="Live-Preise und Bewertungen für deine Wunschnacht. Direktbuchung via Booking.com."
+        limit={8}
+      />
     </div>
   </article>
 
