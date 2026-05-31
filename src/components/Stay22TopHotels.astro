@@ -38,7 +38,7 @@ const {
 
 let hotels: Stay22Accommodation[] | null = null;
 try {
-  hotels = await getTopHotels(address, affiliate.stay22.lmaId, { limit });
+  hotels = await getTopHotels(address, affiliate.stay22.apiAid, { limit });
 } catch (err) {
   console.error("[Stay22TopHotels] Fehler beim Build-Fetch:", err);
   hotels = null;

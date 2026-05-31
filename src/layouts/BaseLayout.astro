@@ -49,9 +49,9 @@ const fullTitle = title === city.name ? `${city.name} — Stadtportal` : `${titl
 
     {stay22Enabled && (
       <script
-        async
-        src={`https://snippet.stay22.com/allez/script?lmaid=${affiliate.stay22.lmaId}`}
-      ></script>
+        is:inline
+        set:html={`(function(s,t,a,y,twenty,two){s.Stay22=s.Stay22||{};s.Stay22.params={lmaID:'${affiliate.stay22.lmaId}'};twenty=t.createElement(a);two=t.getElementsByTagName(a)[0];twenty.async=1;twenty.src=y;two.parentNode.insertBefore(twenty,two);})(window,document,'script','https://scripts.stay22.com/letmeallez.js');`}
+      />
     )}
 
     {affiliate.getYourGuide.enabled && affiliate.getYourGuide.partnerId.length > 0 && (

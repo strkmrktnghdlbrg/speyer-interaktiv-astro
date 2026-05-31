@@ -34,7 +34,7 @@ interface Props {
 
 const { event } = Astro.props as Props;
 const upcoming = isUpcoming(event);
-const lmaId = affiliate.stay22.lmaId;
+const lmaId = affiliate.stay22.apiAid;
 
 let hotels: Stay22Accommodation[] | null = null;
 if (upcoming) {

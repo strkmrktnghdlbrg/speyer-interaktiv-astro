@@ -1,23 +1,27 @@
 /**
  * Affiliate-Konfiguration pro Projekt.
  * --------------------------------------
- * Stay22 lmaID + GetYourGuide Partner-ID sind pro Projekt individuell.
+ * Stay22 hat zwei IDs, die unterschiedlich genutzt werden:
  *
- * Stay22 Direct Travel API:
- *   STAY22_API_KEY als Env-Var bzw. Hosting-Secret setzen (siehe .env.example).
- *   Wenn nicht gesetzt: graceful degradation, statische Hotels bleiben sichtbar.
+ *  1. lmaID (Stay22-Account-Hash, MongoDB-Style):
+ *     - Vom offiziellen letmeallez.js-Snippet als s.Stay22.params.lmaID erwartet
+ *     - Rewritet booking.com-Links im Browser zur Laufzeit
  *
- * Stay22 lmaID (= aid-Query-Param):
- *   Wird an Stay22-API/Snippet als Tracking-Identifier mitgegeben. Speyer nutzt
- *   die UUID-Komponente des API-Tokens als aid (Stay22-Konvention bei
- *   Single-Account-Setups).
+ *  2. apiAid (Account-Slug, klartext):
+ *     - Wird in der Stay22 Direct Travel API als `aid`-Param mitgegeben
+ *     - Erscheint in den affiliate-getaggten Deep-Links in der API-Antwort
+ *
+ * Beide gehören zum selben Stay22-Account (starkmarketinggmbh), werden aber
+ * pro Schnittstelle anders formatiert. STAY22_API_KEY (separat, in .env)
+ * authentifiziert die API-Calls.
  */
 
 export const affiliate = {
   stay22: {
-    // Stay22-Account-Identifier (aus API-Antwort verifiziert).
-    // Wird vom Stay22-Snippet als ?lmaid=... mitgegeben.
-    lmaId: "starkmarketinggmbh",
+    /** Stay22 lmaID — für das letmeallez.js-Snippet (Browser-Rewrite). */
+    lmaId: "6a1c4a776b16982d6c05db05",
+    /** Stay22 Account-Slug — für Direct-Travel-API `aid`-Param + Stay22Map. */
+    apiAid: "starkmarketinggmbh",
     enabled: true,
     /**
      * Optionale, im Stay22-Dashboard vorgebaute Widget-ID für die Map.
