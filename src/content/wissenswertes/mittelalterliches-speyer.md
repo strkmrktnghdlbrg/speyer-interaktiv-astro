@@ -3,7 +3,7 @@ title: "Mittelalterliches Speyer — Reichsstadt der Kaiser"
 lead: 'Im Mittelalter wurde Speyer Bischofssitz, Reichsstadt und Tagungsort bedeutender Reichstage. Der Dom als Grablege der Kaiser machte die Stadt zur „Caput Sedis", dem Haupt des Reichs.'
 ---
 
-Speyer war im Mittelalter eine der wichtigsten Städte des Heiligen Römischen Reichs. Bischofssitz, Reichsstadt, Handelsplatz am Rhein, Schauplatz von Reichstagen und Grablege der Salier-Kaiser: Wenige Städte des deutschen Sprachraums vereinen so viele Rollen wie das mittelalterliche Speyer.
+Speyer war im Mittelalter eine der wichtigsten Städte des Heiligen Römischen Reichs. Bischofssitz, Reichsstadt, Handelsplatz am Rhein, Schauplatz von Reichstagen und Grablege der [Salier-Kaiser](/wissenswertes/salier/): Wenige Städte des deutschen Sprachraums vereinen so viele Rollen wie das mittelalterliche Speyer.
 
 ## Handwerkszünfte als Rückgrat der Stadt
 
@@ -25,7 +25,7 @@ Am Marktplatz spielte sich das wirtschaftliche und soziale Leben ab. Hier wurde 
 
 ## Bauten und Stadtbild
 
-Das Stadtbild prägten der Dom als überragendes Zentrum, weitere Kirchen und Kapellen, das Rathaus und die Stadtmauer mit ihren Toren und Türmen. Bürgerhäuser standen lange in Fachwerk: Holzgerüst mit Lehm-Stroh-Füllung. Erst im Lauf der Zeit setzten sich Steinmauern und Ziegeldächer durch, um die Brandgefahr zu verringern. Der **Stadtbrand von 1689**, ausgelöst durch französische Truppen im Pfälzischen Erbfolgekrieg, vernichtete einen Großteil der mittelalterlichen Substanz. Was wir heute als Altstadt erleben, ist überwiegend nach diesem Brand wiederaufgebaut.
+Das Stadtbild prägten der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) als überragendes Zentrum, weitere Kirchen und Kapellen, das Rathaus und die Stadtmauer mit ihren Toren und Türmen — vom [Altpörtel](/sehenswuerdigkeiten/altpoertel/) bis zum Fischertor. Bürgerhäuser standen lange in Fachwerk: Holzgerüst mit Lehm-Stroh-Füllung. Erst im Lauf der Zeit setzten sich Steinmauern und Ziegeldächer durch, um die Brandgefahr zu verringern. Der **Stadtbrand von 1689**, ausgelöst durch französische Truppen im Pfälzischen Erbfolgekrieg, vernichtete einen Großteil der mittelalterlichen Substanz. Was wir heute als Altstadt erleben, ist überwiegend nach diesem Brand wiederaufgebaut.
 
 ## Leben der Handwerker
 
@@ -37,7 +37,7 @@ Speyer war als Freie Reichsstadt direkt dem Kaiser unterstellt, was Selbstverwal
 
 ## Kulturelle Traditionen
 
-Das jährliche **Historische Stadtspektakel** versetzt Speyer heute noch einmal symbolisch ins Mittelalter zurück: Ritterkämpfe, Gaukler, mittelalterliche Musik und Handwerksstände beleben Plätze und Gassen und zeigen, wie tief die mittelalterliche Identität verwurzelt ist.
+Das jährliche **Historische Stadtspektakel** versetzt Speyer heute noch einmal symbolisch ins Mittelalter zurück: Ritterkämpfe, Gaukler, mittelalterliche Musik und Handwerksstände beleben Plätze und Gassen und zeigen, wie tief die mittelalterliche Identität verwurzelt ist. Wer die Epoche vertiefen will, findet im Artikel zur [Reformation](/wissenswertes/reformation/) und zum [Dreißigjährigen Krieg](/wissenswertes/dreissigjaehriger-krieg/) den direkten Anschluss.
 
 ## Häufig gestellte Fragen
 

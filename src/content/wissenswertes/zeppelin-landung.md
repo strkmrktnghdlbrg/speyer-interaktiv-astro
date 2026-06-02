@@ -23,7 +23,7 @@ Im Vergleich zu konkurrierenden Luftschiffen war der Zeppelin überlegen in Reic
 
 ## Speyer als Schauplatz historischer Ereignisse
 
-Die Zeppelin-Landung passt in eine lange Reihe historischer Ereignisse in Speyer. Vom Reichstag der Salier über die Speyerer Protestation bis zur Mediatisierung 1803 war Speyer immer wieder Schauplatz von Geschichte. Die Landung des Zeppelins reiht sich als modernes Kapitel ein und verbindet die historische Stadt mit der Pionierzeit der Luftfahrt.
+Die Zeppelin-Landung passt in eine lange Reihe historischer Ereignisse in Speyer. Vom Reichstag der [Salier](/wissenswertes/salier/) über die Speyerer Protestation der [Reformation](/wissenswertes/reformation/) bis zur Mediatisierung 1803 war Speyer immer wieder Schauplatz von Geschichte. Die Landung des Zeppelins reiht sich als modernes Kapitel ein und verbindet die historische Stadt mit der Pionierzeit der Luftfahrt.
 
 ## Das Zeppelin-Museum in Friedrichshafen
 
@@ -35,7 +35,7 @@ Die Deutsche Zeppelin-Reederei wurde 1935 gegründet und betrieb die berühmten 
 
 ## Technik Museum Speyer
 
-Wer in Speyer mehr über Luftfahrt erfahren will, findet im **Technik Museum** eine der größten Sammlungen Europas. Originalflugzeuge, ein begehbarer Jumbo-Jet, eine Antonow An-22 und eine Vielzahl weiterer Exponate machen das Museum zu einem natürlichen Anknüpfungspunkt für die Zeppelin-Geschichte und die Faszination Fliegen insgesamt.
+Wer in Speyer mehr über Luftfahrt erfahren will, findet im [Technik Museum](/sehenswuerdigkeiten/technik-museum/) eine der größten Sammlungen Europas. Originalflugzeuge, ein begehbarer Jumbo-Jet, eine Antonow An-22 und eine Vielzahl weiterer Exponate machen das Museum zu einem natürlichen Anknüpfungspunkt für die Zeppelin-Geschichte und die Faszination Fliegen insgesamt. Nach dem Museumsbesuch lohnt ein Spaziergang im nahen [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) — beide Stationen sind Teil des breiten [Kulturerbes](/wissenswertes/kulturerbe/) der Stadt.
 
 ## Zeppelin in der Kultur
 

@@ -3,7 +3,7 @@ title: "Archäologische Funde in Speyer"
 lead: "Vom jungsteinzeitlichen Skelett bis zum keltischen Fürstengrab: Was die Erde unter Speyer alles freigibt, lässt sich im Stadtgebiet und im Historischen Museum der Pfalz besichtigen."
 ---
 
-Speyer ist für Archäologen ein dichter Fundort. Bei Ausgrabungen im Stadtgebiet wurden Spuren von der Jungsteinzeit über die Kelten und Römer bis ins Mittelalter dokumentiert. Die wichtigsten Funde sind im Historischen Museum der Pfalz und im Archäologischen Schaufenster zu sehen.
+Speyer ist für Archäologen ein dichter Fundort. Bei Ausgrabungen im Stadtgebiet wurden Spuren von der Jungsteinzeit über die Kelten und [Römer](/wissenswertes/roemisches-speyer/) bis ins [Mittelalter](/wissenswertes/mittelalterliches-speyer/) dokumentiert. Die wichtigsten Funde sind im [Historischen Museum der Pfalz](/sehenswuerdigkeiten/historisches-museum-der-pfalz/) und im Archäologischen Schaufenster zu sehen.
 
 ## Älteste Funde aus der Jungsteinzeit
 
@@ -29,7 +29,7 @@ Ein besonders einzigartiger Fund ist ein keltisches **Signalhorn aus Metall**, d
 
 ## Mittelalter und früh Neuzeit
 
-Im Stadtgebiet wurden zudem mittelalterliche Stadtbefestigungen, Reste der jüdischen Mikwe (siehe SchUM-Welterbe), Brunnenanlagen und Fundamente von Kirchen und Klöstern dokumentiert. Diese Funde ergänzen das Bild der hochmittelalterlichen Reichsstadt mit konkreten archäologischen Befunden.
+Im Stadtgebiet wurden zudem mittelalterliche Stadtbefestigungen, Reste der jüdischen Mikwe (siehe SchUM-Welterbe im Judenhof), Brunnenanlagen und Fundamente von Kirchen und Klöstern dokumentiert. Diese Funde ergänzen das Bild der hochmittelalterlichen Reichsstadt mit konkreten archäologischen Befunden.
 
 ## Historisches Museum der Pfalz
 
@@ -47,7 +47,7 @@ Das **Archäologische Schaufenster** in der Innenstadt ist eine kleine, aber fei
 
 ## Landesarchäologie Rheinland-Pfalz
 
-Die Landesarchäologie schützt und dokumentiert archäologische Stätten in ganz Rheinland-Pfalz. Sie führt Notgrabungen bei Baumaßnahmen durch, dokumentiert Funde wissenschaftlich und arbeitet mit Universitäten und Museen zusammen. Speyer ist einer der wichtigsten Stützpunkte dieser Arbeit.
+Die Landesarchäologie schützt und dokumentiert archäologische Stätten in ganz Rheinland-Pfalz. Sie führt Notgrabungen bei Baumaßnahmen durch, dokumentiert Funde wissenschaftlich und arbeitet mit Universitäten und Museen zusammen. Speyer ist einer der wichtigsten Stützpunkte dieser Arbeit — die archäologische Arbeit ergänzt das Bild der [Baukunst Speyers](/wissenswertes/baukunst/) und macht Grünflächen wie den [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) immer wieder zu Grabungsorten.
 
 ## Häufig gestellte Fragen
 

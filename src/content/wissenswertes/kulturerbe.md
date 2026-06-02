@@ -3,7 +3,7 @@ title: "Speyers Kulturerbe — UNESCO und mehr"
 lead: "Zweimal UNESCO: der Kaiserdom seit 1981, die SchUM-Stätten seit 2021. Beide Auszeichnungen prägen das Selbstverständnis der Stadt und ziehen internationales Publikum an."
 ---
 
-Speyer trägt gleich zwei UNESCO-Welterbe-Titel. Der Kaiserdom wurde 1981 ausgezeichnet, die SchUM-Stätten (Speyer-Worms-Mainz) folgten 2021. Beide Stätten dokumentieren zentrale Kapitel europäischer Kulturgeschichte: die hochromanische Architektur und das mittelalterliche aschkenasische Judentum.
+Speyer trägt gleich zwei [UNESCO-Welterbe](/kategorien/unesco-welterbe/)-Titel. Der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) wurde 1981 ausgezeichnet, die SchUM-Stätten (Speyer-Worms-Mainz) folgten 2021. Beide Stätten dokumentieren zentrale Kapitel europäischer Kulturgeschichte: die hochromanische Architektur und das mittelalterliche aschkenasische Judentum.
 
 ## Der Speyerer Dom: Meisterwerk der Romanik
 
@@ -15,7 +15,7 @@ Architektonische Merkmale:
 - Mächtige Rundbogen, klare geometrische Gliederung
 - Bauzier teils von italienischen Bildhauern
 
-Der Dom diente als Grablege für vier salische Kaiser und beeinflusste die Gestaltung romanischer Kirchen in ganz Deutschland und darüber hinaus. Nach der Zerstörung von Cluny gilt er als das bedeutendste erhaltene Bauwerk dieser Epoche in Europa.
+Der Dom diente als Grablege für die vier [salischen Kaiser](/wissenswertes/salier/) und beeinflusste die Gestaltung romanischer Kirchen in ganz Deutschland und darüber hinaus. Nach der Zerstörung von Cluny gilt er als das bedeutendste erhaltene Bauwerk dieser Epoche in Europa.
 
 Die UNESCO erkannte 1981 vor allem das **Kriterium (ii)** an: Der Dom zeigt einen bedeutenden Schnittpunkt menschlicher Werte in der Entwicklung von Architektur und Großplastik. Die Restaurierungsgeschichte des Doms hat zudem die deutsche Denkmalpflege maßgeblich geprägt.
 
@@ -25,7 +25,7 @@ Die UNESCO erkannte 1981 vor allem das **Kriterium (ii)** an: Der Dom zeigt eine
 
 In Speyer umfasst das Welterbe:
 
-- Das ehemalige Judenviertel **(Judenhof)**
+- Das ehemalige Judenviertel mit dem [Judenhof](/sehenswuerdigkeiten/judenhof/)
 - Die Überreste der 1104 errichteten **Synagoge**
 - Die **Frauenschul**, ein Gebetsraum für Frauen
 - Archäologische Reste der **Jeschiwa** (Talmud-Hochschule)
@@ -55,7 +55,7 @@ Die Welterbestätten haben spürbare Auswirkungen:
 
 ## Herausforderungen
 
-Der Erhalt zweier Welterbestätten ist anspruchsvoll. Authentizität und Integrität müssen bewahrt werden, gleichzeitig braucht es ein Gleichgewicht zwischen Tourismus und Schutz. Massenandrang kann die Stätten belasten, deshalb gibt es Besucherlenkung und kontinuierliche Restaurierung.
+Der Erhalt zweier Welterbestätten ist anspruchsvoll. Authentizität und Integrität müssen bewahrt werden, gleichzeitig braucht es ein Gleichgewicht zwischen Tourismus und Schutz. Massenandrang kann die Stätten belasten, deshalb gibt es Besucherlenkung und kontinuierliche Restaurierung — wer einen entspannten Welterbe-Besuch plant, findet im [Reiseplaner 2 Tage Speyer](/reiseplaner/2-tage-speyer/) eine sinnvolle Route.
 
 ## Häufig gestellte Fragen
 

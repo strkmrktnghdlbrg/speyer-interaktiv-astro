@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { restaurants } from "../../data/restaurants";
 import { city } from "../../data/city";
 
@@ -36,5 +37,7 @@ const cuisines = Array.from(new Set(restaurants.map((r) => r.cuisine))).sort();
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {all.map((r) => <RestaurantCard restaurant={r} />)}
     </div>
+
+    <GetYourGuideWidget offerKey="page:restaurants" />
   </div>
 </BaseLayout>

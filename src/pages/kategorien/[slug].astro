@@ -4,6 +4,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import SightCard from "../../components/SightCard.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import HueGradient from "../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { categories, getCategory } from "../../data/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
@@ -101,6 +102,8 @@ const schema = {
         </div>
       </section>
     )}
+
+    <GetYourGuideWidget offerKey={`category:${category.slug}`} />
   </div>
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />

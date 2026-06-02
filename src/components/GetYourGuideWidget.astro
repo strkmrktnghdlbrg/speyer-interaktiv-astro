@@ -16,9 +16,20 @@
  * dann lässt sich im GYG-Dashboard pro Platzierung auswerten.
  */
 import { affiliate, gygEnabled } from "../data/affiliate";
+import { getGygOffer } from "../data/gygOffers";
 
 interface Props {
-  mode: "city" | "activities" | "availability";
+  /**
+   * Modus explizit setzen. Optional, wenn offerKey gesetzt ist — dann kommt
+   * der Modus aus der recherchierten gygOffers-Tabelle.
+   */
+  mode?: "city" | "activities" | "availability" | "auto";
+  /**
+   * Key in src/data/gygOffers.ts (z.B. "category:familie", "page:hotels").
+   * Existiert kein Eintrag UND ist kein mode gesetzt, rendert nichts —
+   * so bleiben "unpassende" Seiten widget-frei.
+   */
+  offerKey?: string;
   /** Für mode=city: Stadt-Name als Query (z.B. "Speyer") */
   cityQuery?: string;
   /** Für mode=city: konkrete GYG-Location-ID (Alternative zu cityQuery) */
@@ -37,25 +48,32 @@ interface Props {
   lead?: string;
 }
 
-const {
-  mode,
-  cityQuery,
-  locationId,
-  q,
-  activityId,
-  numberOfItems = 3,
-  cmp,
-  title,
-  lead,
-} = Astro.props;
+const props = Astro.props;
 
-const widgetType = mode === "availability" ? "availability" : mode;
+// offerKey löst eine recherchierte Konfiguration auf; explizite Props haben Vorrang.
+const offer = props.offerKey ? getGygOffer(props.offerKey) : undefined;
+
+// Mit offerKey, aber ohne Treffer (= Seite nicht "passend") und ohne expliziten
+// mode: nichts rendern.
+const shouldRender = Boolean(props.mode || offer);
+
+const mode = props.mode ?? offer?.mode ?? "city";
+const cityQuery = props.cityQuery ?? offer?.cityQuery;
+const locationId = props.locationId;
+const q = props.q ?? offer?.q;
+const activityId = props.activityId;
+const numberOfItems = props.numberOfItems ?? offer?.numberOfItems ?? 3;
+const cmp = props.cmp ?? (props.offerKey ? props.offerKey.replace(/:/g, "-") : "default");
+const title = props.title ?? offer?.title;
+const lead = props.lead ?? offer?.lead;
+
+const widgetType = mode === "availability" ? "availability" : mode === "auto" ? "auto" : mode;
 const frameType =
   mode === "availability" ? "availability" : mode === "city" ? "city" : "activities";
-const frameUrl = `https://widget.getyourguide.com/default/${frameType}.frame`;
+const frameUrl = mode === "auto" ? undefined : `https://widget.getyourguide.com/default/${frameType}.frame`;
 ---
 
-{gygEnabled && (
+{gygEnabled && shouldRender && (
   <section class="my-12">
     {title && (
       <div class="mb-6 max-w-3xl">

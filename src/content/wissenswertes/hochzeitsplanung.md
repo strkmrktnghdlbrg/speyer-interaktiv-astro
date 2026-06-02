@@ -44,13 +44,13 @@ Wie umfangreich die Begleitung ist, hängt vom Vertrag ab. Manche Paare buchen n
 
 Speyer bietet eine ungewöhnlich reiche Auswahl an Trauungsorten:
 
-- **Kaiserdom**: Für katholische Trauungen mit beeindruckender Kulisse.
+- [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/): Für katholische Trauungen mit beeindruckender Kulisse.
 - **Dreifaltigkeitskirche**: Barockes Innenleben, evangelische Trauung.
 - **Gedächtniskirche**: Neugotische Atmosphäre, ebenfalls evangelisch.
-- **Kloster St. Magdalena**: Stille, intime Klosterkapelle.
+- [Kloster St. Magdalena](/sehenswuerdigkeiten/kloster-st-magdalena/): Stille, intime Klosterkapelle.
 - **Standesamt im Historischen Rathaus**: Eleganter barocker Saal für die zivile Trauung.
 
-Für das Fest bieten sich Restaurants in der Altstadt, Veranstaltungsräume und größere Locations am Rheinhafen oder im Umland an. Der historische Rahmen macht jede Hochzeit in Speyer zu etwas Besonderem.
+Für das Fest bieten sich [Restaurants in der Altstadt](/restaurants/), Veranstaltungsräume und größere Locations am Rheinhafen oder im Umland an; Übernachtungen für die Gäste lassen sich gut über die [Hotel-Übersicht](/hotels/) buchen. Für anreisende Gäste, die ein paar Tage in der Stadt verbringen, hilft der [Reiseplaner 2 Tage Speyer](/reiseplaner/2-tage-speyer/). Der historische Rahmen macht jede Hochzeit in Speyer zu etwas Besonderem.
 
 ## Häufig gestellte Fragen
 

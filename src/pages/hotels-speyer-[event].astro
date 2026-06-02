@@ -16,6 +16,7 @@
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
 import { events, isUpcoming, type CityEvent } from "../data/events";
 import { searchAccommodations, type Stay22Accommodation } from "../lib/stay22";
 import { affiliate } from "../data/affiliate";
@@ -190,5 +191,7 @@ const nights = Math.round(
         Zeitraum {checkinFmt} – {checkoutFmt}, {nights} {nights === 1 ? "Nacht" : "Nächte"}.
       </p>
     )}
+
+    <GetYourGuideWidget offerKey="page:hotels-event" />
   </div>
 </BaseLayout>

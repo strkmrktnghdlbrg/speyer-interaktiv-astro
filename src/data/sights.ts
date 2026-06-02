@@ -27,6 +27,7 @@ export const sights: Sight[] = [
     slug: "kaiserdom",
     imageKey: "sight:kaiserdom",
     name: "Kaiserdom zu Speyer",
+    gygActivityId: "644577",
     categories: ["wahrzeichen", "kirchen", "unesco-welterbe", "mittelalter"],
     district: "altstadt",
     type: "Wahrzeichen",
@@ -73,6 +74,7 @@ export const sights: Sight[] = [
   },
   {
     slug: "judenhof",
+    gygActivityId: "453478",
     imageKey: "sight:judenhof",
     name: "Judenhof mit Mikwe",
     categories: ["juedisches-erbe", "unesco-welterbe", "mittelalter", "museen"],
@@ -107,6 +109,7 @@ export const sights: Sight[] = [
   },
   {
     slug: "technik-museum",
+    gygActivityId: "433020",
     imageKey: "sight:technik-museum",
     name: "Technik Museum Speyer",
     categories: ["museen", "familie"],
@@ -124,6 +127,7 @@ export const sights: Sight[] = [
   },
   {
     slug: "dreifaltigkeitskirche",
+    gygActivityId: "453478",
     imageKey: "sight:dreifaltigkeitskirche",
     name: "Dreifaltigkeitskirche",
     categories: ["kirchen", "barock"],
@@ -232,6 +236,7 @@ export const sights: Sight[] = [
   },
   {
     slug: "sea-life",
+    gygActivityId: "40356",
     imageKey: "sight:sea-life",
     name: "Sea Life Speyer",
     categories: ["familie"],

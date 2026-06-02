@@ -13,6 +13,7 @@
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
 import { searchAccommodations, type Stay22Accommodation } from "../lib/stay22";
 import { affiliate } from "../data/affiliate";
 import { city } from "../data/city";
@@ -226,5 +227,7 @@ const itemListSchema = {
         und <a href="/hotels-speyer-silvester/" class="link-accent font-semibold">Silvester</a>.
       </p>
     </div>
+
+    <GetYourGuideWidget offerKey="page:top-10-hotels" />
   </div>
 </BaseLayout>

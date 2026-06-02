@@ -9,14 +9,14 @@ Speyers Baugeschichte spannt einen Bogen von der hochromanischen Architektur des
 
 Die Romanik ist die erste eigenständige europäische Kunstepoche nach dem Ende der Antike. Charakteristisch sind **Rundbögen, massive Wände, blockartige Kapitelle und Würfelmotive**. Die Einführung des Steingewölbes erlaubte erstmals nach römischer Zeit wieder weite, brandsichere Innenräume.
 
-Der **Speyerer Dom**, im 11. Jahrhundert unter den Saliern erbaut, gilt als Höhepunkt der deutschen Romanik. Mit über 130 Metern Länge ist er die größte erhaltene romanische Kirche der Welt. Seine Krypta von 1041 ist die größte Hallenkrypta der Epoche. Der Dom prägte den Stil zahlreicher Kirchen in Rheinland-Pfalz und darüber hinaus.
+Der [Speyerer Dom](/sehenswuerdigkeiten/kaiserdom/), im 11. Jahrhundert unter den Saliern erbaut, gilt als Höhepunkt der deutschen Romanik. Mit über 130 Metern Länge ist er die größte erhaltene romanische Kirche der Welt. Seine Krypta von 1041 ist die größte Hallenkrypta der Epoche. Der Dom prägte den Stil zahlreicher Kirchen in Rheinland-Pfalz und darüber hinaus.
 
 ## Gotik
 
 Mit dem Übergang zur Gotik kamen **Spitzbogen, Kreuzrippengewölbe und Strebepfeiler**. Diese Innovationen erlaubten höhere, lichtdurchflutete Bauten. In Speyer dominiert die Romanik, doch gotische Elemente wurden ergänzt:
 
 - Am Dom selbst sind gotische Kapellen und das „Kleine Paradies" auf der Nordseite zu sehen.
-- Die Dreifaltigkeitskirche zeigt gotische Gewölbe und Fenster.
+- Die [Dreifaltigkeitskirche](/sehenswuerdigkeiten/dreifaltigkeitskirche/) zeigt gotische Gewölbe und Fenster.
 
 Der bekannte Gotikbaumeister **Anton Pilgram** (Stephansdom Wien) hinterließ ebenfalls Spuren in der süddeutschen Region und beeinflusste den Stil hier.
 
@@ -36,7 +36,7 @@ Ein Hauptwerk ist das **Westwerk des Doms**, das nach 1689 von Franz Ignaz Micha
 
 ## Historismus und Moderne
 
-Das 19. Jahrhundert brachte die **Gedächtniskirche der Protestation** (eingeweiht 1904) im neugotischen Stil. Sie erinnert an die Protestation von 1529 und hat einen der höchsten Kirchtürme der Pfalz.
+Das 19. Jahrhundert brachte die [Gedächtniskirche der Protestation](/sehenswuerdigkeiten/gedaechtniskirche/) (eingeweiht 1904) im neugotischen Stil. Sie erinnert an die Protestation von 1529 und hat einen der höchsten Kirchtürme der Pfalz. Auch das markante [Historische Museum der Pfalz](/sehenswuerdigkeiten/historisches-museum-der-pfalz/) am Domgarten und Gestaltungselemente im benachbarten [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) stammen aus dieser Bauphase.
 
 Das 20. Jahrhundert hat Speyer eher zurückhaltend modernisiert. Am **Rheinhafen** und in den Neubaugebieten finden sich moderne Bauformen, das Stadtbild der Altstadt blieb aber bewusst historisch geprägt.
 

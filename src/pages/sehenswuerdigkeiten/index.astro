@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SightCard from "../../components/SightCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { sights } from "../../data/sights";
 import { city } from "../../data/city";
 ---
@@ -24,5 +25,7 @@ import { city } from "../../data/city";
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {sights.map((s) => <SightCard sight={s} />)}
     </div>
+
+    <GetYourGuideWidget offerKey="page:sehenswuerdigkeiten" />
   </div>
 </BaseLayout>

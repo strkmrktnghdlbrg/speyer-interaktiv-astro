@@ -31,18 +31,28 @@ const navItems = [
         ))}
       </nav>
 
-      <div class="hidden md:flex items-center gap-2 flex-1 max-w-xs">
+      <form
+        action="https://www.google.com/search"
+        method="get"
+        target="_blank"
+        class="hidden md:flex items-center gap-2 flex-1 max-w-xs"
+        role="search"
+      >
+        <input type="hidden" name="q" id="header-search-q" />
         <div class="relative w-full">
           <input
             type="search"
+            name="userq"
             placeholder={`Suche in ${city.name}…`}
             class="w-full bg-transparent border-b-2 pb-1.5 pt-2 px-1 text-sm focus:outline-none transition-colors"
             style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
             onfocus="this.style.borderColor='var(--color-accent)'"
             onblur="this.style.borderColor='var(--color-lavender-ash)'"
+            oninput="document.getElementById('header-search-q').value = 'site:speyer-interaktiv.de ' + this.value"
+            aria-label={`Suche in ${city.name}`}
           />
         </div>
-      </div>
+      </form>
 
       <div class="flex items-center gap-2 shrink-0">
         <a href="/werben/" class="btn-outline hidden lg:inline-flex">Werben</a>
@@ -90,14 +100,24 @@ const navItems = [
       </button>
     </div>
 
-    <div class="px-5 py-3 border-b border-[var(--color-lavender-ash)] shrink-0">
+    <form
+      action="https://www.google.com/search"
+      method="get"
+      target="_blank"
+      class="px-5 py-3 border-b border-[var(--color-lavender-ash)] shrink-0"
+      role="search"
+    >
+      <input type="hidden" name="q" id="mobile-search-q" />
       <input
         type="search"
+        name="userq"
         placeholder={`Suche in ${city.name}…`}
         class="w-full rounded-full py-2.5 px-4 text-sm focus:outline-none"
         style="background: var(--color-porcelain-mist); color: var(--color-inkwell-purple);"
+        oninput="document.getElementById('mobile-search-q').value = 'site:speyer-interaktiv.de ' + this.value"
+        aria-label={`Suche in ${city.name}`}
       />
-    </div>
+    </form>
 
     <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label="Hauptnavigation mobil">
       <ul class="space-y-1">

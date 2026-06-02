@@ -3,7 +3,7 @@ title: "Römisches Speyer — die Anfänge am Rhein"
 lead: "Lange bevor die Salier den Dom bauten, war Speyer eine römische Siedlung. Noviomagus, später Civitas Nemetum, lag strategisch am Rhein und entwickelte sich vom Militärlager zur zivilen Stadt mit Handel und Verwaltung."
 ---
 
-Speyer beginnt im Jahr 10 v. Chr. mit einem Römerlager am Rhein. Bis ins 3. Jahrhundert hieß die unbefestigte Siedlung **Noviomagus**, ab dem 4. Jahrhundert ist der Name *Spira* belegt, aus dem unser heutiges Speyer wurde. Damit zählt die Stadt zu den ältesten kontinuierlich besiedelten Orten Deutschlands.
+Speyer beginnt im Jahr 10 v. Chr. mit einem Römerlager am Rhein. Bis ins 3. Jahrhundert hieß die unbefestigte Siedlung **Noviomagus**, ab dem 4. Jahrhundert ist der Name *Spira* belegt, aus dem unser heutiges Speyer wurde. Damit zählt die Stadt zu den ältesten kontinuierlich besiedelten Orten Deutschlands und legte den Grundstein für das spätere [mittelalterliche Speyer](/wissenswertes/mittelalterliches-speyer/).
 
 ## Noviomagus: Vicus am Rhein
 
@@ -21,17 +21,17 @@ Zu den bedeutendsten römischen Resten in Speyer gehören:
 
 ## Der Römerwein
 
-Das wohl spektakulärste römische Fund-Stück Speyers liegt im Historischen Museum der Pfalz: der **Römerwein von Speyer**, eine Glasflasche aus einem Sarkophag des 4. Jahrhunderts. Sie gilt als die älteste erhaltene Weinflasche der Welt mit flüssigem Inhalt und ist ein Pflichtstopp jedes Museumsbesuchs.
+Das wohl spektakulärste römische Fund-Stück Speyers liegt im [Historischen Museum der Pfalz](/sehenswuerdigkeiten/historisches-museum-der-pfalz/): der **Römerwein von Speyer**, eine Glasflasche aus einem Sarkophag des 4. Jahrhunderts. Sie gilt als die älteste erhaltene Weinflasche der Welt mit flüssigem Inhalt und ist ein Pflichtstopp jedes Museumsbesuchs.
 
 Daneben zeigt das Museum Keramik, Münzen, Werkzeuge und Schmuck aus römischen Gräbern und Wohnhäusern. Die Sammlung gehört zu den umfangreichsten der Region.
 
 ## Spuren in der Altstadt
 
-Auch wenn das mittelalterliche und barocke Speyer das Stadtbild prägt: Bei Bauarbeiten in der Altstadt stoßen Archäologen regelmäßig auf römische Schichten. Unter den heutigen Straßen verlaufen teilweise die alten römischen Trassen, Fundamente und Mosaike kommen bei Grabungen zutage. Die römische Stadtmauer markierte die Grenzen des Vicus, einzelne Abschnitte sind noch dokumentiert.
+Auch wenn das mittelalterliche und barocke Speyer das Stadtbild prägt: Bei Bauarbeiten in der [Altstadt](/stadtteile/altstadt/) stoßen Archäologen regelmäßig auf römische Schichten — eine ausführliche Übersicht bietet der Artikel zu den [archäologischen Funden](/wissenswertes/archaeologische-funde/). Unter den heutigen Straßen verlaufen teilweise die alten römischen Trassen, Fundamente und Mosaike kommen bei Grabungen zutage. Die römische Stadtmauer markierte die Grenzen des Vicus, einzelne Abschnitte sind noch dokumentiert.
 
 ## Bedeutung der Römerzeit
 
-Die Römerzeit brachte das Land am Rhein in einen mediterran geprägten Wirtschafts- und Verwaltungsraum. Speyer profitierte als Handelsort vom Rheinverkehr und wurde gesellschaftlich, wirtschaftlich und religiös tief geprägt. Aus dem Vicus Noviomagus entwickelte sich die spätantike Civitas Nemetum, die schließlich Bischofssitz und mittelalterliche Reichsstadt wurde. Ohne die römische Grundlage wäre Speyers Aufstieg im Hochmittelalter kaum denkbar gewesen.
+Die Römerzeit brachte das Land am Rhein in einen mediterran geprägten Wirtschafts- und Verwaltungsraum. Speyer profitierte als Handelsort vom Rheinverkehr und wurde gesellschaftlich, wirtschaftlich und religiös tief geprägt. Aus dem Vicus Noviomagus entwickelte sich die spätantike Civitas Nemetum, die schließlich Bischofssitz und mittelalterliche Reichsstadt unter den [Saliern](/wissenswertes/salier/) wurde. Ohne die römische Grundlage wäre Speyers Aufstieg im Hochmittelalter kaum denkbar gewesen.
 
 ## Häufig gestellte Fragen
 

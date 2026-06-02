@@ -1,5 +1,6 @@
 ---
 import BlogArticle from "../../layouts/BlogArticle.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { wissenswertes, getWissen } from "../../data/wissenswertes";
 import { getEntry, render } from "astro:content";
 
@@ -33,4 +34,6 @@ const Content = entry ? (await render(entry)).Content : null;
       )}
     </>
   )}
+
+  <GetYourGuideWidget offerKey={`article:${item.slug}`} />
 </BlogArticle>

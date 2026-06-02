@@ -3,7 +3,7 @@ title: "Die Salier — Speyers Kaiserdynastie"
 lead: "Konrad II., Heinrich III., Heinrich IV., Heinrich V.: Vier salische Kaiser, die Speyer und das Reich prägten. Sie begannen den Dombau und fanden in seiner Krypta ihre letzte Ruhestätte."
 ---
 
-Die Salier waren das herrschende Geschlecht des Heiligen Römischen Reichs zwischen 1024 und 1125. Ihre Spuren in Speyer sind so dicht, dass die Stadt heute zu Recht als ihre Hauptstadt erinnert wird. Vier Kaiser dieser Dynastie liegen in der Krypta des Doms begraben, ein Bauwerk, das ohne sie nicht entstanden wäre.
+Die Salier waren das herrschende Geschlecht des Heiligen Römischen Reichs zwischen 1024 und 1125. Ihre Spuren in Speyer sind so dicht, dass die Stadt heute zu Recht als ihre Hauptstadt erinnert wird. Vier Kaiser dieser Dynastie liegen in der Krypta des [Kaiserdoms](/sehenswuerdigkeiten/kaiserdom/) begraben, ein Bauwerk, das ohne sie nicht entstanden wäre.
 
 ## Gründung der Dynastie
 
@@ -28,7 +28,7 @@ Die Krypta, geweiht 1041 unter Heinrich III., ist die größte Hallenkrypta der 
 
 ## Speyer als Zentrum des Reichs
 
-Speyer war im Mittelalter mehrfach Tagungsort von Reichstagen und Hoftagen. Ab 1527 saß das Reichskammergericht hier. Chronisten des 12. Jahrhunderts bezeichneten die Stadt als **Metropolis Germaniae** oder **Caput Sedis**, also Haupt des Reichs. Diese Wahrnehmung gründete in der salischen Vergangenheit und im Dom als Symbol des Kaisertums.
+Speyer war im [Mittelalter](/wissenswertes/mittelalterliches-speyer/) mehrfach Tagungsort von Reichstagen und Hoftagen. Ab 1527 saß das Reichskammergericht hier — zur Zeit der [Reformation](/wissenswertes/reformation/) ein zentraler politischer Faktor. Chronisten des 12. Jahrhunderts bezeichneten die Stadt als **Metropolis Germaniae** oder **Caput Sedis**, also Haupt des Reichs. Diese Wahrnehmung gründete in der salischen Vergangenheit und im Dom als Symbol des Kaisertums.
 
 ## Die Bischöfe von Speyer
 
@@ -40,7 +40,7 @@ Unter salischer Herrschaft erhielten die Speyerer Bürger bedeutende Freiheiten 
 
 ## Das Erbe heute
 
-Die Salier prägen Speyer noch immer. Der Dom als UNESCO-Welterbe (seit 1981) ist das offensichtlichste Erbe. Hinzu kommen Denkmäler, Ausstellungen, regelmäßige Wissenschaftstagungen und das Selbstverständnis der Stadt als Ort kaiserlicher Geschichte. Die Krypta zieht jährlich zahlreiche Besucher an, die vor den Sarkophagen der vier Kaiser stehen wollen, dort, wo das Reich im Mittelalter symbolisch beerdigt liegt.
+Die Salier prägen Speyer noch immer. Der Dom als [UNESCO-Welterbe](/kategorien/unesco-welterbe/) (seit 1981) ist das offensichtlichste Erbe. Hinzu kommen Denkmäler, Ausstellungen, regelmäßige Wissenschaftstagungen und das Selbstverständnis der Stadt als Ort kaiserlicher Geschichte. Die Krypta zieht jährlich zahlreiche Besucher an, die vor den Sarkophagen der vier Kaiser stehen wollen, dort, wo das Reich im Mittelalter symbolisch beerdigt liegt.
 
 ## Häufig gestellte Fragen
 

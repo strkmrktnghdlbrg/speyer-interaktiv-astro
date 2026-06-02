@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import HueGradient from "../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { categories } from "../../data/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
@@ -57,5 +58,7 @@ const withCounts = categories
         </a>
       ))}
     </div>
+
+    <GetYourGuideWidget offerKey="page:kategorien" />
   </div>
 </BaseLayout>

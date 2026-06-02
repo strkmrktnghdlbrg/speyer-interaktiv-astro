@@ -170,14 +170,7 @@ const schema = {
           lead="Direkt online buchen, Skip-the-Line wo verfügbar, kostenfrei stornierbar."
         />
       ) : (
-        <GetYourGuideWidget
-          mode="activities"
-          q={`${sight.name} ${city.name}`}
-          numberOfItems={3}
-          cmp={`sight-${sight.slug}`}
-          title={`Passende Touren rund um ${sight.name}`}
-          lead="Geführte Touren und Tickets von GetYourGuide."
-        />
+        <GetYourGuideWidget offerKey={`sight:${sight.slug}`} />
       )}
 
       <Stay22NearbyHotels

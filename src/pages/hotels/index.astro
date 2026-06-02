@@ -4,6 +4,7 @@ import HotelCard from "../../components/HotelCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import Stay22Map from "../../components/Stay22Map.astro";
 import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
 
@@ -55,5 +56,7 @@ const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {sorted.map((h) => <HotelCard hotel={h} />)}
     </div>
+
+    <GetYourGuideWidget offerKey="page:hotels" />
   </div>
 </BaseLayout>

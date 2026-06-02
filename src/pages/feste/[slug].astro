@@ -1,5 +1,6 @@
 ---
 import BlogArticle from "../../layouts/BlogArticle.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { feste, getFest } from "../../data/feste";
 
 export function getStaticPaths() {
@@ -37,4 +38,6 @@ const item = getFest(slug!)!;
       </a>
     </p>
   )}
+
+  <GetYourGuideWidget offerKey={`fest:${item.slug}`} />
 </BlogArticle>

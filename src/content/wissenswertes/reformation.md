@@ -3,7 +3,7 @@ title: "Speyer und das Zeitalter der Reformation"
 lead: 'Auf dem Reichstag von 1529 protestierten sechs evangelische Fürsten und vierzehn Reichsstädte gegen die Beschlüsse der katholischen Mehrheit. Aus dieser „Speyerer Protestation" entstand der Begriff „Protestanten".'
 ---
 
-Im 16. Jahrhundert wurde Speyer zu einem zentralen Schauplatz der Reformation. Fünf von 30 Reichstagen des Jahrhunderts fanden in der Stadt statt, das Reichskammergericht hatte hier ab 1527 seinen Sitz. Beschlüsse aus Speyer prägten den Lauf der konfessionellen Auseinandersetzungen im ganzen Reich.
+Im 16. Jahrhundert wurde Speyer zu einem zentralen Schauplatz der Reformation. Fünf von 30 Reichstagen des Jahrhunderts fanden im [mittelalterlichen Speyer](/wissenswertes/mittelalterliches-speyer/) statt, das Reichskammergericht hatte hier ab 1527 seinen Sitz. Beschlüsse aus Speyer prägten den Lauf der konfessionellen Auseinandersetzungen im ganzen Reich.
 
 ## Reichstage 1526 und 1529
 
@@ -11,7 +11,7 @@ Im 16. Jahrhundert wurde Speyer zu einem zentralen Schauplatz der Reformation. F
 
 **Auf dem Reichstag von 1529** sollte diese Konzession zurückgenommen werden. Sechs evangelische Fürsten und Vertreter von 14 Reichsstädten reichten eine förmliche Protestation gegen den Mehrheitsbeschluss ein. Aus diesem Akt entstand der Begriff **Protestanten** für die Anhänger der Reformation. Speyer hat damit der größten Glaubensbewegung der Neuzeit den Namen gegeben.
 
-Die **Gedächtniskirche der Protestation**, eingeweiht 1904, erinnert mit ihrem neugotischen Turm bis heute an dieses Ereignis.
+Die [Gedächtniskirche der Protestation](/sehenswuerdigkeiten/gedaechtniskirche/), eingeweiht 1904, erinnert mit ihrem neugotischen Turm bis heute an dieses Ereignis.
 
 ## Einführung der lutherischen Lehre
 
@@ -23,7 +23,7 @@ Eine starke antiklerikale Stimmung in der Bevölkerung beschleunigte die Reforma
 
 Trotz des lutherischen Übergewichts blieb das katholische Leben präsent: Jesuiten, Domkapitel und das katholisch dominierte Reichskammergericht hielten die alte Konfession lebendig. Auch eine kleine **calvinistische Gemeinde** existierte. Damit war Speyer zeitweise eine tri-konfessionelle Stadt, in der drei christliche Konfessionen nebeneinander lebten, mit allen Spannungen, die das mit sich brachte.
 
-Die jüdische Gemeinde, ab 1621 wieder fassbar, umfasste zu Beginn rund 60 Personen und verfügte über Synagoge, Mikwe und Friedhof.
+Die jüdische Gemeinde, ab 1621 wieder fassbar, umfasste zu Beginn rund 60 Personen und verfügte über Synagoge, Mikwe und Friedhof — der [Judenhof](/sehenswuerdigkeiten/judenhof/) zeugt heute davon als Teil des SchUM-Welterbes.
 
 ## Speyer im Reichsgefüge
 
@@ -37,7 +37,7 @@ Rat und Bürgerschaft waren nach der Reformation überwiegend lutherisch. Ein Be
 
 ## Langfristige Folgen
 
-Die Reformation prägte Speyer religiös, politisch und gesellschaftlich. Die konfessionellen Spannungen wurden zu einer der Triebkräfte des Dreißigjährigen Krieges, der die Stadt schwer treffen sollte. Mit der Mediatisierung 1803 verlor Speyer endgültig den Status als Freie Reichsstadt. Die religiöse Vielfalt aus der Reformationszeit aber hat das Selbstverständnis der Stadt bis heute geprägt.
+Die Reformation prägte Speyer religiös, politisch und gesellschaftlich. Die konfessionellen Spannungen wurden zu einer der Triebkräfte des [Dreißigjährigen Krieges](/wissenswertes/dreissigjaehriger-krieg/), der die Stadt schwer treffen sollte. Auch die [Hexenverfolgung](/wissenswertes/hexenverfolgung/) gewann in dieser Epoche an Brisanz. Mit der Mediatisierung 1803 verlor Speyer endgültig den Status als Freie Reichsstadt. Die religiöse Vielfalt aus der Reformationszeit aber hat das Selbstverständnis der Stadt bis heute geprägt.
 
 ## Häufig gestellte Fragen
 

@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import HueGradient from "../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { feste } from "../../data/feste";
 import { city } from "../../data/city";
 
@@ -49,5 +50,7 @@ const description = `Wiederkehrende Stadtfeste in ${city.name}: Altdeutscher Wei
         </a>
       ))}
     </div>
+
+    <GetYourGuideWidget offerKey="page:feste" />
   </main>
 </BaseLayout>

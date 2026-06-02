@@ -7,6 +7,7 @@ import HotelCard from "../../components/HotelCard.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import DistrictCard from "../../components/DistrictCard.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { districts, getDistrict } from "../../data/districts";
 import { sightsByDistrict } from "../../data/sights";
 import { hotelsByDistrict, topHotelsByDistrict } from "../../data/hotels";
@@ -115,6 +116,8 @@ const schema = {
       radius={2000}
       limit={4}
     />
+
+    <GetYourGuideWidget offerKey={`district:${district.slug}`} />
 
     {restaurants.length > 0 && (
       <section class="mb-16">

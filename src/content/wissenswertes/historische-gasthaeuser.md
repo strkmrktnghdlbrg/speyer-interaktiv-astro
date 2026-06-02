@@ -3,7 +3,7 @@ title: "Historische Gasthäuser in Speyer"
 lead: "Wo schon Kaiser und Bischöfe einkehrten: Speyers historische Gasthaus-Tradition reicht ins Mittelalter zurück und ist bis heute Teil des kulturellen Lebens."
 ---
 
-Speyers Gasthäuser haben Jahrhunderte Geschichte. Als Handelsstadt am Rhein und Tagungsort der Reichstage brauchte die Stadt schon früh eine dichte Gastronomie. Manche der historischen Adressen existieren heute noch, andere sind verschwunden. Eine kleine Rundreise durch die kulinarische und gesellschaftliche Geschichte der Stadt.
+Speyers Gasthäuser haben Jahrhunderte Geschichte. Als Handelsstadt am Rhein und Tagungsort der Reichstage im [mittelalterlichen Speyer](/wissenswertes/mittelalterliches-speyer/) brauchte die Stadt schon früh eine dichte Gastronomie. Manche der historischen Adressen existieren heute noch, andere sind verschwunden. Eine kleine Rundreise durch die kulinarische und gesellschaftliche Geschichte der Stadt.
 
 ## Mittelalterliche Wurzeln
 
@@ -30,9 +30,9 @@ Viele dieser Häuser wurden nach dem Brand von 1689 in barocken Formen wiedererr
 
 Einige der bekanntesten Gasthäuser Speyers (historisch oder heute):
 
-- **Zum Domnapf**: Direkt am Domplatz gelegen, eines der ältesten Gasthäuser der Stadt. Bietet traditionelle Pfälzer Küche mit Blick auf den Dom.
+- **Zum Domnapf**: Direkt am Domplatz gelegen, eines der ältesten Gasthäuser der Stadt. Bietet traditionelle Pfälzer Küche mit Blick auf den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/).
 - **Alter Hammer**: 18. Jahrhundert, ursprünglich Schmiede. Heute Gasthaus mit regionalen Spezialitäten und ausgewählten Weinen.
-- **Rathauskeller**: Im Keller des alten Rathauses, beliebt bei Einheimischen wie Gästen, mit historischer Atmosphäre.
+- **Rathauskeller**: Im Keller des alten [Rathauses](/sehenswuerdigkeiten/rathaus/), beliebt bei Einheimischen wie Gästen, mit historischer Atmosphäre.
 
 Manche legendären Häuser sind verschwunden oder wurden umgenutzt. Die Spuren findet man in alten Stadtansichten und Reiseberichten.
 
@@ -53,7 +53,7 @@ Einmal jährlich wird Speyer zum Zentrum der Pfälzer Weinwelt: **„Wein am Dom
 
 Moderne Gasthäuser in Speyer verbinden Tradition mit zeitgemäßer Küche. Junge Köche kombinieren regionale Zutaten mit internationalen Techniken, klassische Gerichte werden neu interpretiert. Die historische Atmosphäre bleibt erhalten, die Karte ist aber oft überraschend modern.
 
-Gleichzeitig sind die Gasthäuser weiterhin **soziale Treffpunkte**. Hier trifft man sich nach der Arbeit, feiert Familien-Anlässe oder lässt einen Tagestrip ausklingen. Die Mischung aus Einheimischen und Touristen macht das Klima oft besonders lebendig.
+Gleichzeitig sind die Gasthäuser weiterhin **soziale Treffpunkte**. Hier trifft man sich nach der Arbeit, feiert Familien-Anlässe oder lässt einen Tagestrip ausklingen. Die Mischung aus Einheimischen und Touristen macht das Klima oft besonders lebendig — eine vollständige Übersicht aktueller Adressen findet sich auf der [Restaurants-Seite](/restaurants/), passende Übernachtungen unter [Hotels in Speyer](/hotels/).
 
 ## Häufig gestellte Fragen
 

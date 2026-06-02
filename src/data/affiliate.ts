@@ -30,10 +30,9 @@ export const affiliate = {
     mapEmbedId: "",
   },
   getYourGuide: {
-    // TODO: GYG Partner-ID nachreichen
-    partnerId: "",
+    partnerId: "1UPZQQB",
     locale: "de-DE",
-    enabled: false,
+    enabled: true,
     cityQuery: "Speyer",
   },
 };
