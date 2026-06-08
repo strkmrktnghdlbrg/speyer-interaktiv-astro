@@ -5,6 +5,7 @@ import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
+import MapEmbed from "../../components/MapEmbed.astro";
 import { sights, getSight } from "../../data/sights";
 import { getDistrict } from "../../data/districts";
 import { topHotelsByDistrict } from "../../data/hotels";
@@ -172,6 +173,14 @@ const schema = {
       ) : (
         <GetYourGuideWidget offerKey={`sight:${sight.slug}`} />
       )}
+
+      <MapEmbed
+        lat={sight.coordinates[0]}
+        lng={sight.coordinates[1]}
+        label={sight.name}
+        zoom={16}
+        title={`Lage von ${sight.name}`}
+      />
 
       <Stay22NearbyHotels
         lat={sight.coordinates[0]}

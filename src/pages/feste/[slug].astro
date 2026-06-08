@@ -2,6 +2,7 @@
 import BlogArticle from "../../layouts/BlogArticle.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { feste, getFest } from "../../data/feste";
+import { city } from "../../data/city";
 
 export function getStaticPaths() {
   return feste.map((f) => ({ params: { slug: f.slug } }));
@@ -9,6 +10,38 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const item = getFest(slug!)!;
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: item.name,
+  description: item.shortDesc,
+  location: {
+    "@type": "Place",
+    name: `${city.name} Altstadt`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: city.name,
+      addressRegion: "Rheinland-Pfalz",
+      addressCountry: "DE",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: city.coordinates[0],
+      longitude: city.coordinates[1],
+    },
+  },
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  description2: item.termin,
+  organizer: {
+    "@type": "Organization",
+    name: `Stadt ${city.name}`,
+    url: `https://www.${city.slug}.de`,
+  },
+  ...(item.websiteUrl ? { url: item.websiteUrl } : {}),
+  inLanguage: "de-DE",
+};
 ---
 
 <BlogArticle
@@ -40,4 +73,6 @@ const item = getFest(slug!)!;
   )}
 
   <GetYourGuideWidget offerKey={`fest:${item.slug}`} />
+
+  <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline />
 </BlogArticle>

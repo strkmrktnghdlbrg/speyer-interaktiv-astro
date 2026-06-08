@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+
+const title = `Über ${city.name}-Interaktiv`;
+const description = `Wer hinter ${city.name}-Interaktiv steht, redaktionelle Linie und Affiliate-Transparenz.`;
+---
+
+<BaseLayout title={title} description={description}>
+  <main class="container-page py-10">
+    <Breadcrumbs items={[
+      { label: "Startseite", href: "/" },
+      { label: "Über uns" },
+    ]} />
+
+    <article class="max-w-3xl">
+      <p class="eyebrow mb-2">Über uns</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style="font-family: var(--font-display); color: var(--color-deep-plum);">
+        {city.name}-Interaktiv — das Stadtportal
+      </h1>
+
+      <div class="prose-content space-y-5 text-base sm:text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        <p>
+          {city.name}-Interaktiv ist ein unabhängiges Stadtportal für {city.name} und die
+          umgebende Pfalz. Wir bündeln Sehenswürdigkeiten, Stadtteil-Wissen,
+          Hotels, Restaurants und Stadtfeste — kuratiert, faktengeprüft und
+          lokal verankert.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">Redaktionelle Linie</h2>
+        <p>
+          Inhalte werden auf Basis verifizierter Quellen (Stadt {city.name},
+          UNESCO, Wikipedia, Pfälzischer Tourismus, Historisches Museum der Pfalz)
+          recherchiert. Wir kürzen, ordnen und erklären — kein generischer
+          AI-Filler, sondern Texte, die wir selbst gelesen hätten, bevor wir
+          nach {city.name} fahren.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">Was hier ohne Werbung steht</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>Alle Sehenswürdigkeits-, Stadtteil- und Wissenswertes-Texte sind redaktionell und unbezahlt.</li>
+          <li>Hotel-Bewertungen und -Beschreibungen werden auf Booking.com- und Stay22-Daten gestützt.</li>
+          <li>Bilder stammen aus Wikimedia Commons mit voller Autoren- und Lizenznennung.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">Affiliate-Transparenz</h2>
+        <p>
+          Wir verdienen Provisionen über drei Partner — ohne, dass dir Mehrkosten entstehen:
+        </p>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li><strong>Stay22</strong> für Hotelbuchungen (Booking.com-Inventar)</li>
+          <li><strong>GetYourGuide</strong> für Touren und Tickets</li>
+          <li><strong>Google AdSense</strong> für kontextuelle Anzeigen (wenn aktiv)</li>
+        </ul>
+        <p>
+          Affiliate-Links sind im Kontext gekennzeichnet (Sponsored-Disclosure unter jedem Widget).
+          Unsere Auswahlentscheidungen treffen wir vor dem Affiliate-Tracking — wir empfehlen
+          nichts, was wir selbst nicht buchen würden.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">Kontakt</h2>
+        <p>
+          Fehler entdeckt? Hinweise zu Öffnungszeiten oder geschlossenen Restaurants?
+          Schreib uns an <a href="/impressum/" class="link-accent font-semibold">die E-Mail-Adresse im Impressum</a>.
+          Wir freuen uns über Korrekturen und Vorschläge.
+        </p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">Technik</h2>
+        <p>
+          Diese Seite ist statisch gebaut mit Astro 5 und Tailwind 4 — keine Datenbank,
+          keine Cookies bevor du zustimmst, schnelle Ladezeiten auch in Speyerer Mobilfunklöchern.
+          Bilder kommen über das Astro-Asset-Pipeline als WebP in passender Größe für dein Gerät.
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

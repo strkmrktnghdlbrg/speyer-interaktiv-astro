@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 import { city } from "../data/city";
 import { affiliate, stay22Enabled } from "../data/affiliate";
 import { adsense, adsenseEnabled } from "../data/adsense";
@@ -90,5 +91,6 @@ const fullTitle = title === city.name ? `${city.name} — Stadtportal` : `${titl
       <slot />
     </main>
     <Footer />
+    <CookieConsent />
   </body>
 </html>
