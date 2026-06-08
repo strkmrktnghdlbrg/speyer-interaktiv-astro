@@ -9,6 +9,7 @@ import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
+import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
   return hotels.map((h) => ({ params: { slug: h.slug } }));
@@ -17,6 +18,8 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const hotel = getHotel(slug!)!;
 const district = getDistrict(hotel.district)!;
+const hotelEntry = await getEntry("hotels", slug!);
+const HotelContent = hotelEntry ? (await render(hotelEntry)).Content : null;
 
 const schema = {
   "@context": "https://schema.org",
@@ -82,9 +85,9 @@ const schema = {
             {hotel.shortDesc}
           </p>
 
-          <p class="text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
-            {hotel.longDesc}
-          </p>
+          <div class="prose-content max-w-none text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            {HotelContent ? <HotelContent /> : <p>{hotel.longDesc}</p>}
+          </div>
 
           <h2 class="text-xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
             Ausstattung
