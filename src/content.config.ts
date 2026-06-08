@@ -9,4 +9,12 @@ const wissenswertes = defineCollection({
   }),
 });
 
-export const collections = { wissenswertes };
+const sights = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/sights" }),
+  schema: z.object({
+    title: z.string(),
+    lead: z.string().optional(),
+  }),
+});
+
+export const collections = { wissenswertes, sights };
