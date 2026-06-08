@@ -8,6 +8,7 @@ import { restaurants, getRestaurant, restaurantsByDistrict } from "../../data/re
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
 import { city } from "../../data/city";
+import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
   return restaurants.map((r) => ({ params: { slug: r.slug } }));
@@ -16,6 +17,8 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const restaurant = getRestaurant(slug!)!;
 const district = getDistrict(restaurant.district)!;
+const restaurantEntry = await getEntry("restaurants", slug!);
+const RestaurantContent = restaurantEntry ? (await render(restaurantEntry)).Content : null;
 const related = restaurantsByDistrict(restaurant.district)
   .filter((r) => r.slug !== restaurant.slug)
   .slice(0, 4);
@@ -91,9 +94,9 @@ const schema = {
             {restaurant.shortDesc}
           </p>
 
-          <p class="text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
-            {restaurant.longDesc}
-          </p>
+          <div class="prose-content max-w-none text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            {RestaurantContent ? <RestaurantContent /> : <p>{restaurant.longDesc}</p>}
+          </div>
 
           {restaurant.websiteUrl && (
             <div class="mt-6">

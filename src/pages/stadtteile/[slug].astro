@@ -13,6 +13,7 @@ import { sightsByDistrict } from "../../data/sights";
 import { hotelsByDistrict, topHotelsByDistrict } from "../../data/hotels";
 import { restaurantsByDistrict } from "../../data/restaurants";
 import { city } from "../../data/city";
+import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
   return districts.map((d) => ({ params: { slug: d.slug } }));
@@ -20,6 +21,8 @@ export function getStaticPaths() {
 
 const { slug } = Astro.params;
 const district = getDistrict(slug!)!;
+const districtEntry = await getEntry("districts", slug!);
+const DistrictContent = districtEntry ? (await render(districtEntry)).Content : null;
 const sights = sightsByDistrict(district.slug);
 const hotels = topHotelsByDistrict(district.slug, 8);
 const restaurants = restaurantsByDistrict(district.slug).slice(0, 8);
@@ -72,9 +75,9 @@ const schema = {
       <p class="text-xl leading-relaxed mb-6" style="color: var(--color-shadow-graphite);">
         {district.shortDesc}
       </p>
-      <p class="text-base leading-relaxed" style="color: var(--color-inkwell-purple);">
-        {district.longDesc}
-      </p>
+      <div class="prose-content max-w-none text-base leading-relaxed" style="color: var(--color-inkwell-purple);">
+        {DistrictContent ? <DistrictContent /> : <p>{district.longDesc}</p>}
+      </div>
     </div>
 
     {sights.length > 0 && (
