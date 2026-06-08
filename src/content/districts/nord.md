@@ -13,4 +13,4 @@ Die größte Qualitaet von Speyer-Nord liegt im Übergang zur Rheinaue. Vom Wohn
 
 ## Wohnen und Verkehr
 
-Verkehrlich ist Speyer-Nord durch die Bundesstraße 9 und die innerstaedtischen Hauptachsen an die Region angebunden. Buslinien verbinden das Quartier mit Bahnhof und Zentrum, sodass auch ohne Auto der Alltag funktioniert. Einkaufsmöglichkeiten für den taeglichen Bedarf finden sich entlang der Hauptstraßen, für alles Weitere ist die Innenstadt nah. Insgesamt ist Speyer-Nord ein nuechternes Wohnquartier mit kurzen Wegen ins Gruene und in die historische Stadtmitte.
+Verkehrlich ist Speyer-Nord durch die Bundesstraße 9 und die innerstaedtischen Hauptachsen an die Region angebunden. Buslinien verbinden das Quartier mit Bahnhof und Zentrum, sodass auch ohne Auto der Alltag funktioniert. Einkaufsmöglichkeiten für den taeglichen Bedarf finden sich entlang der Hauptstraßen, für alles Weitere ist die Innenstadt nah. Insgesamt ist Speyer-Nord ein nuechternes Wohnquartier mit kurzen Wegen ins Grüne und in die historische Stadtmitte.

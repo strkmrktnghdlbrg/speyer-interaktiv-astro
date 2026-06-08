@@ -9,7 +9,7 @@ Das Restaurant im Lindner Hotel & Spa Binshof setzt auf eine internationale Küc
 
 ## Atmosphäre und Lage
 
-Das Hotel liegt am Binshof noerdlich der Innenstadt, eingebettet in eine gruene Umgebung mit Blick auf Wiesen und Waldraender. Der Speisesaal ist hell und grosszuegig gestaltet, im Sommer laedt die Terrasse zu entspannten Abenden ein. Wer den Aufenthalt mit einem Stadtbummel verbinden moechte, erreicht von hier aus den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) und die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/) in wenigen Autominuten. Weitere Empfehlungen rund um den Stadtteil [Süd](/stadtteile/süd/) und eine Übersicht aller Adressen finden sich im [Restaurants-Verzeichnis](/restaurants/). Gäste, die einen ruhigen Rueckzugsort fernab des Trubels suchen, sind im Binshof gut aufgehoben und koennen den Tag mit einem Glas Wein auf der Terrasse ausklingen lassen.
+Das Hotel liegt am Binshof nördlich der Innenstadt, eingebettet in eine grüne Umgebung mit Blick auf Wiesen und Waldraender. Der Speisesaal ist hell und großzügig gestaltet, im Sommer lädt die Terrasse zu entspannten Abenden ein. Wer den Aufenthalt mit einem Stadtbummel verbinden möchte, erreicht von hier aus den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) und die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/) in wenigen Autominuten. Weitere Empfehlungen rund um den Stadtteil [Süd](/stadtteile/sued/) und eine Übersicht aller Adressen finden sich im [Restaurants-Verzeichnis](/restaurants/). Gäste, die einen ruhigen Rueckzugsort fernab des Trubels suchen, sind im Binshof gut aufgehoben und können den Tag mit einem Glas Wein auf der Terrasse ausklingen lassen.
 
 ## Praktische Hinweise und Reservierung
 
