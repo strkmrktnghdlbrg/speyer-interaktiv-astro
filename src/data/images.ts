@@ -201,7 +201,17 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Adenauerpark_Speyer_2020-08-29_1.jpg",
     },
   },
-  // sight:fischertor — kein freies Foto auf Commons gefunden, HueGradient-Fallback aktiv
+  "sight:fischertor": {
+    src: asset("sights", "fischertor")!,
+    alt: "Hasenpfuhl in Speyer beim Altstadtfest, historisches Fischerquartier am ehemaligen Fischertor",
+    source: "wikimedia",
+    credit: {
+      author: "Kmtextor",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Altstadtfest_speyer_hasenpfuhl.jpg",
+    },
+  },
   "sight:kloster-st-magdalena": {
     src: asset("sights", "kloster-st-magdalena")!,
     alt: "Kloster St. Magdalena in Speyer, Portal in der Hasenpfuhlstraße",
@@ -213,7 +223,7 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Hasenpfuhlstrasse_32_Portal_Speyer_a.jpg",
     },
   },
-  // sight:sea-life — kein freilizenziertes Aquarium-Foto verfügbar, HueGradient-Fallback aktiv
+  // sight:sea-life — keine freilizenzierte Außenaufnahme verfügbar (verfügbare Innenaufnahmen <1024px, MS Sea Life ist ein Schiff anderen Bezugs), HueGradient-Fallback aktiv
   "sight:pfaelzische-landesbibliothek": {
     src: asset("sights", "pfaelzische-landesbibliothek")!,
     alt: "Pfälzische Landesbibliothek in Speyer, moderner Bibliotheksbau",
@@ -249,7 +259,17 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:St._Konrad_(Speyer)_S%C3%BCdwestansicht.JPG",
     },
   },
-  // district:sued — kein eindeutiges Wahrzeichen mit freier Lizenz, HueGradient-Fallback aktiv
+  "district:sued": {
+    src: asset("districts", "sued")!,
+    alt: "Hasenpfuhl-Quartier in Speyer-Süd an der Sonnenbrücke, Fachwerkhäuser im historischen Fischerviertel",
+    source: "wikimedia",
+    credit: {
+      author: "Sundar1",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:SpeyerHasenpfuhl1.JPG",
+    },
+  },
   "district:west": {
     src: asset("districts", "west")!,
     alt: "Stadtteil Speyer-West, Burgfeldschule von Südosten",
@@ -261,7 +281,17 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Burgfeldschule_Speyer_von_S%C3%BCdosten.jpg",
     },
   },
-  // district:suedwest — kein passendes Foto (Kloster-St-Magdalena-Motiv wird bereits als Sight verwendet), HueGradient-Fallback aktiv
+  "district:suedwest": {
+    src: asset("districts", "suedwest")!,
+    alt: "Mutterhaus der Diakonissenanstalt in Speyer-Südwest, denkmalgeschützter Backsteinbau an der Hilgardstraße",
+    source: "wikimedia",
+    credit: {
+      author: "Klaus Landry",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Mutterhaus_Diakonissenanstalt_Speyer.jpg",
+    },
+  },
   "district:edith-stein-viertel": {
     src: asset("districts", "edith-stein-viertel")!,
     alt: "Edith-Stein-Viertel in Speyer, Skulptur und Gedenkstätte für Edith Stein",
