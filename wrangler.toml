@@ -20,8 +20,9 @@ name = "speyer-interaktiv"
 compatibility_date = "2025-05-01"
 pages_build_output_dir = "./dist"
 
-[[d1_databases]]
-binding = "DB"
-database_name = "speyer-news"
-database_id = "REPLACE_AFTER_WRANGLER_D1_CREATE"
-migrations_dir = "migrations"
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "speyer-news"
+# database_id = "REPLACE_AFTER_WRANGLER_D1_CREATE"
+# migrations_dir = "migrations"
+# Aktivieren, sobald D1-Datenbank via `wrangler d1 create speyer-news` angelegt wurde.
