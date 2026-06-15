@@ -1,6 +1,1 @@
-# Speyer-Interaktiv ads.txt
-# Pflicht-Zeile pro AdSense-Publisher. AdSense Publisher-ID muss vor
-# Go-Live in src/data/adsense.ts gepflegt sein und hier ergänzt werden.
-# Hash f08c47fec0942fa0 ist die feste Google-Certification-ID.
-#
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-7432388986384363, DIRECT, f08c47fec0942fa0
