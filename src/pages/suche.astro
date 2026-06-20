@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+---
+
+<BaseLayout
+  title="Suche"
+  description={`Durchsuche Sehenswürdigkeiten, Hotels, Restaurants, Stadtteile und Wissenswertes auf ${city.name}-Interaktiv.`}
+  noindex
+>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Suche" }]} />
+
+    <div class="max-w-3xl mb-8">
+      <p class="eyebrow mb-2">Suche</p>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        Was suchst du in {city.name}?
+      </h1>
+      <form id="search-form" role="search" class="relative mb-2">
+        <label for="search-input" class="sr-only">Suchbegriff</label>
+        <input
+          id="search-input"
+          type="search"
+          name="q"
+          autocomplete="off"
+          autocapitalize="none"
+          spellcheck="false"
+          placeholder="Kaiserdom, Hotel, Saumagen, Altstadt, …"
+          class="w-full rounded-2xl border-2 px-5 py-4 text-lg focus:outline-none transition-colors"
+          style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
+        />
+      </form>
+      <p id="search-meta" class="text-sm" style="color: var(--color-slate-steel);">
+        Lade Suchindex …
+      </p>
+    </div>
+
+    <ul id="search-results" class="grid grid-cols-1 md:grid-cols-2 gap-4"></ul>
+
+    <template id="result-card-template">
+      <li>
+        <a
+          class="card group block p-5 h-full transition-all"
+          data-result-link
+        >
+          <div class="flex items-center gap-2 mb-2">
+            <span class="pill" data-result-type></span>
+            <span class="text-xs" style="color: var(--color-slate-steel);" data-result-district></span>
+          </div>
+          <h3
+            class="text-lg font-bold tracking-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
+            style="color: var(--color-deep-plum);"
+            data-result-title
+          ></h3>
+          <p class="text-sm leading-relaxed line-clamp-3" style="color: var(--color-shadow-graphite);" data-result-lead></p>
+        </a>
+      </li>
+    </template>
+  </div>
+
+  <script is:inline>
+    (function () {
+      const input = document.getElementById("search-input");
+      const form = document.getElementById("search-form");
+      const results = document.getElementById("search-results");
+      const meta = document.getElementById("search-meta");
+      const tpl = document.getElementById("result-card-template");
+      if (!input || !form || !results || !meta || !tpl) return;
+
+      let index = null;
+
+      function norm(s) {
+        return (s || "")
+          .toLowerCase()
+          .replace(/ä/g, "ae")
+          .replace(/ö/g, "oe")
+          .replace(/ü/g, "ue")
+          .replace(/ß/g, "ss")
+          .replace(/[^a-z0-9\s-]/g, " ")
+          .replace(/\s+/g, " ")
+          .trim();
+      }
+
+      function score(entry, tokens) {
+        let s = 0;
+        const titleN = norm(entry.title);
+        for (const t of tokens) {
+          if (!t) continue;
+          if (titleN.includes(t)) s += 50;
+          if (entry.keywords.includes(t)) s += 10;
+          if (titleN.startsWith(t)) s += 30;
+        }
+        return s;
+      }
+
+      function render(query) {
+        const q = query.trim();
+        results.innerHTML = "";
+        if (!index) {
+          meta.textContent = "Suchindex wird noch geladen …";
+          return;
+        }
+        if (q.length < 2) {
+          meta.textContent = "Tippe mindestens 2 Zeichen, um zu suchen.";
+          return;
+        }
+        const tokens = norm(q).split(" ").filter(Boolean);
+        const ranked = index
+          .map((e) => ({ e, s: score(e, tokens) }))
+          .filter((r) => r.s > 0)
+          .sort((a, b) => b.s - a.s)
+          .slice(0, 40);
+        if (ranked.length === 0) {
+          meta.textContent = "Keine Treffer für „" + q + "“. Probier es mit einem anderen Stichwort.";
+          return;
+        }
+        meta.textContent = ranked.length + " Treffer für „" + q + "“";
+        const frag = document.createDocumentFragment();
+        for (const { e } of ranked) {
+          const node = tpl.content.cloneNode(true);
+          node.querySelector("[data-result-link]").setAttribute("href", e.url);
+          node.querySelector("[data-result-type]").textContent = e.type;
+          const dEl = node.querySelector("[data-result-district]");
+          dEl.textContent = e.district ? "· " + e.district : "";
+          node.querySelector("[data-result-title]").textContent = e.title;
+          node.querySelector("[data-result-lead]").textContent = e.lead;
+          frag.appendChild(node);
+        }
+        results.appendChild(frag);
+      }
+
+      let pending;
+      function debouncedRender() {
+        clearTimeout(pending);
+        pending = setTimeout(function () { render(input.value); }, 120);
+      }
+
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        render(input.value);
+      });
+      input.addEventListener("input", debouncedRender);
+
+      const urlQ = new URLSearchParams(window.location.search).get("q");
+      if (urlQ) input.value = urlQ;
+      input.focus();
+
+      fetch("/search-index.json")
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          index = data;
+          meta.textContent = "Bereit — " + data.length + " Einträge im Index.";
+          if (input.value) render(input.value);
+        })
+        .catch(function () {
+          meta.textContent = "Suchindex konnte nicht geladen werden.";
+        });
+    })();
+  </script>
+</BaseLayout>
