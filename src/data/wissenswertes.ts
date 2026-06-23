@@ -68,7 +68,7 @@ export const wissenswertes: WissenItem[] = [
       "Belagerungen, Konfessionskonflikt, Bevölkerungseinbruch: Speyer in der Katastrophe von 1618-1648.",
     lead: "Der Dreißigjährige Krieg traf Speyer mehrfach — durch Truppendurchzüge, Belagerungen und religiöse Spannungen. Bevölkerung und Wirtschaft brachen ein, die Stadt brauchte Jahrzehnte zur Erholung. Erst die zweite Katastrophe folgte: die fast vollständige Zerstörung 1689 durch französische Truppen.",
     imageHue: 5,
-    categories: [],
+    categories: ["mittelalter"],
     wordCount: 1340,
   },
   {
@@ -90,7 +90,7 @@ export const wissenswertes: WissenItem[] = [
       "Im 16. und 17. Jahrhundert wurden auch in Speyer Frauen wegen vermeintlicher Hexerei verurteilt und hingerichtet.",
     lead: "Die Hexenverfolgung der frühen Neuzeit erreichte auch Speyer. Vor allem im 16. und 17. Jahrhundert kam es zu Prozessen, in denen meist Frauen unter Folter Geständnisse abgelegt und anschließend hingerichtet wurden. Die Forschung hat in den letzten Jahrzehnten begonnen, die Schicksale aufzuarbeiten.",
     imageHue: 4,
-    categories: [],
+    categories: ["mittelalter"],
     wordCount: 1390,
   },
   {
@@ -134,7 +134,7 @@ export const wissenswertes: WissenItem[] = [
       "Ein historisches Ereignis der frühen Luftfahrt: Zeppelins Landung in Speyer und ihre Bedeutung für die Stadt.",
     lead: "Speyer war Schauplatz einer der frühen spektakulären Zeppelin-Landungen. Das Ereignis blieb der Stadt im Gedächtnis und passt heute thematisch zum nahegelegenen Technik Museum mit seinen historischen Luftfahrt-Exponaten.",
     imageHue: 2,
-    categories: [],
+    categories: ["museen"],
     wordCount: 1330,
   },
   {
@@ -145,7 +145,7 @@ export const wissenswertes: WissenItem[] = [
       "Wie sich Speyer an die Opfer der Kriege erinnert — und wie sich der Umgang mit Denkmälern über die Jahrzehnte verändert hat.",
     lead: "In Speyer erinnern mehrere Denkmäler an die Opfer der großen Kriege des 19. und 20. Jahrhunderts. Die Auswahl, Gestaltung und das Verständnis dieser Erinnerungsorte hat sich über die Generationen gewandelt — vom heroischen zum mahnenden Gestus.",
     imageHue: 4,
-    categories: [],
+    categories: ["mittelalter"],
     wordCount: 1380,
   },
   {
@@ -196,3 +196,15 @@ export const wissenswertes: WissenItem[] = [
 
 export const getWissen = (slug: string) =>
   wissenswertes.find((w) => w.slug === slug);
+
+/**
+ * Gibt Wissenswertes-Artikel zurück, deren categories sich mit den
+ * übergebenen Kategorien überschneiden. Für Cross-Silo-Links auf
+ * Sehenswürdigkeiten-Detailseiten.
+ */
+export const wissenBySightCategories = (cats: string[], excludeSlug?: string) =>
+  wissenswertes.filter(
+    (w) =>
+      w.slug !== excludeSlug &&
+      w.categories.some((c) => cats.includes(c))
+  );

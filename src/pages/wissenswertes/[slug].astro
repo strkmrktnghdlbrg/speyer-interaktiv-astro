@@ -3,6 +3,7 @@ import BlogArticle from "../../layouts/BlogArticle.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { wissenswertes, getWissen } from "../../data/wissenswertes";
 import { getEntry, render } from "astro:content";
+import { city } from "../../data/city";
 
 export function getStaticPaths() {
   return wissenswertes.map((w) => ({ params: { slug: w.slug } }));
@@ -12,6 +13,18 @@ const { slug } = Astro.params;
 const item = getWissen(slug!)!;
 const entry = await getEntry("wissenswertes", slug!);
 const Content = entry ? (await render(entry)).Content : null;
+
+// Sibling articles: same categories first, then any others — max 3
+const sameCat = wissenswertes.filter(
+  (w) =>
+    w.slug !== item.slug &&
+    item.categories.length > 0 &&
+    w.categories.some((c) => item.categories.includes(c))
+);
+const others = wissenswertes.filter(
+  (w) => w.slug !== item.slug && !sameCat.includes(w)
+);
+const siblings = [...sameCat, ...others].slice(0, 3);
 ---
 
 <BlogArticle
@@ -20,6 +33,11 @@ const Content = entry ? (await render(entry)).Content : null;
   description={item.shortDesc}
   category="Wissenswertes"
   publishedAt={item.publishedAt}
+  breadcrumbItems={[
+    { label: city.name, href: "/" },
+    { label: "Wissenswertes", href: "/wissenswertes/" },
+    { label: item.title },
+  ]}
 >
   {Content ? <Content /> : (
     <>
@@ -36,4 +54,23 @@ const Content = entry ? (await render(entry)).Content : null;
   )}
 
   <GetYourGuideWidget offerKey={`article:${item.slug}`} />
+
+  {siblings.length > 0 && (
+    <div class="related-block">
+      <h3>Mehr aus Wissenswertes</h3>
+      <ul class="space-y-2 mt-3">
+        {siblings.map((s) => (
+          <li>
+            <a href={`/wissenswertes/${s.slug}/`} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+              {s.title}
+            </a>
+            <p class="text-sm mt-0.5" style="color: var(--color-shadow-graphite);">{s.shortDesc}</p>
+          </li>
+        ))}
+      </ul>
+      <a href="/wissenswertes/" class="inline-block mt-4 text-sm font-semibold hover:underline" style="color: var(--color-inkwell-purple); text-underline-offset: 3px;">
+        Alle Wissenswertes-Artikel anzeigen &rarr;
+      </a>
+    </div>
+  )}
 </BlogArticle>

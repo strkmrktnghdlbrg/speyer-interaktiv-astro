@@ -25,6 +25,11 @@ const sights = sightsByCategory(slug!);
 const restaurants = restaurantsByCategory(slug!);
 const totalCount = sights.length + restaurants.length;
 
+// Other categories for cross-linking (excluding current)
+const otherCategories = categories
+  .filter((c) => c.slug !== slug)
+  .slice(0, 4);
+
 const schema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -104,6 +109,32 @@ const schema = {
     )}
 
     <GetYourGuideWidget offerKey={`category:${category.slug}`} />
+
+    {otherCategories.length > 0 && (
+      <section class="py-10 border-t border-[var(--color-lavender-ash)]">
+        <h2 class="text-xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+          Weitere Kategorien in {city.name}
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          {otherCategories.map((c) => (
+            <a
+              href={`/kategorien/${c.slug}/`}
+              class="pill hover:underline"
+              style="text-underline-offset: 3px;"
+            >
+              {c.name}
+            </a>
+          ))}
+          <a
+            href="/kategorien/"
+            class="pill-accent hover:underline"
+            style="text-underline-offset: 3px;"
+          >
+            Alle Kategorien &rarr;
+          </a>
+        </div>
+      </section>
+    )}
   </div>
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />

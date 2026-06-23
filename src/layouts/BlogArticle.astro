@@ -3,6 +3,11 @@ import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { city } from "../data/city";
 
+interface Crumb {
+  label: string;
+  href?: string;
+}
+
 interface Props {
   title: string;
   lead?: string;
@@ -12,6 +17,8 @@ interface Props {
   author?: string;
   description?: string;       // SEO-Meta
   noindex?: boolean;
+  /** Optionale Breadcrumb-Pfade; wenn nicht gesetzt, wird [city.name > title] verwendet */
+  breadcrumbItems?: Crumb[];
 }
 
 const {
@@ -23,6 +30,7 @@ const {
   author = `${city.name}-Interaktiv Redaktion`,
   description,
   noindex = false,
+  breadcrumbItems,
 } = Astro.props;
 
 const metaDesc = description ?? lead ?? title;
@@ -52,7 +60,7 @@ const formattedDate = publishedAt
 
 <BaseLayout title={title} description={metaDesc} noindex={noindex}>
   <article class="container-page py-10">
-    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: title }]} />
+    <Breadcrumbs items={breadcrumbItems ?? [{ label: city.name, href: "/" }, { label: title }]} />
 
     <header class="max-w-3xl mb-10">
       {category && (

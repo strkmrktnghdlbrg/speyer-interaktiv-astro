@@ -10,6 +10,7 @@ import { sights, getSight } from "../../data/sights";
 import { getDistrict } from "../../data/districts";
 import { topHotelsByDistrict } from "../../data/hotels";
 import { getCategory } from "../../data/categories";
+import { wissenBySightCategories } from "../../data/wissenswertes";
 import { city } from "../../data/city";
 import HotelCard from "../../components/HotelCard.astro";
 import { getEntry, render } from "astro:content";
@@ -24,6 +25,7 @@ const district = getDistrict(sight.district)!;
 const sightEntry = await getEntry("sights", slug!);
 const SightContent = sightEntry ? (await render(sightEntry)).Content : null;
 const nearbyHotels = topHotelsByDistrict(sight.district, 3);
+const relatedWissen = wissenBySightCategories(sight.categories, sight.slug).slice(0, 3);
 
 const schema = {
   "@context": "https://schema.org",
@@ -196,6 +198,24 @@ const schema = {
       />
 
       <RelatedItems district={sight.district} excludeSlug={sight.slug} type="sights" />
+
+      {relatedWissen.length > 0 && (
+        <section class="py-12 border-t border-[var(--color-lavender-ash)]">
+          <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+            Thematisch verwandte Artikel
+          </h2>
+          <ul class="space-y-4">
+            {relatedWissen.map((w) => (
+              <li>
+                <a href={`/wissenswertes/${w.slug}/`} class="font-semibold text-lg hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+                  {w.title}
+                </a>
+                <p class="text-sm mt-1" style="color: var(--color-shadow-graphite);">{w.shortDesc}</p>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   </article>
 
