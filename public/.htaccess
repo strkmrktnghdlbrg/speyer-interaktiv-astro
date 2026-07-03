@@ -9,6 +9,13 @@
 
 RewriteEngine On
 
+# ---- Affiliate-Redirects (/r/...) 302, clickref = speyer-interaktiv.de (AWIN 514869) ----
+RewriteRule ^r/docmorris(-10euro)?/?$ https://www.awin1.com/cread.php?s=2490784&v=14485&q=372737&r=514869&clickref=speyer-interaktiv.de [R=302,L,NE]
+RewriteRule ^r/shop-apotheke(-rezept)?/?$ https://www.awin1.com/cread.php?s=3450028&v=13808&q=471107&r=514869&clickref=speyer-interaktiv.de [R=302,L,NE]
+RewriteRule ^r/mediherz(-gutscheine)?/?$ https://www.awin1.com/cread.php?s=2269210&v=11630&q=348918&r=514869&clickref=speyer-interaktiv.de [R=302,L,NE]
+RewriteRule ^r/medpex(-zuzahlungsfrei)?/?$ https://www.awin1.com/awclick.php?gid=447437&mid=36320&awinaffid=514869&linkid=3237938&clickref=speyer-interaktiv.de [R=302,L,NE]
+RewriteRule ^r/fliegende-pillen/?$ https://www.fliegende-pillen.de/?rd=start&p=232355&campaign=adcell&pk_campaign=adcell&bid=120210-78194-speyer-interaktiv.de [R=302,L,NE]
+
 # ============================================================
 #  HTTPS-Force (alle http-Aufrufe auf https)
 # ============================================================
