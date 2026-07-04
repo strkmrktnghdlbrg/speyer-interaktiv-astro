@@ -1,0 +1,178 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Parken in Speyer: Parkhäuser, Dom & Museum-Tipps";
+const description = "Parken in Speyer: Parkhäuser, Tiefgaragen und Parkplätze am Dom, Festplatz und Technik Museum mit Tarifen, Park & Ride und Tipps zum kostenlosen Parken.";
+const faqLd = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Was kostet Parken in Speyer?","acceptedAnswer":{"@type":"Answer","text":"In den zentralen Parkhäusern zahlen Sie ca. 2,50 €/h (Tagesmax ca. 7,50 €), die Tiefgarage Kornmarkt ca. 3 €/h. Große Parkplätze wie Festplatz oder Naturfreundehaus kosten nur ca. 5 € pro Tag, das Technik Museum ebenfalls ca. 5 € pro Tag. Alle Preise sind ca.-Angaben, prüfen Sie die Automaten vor Ort."}},{"@type":"Question","name":"Wo kann man in Speyer kostenlos parken?","acceptedAnswer":{"@type":"Answer","text":"Gebührenfrei parken Sie am Parkplatz Bademaxx (P9) am Stadtrand mit Bus- und ÖPNV-Anbindung in die Altstadt. In Tarifzone D (Festplatz, Naturfreundehaus) ist die erste Stunde gratis, und die Brötchentaste erlaubt in der Innenstadt 30 Minuten kostenloses Kurzparken."}},{"@type":"Question","name":"Wo parkt man am Dom und am Festplatz?","acceptedAnswer":{"@type":"Answer","text":"Direkt am Kaiserdom liegt der Domparkplatz am Edith-Stein-Platz mit ca. 160 Plätzen für ca. 1,50 €/h. Nur wenige Gehminuten entfernt bietet der Festplatz (P7) rund 720 Plätze für ca. 5 € am Tag, mit gratis erster Stunde in Tarifzone D. Bei Veranstaltungen kann der Festplatz gesperrt sein."}},{"@type":"Question","name":"Wo parkt man in der Innenstadt günstig?","acceptedAnswer":{"@type":"Answer","text":"Am günstigsten sind die innenstadtnahen Großparkplätze Festplatz und Naturfreundehaus mit ca. 5 € pro Tag und gratis erster Stunde. Für kurze Besuche hilft die Brötchentaste mit 30 Minuten frei. Wetterfest und zentral parken Sie im Parkhaus Zentrum oder in der Tiefgarage Postgalerie für ca. 2,50 €/h."}},{"@type":"Question","name":"Wie funktionieren Bewohnerparken und Parkscheibe in Speyer?","acceptedAnswer":{"@type":"Answer","text":"In Wohngebieten gibt es Bewohnerparken: Der Bewohnerparkausweis kostet ca. 30,70 € für ein Jahr bzw. ca. 61,40 € für zwei Jahre und wird bei der Stadt beantragt. Auf einzelnen Kurzzeitparkplätzen kann eine Parkscheibenpflicht gelten, achten Sie auf die Beschilderung vor Ort."}}]};
+const itemListLd = {"@context":"https://schema.org","@type":"ItemList","name":"Parkhäuser in Speyer","itemListElement":[{"@type":"ListItem","position":1,"name":"P1 Parkhaus Zentrum"},{"@type":"ListItem","position":2,"name":"P11 Tiefgarage Postgalerie"},{"@type":"ListItem","position":3,"name":"P4 Tiefgarage Kornmarkt"},{"@type":"ListItem","position":4,"name":"Domparkplatz (Edith-Stein-Platz)"},{"@type":"ListItem","position":5,"name":"P7 Parkplatz Festplatz"},{"@type":"ListItem","position":6,"name":"P8 Parkplatz Naturfreundehaus"},{"@type":"ListItem","position":7,"name":"P18 Parkplatz Technik Museum"},{"@type":"ListItem","position":8,"name":"P6 P+R Parkhaus am Hauptbahnhof"},{"@type":"ListItem","position":9,"name":"P9 Parkplatz Bademaxx"}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <div class="pf-wrap">
+    <div class="pf-surface">
+      <h1>Parken in Speyer: Parkhäuser, Tarife und Tipps</h1>
+      <p class="pf-lead">Speyer zieht mit Kaiserdom, Altstadt und Technik Museum viele Besucher an, entsprechend gefragt sind die zentralen Stellplätze. Die Domstadt setzt auf ein Parkleitsystem, mehrere Parkhäuser und große Parkplätze rund um die Innenstadt. Wer Dom oder Museum ansteuert, findet mit etwas Planung günstige oder kostenfreie Alternativen. Dieser Überblick zeigt die wichtigsten Parkhäuser und Parkplätze mit Lage, Kapazität und ungefähren Tarifen sowie Hinweise zu Parkzonen, Bewohnerparken und Park &amp; Ride.</p>
+
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>Zentral und wetterfest parken Sie im P1 Parkhaus Zentrum (Heydenreichstraße) oder in der Tiefgarage Postgalerie, beide ca. 2,50 €/h.</li>
+        <li>Direkt am Dom liegt der Domparkplatz am Edith-Stein-Platz mit ca. 160 Plätzen für ca. 1,50 €/h.</li>
+        <li>Günstig und groß: Festplatz und Naturfreundehaus kosten ca. 5 € pro Tag, in Tarifzone D ist die erste Stunde gratis.</li>
+        <li>Am Technik Museum stehen rund 1.050 Plätze für ca. 5 € pro Tag bereit, ideal für Museum und Dom-Besuch.</li>
+        <li>Kostenfrei parken Sie am Bademaxx (P9), Bus und ÖPNV bringen Sie von dort in die Altstadt.</li>
+        <li>Die Brötchentaste am Automaten ermöglicht in der Innenstadt 30 Minuten gebührenfreies Kurzparken.</li>
+      </ul>
+
+      <h2>Parkhäuser und Tiefgaragen in Speyer im Überblick</h2>
+      <p>Die folgende Auswahl zeigt zentrale Parkhäuser und Tiefgaragen in Speyer mit Lage, ungefährer Stellplatzzahl und Tarif. Preise und Öffnungszeiten können sich ändern, prüfen Sie im Zweifel kurz die Website des Betreibers.</p>
+      <ul class="ph-list">
+        <li class="ph">
+          <span class="ph-name">P1 Parkhaus Zentrum</span>
+          <span class="ph-lage">Heydenreichstraße, nahe Maximilianstraße und Altpörtel</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 282 &middot; <strong>Tarif:</strong> ca. 2,50 €/h, Tagesmax ca. 7,50 €</span>
+          <span class="ph-hint">Zentrales Parkhaus, täglich ca. 6 bis 23 Uhr, kurze Wege in die Fußgängerzone.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P11 Tiefgarage Postgalerie</span>
+          <span class="ph-lage">Mühlturmpassage, Innenstadt</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 180 &middot; <strong>Tarif:</strong> ca. 2,50 €/h, Tagesmax ca. 7,50 €</span>
+          <span class="ph-hint">Wetterfeste Tiefgarage mitten in der Innenstadt, täglich ca. 6 bis 23 Uhr.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P4 Tiefgarage Kornmarkt</span>
+          <span class="ph-lage">Große Greifengasse, nahe Altstadt</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 100 &middot; <strong>Tarif:</strong> ca. 3,00 €/h (auch 1. Stunde)</span>
+          <span class="ph-hint">Kompakte Tiefgarage, Mo bis Sa ca. 6 bis 20:30 Uhr, gut für kurze Altstadtbesuche.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">Domparkplatz (Edith-Stein-Platz)</span>
+          <span class="ph-lage">Direkt am Kaiserdom</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 160 &middot; <strong>Tarif:</strong> ca. 1,50 €/h</span>
+          <span class="ph-hint">Kürzeste Wege zu Dom und Domgarten, Behindertenparkplätze vorhanden, bei Events teils eingeschränkt.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P7 Parkplatz Festplatz</span>
+          <span class="ph-lage">Nördlich der Altstadt, kurzer Weg zum Dom</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 720 &middot; <strong>Tarif:</strong> ca. 2 € pro 2 Std., Tagesmax ca. 5,00 €</span>
+          <span class="ph-hint">Großer, günstiger Parkplatz (Tarifzone D, 1. Stunde frei), bei Veranstaltungen gelegentlich gesperrt.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P8 Parkplatz Naturfreundehaus</span>
+          <span class="ph-lage">Innenstadtnah, gute Busanbindung</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 370 &middot; <strong>Tarif:</strong> ca. 2 € pro 2 Std., Tagesmax ca. 5,00 €</span>
+          <span class="ph-hint">Günstige Alternative, Tarifzone D mit gratis erster Stunde, Monatskarte ca. 30 €.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P18 Parkplatz Technik Museum</span>
+          <span class="ph-lage">Am Technik Museum Speyer, südlich der Altstadt</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 1.050 &middot; <strong>Tarif:</strong> ca. 5,00 € pro Tag</span>
+          <span class="ph-hint">Sehr große Kapazität, durchgehend geöffnet, ideal für Museum und als Ausweichparkplatz.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P6 P+R Parkhaus am Hauptbahnhof</span>
+          <span class="ph-lage">Am Speyer Hauptbahnhof</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 283 &middot; <strong>Tarif:</strong> ca. 1,50 €/h, Tagesmax ca. 8,00 €</span>
+          <span class="ph-hint">Erste 20 Minuten gratis, durchgehend geöffnet, Monatsmiete günstiger mit Bahnkundenkarte.</span>
+        </li>
+        <li class="ph">
+          <span class="ph-name">P9 Parkplatz Bademaxx</span>
+          <span class="ph-lage">Am Freizeitbad Bademaxx, außerhalb der Innenstadt</span>
+          <span class="ph-meta"><strong>Plätze:</strong> ca. 200 &middot; <strong>Tarif:</strong> kostenlos</span>
+          <span class="ph-hint">Gebührenfreier Parkplatz, mit Bus oder ÖPNV in die Altstadt, gut für sparsame Besucher.</span>
+        </li>
+      </ul>
+
+      <h2>Parkzonen und Bewohnerparken in Speyer</h2>
+      <p>Die Innenstadt ist in Tarifzonen gegliedert, wobei die zentraleren Zonen teurer sind und die innenstadtnahe Tarifzone D (unter anderem Festplatz und Naturfreundehaus) eine kostenlose erste Stunde bietet. In der Innenstadt gilt die Brötchentaste am Automaten für 30 Minuten gebührenfreies Kurzparken. In Wohngebieten gibt es Bewohnerparken: Der Bewohnerparkausweis kostet für ein Jahr ca. 30,70 € und für zwei Jahre ca. 61,40 €. Auf einzelnen Kurzzeitplätzen kann eine Parkscheibenpflicht gelten, hier bitte auf die Beschilderung achten.</p>
+
+      <h2>Kostenlos und günstig parken in Speyer</h2>
+      <p>Ganz ohne Gebühr parken Sie am Parkplatz Bademaxx (P9) am Stadtrand und fahren von dort mit Bus oder ÖPNV in die Altstadt. In Tarifzone D (Festplatz P7, Naturfreundehaus P8) ist die erste Stunde gratis, ideal für kurze Dom- oder Altstadtbesuche. Zusätzlich erlaubt die Brötchentaste an vielen Innenstadt-Automaten 30 Minuten kostenfreies Kurzparken. Wohnstraßen etwas außerhalb sind oft ebenfalls gebührenfrei, dort aber die Beschilderung und mögliches Bewohnerparken beachten.</p>
+
+      <h2>Park and Ride in Speyer</h2>
+      <p>Wer dem Verkehr und den Parkgebühren in der Innenstadt entgehen möchte, parkt am Stadtrand und fährt mit Bus oder Bahn ins Zentrum. Diese Park-and-Ride-Anlagen sind praktisch:</p>
+      <ul>
+        <li><strong>P+R Parkhaus am Hauptbahnhof (P6):</strong> Speyer Hauptbahnhof, Bahn und Bus in Stadt und Region. Erste 20 Minuten kostenlos, Tagesmax ca. 8 €, Monatsmiete mit Bahnkundenkarte deutlich günstiger.</li>
+        <li><strong>P+R Parkplatz Bademaxx (P9):</strong> Busanbindung in die Innenstadt und zum Dom. Gebührenfreier Park-and-Ride-Platz, gute Wahl für einen entspannten Altstadtbesuch.</li>
+      </ul>
+
+      <h2>Tipps fürs Parken in Speyer</h2>
+      <ul>
+        <li>Für den Dom lohnt der Domparkplatz am Edith-Stein-Platz, bei vollem Platz weichen Sie auf den nahen Festplatz aus.</li>
+        <li>Wer sparen will, nutzt Tarifzone D (Festplatz, Naturfreundehaus) mit gratis erster Stunde oder den kostenlosen Parkplatz Bademaxx.</li>
+        <li>Für kurze Einkäufe in der Maximilianstraße die Brötchentaste am Automaten ziehen, damit sind 30 Minuten frei.</li>
+        <li>Bei Regen oder langem Aufenthalt bieten sich die wetterfesten Tiefgaragen Postgalerie und Kornmarkt an.</li>
+        <li>Das Technik Museum hat mit rund 1.050 Plätzen viel Kapazität und dient auch als Ausweichparkplatz an vollen Tagen.</li>
+        <li>Folgen Sie dem Parkleitsystem, es zeigt freie Plätze in Innenstadt-Parkhäusern an und spart Suchzeit.</li>
+      </ul>
+
+      <div class="pf-cta-box">
+        <div class="pf-cta-head">
+          <span class="pf-badge">RABATT AUTOMATISCH</span>
+          <span class="pf-air">Frankfurt &middot; Shuttle inklusive</span>
+        </div>
+        <div class="pf-cta-title">Sie fliegen ab Frankfurt? Parkplatz vorab sichern</div>
+        <p class="pf-cta-text">Wer nicht in der Stadt parkt, sondern in den Urlaub startet, spart am Flughafen mit einem vorab gebuchten Stellplatz deutlich gegenüber dem Terminaltarif. Freie Plätze für Ihren Reisezeitraum vergleichen, fester Preis, Shuttle inklusive. Der Rabatt ist im Link hinterlegt und wird bei der Abfrage automatisch angewendet, ganz ohne Gutscheincode. Passende Adressen mit Parkplatz finden Sie in unserer <a href="/hotels/">Hotelübersicht für Speyer</a>.</p>
+        <span class="pf-cta"><a href="/r/parken-fliegen/" rel="sponsored nofollow" target="_blank">Preise &amp; freie Plätze prüfen &rarr;</a></span>
+        <p class="pf-cta-note">* Affiliate-Link. Sie buchen zum selben Preis, wir erhalten eine kleine Provision.</p>
+      </div>
+
+      <h2>Häufige Fragen zum Parken in Speyer</h2>
+      <div class="faq-item">
+        <h3>Was kostet Parken in Speyer?</h3>
+        <p>In den zentralen Parkhäusern zahlen Sie ca. 2,50 €/h (Tagesmax ca. 7,50 €), die Tiefgarage Kornmarkt ca. 3 €/h. Große Parkplätze wie Festplatz oder Naturfreundehaus kosten nur ca. 5 € pro Tag, das Technik Museum ebenfalls ca. 5 € pro Tag. Alle Preise sind ca.-Angaben, prüfen Sie die Automaten vor Ort.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo kann man in Speyer kostenlos parken?</h3>
+        <p>Gebührenfrei parken Sie am Parkplatz Bademaxx (P9) am Stadtrand mit Bus- und ÖPNV-Anbindung in die Altstadt. In Tarifzone D (Festplatz, Naturfreundehaus) ist die erste Stunde gratis, und die Brötchentaste erlaubt in der Innenstadt 30 Minuten kostenloses Kurzparken.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo parkt man am Dom und am Festplatz?</h3>
+        <p>Direkt am Kaiserdom liegt der Domparkplatz am Edith-Stein-Platz mit ca. 160 Plätzen für ca. 1,50 €/h. Nur wenige Gehminuten entfernt bietet der Festplatz (P7) rund 720 Plätze für ca. 5 € am Tag, mit gratis erster Stunde in Tarifzone D. Bei Veranstaltungen kann der Festplatz gesperrt sein.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wo parkt man in der Innenstadt günstig?</h3>
+        <p>Am günstigsten sind die innenstadtnahen Großparkplätze Festplatz und Naturfreundehaus mit ca. 5 € pro Tag und gratis erster Stunde. Für kurze Besuche hilft die Brötchentaste mit 30 Minuten frei. Wetterfest und zentral parken Sie im Parkhaus Zentrum oder in der Tiefgarage Postgalerie für ca. 2,50 €/h.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie funktionieren Bewohnerparken und Parkscheibe in Speyer?</h3>
+        <p>In Wohngebieten gibt es Bewohnerparken: Der Bewohnerparkausweis kostet ca. 30,70 € für ein Jahr bzw. ca. 61,40 € für zwei Jahre und wird bei der Stadt beantragt. Auf einzelnen Kurzzeitparkplätzen kann eine Parkscheibenpflicht gelten, achten Sie auf die Beschilderung vor Ort.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .pf-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .pf-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .pf-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .pf-surface .pf-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .pf-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .pf-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .pf-surface p { margin: 0 0 1.05rem; }
+  .pf-surface ul, .pf-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .pf-surface li { margin-bottom: 0.5rem; }
+  .pf-surface strong { color: #20233a; font-weight: 700; }
+  .pf-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .pf-surface .ph-list { list-style: none; padding-left: 0; }
+  .pf-surface .ph { display: block; border: 1px solid #e6e6ef; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fafafd; }
+  .pf-surface .ph-name { display: block; font-weight: 800; color: #20233a; font-size: 1.05rem; }
+  .pf-surface .ph-lage { display: block; color: #4a4858; margin-top: 2px; }
+  .pf-surface .ph-meta { display: block; color: #33313f; margin-top: 6px; font-size: 0.97rem; }
+  .pf-surface .ph-hint { display: block; color: #6b7280; margin-top: 4px; font-size: 0.94rem; }
+  .pf-cta-box { background: linear-gradient(135deg,#365DA3 0%, #24406f 100%); color:#fff; border-radius:16px; padding:26px 28px; margin: 30px 0; box-shadow:0 10px 28px rgba(54,93,163,0.28); }
+  .pf-cta-head { display:flex; flex-wrap:wrap; gap:6px 14px; align-items:baseline; }
+  .pf-badge { background:#FFA830; color:#020304; font-size:11px; font-weight:800; padding:4px 12px; border-radius:20px; letter-spacing:0.5px; }
+  .pf-air { font-size:13px; opacity:0.9; }
+  .pf-cta-title { font-size:22px; font-weight:800; margin:14px 0 6px; line-height:1.25; color:#fff; }
+  .pf-cta-text { margin:0 0 18px; font-size:15.5px; opacity:0.97; color:#fff; }
+  .pf-cta a { display:inline-block; background:#FFA830; color:#020304; padding:14px 30px; border-radius:10px; font-weight:800; text-decoration:none; font-size:15.5px; }
+  .pf-cta-note { margin:14px 0 0; font-size:12px; opacity:0.8; color:#fff; }
+  .pf-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .pf-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+</style>

@@ -185,3 +185,9 @@ ErrorDocument 404 /404.html
 <FilesMatch "sitemap.*\.xml$">
   Header set Content-Type "application/xml"
 </FilesMatch>
+
+# Affiliate: Parken und Fliegen (Awin)
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^r/parken-fliegen/?$ https://www.awin1.com/cread.php?awinmid=14793&awinaffid=514869&clickref=speyer-interaktiv.de [R=302,L,NE]
+</IfModule>
