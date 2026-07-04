@@ -17,8 +17,7 @@ import { city } from "../data/city";
       <h2>Angaben gemäß § 5 TMG</h2>
       <p>
         <strong>{legal.companyName}</strong><br />
-        {legal.companyType}<br />
-        Companies House Nummer: {legal.companyNumber}
+        {legal.companyType}
       </p>
       <p>
         Eingetragener Geschäftssitz:<br />
@@ -27,10 +26,8 @@ import { city } from "../data/city";
         {legal.registeredOffice.country}
       </p>
 
-      <h2>Vertreten durch</h2>
-      <ul>
-        {legal.directors.map((d) => <li>{d}</li>)}
-      </ul>
+      <h2>Handelsregister</h2>
+      <p>Registrar of Companies, Republik Zypern.</p>
 
       <h2>Kontakt</h2>
       <p>

@@ -3,41 +3,39 @@
  * --------------------------------------------------
  * Wird im Impressum und in der Datenschutzerklärung referenziert.
  * Pflichtangaben nach §5 TMG und §18 MStV (Deutschland) bzw.
- * Companies-House-Pflichten (UK Ltd.).
+ * Register-Pflichten der Betreibergesellschaft.
  *
- * Felder mit "// TODO" müssen vor Go-Live vom Projekt-Owner gefüllt
- * werden — sonst sind Impressum/Datenschutz unvollständig.
+ * Betreiber: Webmagics Ltd., Republik Zypern (Registrar of Companies).
  */
 
 export const legal = {
   // Betreibergesellschaft
   companyName: "Webmagics Ltd.",
-  companyType: "Limited Company (UK)",
+  companyType: "Limited (Republik Zypern)",
 
-  // Companies-House-Nummer + Registered Office
-  companyNumber: "TODO_HOUSE_NUMBER",      // TODO: ergänzen
+  // Registerbehörde + Registered Office
+  companyNumber: "",                          // Registrar of Companies, Republik Zypern
   registeredOffice: {
-    street: "TODO_STREET",                  // TODO
-    postcode: "TODO_POSTCODE",              // TODO
-    city: "TODO_CITY",                      // TODO
-    country: "United Kingdom",
+    street: "Gladstonos 12-14",
+    postcode: "8046",
+    city: "Paphos",
+    country: "Republik Zypern",
   },
 
-  // Vertretungsberechtigte
-  directors: ["TODO_DIRECTOR_NAME"],         // TODO
+  // Vertretungsberechtigte (kein Name hinterlegt)
+  directors: [],
 
   // Kontakt
-  email: "kontakt@speyer-interaktiv.de",    // anpassen falls anderer
-  phone: "TODO_PHONE",                       // TODO
+  email: "kontakt@speyer-interaktiv.de",
+  phone: "TODO_PHONE",                        // TODO
 
-  // USt-ID (UK VAT-Number falls vorhanden, oder DE-USt-ID falls
-  // umsatzsteuerlich in DE registriert)
-  vatId: "TODO_VAT_ID",                      // TODO
+  // USt-ID (gilt global für alle Webmagics-Sites)
+  vatId: "CY10400045Y",
 
   // Verantwortlich für Inhalte i.S.v. §18 Abs. 2 MStV
   contentResponsible: {
-    name: "TODO_NAME",                       // TODO
-    address: "TODO_ADRESSE_FALLS_ABWEICHEND", // TODO oder leer falls = registeredOffice
+    name: "Webmagics Ltd.",
+    address: "TODO_ADRESSE_FALLS_ABWEICHEND", // leer/TODO → Anschrift = registeredOffice
   },
 
   // Aufsichtsbehörde (falls anwendbar — bei reinen Content-Portalen meist nicht)
