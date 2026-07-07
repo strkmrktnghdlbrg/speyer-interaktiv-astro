@@ -9,9 +9,9 @@
  */
 
 export const adsense = {
-  // TODO: AdSense Publisher-ID für Speyer-Interaktiv nachreichen
-  publisherId: "",
-  enabled: false,
+  // Webmagics-AdSense-Konto (info@webmagics.net), identisch mit Live-ads.txt
+  publisherId: "ca-pub-7432388986384363",
+  enabled: true,
 
   // Falls Manual Placement gewünscht: Slot-IDs hier hinterlegen.
   // Auto Ads ignoriert diese.
