@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import HueGradient from "../../components/HueGradient.astro";
+import ContentImage from "../../components/ContentImage.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import BookingCTA from "../../components/BookingCTA.astro";
 import RelatedItems from "../../components/RelatedItems.astro";
@@ -41,7 +41,14 @@ const schema = {
 <BaseLayout title={hotel.name} description={hotel.shortDesc}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
-      <HueGradient hue={hotel.imageHue} label={hotel.name} />
+      <ContentImage
+        imgKey={hotel.imageKey}
+        fallbackHue={hotel.imageHue}
+        fallbackLabel={hotel.name}
+        showCredit
+        loading="eager"
+        sizes="100vw"
+      />
     </div>
 
     <div class="container-page py-10">

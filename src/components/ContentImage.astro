@@ -47,8 +47,15 @@ const wrapperClass = aspect ? `${aspect} ${className}` : className;
       class={imgClass}
     />
 
+    {entry.illustrative && !showCredit && (
+      <span class="absolute bottom-3 right-3 px-2 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wide bg-black/60 text-white backdrop-blur-sm">
+        Symbolbild
+      </span>
+    )}
+
     {showCredit && entry.credit && (
       <figcaption class="absolute bottom-0 left-0 right-0 px-3 py-2 text-[10px] text-white/85 bg-gradient-to-t from-black/70 to-transparent">
+        {entry.illustrative && <span>Symbolbild, nicht die tatsächliche Location · </span>}
         Foto: <a
           href={entry.credit.sourceUrl}
           rel="nofollow noopener"

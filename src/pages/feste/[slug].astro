@@ -1,6 +1,7 @@
 ---
 import BlogArticle from "../../layouts/BlogArticle.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import ContentImage from "../../components/ContentImage.astro";
 import { feste, getFest } from "../../data/feste";
 import { city } from "../../data/city";
 
@@ -50,6 +51,17 @@ const eventSchema = {
   description={item.shortDesc}
   category="Fest"
 >
+  <div class="aspect-[16/9] relative overflow-hidden rounded-2xl mb-6">
+    <ContentImage
+      imgKey={item.imageKey}
+      fallbackHue={item.imageHue}
+      fallbackLabel={item.name}
+      showCredit
+      loading="eager"
+      sizes="(min-width: 1024px) 768px, 100vw"
+    />
+  </div>
+
   <p class="text-xs font-bold uppercase tracking-widest text-[var(--color-accent)] mb-2">
     {item.termin}
   </p>

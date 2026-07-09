@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "koeln-interaktiv",
+      "name": "speyer-interaktiv-astro",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
-      "port": 4326
+      "port": 4327
     }
   ]
 }

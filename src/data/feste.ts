@@ -31,6 +31,7 @@ export const feste: Fest[] = [
     termin: "Ende November bis 23. Dezember (jährlich)",
     district: "altstadt",
     imageHue: 1,
+    imageKey: "fest:weihnachtsmarkt",
   },
   {
     slug: "fastnacht",
@@ -41,6 +42,7 @@ export const feste: Fest[] = [
     termin: "11.11. bis Aschermittwoch (Hauptsaison Februar/März)",
     district: "altstadt",
     imageHue: 4,
+    imageKey: "fest:fastnacht",
   },
 ];
 

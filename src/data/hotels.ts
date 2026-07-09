@@ -10,6 +10,7 @@ export type Hotel = {
   shortDesc: string;
   longDesc: string;
   imageHue: number;
+  imageKey?: string; // Optional — Reuse aus Registry, siehe src/data/images.ts
   bookingUrl: string;
   amenities: string[];
 };
@@ -38,6 +39,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Hotel Domhof liegt eine Minute zu Fuß vom Kaiserdom entfernt im Bauhof. Familiengeführt, eigene Hausbrauerei (Domhof-Bräu) mit großem Innenhof-Biergarten, gemütlich-traditionelle Zimmer. Beliebt bei Dom-Besuchern, die zentral und unprätentiös übernachten wollen.",
     imageHue: 1,
+    imageKey: "hotel:hotel-domhof",
     bookingUrl: "https://www.booking.com/hotel/de/hotel-domhof.de.html",
     amenities: ["Hausbrauerei", "Biergarten", "Familiengeführt", "Dom-nah"],
   },
@@ -55,6 +57,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Hotel Goldener Engel ist in einem historischen Speyerer Stadthaus eingerichtet, eine Minute von der Maximilianstraße. 4-Sterne-Komfort, klassisch eingerichtete Zimmer, gutes Frühstücksbüfett. Hotel-eigene Tiefgarage — in der Altstadt selten und Gold wert.",
     imageHue: 4,
+    imageKey: "hotel:hotel-goldener-engel",
     bookingUrl: "https://www.booking.com/hotel/de/goldener-engel-speyer.de.html",
     amenities: ["Tiefgarage", "Frühstück", "Zentral", "Altstadt"],
   },
@@ -71,6 +74,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Best Western Plus Hotel Domus liegt in der Theresienstraße im Altstadt-Kern. Modern eingerichtete Zimmer, kleiner Wellness-Bereich mit Sauna, sehr gut bewertet bei Geschäftsreisenden. Vom Hotel ist man in 5 Minuten am Dom.",
     imageHue: 4,
+    imageKey: "hotel:best-western-plus-hotel-domus",
     bookingUrl: "https://www.booking.com/hotel/de/domus-speyer.de.html",
     amenities: ["Sauna", "Business", "Klimaanlage", "Restaurant"],
   },
@@ -87,6 +91,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Hotel zum Goldenen Hirschen ist ein klassisches Speyerer Stadthotel mit angeschlossenem Restaurant — pfälzische Hausmannskost und saisonale Karte. Zimmer einfach, aber sauber und ruhig. Gute Wahl für Reisende, die Wert auf bezahlbare Innenstadtlage mit Restaurant-Anschluss legen.",
     imageHue: 1,
+    imageKey: "hotel:hotel-zum-goldenen-hirschen",
     bookingUrl: "https://www.booking.com/hotel/de/zum-goldenen-hirschen-speyer.de.html",
     amenities: ["Restaurant", "Pfälzische Küche", "Altstadt", "Bezahlbar"],
   },
@@ -106,6 +111,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Lindner Hotel & Spa Binshof am südlichen Stadtrand ist Speyers Wellness-Adresse. 130 Zimmer, eigener Thermal-Spa-Bereich mit Anschluss an die benachbarte Therme, 18-Loch-Golfplatz nebenan. Beliebt bei Wellness-Reisenden und für längere Aufenthalte mit Auto. Zur Altstadt rund 8 Minuten mit dem Wagen.",
     imageHue: 3,
+    imageKey: "hotel:lindner-hotel-spa-binshof",
     bookingUrl: "https://www.booking.com/hotel/de/lindner-park-hagenbeck-binshof.de.html",
     amenities: ["Spa", "Thermalbad", "Golfplatz", "Restaurant", "Pool"],
   },
@@ -124,6 +130,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Hotel Speyer am Technik Museum liegt direkt neben dem Museumsgelände — ideal, wenn Technik- oder Raumfahrt-Fans über zwei Tage Museum und Sinsheim kombinieren wollen. Familienzimmer, kostenlose Parkplätze, gutes Frühstücksbüfett. Zur Altstadt 10 Minuten mit Auto oder Bus.",
     imageHue: 2,
+    imageKey: "hotel:hotel-speyer-am-technik-museum",
     bookingUrl: "https://www.booking.com/hotel/de/speyer-am-technik-museum.de.html",
     amenities: ["Familien", "Parkplatz", "Frühstück", "Museums-nah"],
   },
@@ -142,6 +149,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das Trip Inn Hotel Speyer liegt direkt am Hauptbahnhof — die kürzeste Anreise ohne Auto. Standard-Zimmer, gutes Preis-Leistungs-Verhältnis, in 8 Minuten Fußweg am Altpörtel. Gute Wahl für Wochenend-Trips ohne Auto.",
     imageHue: 5,
+    imageKey: "hotel:trip-inn-hotel-speyer",
     bookingUrl: "https://www.booking.com/hotel/de/trip-inn-speyer.de.html",
     amenities: ["Bahnhof-nah", "Bezahlbar", "Business", "Frühstück"],
   },
@@ -160,6 +168,7 @@ export const hotels: Hotel[] = [
     longDesc:
       "Das ibis Styles Speyer am neuen Rheinhafen ist Speyers modernes 3-Sterne-Hotel. Frisches Designkonzept (typisch ibis Styles), zeitgemäß ausgestattete Zimmer, kostenfreie Parkplätze und gutes Frühstücksbüfett inklusive. Zur Altstadt 10-15 Minuten zu Fuß am Rhein entlang.",
     imageHue: 2,
+    imageKey: "hotel:ibis-styles-speyer",
     bookingUrl: "https://www.booking.com/hotel/de/ibis-styles-speyer.de.html",
     amenities: ["Design", "Frühstück inklusive", "Parkplatz", "Rhein-nah"],
   },
