@@ -10,8 +10,8 @@
 
 export const analytics = {
   // TODO: GTM-ID für Speyer-Interaktiv nachreichen (Format GTM-XXXXXXX)
-  gtmId: "",
-  enabled: false,
+  gtmId: "GTM-W2JFBBW3",
+  enabled: true,
 };
 
 export const gtmEnabled = analytics.enabled && analytics.gtmId.length > 0;
