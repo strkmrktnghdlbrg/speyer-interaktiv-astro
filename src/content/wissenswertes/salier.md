@@ -1,5 +1,5 @@
 ---
-title: "Die Salier — Speyers Kaiserdynastie"
+title: "Die Salier - Speyers Kaiserdynastie"
 lead: "Konrad II., Heinrich III., Heinrich IV., Heinrich V.: Vier salische Kaiser, die Speyer und das Reich prägten. Sie begannen den Dombau und fanden in seiner Krypta ihre letzte Ruhestätte."
 ---
 
@@ -28,7 +28,7 @@ Die Krypta, geweiht 1041 unter Heinrich III., ist die größte Hallenkrypta der 
 
 ## Speyer als Zentrum des Reichs
 
-Speyer war im [Mittelalter](/wissenswertes/mittelalterliches-speyer/) mehrfach Tagungsort von Reichstagen und Hoftagen. Ab 1527 saß das Reichskammergericht hier — zur Zeit der [Reformation](/wissenswertes/reformation/) ein zentraler politischer Faktor. Chronisten des 12. Jahrhunderts bezeichneten die Stadt als **Metropolis Germaniae** oder **Caput Sedis**, also Haupt des Reichs. Diese Wahrnehmung gründete in der salischen Vergangenheit und im Dom als Symbol des Kaisertums.
+Speyer war im [Mittelalter](/wissenswertes/mittelalterliches-speyer/) mehrfach Tagungsort von Reichstagen und Hoftagen. Ab 1527 saß das Reichskammergericht hier - zur Zeit der [Reformation](/wissenswertes/reformation/) ein zentraler politischer Faktor. Chronisten des 12. Jahrhunderts bezeichneten die Stadt als **Metropolis Germaniae** oder **Caput Sedis**, also Haupt des Reichs. Diese Wahrnehmung gründete in der salischen Vergangenheit und im Dom als Symbol des Kaisertums.
 
 ## Die Bischöfe von Speyer
 

@@ -1,13 +1,13 @@
 ---
-title: "BIM — Building Information Modeling in Speyer"
+title: "BIM - Building Information Modeling in Speyer"
 lead: "Wie moderne 3D-Modellierung dabei hilft, historische Bauten zu erhalten und neue Quartiere zu planen. Speyer ist ein besonders spannender Ort dafür, weil hier Welterbe und Zukunft direkt aufeinandertreffen."
 ---
 
-Speyer ist eine Stadt mit dichtem historischem Bestand — vom [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) bis zur barocken Altstadt — und gleichzeitig wachsendem Bedarf an modernen Bauten. Wie verbindet man beides ohne Stilbruch? Eine Antwort heißt **BIM**, Building Information Modeling. Die Methode revolutioniert das Bauen weltweit und ist in Speyer besonders interessant, weil sie das digitale Erfassen historischer Substanz mit der Planung moderner Erweiterungen kombiniert.
+Speyer ist eine Stadt mit dichtem historischem Bestand - vom [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) bis zur barocken Altstadt - und gleichzeitig wachsendem Bedarf an modernen Bauten. Wie verbindet man beides ohne Stilbruch? Eine Antwort heißt **BIM**, Building Information Modeling. Die Methode revolutioniert das Bauen weltweit und ist in Speyer besonders interessant, weil sie das digitale Erfassen historischer Substanz mit der Planung moderner Erweiterungen kombiniert.
 
 ## Was BIM ist
 
-BIM ist mehr als ein digitales 3D-Modell. Ein BIM-Modell enthält neben der Geometrie auch Informationen zu Materialien, Bauteilen, Bauphasen, Energieeigenschaften, Kosten und Wartung. Alle Beteiligten — Architekten, Ingenieure, Bauherren, Handwerker, Behörden — arbeiten mit demselben Datenmodell.
+BIM ist mehr als ein digitales 3D-Modell. Ein BIM-Modell enthält neben der Geometrie auch Informationen zu Materialien, Bauteilen, Bauphasen, Energieeigenschaften, Kosten und Wartung. Alle Beteiligten - Architekten, Ingenieure, Bauherren, Handwerker, Behörden - arbeiten mit demselben Datenmodell.
 
 Das spart Zeit, vermeidet Fehler und macht Bauprojekte transparenter. Konflikte zwischen Sanitär und Statik werden im Modell sichtbar, bevor sie auf der Baustelle teuer werden.
 
@@ -54,7 +54,7 @@ Mit Blick auf den Klimawandel bietet BIM auch Werkzeuge zur Risikobewertung: Wie
 
 BIM ersetzt traditionelles Handwerk nicht. Es ergänzt es. Ein Zimmermann, der ein historisches Fachwerk saniert, kann anhand des BIM-Modells genau sehen, welche Balken Schäden haben und wie sie ersetzt werden müssen. Das spart Material und Zeit, ohne die handwerkliche Qualität zu mindern.
 
-Für die **Restaurierung** historischer Bauten ist BIM ein wertvolles Hilfsmittel. Das Modell dokumentiert jeden Schritt, sichert die Qualität und ermöglicht die Materialwahl auf Basis historischer Analysen — gerade bei den Themen, die im Artikel zur [Baukunst Speyers](/wissenswertes/baukunst/) beschrieben sind.
+Für die **Restaurierung** historischer Bauten ist BIM ein wertvolles Hilfsmittel. Das Modell dokumentiert jeden Schritt, sichert die Qualität und ermöglicht die Materialwahl auf Basis historischer Analysen - gerade bei den Themen, die im Artikel zur [Baukunst Speyers](/wissenswertes/baukunst/) beschrieben sind.
 
 ## Wirtschaftliche Vorteile
 
@@ -64,7 +64,7 @@ Für die öffentliche Hand bedeutet das: Sanierungen historischer Bauten und Neu
 
 ## Bürgerbeteiligung
 
-Ein oft unterschätzter Vorteil: BIM macht Bauprojekte für Bürger verständlich. Statt komplizierter Pläne können Anwohner interaktive 3D-Modelle erkunden und sehen, was geplant ist. Das fördert Akzeptanz und ermöglicht echte Beteiligung. Gerade für Projekte, die das historische Stadtgefüge betreffen, ist diese Transparenz wertvoll — weitere Hintergründe zur Stadtgeschichte finden sich in der Übersicht [Wissenswertes über Speyer](/wissenswertes/).
+Ein oft unterschätzter Vorteil: BIM macht Bauprojekte für Bürger verständlich. Statt komplizierter Pläne können Anwohner interaktive 3D-Modelle erkunden und sehen, was geplant ist. Das fördert Akzeptanz und ermöglicht echte Beteiligung. Gerade für Projekte, die das historische Stadtgefüge betreffen, ist diese Transparenz wertvoll - weitere Hintergründe zur Stadtgeschichte finden sich in der Übersicht [Wissenswertes über Speyer](/wissenswertes/).
 
 ## Häufig gestellte Fragen
 

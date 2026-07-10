@@ -107,8 +107,8 @@ const schema = {
                 style="color: var(--color-inkwell-purple); text-underline-offset: 3px;"
               >
                 <span style="color: var(--color-accent);">Tag {d.number}</span>
-                {" — "}
-                {d.title.replace(/^Tag \d+ — /, "")}
+                {" - "}
+                {d.title.replace(/^Tag \d+ - /, "")}
               </a>
             </li>
           ))}
@@ -122,7 +122,7 @@ const schema = {
               Tag {day.number}
             </p>
             <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
-              {day.title.replace(/^Tag \d+ — /, "")}
+              {day.title.replace(/^Tag \d+ - /, "")}
             </h2>
             <p class="text-lg leading-relaxed max-w-3xl" style="color: var(--color-shadow-graphite);">
               {day.intro}

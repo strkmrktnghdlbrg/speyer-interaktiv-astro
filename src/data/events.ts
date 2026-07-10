@@ -52,7 +52,7 @@ export const events: CityEvent[] = [
     intro:
       "Das Speyerer Brezelfest ist das größte Heimat- und Volksfest der Pfalz und zieht jedes Jahr im Juli rund 600.000 Besucher in die Altstadt und auf die Festwiese am Rhein. Hotels in der Altstadt und am Rheinhafen sind die ganze Festwoche entsprechend gefragt.",
     description:
-      "Hotels in Speyer zum Brezelfest 2026 — Live-Preise und Verfügbarkeit für die 2. Juliwoche. Direktbuchung via Booking.com.",
+      "Hotels in Speyer zum Brezelfest 2026 - Live-Preise und Verfügbarkeit für die 2. Juliwoche. Direktbuchung via Booking.com.",
     checkin: "2026-07-09",
     checkout: "2026-07-13",
     address: "Speyer, Deutschland",
@@ -69,7 +69,7 @@ export const events: CityEvent[] = [
     intro:
       "Vier Wochen Altdeutscher Weihnachtsmarkt zwischen Altpörtel und Dom, dazu das Riesenrad am Domgarten mit Blick auf den beleuchteten Kaiserdom. Hotels in der Altstadt sind besonders an den Adventswochenenden früh ausgebucht.",
     description:
-      "Hotels in Speyer zum Weihnachtsmarkt 2026 — Live-Preise für die Adventszeit, Ende November bis 23. Dezember.",
+      "Hotels in Speyer zum Weihnachtsmarkt 2026 - Live-Preise für die Adventszeit, Ende November bis 23. Dezember.",
     checkin: "2026-12-04",
     checkout: "2026-12-06",
     address: "Speyer Altstadt, Deutschland",
@@ -86,7 +86,7 @@ export const events: CityEvent[] = [
     intro:
       "Speyerer Fastnacht ist Teil der traditionsreichen Pfälzer Karnevalstradition. Höhepunkt ist der Fastnachts-Sonntag-Umzug durch die Innenstadt. Hotels rund um die Maximilianstraße sind das Fastnachts-Wochenende beliebt.",
     description:
-      "Hotels in Speyer zur Fastnacht 2027 — Live-Preise für das Fastnachts-Wochenende mit Umzug. Direktbuchung via Booking.com.",
+      "Hotels in Speyer zur Fastnacht 2027 - Live-Preise für das Fastnachts-Wochenende mit Umzug. Direktbuchung via Booking.com.",
     checkin: "2027-02-05",
     checkout: "2027-02-09",
     address: "Speyer Altstadt, Deutschland",
@@ -103,7 +103,7 @@ export const events: CityEvent[] = [
     intro:
       "Die Kaisertafel verwandelt einmal im Sommer die Maximilianstraße in die längste Tafel der Pfalz. Tausende Gäste essen, trinken Pfälzer Wein und feiern entlang der Achse Altpörtel - Dom. Hotels in fußläufiger Nähe sind dann sehr gefragt.",
     description:
-      "Hotels in Speyer zur Kaisertafel 2026 — Live-Preise und Verfügbarkeit für das Festwochenende auf der Maximilianstraße.",
+      "Hotels in Speyer zur Kaisertafel 2026 - Live-Preise und Verfügbarkeit für das Festwochenende auf der Maximilianstraße.",
     checkin: "2026-09-04",
     checkout: "2026-09-06",
     address: "Speyer Altstadt, Deutschland",
@@ -120,7 +120,7 @@ export const events: CityEvent[] = [
     intro:
       "Die Internationalen Musiktage Dom zu Speyer sind eines der renommiertesten Kirchenmusik-Festivals Deutschlands. Über drei Wochen im Spätsommer und Herbst spielen internationale Ensembles im Kaiserdom. Hotels in der Altstadt sind an den Konzert-Wochenenden besonders nachgefragt.",
     description:
-      "Hotels in Speyer zu den Internationalen Musiktagen Dom zu Speyer 2026 — Live-Preise und Verfügbarkeit für die Festival-Wochenenden.",
+      "Hotels in Speyer zu den Internationalen Musiktagen Dom zu Speyer 2026 - Live-Preise und Verfügbarkeit für die Festival-Wochenenden.",
     checkin: "2026-09-25",
     checkout: "2026-09-27",
     address: "Speyer Altstadt, Deutschland",
@@ -135,9 +135,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Speyer zu Silvester",
     eyebrow: "Silvester 2026/27",
     intro:
-      "Silvester in der Domstadt — der Jahreswechsel mit Blick auf den beleuchteten Kaiserdom und das Feuerwerk über dem Rhein. Hotels mit Dom-Lage oder am Rheinufer sind erfahrungsgemäß zuerst ausgebucht.",
+      "Silvester in der Domstadt - der Jahreswechsel mit Blick auf den beleuchteten Kaiserdom und das Feuerwerk über dem Rhein. Hotels mit Dom-Lage oder am Rheinufer sind erfahrungsgemäß zuerst ausgebucht.",
     description:
-      "Hotels in Speyer zu Silvester 2026/27 — Live-Preise für den Jahreswechsel. Domnahe und am Rheinufer.",
+      "Hotels in Speyer zu Silvester 2026/27 - Live-Preise für den Jahreswechsel. Domnahe und am Rheinufer.",
     checkin: "2026-12-30",
     checkout: "2027-01-02",
     address: "Speyer Altstadt, Deutschland",
@@ -154,7 +154,7 @@ export const events: CityEvent[] = [
     intro:
       "Ostern in der Kaiserdom-Stadt: feierliche Messen und Domkonzerte über die Kar- und Ostertage, dazu Speyers Altstadt im Frühling. Hotels in Dom-Nähe füllen sich schnell.",
     description:
-      "Hotels in Speyer zu Ostern 2027 — Live-Preise für Karfreitag bis Ostermontag. Domnahe Unterkünfte in der Altstadt.",
+      "Hotels in Speyer zu Ostern 2027 - Live-Preise für Karfreitag bis Ostermontag. Domnahe Unterkünfte in der Altstadt.",
     checkin: "2027-03-26",
     checkout: "2027-03-29",
     address: "Speyer Altstadt, Deutschland",
@@ -171,7 +171,7 @@ export const events: CityEvent[] = [
     intro:
       "Muttertag in Speyer: Frühlings-Wochenende mit Pfälzer Wein, Maximilianstraßen-Bummel und Spaziergang am Rhein. Wellness-Hotels in der Region buchen Mütter-Töchter-Pakete.",
     description:
-      "Hotels in Speyer zum Muttertag 2027 — Live-Preise für das Mai-Wochenende. Ideal für Frühlings-Trips und Wellness-Auszeiten.",
+      "Hotels in Speyer zum Muttertag 2027 - Live-Preise für das Mai-Wochenende. Ideal für Frühlings-Trips und Wellness-Auszeiten.",
     checkin: "2027-05-07",
     checkout: "2027-05-09",
     address: "Speyer, Deutschland",
@@ -186,9 +186,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Speyer zu Fronleichnam",
     eyebrow: "Fronleichnam 2027",
     intro:
-      "Fronleichnamsprozession vom Kaiserdom durch die Altstadt — eine der traditionsreichsten in der Pfalz. Die Tage rund um den Feiertag werden gern als verlängertes Wochenende genutzt.",
+      "Fronleichnamsprozession vom Kaiserdom durch die Altstadt - eine der traditionsreichsten in der Pfalz. Die Tage rund um den Feiertag werden gern als verlängertes Wochenende genutzt.",
     description:
-      "Hotels in Speyer zu Fronleichnam 2027 — Live-Preise für das verlängerte Feiertags-Wochenende. Domnahe Unterkünfte.",
+      "Hotels in Speyer zu Fronleichnam 2027 - Live-Preise für das verlängerte Feiertags-Wochenende. Domnahe Unterkünfte.",
     checkin: "2027-05-26",
     checkout: "2027-05-30",
     address: "Speyer Altstadt, Deutschland",
@@ -205,7 +205,7 @@ export const events: CityEvent[] = [
     intro:
       "Wenn das große Feuerwerk-Spektakel über dem Mittelrhein stattfindet, sucht halb Süddeutschland Schlafplätze in Rhein-Nähe. Speyer ist als Pfalz-Basis ideal für Tagesausflüge ans Spektakel und für Rheinkreuzfahrten.",
     description:
-      "Hotels in Speyer zu Rhein in Flammen 2026 — Live-Preise für das August-Wochenende. Übernachtungs-Basis für die Pfalz-Tour.",
+      "Hotels in Speyer zu Rhein in Flammen 2026 - Live-Preise für das August-Wochenende. Übernachtungs-Basis für die Pfalz-Tour.",
     checkin: "2026-08-14",
     checkout: "2026-08-16",
     address: "Speyer, Deutschland",
@@ -218,11 +218,11 @@ export const events: CityEvent[] = [
   {
     slug: "geschaeftsreise",
     title: "Hotels in Speyer für Geschäftsreisen",
-    eyebrow: "Business-Trip — diese Woche",
+    eyebrow: "Business-Trip - diese Woche",
     intro:
       "Geschäftsreise nach Speyer, Schifferstadt, Hockenheim oder zur Universität für Verwaltungswissenschaften: zentrale Hotels mit Konferenzräumen, WLAN, ruhigem Schlaf. Live-Preise für die kommenden Werktage.",
     description:
-      "Geschäftshotels in Speyer — Live-Preise für die nächste Geschäftswoche. Konferenzräume, Parkplätze, ruhige Zimmer.",
+      "Geschäftshotels in Speyer - Live-Preise für die nächste Geschäftswoche. Konferenzräume, Parkplätze, ruhige Zimmer.",
     checkin: "2026-06-08",
     checkout: "2026-06-12",
     address: "Speyer, Deutschland",

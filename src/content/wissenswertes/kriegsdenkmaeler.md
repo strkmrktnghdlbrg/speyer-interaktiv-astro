@@ -15,7 +15,7 @@ Die Botschaft war eindeutig: Stolz auf den Sieg, Heroisierung der gefallenen Sol
 
 Nach dem Ersten Weltkrieg verschob sich der Ton. Statt Triumph standen Trauer und Verlust im Vordergrund. **Carl Egler**, ein bedeutender Bildhauer der Weimarer Zeit, schuf mehrere Mahnmale, die in dieser neuen Sprache gehalten sind. Statt heroischer Posen zeigt seine Bildhauerei die Belastung, das Leiden, manchmal die stille Würde der Gefallenen.
 
-In Speyer und Umgebung finden sich mehrere Mahnmale des Ersten Weltkriegs, oft an Friedhöfen oder zentralen Plätzen — auch im [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) und entlang der Altstadtachsen. Diese Orte sind bis heute Anlaufstellen für Gedenken am Volkstrauertag.
+In Speyer und Umgebung finden sich mehrere Mahnmale des Ersten Weltkriegs, oft an Friedhöfen oder zentralen Plätzen - auch im [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) und entlang der Altstadtachsen. Diese Orte sind bis heute Anlaufstellen für Gedenken am Volkstrauertag.
 
 ## Zweiter Weltkrieg: Erinnerungen
 
@@ -29,7 +29,7 @@ In der Nachkriegszeit entstanden auch sowjetische Ehrenmäler, die an gefallene 
 
 ## Nationalsozialistische Hinterlassenschaften
 
-Aus der NS-Zeit gibt es bauliche Hinterlassenschaften, deren Umgang sensibel ist. Bunkeranlagen wie der **Hochbunker Augustinerhof**, Kasernen und einzelne Denkmäler aus den 1930er Jahren sind im Stadtbild präsent — auch im historischen Umfeld des [Technik Museums](/sehenswuerdigkeiten/technik-museum/), das auf einem ehemaligen Flugzeugwerk-Gelände entstand. Die Frage, ob solche Bauten erhalten oder entfernt werden sollen, ist nicht abschließend beantwortet.
+Aus der NS-Zeit gibt es bauliche Hinterlassenschaften, deren Umgang sensibel ist. Bunkeranlagen wie der **Hochbunker Augustinerhof**, Kasernen und einzelne Denkmäler aus den 1930er Jahren sind im Stadtbild präsent - auch im historischen Umfeld des [Technik Museums](/sehenswuerdigkeiten/technik-museum/), das auf einem ehemaligen Flugzeugwerk-Gelände entstand. Die Frage, ob solche Bauten erhalten oder entfernt werden sollen, ist nicht abschließend beantwortet.
 
 Ein häufiges Argument für den Erhalt: Solche Orte mahnen sichtbar an die NS-Zeit. Gegen den Erhalt spricht: Sie können bei Bewunderern weiter wirksam sein. In Speyer wird darüber, wie in vielen deutschen Städten, immer wieder neu diskutiert.
 
@@ -39,7 +39,7 @@ Neuere Denkmäler in Speyer zeigen eine andere Sprache: abstrakter, partizipativ
 
 ## Erinnerungskultur im Wandel
 
-Wer durch Speyer geht und die Kriegsdenkmäler im Zusammenhang sieht, liest eine **Geschichte der deutschen Erinnerungskultur** ab: vom triumphalen Kaiserreich-Stil über die Trauer-Bildhauerei der Weimarer Republik, das verklemmte Schweigen der frühen Bundesrepublik bis zu den offenen, oft schmerzlichen Auseinandersetzungen der Gegenwart. Denkmäler sind nie nur Steine, sie sind politische Aussagen — Teil des vielschichtigen [Kulturerbes](/wissenswertes/kulturerbe/) der Stadt, das auch der [Dreißigjährige Krieg](/wissenswertes/dreissigjaehriger-krieg/) und spätere Konflikte geprägt haben.
+Wer durch Speyer geht und die Kriegsdenkmäler im Zusammenhang sieht, liest eine **Geschichte der deutschen Erinnerungskultur** ab: vom triumphalen Kaiserreich-Stil über die Trauer-Bildhauerei der Weimarer Republik, das verklemmte Schweigen der frühen Bundesrepublik bis zu den offenen, oft schmerzlichen Auseinandersetzungen der Gegenwart. Denkmäler sind nie nur Steine, sie sind politische Aussagen - Teil des vielschichtigen [Kulturerbes](/wissenswertes/kulturerbe/) der Stadt, das auch der [Dreißigjährige Krieg](/wissenswertes/dreissigjaehriger-krieg/) und spätere Konflikte geprägt haben.
 
 ## Häufig gestellte Fragen
 

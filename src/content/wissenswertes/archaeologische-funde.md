@@ -47,7 +47,7 @@ Das **Archäologische Schaufenster** in der Innenstadt ist eine kleine, aber fei
 
 ## Landesarchäologie Rheinland-Pfalz
 
-Die Landesarchäologie schützt und dokumentiert archäologische Stätten in ganz Rheinland-Pfalz. Sie führt Notgrabungen bei Baumaßnahmen durch, dokumentiert Funde wissenschaftlich und arbeitet mit Universitäten und Museen zusammen. Speyer ist einer der wichtigsten Stützpunkte dieser Arbeit — die archäologische Arbeit ergänzt das Bild der [Baukunst Speyers](/wissenswertes/baukunst/) und macht Grünflächen wie den [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) immer wieder zu Grabungsorten.
+Die Landesarchäologie schützt und dokumentiert archäologische Stätten in ganz Rheinland-Pfalz. Sie führt Notgrabungen bei Baumaßnahmen durch, dokumentiert Funde wissenschaftlich und arbeitet mit Universitäten und Museen zusammen. Speyer ist einer der wichtigsten Stützpunkte dieser Arbeit - die archäologische Arbeit ergänzt das Bild der [Baukunst Speyers](/wissenswertes/baukunst/) und macht Grünflächen wie den [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) immer wieder zu Grabungsorten.
 
 ## Häufig gestellte Fragen
 

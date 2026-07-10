@@ -26,7 +26,7 @@ Die genaue Opferzahl in Speyer ist nicht vollständig dokumentiert, da viele Akt
 
 ## Rolle von Aberglaube und Gesellschaft
 
-Der Volksglaube an Schadenzauber war im 16. und 17. Jahrhundert allgegenwärtig. Missernten, Krankheiten, plötzliche Todesfälle wurden häufig dämonischen Kräften zugeschrieben. In Zeiten von Hungersnöten, Krieg — wie etwa dem [Dreißigjährigen Krieg](/wissenswertes/dreissigjaehriger-krieg/) — und Pest suchten Gemeinschaften nach Sündenböcken, und die Hexe war eine gesellschaftlich verfügbare Figur.
+Der Volksglaube an Schadenzauber war im 16. und 17. Jahrhundert allgegenwärtig. Missernten, Krankheiten, plötzliche Todesfälle wurden häufig dämonischen Kräften zugeschrieben. In Zeiten von Hungersnöten, Krieg - wie etwa dem [Dreißigjährigen Krieg](/wissenswertes/dreissigjaehriger-krieg/) - und Pest suchten Gemeinschaften nach Sündenböcken, und die Hexe war eine gesellschaftlich verfügbare Figur.
 
 Denunziationen entstanden oft aus persönlichen Konflikten, Neid oder wirtschaftlichen Spannungen. Wer als Außenseiter wahrgenommen wurde, war besonders gefährdet: alleinstehende ältere Frauen, Hebammen, Heilkundige, sozial Marginalisierte.
 
@@ -42,7 +42,7 @@ Die Hexenverfolgung endete nicht mit einem klaren Datum, sondern verschwand allm
 
 ## Aufarbeitung und Erinnerung
 
-Seit dem späten 20. Jahrhundert haben Historikerinnen und Historiker begonnen, die Hexenverfolgung systematisch zu erforschen. In vielen Städten wurden die Opfer **posthum rehabilitiert** und Gedenkstätten eingerichtet. Auch in Speyer ist die Erinnerung Teil der historischen Aufarbeitung — im weiteren Kontext des konfessionellen Konflikts, der schon die Zeit um den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) prägte.
+Seit dem späten 20. Jahrhundert haben Historikerinnen und Historiker begonnen, die Hexenverfolgung systematisch zu erforschen. In vielen Städten wurden die Opfer **posthum rehabilitiert** und Gedenkstätten eingerichtet. Auch in Speyer ist die Erinnerung Teil der historischen Aufarbeitung - im weiteren Kontext des konfessionellen Konflikts, der schon die Zeit um den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) prägte.
 
 ## Häufig gestellte Fragen
 

@@ -38,7 +38,7 @@ export const feste: Fest[] = [
     name: "Speyerer Fastnacht",
     shortDesc:
       "Pfälzer Fastnacht zwischen Domplatz und Maximilianstraße: Umzug, Närrische Sitzungen, Faschingsdienstag-Verbrennung.",
-    lead: "Die Speyerer Fastnacht ist Teil der traditionsreichen Pfälzer Karnevalstradition. Vom 11.11. bis zum Aschermittwoch organisiert sich das närrische Speyer in Vereinen und Sitzungsabenden. Höhepunkt ist der Fastnachts-Sonntag-Umzug durch die Innenstadt — Pfälzer Witz statt Kölner Karneval-Industrie.",
+    lead: "Die Speyerer Fastnacht ist Teil der traditionsreichen Pfälzer Karnevalstradition. Vom 11.11. bis zum Aschermittwoch organisiert sich das närrische Speyer in Vereinen und Sitzungsabenden. Höhepunkt ist der Fastnachts-Sonntag-Umzug durch die Innenstadt - Pfälzer Witz statt Kölner Karneval-Industrie.",
     termin: "11.11. bis Aschermittwoch (Hauptsaison Februar/März)",
     district: "altstadt",
     imageHue: 4,

@@ -23,7 +23,7 @@ Eine starke antiklerikale Stimmung in der Bevölkerung beschleunigte die Reforma
 
 Trotz des lutherischen Übergewichts blieb das katholische Leben präsent: Jesuiten, Domkapitel und das katholisch dominierte Reichskammergericht hielten die alte Konfession lebendig. Auch eine kleine **calvinistische Gemeinde** existierte. Damit war Speyer zeitweise eine tri-konfessionelle Stadt, in der drei christliche Konfessionen nebeneinander lebten, mit allen Spannungen, die das mit sich brachte.
 
-Die jüdische Gemeinde, ab 1621 wieder fassbar, umfasste zu Beginn rund 60 Personen und verfügte über Synagoge, Mikwe und Friedhof — der [Judenhof](/sehenswuerdigkeiten/judenhof/) zeugt heute davon als Teil des SchUM-Welterbes.
+Die jüdische Gemeinde, ab 1621 wieder fassbar, umfasste zu Beginn rund 60 Personen und verfügte über Synagoge, Mikwe und Friedhof - der [Judenhof](/sehenswuerdigkeiten/judenhof/) zeugt heute davon als Teil des SchUM-Welterbes.
 
 ## Speyer im Reichsgefüge
 

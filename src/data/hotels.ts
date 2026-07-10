@@ -55,7 +55,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Historisches Stadthaus an der Mühlturmstraße. Frühstücksbüfett, Tiefgarage, fußläufig zur Maximilianstraße.",
     longDesc:
-      "Das Hotel Goldener Engel ist in einem historischen Speyerer Stadthaus eingerichtet, eine Minute von der Maximilianstraße. 4-Sterne-Komfort, klassisch eingerichtete Zimmer, gutes Frühstücksbüfett. Hotel-eigene Tiefgarage — in der Altstadt selten und Gold wert.",
+      "Das Hotel Goldener Engel ist in einem historischen Speyerer Stadthaus eingerichtet, eine Minute von der Maximilianstraße. 4-Sterne-Komfort, klassisch eingerichtete Zimmer, gutes Frühstücksbüfett. Hotel-eigene Tiefgarage - in der Altstadt selten und Gold wert.",
     imageHue: 4,
     imageKey: "hotel:hotel-goldener-engel",
     bookingUrl: "https://www.booking.com/hotel/de/goldener-engel-speyer.de.html",
@@ -89,7 +89,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Klassisches Stadthotel mit Restaurant. Traditionsküche, ruhige Lage in der Altstadt.",
     longDesc:
-      "Das Hotel zum Goldenen Hirschen ist ein klassisches Speyerer Stadthotel mit angeschlossenem Restaurant — pfälzische Hausmannskost und saisonale Karte. Zimmer einfach, aber sauber und ruhig. Gute Wahl für Reisende, die Wert auf bezahlbare Innenstadtlage mit Restaurant-Anschluss legen.",
+      "Das Hotel zum Goldenen Hirschen ist ein klassisches Speyerer Stadthotel mit angeschlossenem Restaurant - pfälzische Hausmannskost und saisonale Karte. Zimmer einfach, aber sauber und ruhig. Gute Wahl für Reisende, die Wert auf bezahlbare Innenstadtlage mit Restaurant-Anschluss legen.",
     imageHue: 1,
     imageKey: "hotel:hotel-zum-goldenen-hirschen",
     bookingUrl: "https://www.booking.com/hotel/de/zum-goldenen-hirschen-speyer.de.html",
@@ -128,7 +128,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Direkt am Technik Museum, 4-Sterne, Familien-orientiert. Großes Frühstück, Parkplätze.",
     longDesc:
-      "Das Hotel Speyer am Technik Museum liegt direkt neben dem Museumsgelände — ideal, wenn Technik- oder Raumfahrt-Fans über zwei Tage Museum und Sinsheim kombinieren wollen. Familienzimmer, kostenlose Parkplätze, gutes Frühstücksbüfett. Zur Altstadt 10 Minuten mit Auto oder Bus.",
+      "Das Hotel Speyer am Technik Museum liegt direkt neben dem Museumsgelände - ideal, wenn Technik- oder Raumfahrt-Fans über zwei Tage Museum und Sinsheim kombinieren wollen. Familienzimmer, kostenlose Parkplätze, gutes Frühstücksbüfett. Zur Altstadt 10 Minuten mit Auto oder Bus.",
     imageHue: 2,
     imageKey: "hotel:hotel-speyer-am-technik-museum",
     bookingUrl: "https://www.booking.com/hotel/de/speyer-am-technik-museum.de.html",
@@ -147,7 +147,7 @@ export const hotels: Hotel[] = [
     shortDesc:
       "Klassisches Stadthotel am Bahnhof. Bezahlbar, 8 Gehminuten zum Altpörtel.",
     longDesc:
-      "Das Trip Inn Hotel Speyer liegt direkt am Hauptbahnhof — die kürzeste Anreise ohne Auto. Standard-Zimmer, gutes Preis-Leistungs-Verhältnis, in 8 Minuten Fußweg am Altpörtel. Gute Wahl für Wochenend-Trips ohne Auto.",
+      "Das Trip Inn Hotel Speyer liegt direkt am Hauptbahnhof - die kürzeste Anreise ohne Auto. Standard-Zimmer, gutes Preis-Leistungs-Verhältnis, in 8 Minuten Fußweg am Altpörtel. Gute Wahl für Wochenend-Trips ohne Auto.",
     imageHue: 5,
     imageKey: "hotel:trip-inn-hotel-speyer",
     bookingUrl: "https://www.booking.com/hotel/de/trip-inn-speyer.de.html",

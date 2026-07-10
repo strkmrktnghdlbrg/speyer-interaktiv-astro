@@ -300,7 +300,7 @@ export const gygOffers: Record<string, GygOffer> = {
     mode: "activities",
     q: "Speyer Altstadt Stadtrundgang",
     title: "Speyerer Altstadt erkunden",
-    lead: "Stadtrundgänge entlang der Maximilianstraße — Altpörtel zum Kaiserdom.",
+    lead: "Stadtrundgänge entlang der Maximilianstraße - Altpörtel zum Kaiserdom.",
   },
   "sight:historisches-museum-der-pfalz": {
     mode: "activities",

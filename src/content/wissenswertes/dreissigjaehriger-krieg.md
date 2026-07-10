@@ -33,7 +33,7 @@ Die soziale Hierarchie geriet durcheinander. Patrizier verloren ihren Status, ne
 
 ## Konflikte zwischen Bürgerschaft und Klerus
 
-Im Hintergrund schwelte ein älterer Konflikt: Die Privilegien des Klerus, etwa Weinschank, Gerichtsstand und steuerfreier Besitz der toten Hand, ärgerten den Stadtrat und die Bürger seit dem [Mittelalter](/wissenswertes/mittelalterliches-speyer/). Im Dreißigjährigen Krieg eskalierten die Spannungen zwischen der überwiegend protestantischen Bürgerschaft und dem katholischen Klerus — Folge der [Reformation](/wissenswertes/reformation/) — zu einem regelrechten Kleinkrieg mit gegenseitigen Sanktionen, wirtschaftlichen Maßnahmen und Verleumdungen.
+Im Hintergrund schwelte ein älterer Konflikt: Die Privilegien des Klerus, etwa Weinschank, Gerichtsstand und steuerfreier Besitz der toten Hand, ärgerten den Stadtrat und die Bürger seit dem [Mittelalter](/wissenswertes/mittelalterliches-speyer/). Im Dreißigjährigen Krieg eskalierten die Spannungen zwischen der überwiegend protestantischen Bürgerschaft und dem katholischen Klerus - Folge der [Reformation](/wissenswertes/reformation/) - zu einem regelrechten Kleinkrieg mit gegenseitigen Sanktionen, wirtschaftlichen Maßnahmen und Verleumdungen.
 
 Das Domkapitel war der Hauptkontrahent des Rates. Steuerfragen, Zoll und Gerichtsbarkeit waren ständige Streitpunkte. Die Auseinandersetzungen führten teils zu Verwüstungen in der Umgebung.
 
@@ -45,7 +45,7 @@ Erschwerend kam hinzu, dass die Kurpfalz Speyer wirtschaftliche Vorteile entzog.
 
 ## Die zweite Katastrophe
 
-Kaum hatte sich Speyer einigermaßen vom Dreißigjährigen Krieg erholt, kam die nächste Erschütterung: 1689, im Pfälzischen Erbfolgekrieg, ließen französische Truppen die Stadt fast vollständig niederbrennen. Die mittelalterliche Substanz, die Jahrhunderte überdauert hatte, wurde vernichtet — nur der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) und wenige weitere Bauten überstanden den Brand. Was wir heute in der [Altstadt](/stadtteile/altstadt/) sehen, ist im Wesentlichen barocker Wiederaufbau auf altem Grundriss; mehr dazu im Artikel zur [Baukunst Speyers](/wissenswertes/baukunst/).
+Kaum hatte sich Speyer einigermaßen vom Dreißigjährigen Krieg erholt, kam die nächste Erschütterung: 1689, im Pfälzischen Erbfolgekrieg, ließen französische Truppen die Stadt fast vollständig niederbrennen. Die mittelalterliche Substanz, die Jahrhunderte überdauert hatte, wurde vernichtet - nur der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) und wenige weitere Bauten überstanden den Brand. Was wir heute in der [Altstadt](/stadtteile/altstadt/) sehen, ist im Wesentlichen barocker Wiederaufbau auf altem Grundriss; mehr dazu im Artikel zur [Baukunst Speyers](/wissenswertes/baukunst/).
 
 ## Häufig gestellte Fragen
 

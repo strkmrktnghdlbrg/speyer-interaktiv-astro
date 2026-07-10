@@ -1,5 +1,5 @@
 ---
-title: "Speyers Kulturerbe — UNESCO und mehr"
+title: "Speyers Kulturerbe - UNESCO und mehr"
 lead: "Zweimal UNESCO: der Kaiserdom seit 1981, die SchUM-Stätten seit 2021. Beide Auszeichnungen prägen das Selbstverständnis der Stadt und ziehen internationales Publikum an."
 ---
 
@@ -55,7 +55,7 @@ Die Welterbestätten haben spürbare Auswirkungen:
 
 ## Herausforderungen
 
-Der Erhalt zweier Welterbestätten ist anspruchsvoll. Authentizität und Integrität müssen bewahrt werden, gleichzeitig braucht es ein Gleichgewicht zwischen Tourismus und Schutz. Massenandrang kann die Stätten belasten, deshalb gibt es Besucherlenkung und kontinuierliche Restaurierung — wer einen entspannten Welterbe-Besuch plant, findet im [Reiseplaner 2 Tage Speyer](/reiseplaner/2-tage-speyer/) eine sinnvolle Route.
+Der Erhalt zweier Welterbestätten ist anspruchsvoll. Authentizität und Integrität müssen bewahrt werden, gleichzeitig braucht es ein Gleichgewicht zwischen Tourismus und Schutz. Massenandrang kann die Stätten belasten, deshalb gibt es Besucherlenkung und kontinuierliche Restaurierung - wer einen entspannten Welterbe-Besuch plant, findet im [Reiseplaner 2 Tage Speyer](/reiseplaner/2-tage-speyer/) eine sinnvolle Route.
 
 ## Häufig gestellte Fragen
 

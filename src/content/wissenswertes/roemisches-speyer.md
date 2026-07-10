@@ -1,5 +1,5 @@
 ---
-title: "Römisches Speyer — die Anfänge am Rhein"
+title: "Römisches Speyer - die Anfänge am Rhein"
 lead: "Lange bevor die Salier den Dom bauten, war Speyer eine römische Siedlung. Noviomagus, später Civitas Nemetum, lag strategisch am Rhein und entwickelte sich vom Militärlager zur zivilen Stadt mit Handel und Verwaltung."
 ---
 
@@ -27,7 +27,7 @@ Daneben zeigt das Museum Keramik, Münzen, Werkzeuge und Schmuck aus römischen 
 
 ## Spuren in der Altstadt
 
-Auch wenn das mittelalterliche und barocke Speyer das Stadtbild prägt: Bei Bauarbeiten in der [Altstadt](/stadtteile/altstadt/) stoßen Archäologen regelmäßig auf römische Schichten — eine ausführliche Übersicht bietet der Artikel zu den [archäologischen Funden](/wissenswertes/archaeologische-funde/). Unter den heutigen Straßen verlaufen teilweise die alten römischen Trassen, Fundamente und Mosaike kommen bei Grabungen zutage. Die römische Stadtmauer markierte die Grenzen des Vicus, einzelne Abschnitte sind noch dokumentiert.
+Auch wenn das mittelalterliche und barocke Speyer das Stadtbild prägt: Bei Bauarbeiten in der [Altstadt](/stadtteile/altstadt/) stoßen Archäologen regelmäßig auf römische Schichten - eine ausführliche Übersicht bietet der Artikel zu den [archäologischen Funden](/wissenswertes/archaeologische-funde/). Unter den heutigen Straßen verlaufen teilweise die alten römischen Trassen, Fundamente und Mosaike kommen bei Grabungen zutage. Die römische Stadtmauer markierte die Grenzen des Vicus, einzelne Abschnitte sind noch dokumentiert.
 
 ## Bedeutung der Römerzeit
 

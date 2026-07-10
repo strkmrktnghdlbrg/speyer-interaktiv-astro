@@ -35,7 +35,7 @@ Die Deutsche Zeppelin-Reederei wurde 1935 gegründet und betrieb die berühmten 
 
 ## Technik Museum Speyer
 
-Wer in Speyer mehr über Luftfahrt erfahren will, findet im [Technik Museum](/sehenswuerdigkeiten/technik-museum/) eine der größten Sammlungen Europas. Originalflugzeuge, ein begehbarer Jumbo-Jet, eine Antonow An-22 und eine Vielzahl weiterer Exponate machen das Museum zu einem natürlichen Anknüpfungspunkt für die Zeppelin-Geschichte und die Faszination Fliegen insgesamt. Nach dem Museumsbesuch lohnt ein Spaziergang im nahen [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) — beide Stationen sind Teil des breiten [Kulturerbes](/wissenswertes/kulturerbe/) der Stadt.
+Wer in Speyer mehr über Luftfahrt erfahren will, findet im [Technik Museum](/sehenswuerdigkeiten/technik-museum/) eine der größten Sammlungen Europas. Originalflugzeuge, ein begehbarer Jumbo-Jet, eine Antonow An-22 und eine Vielzahl weiterer Exponate machen das Museum zu einem natürlichen Anknüpfungspunkt für die Zeppelin-Geschichte und die Faszination Fliegen insgesamt. Nach dem Museumsbesuch lohnt ein Spaziergang im nahen [Adenauerpark](/sehenswuerdigkeiten/adenauerpark/) - beide Stationen sind Teil des breiten [Kulturerbes](/wissenswertes/kulturerbe/) der Stadt.
 
 ## Zeppelin in der Kultur
 

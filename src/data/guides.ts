@@ -48,7 +48,7 @@ export const guides: Guide[] = [
     title: "2 Tage in Speyer",
     shortDesc:
       "Der perfekte Wochenend-Trip: Kaiserdom, Maximilianstraße, Judenhof, Technik Museum und ein Schoppe in der Pfälzer Weinstube.",
-    lead: "Zwei Tage reichen, um Speyers Schichten zu erkennen — Römer, Salier, Mittelalter, Reformation, Barock, Moderne. Dieser Plan kombiniert die UNESCO-Highlights (Kaiserdom, SchUM-Judenhof) mit dem Technik Museum als zweitem Tagesthema und endet jeweils in einer Pfälzer Weinstube. Kurze Wege, weil Speyer kompakt ist.",
+    lead: "Zwei Tage reichen, um Speyers Schichten zu erkennen - Römer, Salier, Mittelalter, Reformation, Barock, Moderne. Dieser Plan kombiniert die UNESCO-Highlights (Kaiserdom, SchUM-Judenhof) mit dem Technik Museum als zweitem Tagesthema und endet jeweils in einer Pfälzer Weinstube. Kurze Wege, weil Speyer kompakt ist.",
     duration: 2,
     audience: "Erstbesucher",
     bestSeason: "April bis Oktober (Altpörtel-Aussicht und Adenauerpark draußen lohnen sich)",
@@ -57,7 +57,7 @@ export const guides: Guide[] = [
     days: [
       {
         number: 1,
-        title: "Tag 1 — UNESCO-Welterbe und Altstadt",
+        title: "Tag 1 - UNESCO-Welterbe und Altstadt",
         intro: "Der erste Tag gehört dem Dom und der Maximilianstraße. Wir starten am Altpörtel, laufen die Achse zum Dom und tauchen am Nachmittag in das mittelalterliche jüdische Speyer ein.",
         slots: [
           {
@@ -65,7 +65,7 @@ export const guides: Guide[] = [
             type: "morgens",
             title: "Aufstieg aufs Altpörtel",
             description:
-              "Start am Bahnhof oder am Altpörtel-Platz. Aufstieg auf das 55-Meter-Tor, von oben hat man die Maximilianstraße geradlinig auf den Dom zu — die erste richtige Einordnung der Stadt.",
+              "Start am Bahnhof oder am Altpörtel-Platz. Aufstieg auf das 55-Meter-Tor, von oben hat man die Maximilianstraße geradlinig auf den Dom zu - die erste richtige Einordnung der Stadt.",
             sightSlug: "altpoertel",
             tip: "Im April-Oktober Di-So 10-17 Uhr geöffnet. Eintritt unter 2 €. Festes Schuhwerk.",
           },
@@ -74,7 +74,7 @@ export const guides: Guide[] = [
             type: "morgens",
             title: "Maximilianstraße zum Dom",
             description:
-              "600 Meter alte Reichsstraße — heute Fußgängerzone mit Cafés, Confiserien, Rathaus, Eisdielen. Wer Zeit hat, geht in die Dreifaltigkeitskirche rechts ab: hölzernes Tonnengewölbe von 1717.",
+              "600 Meter alte Reichsstraße - heute Fußgängerzone mit Cafés, Confiserien, Rathaus, Eisdielen. Wer Zeit hat, geht in die Dreifaltigkeitskirche rechts ab: hölzernes Tonnengewölbe von 1717.",
             sightSlug: "maximilianstrasse",
           },
           {
@@ -100,7 +100,7 @@ export const guides: Guide[] = [
             type: "nachmittag",
             title: "Judenhof und Museum SchPIRA",
             description:
-              "Eine Minute vom Dom in die Kleine Pfaffengasse: Reste der mittelalterlichen Synagoge, Frauenschul und die Mikwe von 1128 — eines der ältesten erhaltenen jüdischen Ritualbäder Europas. Seit 2021 UNESCO-Welterbe.",
+              "Eine Minute vom Dom in die Kleine Pfaffengasse: Reste der mittelalterlichen Synagoge, Frauenschul und die Mikwe von 1128 - eines der ältesten erhaltenen jüdischen Ritualbäder Europas. Seit 2021 UNESCO-Welterbe.",
             sightSlug: "judenhof",
             districtSlug: "altstadt",
           },
@@ -118,14 +118,14 @@ export const guides: Guide[] = [
             type: "uebernachten",
             title: "Übernachten im Hotel Goldener Engel",
             description:
-              "Vier-Sterne-Stadthotel an der Mühlturmstraße, in 5 Minuten am Dom. Eigene Tiefgarage — in der Altstadt selten und Gold wert.",
+              "Vier-Sterne-Stadthotel an der Mühlturmstraße, in 5 Minuten am Dom. Eigene Tiefgarage - in der Altstadt selten und Gold wert.",
             hotelSlug: "hotel-goldener-engel",
           },
         ],
       },
       {
         number: 2,
-        title: "Tag 2 — Technik, Park, Rhein",
+        title: "Tag 2 - Technik, Park, Rhein",
         intro: "Der zweite Tag bringt eine andere Welt: das Technik Museum am Stadtrand und einen ruhigen Nachmittag im Adenauerpark plus Hafen.",
         slots: [
           {
@@ -150,7 +150,7 @@ export const guides: Guide[] = [
             type: "nachmittag",
             title: "Adenauerpark und Stadtmauer",
             description:
-              "Mit Bus oder zu Fuß (20 min) zurück Richtung Altstadt, am westlichen Stadtrand entlang die mittelalterliche Stadtmauer abgehen. Wehrtürme, Spielplatz, Liegewiesen — ruhige Pause nach dem Technik-Trubel.",
+              "Mit Bus oder zu Fuß (20 min) zurück Richtung Altstadt, am westlichen Stadtrand entlang die mittelalterliche Stadtmauer abgehen. Wehrtürme, Spielplatz, Liegewiesen - ruhige Pause nach dem Technik-Trubel.",
             sightSlug: "adenauerpark",
           },
           {
@@ -160,7 +160,7 @@ export const guides: Guide[] = [
             description:
               "Wenn die Energie reicht: am Domplatz das Historische Museum mit dem Goldenen Hut (Bronzezeit), den ältesten Weinflaschen der Welt (4. Jh.) und dem Domschatz. Die Sonderausstellungen lohnen den separaten Besuch.",
             sightSlug: "historisches-museum-der-pfalz",
-            tip: "Letzter Einlass meist eine Stunde vor Schließung — vorher Online-Plan checken.",
+            tip: "Letzter Einlass meist eine Stunde vor Schließung - vorher Online-Plan checken.",
           },
           {
             time: "18:00 – 21:30",
@@ -179,7 +179,7 @@ export const guides: Guide[] = [
     slug: "speyer-mit-kindern",
     title: "Speyer mit Kindern",
     shortDesc:
-      "Familien-Tagesplan: Technik Museum, Sea Life, Adenauerpark — Speyer ohne Quengel-Faktor.",
+      "Familien-Tagesplan: Technik Museum, Sea Life, Adenauerpark - Speyer ohne Quengel-Faktor.",
     lead: "Speyer ist überraschend familien-geeignet, wenn man die richtige Reihenfolge nimmt. Technik Museum (begehbare Flugzeuge, U-Boot), Sea Life mit Hai-Tunnel, Eis-Pause auf der Maximilianstraße, abends Adenauerpark zum Auslaufen. Dieser Plan funktioniert ganzjährig.",
     duration: 1,
     audience: "Familien",
@@ -199,7 +199,7 @@ export const guides: Guide[] = [
             description:
               "Direkter Einstieg in das größte Familien-Highlight: Boeing 747 begehen, U-Boot U9 erklettern, im Cockpit alter Lokomotiven sitzen. Drei Stunden vergehen schnell.",
             sightSlug: "technik-museum",
-            tip: "Kinderwagen am Eingang oder Buggy-tauglich? Wege sind asphaltiert. IMAX-Dome zusätzlich buchbar — bei größeren Kindern lohnt der 30-Minuten-Film.",
+            tip: "Kinderwagen am Eingang oder Buggy-tauglich? Wege sind asphaltiert. IMAX-Dome zusätzlich buchbar - bei größeren Kindern lohnt der 30-Minuten-Film.",
           },
           {
             time: "13:00 – 14:30",

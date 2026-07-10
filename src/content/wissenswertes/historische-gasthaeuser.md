@@ -53,7 +53,7 @@ Einmal jährlich wird Speyer zum Zentrum der Pfälzer Weinwelt: **„Wein am Dom
 
 Moderne Gasthäuser in Speyer verbinden Tradition mit zeitgemäßer Küche. Junge Köche kombinieren regionale Zutaten mit internationalen Techniken, klassische Gerichte werden neu interpretiert. Die historische Atmosphäre bleibt erhalten, die Karte ist aber oft überraschend modern.
 
-Gleichzeitig sind die Gasthäuser weiterhin **soziale Treffpunkte**. Hier trifft man sich nach der Arbeit, feiert Familien-Anlässe oder lässt einen Tagestrip ausklingen. Die Mischung aus Einheimischen und Touristen macht das Klima oft besonders lebendig — eine vollständige Übersicht aktueller Adressen findet sich auf der [Restaurants-Seite](/restaurants/), passende Übernachtungen unter [Hotels in Speyer](/hotels/).
+Gleichzeitig sind die Gasthäuser weiterhin **soziale Treffpunkte**. Hier trifft man sich nach der Arbeit, feiert Familien-Anlässe oder lässt einen Tagestrip ausklingen. Die Mischung aus Einheimischen und Touristen macht das Klima oft besonders lebendig - eine vollständige Übersicht aktueller Adressen findet sich auf der [Restaurants-Seite](/restaurants/), passende Übernachtungen unter [Hotels in Speyer](/hotels/).
 
 ## Häufig gestellte Fragen
 

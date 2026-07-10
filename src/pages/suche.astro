@@ -150,7 +150,7 @@ import { city } from "../data/city";
         .then(function (r) { return r.json(); })
         .then(function (data) {
           index = data;
-          meta.textContent = "Bereit — " + data.length + " Einträge im Index.";
+          meta.textContent = "Bereit - " + data.length + " Einträge im Index.";
           if (input.value) render(input.value);
         })
         .catch(function () {

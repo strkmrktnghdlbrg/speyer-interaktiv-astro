@@ -35,7 +35,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Die größte erhaltene romanische Kirche der Welt. UNESCO-Welterbe seit 1981, Grabstätte salischer und staufischer Kaiser.",
     longDesc:
-      "Der Kaiserdom (offiziell Domkirche St. Maria und St. Stephan) wurde unter Konrad II. ab 1030 begonnen und 1061 geweiht. Heinrich IV. ließ ihn nochmals umbauen — das Resultat ist die größte erhaltene romanische Kirche weltweit. Die Hallenkrypta unter Chor und Querhaus ist die größte ihrer Art und beherbergt die Grablege von acht Kaisern und Königen, darunter Konrad II. und Heinrich IV. Seit 1981 UNESCO-Welterbe. Im Sommer steigt man auf den Südwestturm und schaut über den Rhein bis in den Pfälzerwald.",
+      "Der Kaiserdom (offiziell Domkirche St. Maria und St. Stephan) wurde unter Konrad II. ab 1030 begonnen und 1061 geweiht. Heinrich IV. ließ ihn nochmals umbauen - das Resultat ist die größte erhaltene romanische Kirche weltweit. Die Hallenkrypta unter Chor und Querhaus ist die größte ihrer Art und beherbergt die Grablege von acht Kaisern und Königen, darunter Konrad II. und Heinrich IV. Seit 1981 UNESCO-Welterbe. Im Sommer steigt man auf den Südwestturm und schaut über den Rhein bis in den Pfälzerwald.",
     imageHue: 1,
     coordinates: [49.3173, 8.4427],
     openingHours: "April-Okt: Mo-Sa 9:00-19:00, So 11:30-17:30 · Nov-März: kürzer",
@@ -52,7 +52,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Eines der höchsten erhaltenen Stadttore Deutschlands. 55 Meter hoch, Wahrzeichen der Maximilianstraße.",
     longDesc:
-      "Das Altpörtel ist das westliche Tor der ehemaligen Speyerer Stadtbefestigung. Der Unterbau stammt aus dem 13. Jahrhundert, der Aufbau wurde im 15. und 16. Jahrhundert ergänzt — daher die markante Mischung aus Wehrturm und Renaissance-Galerie oben. Mit 55 Metern Höhe gehört es zu den höchsten Stadttoren Deutschlands. Von der Aussichtsplattform schaut man die Maximilianstraße entlang direkt auf den Dom — vom einen Wahrzeichen zum anderen.",
+      "Das Altpörtel ist das westliche Tor der ehemaligen Speyerer Stadtbefestigung. Der Unterbau stammt aus dem 13. Jahrhundert, der Aufbau wurde im 15. und 16. Jahrhundert ergänzt - daher die markante Mischung aus Wehrturm und Renaissance-Galerie oben. Mit 55 Metern Höhe gehört es zu den höchsten Stadttoren Deutschlands. Von der Aussichtsplattform schaut man die Maximilianstraße entlang direkt auf den Dom - vom einen Wahrzeichen zum anderen.",
     imageHue: 1,
     coordinates: [49.3186, 8.4359],
     openingHours: "April-Okt: Di-So 10:00-12:00, 14:00-17:00",
@@ -82,9 +82,9 @@ export const sights: Sight[] = [
     type: "Wahrzeichen",
     priceFrom: 4,
     shortDesc:
-      "UNESCO-Welterbe SchUM seit 2021. Mittelalterlicher jüdischer Sakralbezirk mit Mikwe von 1128 — eines der ältesten erhaltenen Ritualbäder Europas.",
+      "UNESCO-Welterbe SchUM seit 2021. Mittelalterlicher jüdischer Sakralbezirk mit Mikwe von 1128 - eines der ältesten erhaltenen Ritualbäder Europas.",
     longDesc:
-      'Der Judenhof in der Kleinen Pfaffengasse umfasst die Reste der mittelalterlichen Synagoge, die Frauenschul und die berühmte Mikwe — ein um 1128 angelegtes jüdisches Ritualbad, das tief in den Grundwasserspiegel hinabreicht. Speyer war im Mittelalter Teil des SchUM-Bunds (Schpira-Warmaisa-Magenza, also Speyer-Worms-Mainz). Seit 2021 zählen die Speyerer Stätten zum UNESCO-Welterbe "Die SchUM-Stätten". Im Museum SchPIRA daneben sind Funde aus der mittelalterlichen jüdischen Gemeinde ausgestellt.',
+      'Der Judenhof in der Kleinen Pfaffengasse umfasst die Reste der mittelalterlichen Synagoge, die Frauenschul und die berühmte Mikwe - ein um 1128 angelegtes jüdisches Ritualbad, das tief in den Grundwasserspiegel hinabreicht. Speyer war im Mittelalter Teil des SchUM-Bunds (Schpira-Warmaisa-Magenza, also Speyer-Worms-Mainz). Seit 2021 zählen die Speyerer Stätten zum UNESCO-Welterbe "Die SchUM-Stätten". Im Museum SchPIRA daneben sind Funde aus der mittelalterlichen jüdischen Gemeinde ausgestellt.',
     imageHue: 4,
     coordinates: [49.3164, 8.4412],
     openingHours: "Di-So 10:00-17:00 · Mo geschlossen",
@@ -101,7 +101,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Direkt am Domplatz. Goldener Hut, Pfälzischer Wein-Schatz, große Sonderausstellungen zu Antike und Mittelalter.",
     longDesc:
-      'Das Historische Museum der Pfalz am Domplatz zählt zu den bedeutendsten kulturhistorischen Museen Deutschlands. Highlights der Dauerausstellung sind der bronzezeitliche "Goldene Hut von Schifferstadt", die ältesten Weinflaschen der Welt (Pfälzischer Wein-Schatz, 4. Jh.) und die Domschatz-Sammlung. Die großen Sonderausstellungen — zuletzt etwa zu den Wikingern, den Habsburgern oder Richard Löwenherz — sind überregional Programm.',
+      'Das Historische Museum der Pfalz am Domplatz zählt zu den bedeutendsten kulturhistorischen Museen Deutschlands. Highlights der Dauerausstellung sind der bronzezeitliche "Goldene Hut von Schifferstadt", die ältesten Weinflaschen der Welt (Pfälzischer Wein-Schatz, 4. Jh.) und die Domschatz-Sammlung. Die großen Sonderausstellungen - zuletzt etwa zu den Wikingern, den Habsburgern oder Richard Löwenherz - sind überregional Programm.',
     imageHue: 4,
     coordinates: [49.3170, 8.4422],
     openingHours: "Di-So 10:00-18:00 · Mo geschlossen",
@@ -119,7 +119,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Eines der größten Technikmuseen Europas. Lufthansa-Jumbo, U-Boot U9, russische Buran-Raumfähre, IMAX-Dome.",
     longDesc:
-      "Das Technik Museum Speyer ist ein Publikumsmagnet weit über die Region hinaus. Eine Lufthansa-Boeing 747 lässt sich begehen, ebenso das U-Boot U9. Highlight ist die sowjetische Raumfähre Buran in der Raumfahrt-Halle — das einzige Exemplar außerhalb Russlands. Dazu Oldtimer, Lokomotiven, Flugzeuge, ein IMAX-Dome-Kino und ein gemeinsames Kombiticket mit dem Schwester-Museum in Sinsheim.",
+      "Das Technik Museum Speyer ist ein Publikumsmagnet weit über die Region hinaus. Eine Lufthansa-Boeing 747 lässt sich begehen, ebenso das U-Boot U9. Highlight ist die sowjetische Raumfähre Buran in der Raumfahrt-Halle - das einzige Exemplar außerhalb Russlands. Dazu Oldtimer, Lokomotiven, Flugzeuge, ein IMAX-Dome-Kino und ein gemeinsames Kombiticket mit dem Schwester-Museum in Sinsheim.",
     imageHue: 2,
     coordinates: [49.3036, 8.4477],
     openingHours: "Täglich 9:00-18:00",
@@ -153,7 +153,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Neugotische Kirche von 1904. Erinnert an die Protestation der evangelischen Stände vor dem Reichstag zu Speyer 1529.",
     longDesc:
-      'Die Gedächtniskirche wurde 1893-1904 erbaut, um an die "Speyerer Protestation" von 1529 zu erinnern — die Geburtsstunde des Begriffs "Protestanten". Der neugotische Bau mit 100 Meter hohem Turm ist Speyers höchste Kirche nach dem Dom und liegt eine Minute vom Altpörtel entfernt. Glasfenster und Reliefs erzählen die Reformationsgeschichte.',
+      'Die Gedächtniskirche wurde 1893-1904 erbaut, um an die "Speyerer Protestation" von 1529 zu erinnern - die Geburtsstunde des Begriffs "Protestanten". Der neugotische Bau mit 100 Meter hohem Turm ist Speyers höchste Kirche nach dem Dom und liegt eine Minute vom Altpörtel entfernt. Glasfenster und Reliefs erzählen die Reformationsgeschichte.',
     imageHue: 1,
     coordinates: [49.3203, 8.4361],
     openingHours: "April-Okt: täglich 10:00-18:00",
@@ -214,7 +214,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Das letzte erhaltene Rheintor der mittelalterlichen Stadtmauer. Tor zum Fischerquartier und zum Fluss.",
     longDesc:
-      "Das Fischertor war eines von mehreren Rheintoren der mittelalterlichen Stadtbefestigung. Heute ist es das einzige erhaltene. Es markiert den Übergang vom Domquartier zum ehemaligen Hasenpfuhl, dem alten Fischerviertel direkt am Rhein. Schlichter Wehrbau, romanische Linien — und ein guter Anlaufpunkt für einen Rhein-Spaziergang.",
+      "Das Fischertor war eines von mehreren Rheintoren der mittelalterlichen Stadtbefestigung. Heute ist es das einzige erhaltene. Es markiert den Übergang vom Domquartier zum ehemaligen Hasenpfuhl, dem alten Fischerviertel direkt am Rhein. Schlichter Wehrbau, romanische Linien - und ein guter Anlaufpunkt für einen Rhein-Spaziergang.",
     imageHue: 4,
     coordinates: [49.3158, 8.4453],
   },
@@ -263,7 +263,7 @@ export const sights: Sight[] = [
     shortDesc:
       "Wissenschaftliche Landesbibliothek mit Pfalz-Schwerpunkt. Lesesaal in moderner Architektur, kostenfrei zugänglich.",
     longDesc:
-      "Die Pfälzische Landesbibliothek ist die wissenschaftliche Regionalbibliothek der Pfalz. Schwerpunkte sind pfälzische Landesgeschichte, Reformation und Wein. Der moderne Neubau an der Otto-Mayer-Straße ist tagsüber öffentlich zugänglich — auch wenn man keine Recherche betreibt, lohnt sich der Lesesaal als ruhiger Anlaufpunkt.",
+      "Die Pfälzische Landesbibliothek ist die wissenschaftliche Regionalbibliothek der Pfalz. Schwerpunkte sind pfälzische Landesgeschichte, Reformation und Wein. Der moderne Neubau an der Otto-Mayer-Straße ist tagsüber öffentlich zugänglich - auch wenn man keine Recherche betreibt, lohnt sich der Lesesaal als ruhiger Anlaufpunkt.",
     imageHue: 4,
     coordinates: [49.3201, 8.4356],
     openingHours: "Mo-Fr 9:00-19:00, Sa 9:00-13:00",

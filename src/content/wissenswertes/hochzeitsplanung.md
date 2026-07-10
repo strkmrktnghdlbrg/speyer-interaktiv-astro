@@ -3,9 +3,9 @@ title: "Hochzeitsplanung in Speyer"
 lead: "Speyer ist als Hochzeitsstadt überraschend vielfältig. Vom Dom über die Dreifaltigkeitskirche bis zur Klosterkapelle St. Magdalena gibt es atmosphärische Trauungsorte und passende Locations für das Fest."
 ---
 
-Die Hochzeit ist für viele der wichtigste Tag im Leben. In einer Stadt wie Speyer, mit ihrer dichten historischen Kulisse, dem Kaiserdom als Wahrzeichen und einer guten gastronomischen Infrastruktur, lässt sich daraus ein besonderes Erlebnis machen. Wer in Speyer heiraten will, hat viele Möglichkeiten — und entsprechend viel zu planen.
+Die Hochzeit ist für viele der wichtigste Tag im Leben. In einer Stadt wie Speyer, mit ihrer dichten historischen Kulisse, dem Kaiserdom als Wahrzeichen und einer guten gastronomischen Infrastruktur, lässt sich daraus ein besonderes Erlebnis machen. Wer in Speyer heiraten will, hat viele Möglichkeiten - und entsprechend viel zu planen.
 
-## Hochzeitsplanung — was ist das eigentlich?
+## Hochzeitsplanung - was ist das eigentlich?
 
 Eine Hochzeitsplanung ist die Vorbereitung und Organisation einer Hochzeit. Sie beginnt in der Regel lange vor dem großen Tag, weil viele Details zu beachten sind. Dazu gehören die Suche nach einem passenden Ort für Zeremonie und Fest, die Auswahl von Dekoration und Blumenschmuck, die Bestellung von Speisen und Getränken sowie die Organisation von Musik und Tanz.
 

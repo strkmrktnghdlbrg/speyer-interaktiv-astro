@@ -28,7 +28,7 @@ export const districts: District[] = [
     shortDesc:
       "Der historische Stadtkern zwischen Kaiserdom, Maximilianstraße und Altpörtel. UNESCO-Welterbe und lebendige Innenstadt zugleich.",
     longDesc:
-      "Die Altstadt — offiziell die Kernstadt — entspricht dem Gebiet innerhalb der mittelalterlichen Stadtmauer. Hier verdichten sich Dom, Judenhof, Historisches Museum, die Dreifaltigkeitskirche und die rund 600 Meter lange Maximilianstraße als Flaniermeile. Die Altstadt ist das touristische Herz Speyers, gleichzeitig Wohn- und Einkaufsquartier.",
+      "Die Altstadt - offiziell die Kernstadt - entspricht dem Gebiet innerhalb der mittelalterlichen Stadtmauer. Hier verdichten sich Dom, Judenhof, Historisches Museum, die Dreifaltigkeitskirche und die rund 600 Meter lange Maximilianstraße als Flaniermeile. Die Altstadt ist das touristische Herz Speyers, gleichzeitig Wohn- und Einkaufsquartier.",
     hue: 1,
     coordinates: [49.3175, 8.4413],
     characterTags: ["UNESCO", "Touristisch", "Maximilianstraße"],
@@ -50,7 +50,7 @@ export const districts: District[] = [
     imageKey: "district:sued",
     name: "Speyer-Süd",
     shortDesc:
-      "Süd mit den Siedlungen Im Oberkämmerer, Neuland und Vogelgesang — Wohnen und Naherholung.",
+      "Süd mit den Siedlungen Im Oberkämmerer, Neuland und Vogelgesang - Wohnen und Naherholung.",
     longDesc:
       "Speyer-Süd umfasst die Siedlungen Im Oberkämmerer, Neuland und Vogelgesang. Es handelt sich überwiegend um Einfamilienhaus-Quartiere mit Schulen, Sportplätzen und dem Vogelgesang als grüner Lunge. Wer in Speyer ruhig und familienfreundlich wohnen will, landet meist hier.",
     hue: 3,
@@ -74,7 +74,7 @@ export const districts: District[] = [
     imageKey: "district:suedwest",
     name: "Speyer-Südwest",
     shortDesc:
-      "Sondergebiet mit Kloster, Hochschule, Krankenhaus und Sportanlagen — der grüne Bildungsgürtel.",
+      "Sondergebiet mit Kloster, Hochschule, Krankenhaus und Sportanlagen - der grüne Bildungsgürtel.",
     longDesc:
       "Speyer-Südwest ist ein Sondergebiet im Westen der Kernstadt. Hier konzentrieren sich Klosteranlagen (St. Magdalena), die Deutsche Universität für Verwaltungswissenschaften, das Diakonissen-Stiftungs-Krankenhaus, die Hochschule und mehrere Sportanlagen. Wohnen spielt hier eine Nebenrolle.",
     hue: 5,
@@ -110,7 +110,7 @@ export const districts: District[] = [
     imageKey: "district:erlach",
     name: "Erlach",
     shortDesc:
-      "Wohn- und Gewerbegebiet östlich der Bundesstraße 9 — Industriestandort mit Stadtnähe.",
+      "Wohn- und Gewerbegebiet östlich der Bundesstraße 9 - Industriestandort mit Stadtnähe.",
     longDesc:
       "Erlach liegt östlich der Bundesstraße 9 und ist ein gemischtes Quartier aus Gewerbeflächen, Logistik und Wohnen. Hier sind einige Speyerer Unternehmen ansässig, und die Lage an der B9 macht den Standort verkehrlich attraktiv.",
     hue: 5,

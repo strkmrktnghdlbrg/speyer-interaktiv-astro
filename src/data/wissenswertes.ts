@@ -29,7 +29,7 @@ export type WissenItem = {
 export const wissenswertes: WissenItem[] = [
   {
     slug: "roemisches-speyer",
-    title: "Römisches Speyer — die Anfänge am Rhein",
+    title: "Römisches Speyer - die Anfänge am Rhein",
     legacyWpUrl: "https://speyer-interaktiv.de/roemisches-speyer/",
     shortDesc:
       "Vom Militärlager Noviomagus zur römischen Civitas: Speyers Anfänge als bedeutende Siedlung am Rhein.",
@@ -40,11 +40,11 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "mittelalterliches-speyer",
-    title: "Mittelalterliches Speyer — Reichsstadt der Kaiser",
+    title: "Mittelalterliches Speyer - Reichsstadt der Kaiser",
     legacyWpUrl: "https://speyer-interaktiv.de/mittelalterliches-speyer/",
     shortDesc:
       "Salier, Reichstage, Hexenverfolgung: Speyer als eine der wichtigsten Städte des Heiligen Römischen Reichs.",
-    lead: 'Im Mittelalter wurde Speyer Bischofssitz, Reichsstadt und Tagungsort bedeutender Reichstage. Hier wurde 1529 die Protestation der evangelischen Stände formuliert, die dem Protestantismus seinen Namen gab. Der Dom als Grablege der Kaiser machte Speyer zur "Caput Sedis" — dem Haupt des Reichs.',
+    lead: 'Im Mittelalter wurde Speyer Bischofssitz, Reichsstadt und Tagungsort bedeutender Reichstage. Hier wurde 1529 die Protestation der evangelischen Stände formuliert, die dem Protestantismus seinen Namen gab. Der Dom als Grablege der Kaiser machte Speyer zur "Caput Sedis" - dem Haupt des Reichs.',
     imageHue: 4,
     categories: ["mittelalter"],
     wordCount: 1380,
@@ -66,18 +66,18 @@ export const wissenswertes: WissenItem[] = [
     legacyWpUrl: "https://speyer-interaktiv.de/dreissigjaehrigen-krieg/",
     shortDesc:
       "Belagerungen, Konfessionskonflikt, Bevölkerungseinbruch: Speyer in der Katastrophe von 1618-1648.",
-    lead: "Der Dreißigjährige Krieg traf Speyer mehrfach — durch Truppendurchzüge, Belagerungen und religiöse Spannungen. Bevölkerung und Wirtschaft brachen ein, die Stadt brauchte Jahrzehnte zur Erholung. Erst die zweite Katastrophe folgte: die fast vollständige Zerstörung 1689 durch französische Truppen.",
+    lead: "Der Dreißigjährige Krieg traf Speyer mehrfach - durch Truppendurchzüge, Belagerungen und religiöse Spannungen. Bevölkerung und Wirtschaft brachen ein, die Stadt brauchte Jahrzehnte zur Erholung. Erst die zweite Katastrophe folgte: die fast vollständige Zerstörung 1689 durch französische Truppen.",
     imageHue: 5,
     categories: ["mittelalter"],
     wordCount: 1340,
   },
   {
     slug: "salier",
-    title: "Die Salier — Speyers Kaiserdynastie",
+    title: "Die Salier - Speyers Kaiserdynastie",
     legacyWpUrl: "https://speyer-interaktiv.de/die-salier/",
     shortDesc:
       "Konrad II., Heinrich III., Heinrich IV., Heinrich V.: Vier salische Kaiser, die Speyer und das Reich prägten.",
-    lead: "Die Salier waren das herrschende Geschlecht des Heiligen Römischen Reichs zwischen 1024 und 1125. Konrad II. begann den Dombau, Heinrich IV. trug ihn zur Vollendung. Alle vier salischen Kaiser fanden ihre letzte Ruhestätte in der Krypta des Speyerer Doms — der bis heute als Symbol mittelalterlichen Kaisertums gilt.",
+    lead: "Die Salier waren das herrschende Geschlecht des Heiligen Römischen Reichs zwischen 1024 und 1125. Konrad II. begann den Dombau, Heinrich IV. trug ihn zur Vollendung. Alle vier salischen Kaiser fanden ihre letzte Ruhestätte in der Krypta des Speyerer Doms - der bis heute als Symbol mittelalterlichen Kaisertums gilt.",
     imageHue: 1,
     categories: ["mittelalter"],
     wordCount: 1410,
@@ -98,7 +98,7 @@ export const wissenswertes: WissenItem[] = [
     title: "Die Baukunst Speyers",
     legacyWpUrl: "https://speyer-interaktiv.de/die-baukunst/",
     shortDesc:
-      "Vom romanischen Dom über barocke Bürgerhäuser bis zur neugotischen Gedächtniskirche — 1000 Jahre Architektur.",
+      "Vom romanischen Dom über barocke Bürgerhäuser bis zur neugotischen Gedächtniskirche - 1000 Jahre Architektur.",
     lead: "Speyers Baugeschichte spannt einen Bogen von der hochromanischen Architektur des Doms über die barocke Wiederaufbau-Phase nach 1689 bis zur historistischen Gedächtniskirche und der Moderne am Rheinhafen. Wer durch die Stadt geht, liest Jahrhunderte ab.",
     imageHue: 1,
     categories: ["barock", "mittelalter"],
@@ -110,17 +110,17 @@ export const wissenswertes: WissenItem[] = [
     legacyWpUrl: "https://speyer-interaktiv.de/archaeologische-funde/",
     shortDesc:
       "Vom jungsteinzeitlichen Skelett bis zum keltischen Fürstengrab: was die Erde unter Speyer alles freigibt.",
-    lead: "Die Stadtarchäologie Speyer hat in den vergangenen Jahrzehnten beeindruckende Funde gemacht — von jungsteinzeitlichen Skeletten über römische Gräber bis zu mittelalterlichen Stadtbefestigungen. Das Archäologische Schaufenster zeigt einen Teil davon publikumsnah.",
+    lead: "Die Stadtarchäologie Speyer hat in den vergangenen Jahrzehnten beeindruckende Funde gemacht - von jungsteinzeitlichen Skeletten über römische Gräber bis zu mittelalterlichen Stadtbefestigungen. Das Archäologische Schaufenster zeigt einen Teil davon publikumsnah.",
     imageHue: 5,
     categories: ["museen"],
     wordCount: 1390,
   },
   {
     slug: "kulturerbe",
-    title: "Speyers Kulturerbe — UNESCO und mehr",
+    title: "Speyers Kulturerbe - UNESCO und mehr",
     legacyWpUrl: "https://speyer-interaktiv.de/kulturerbe/",
     shortDesc:
-      "Zweimal UNESCO: der Kaiserdom seit 1981, die SchUM-Stätten seit 2021 — und was beides für die Stadt bedeutet.",
+      "Zweimal UNESCO: der Kaiserdom seit 1981, die SchUM-Stätten seit 2021 - und was beides für die Stadt bedeutet.",
     lead: "Speyer trägt gleich zwei UNESCO-Welterbe-Titel: den Kaiserdom seit 1981 und die SchUM-Stätten (Speyer-Worms-Mainz) seit 2021. Beide Auszeichnungen prägen das Selbstverständnis der Stadt und ziehen ein internationales Publikum an.",
     imageHue: 1,
     categories: ["unesco-welterbe"],
@@ -142,8 +142,8 @@ export const wissenswertes: WissenItem[] = [
     title: "Kriegsdenkmäler in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/kriegsdenkmaeler/",
     shortDesc:
-      "Wie sich Speyer an die Opfer der Kriege erinnert — und wie sich der Umgang mit Denkmälern über die Jahrzehnte verändert hat.",
-    lead: "In Speyer erinnern mehrere Denkmäler an die Opfer der großen Kriege des 19. und 20. Jahrhunderts. Die Auswahl, Gestaltung und das Verständnis dieser Erinnerungsorte hat sich über die Generationen gewandelt — vom heroischen zum mahnenden Gestus.",
+      "Wie sich Speyer an die Opfer der Kriege erinnert - und wie sich der Umgang mit Denkmälern über die Jahrzehnte verändert hat.",
+    lead: "In Speyer erinnern mehrere Denkmäler an die Opfer der großen Kriege des 19. und 20. Jahrhunderts. Die Auswahl, Gestaltung und das Verständnis dieser Erinnerungsorte hat sich über die Generationen gewandelt - vom heroischen zum mahnenden Gestus.",
     imageHue: 4,
     categories: ["mittelalter"],
     wordCount: 1380,
@@ -161,11 +161,11 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "bim-speyer-zukunft",
-    title: "BIM — Building Information Modeling in Speyer",
+    title: "BIM - Building Information Modeling in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/bim-speyer-zukunft/",
     shortDesc:
       "Wie moderne 3D-Modellierung dabei hilft, historische Bauten zu erhalten und neue Quartiere zu planen.",
-    lead: "Building Information Modeling (BIM) verändert das Bauen weltweit. In Speyer ist die Methode besonders spannend, weil sie das digitale Erfassen historischer Substanz mit der Planung moderner Erweiterungen verbindet — Brücke zwischen Welterbe und Zukunft.",
+    lead: "Building Information Modeling (BIM) verändert das Bauen weltweit. In Speyer ist die Methode besonders spannend, weil sie das digitale Erfassen historischer Substanz mit der Planung moderner Erweiterungen verbindet - Brücke zwischen Welterbe und Zukunft.",
     imageHue: 2,
     categories: [],
     wordCount: 1450,
@@ -186,8 +186,8 @@ export const wissenswertes: WissenItem[] = [
     title: "Hochzeitsplanung in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/hochzeitsplanung/",
     shortDesc:
-      "Wo man in Speyer heiraten kann, vom Dom bis zum Kloster — und was bei der Planung zu beachten ist.",
-    lead: "Speyer ist als Hochzeitsstadt überraschend vielfältig — vom Dom über die Dreifaltigkeitskirche bis zur Klosterkapelle St. Magdalena gibt es atmosphärische Trauungsorte. Dieser Ratgeber führt durch die wichtigsten Optionen und Planungsschritte.",
+      "Wo man in Speyer heiraten kann, vom Dom bis zum Kloster - und was bei der Planung zu beachten ist.",
+    lead: "Speyer ist als Hochzeitsstadt überraschend vielfältig - vom Dom über die Dreifaltigkeitskirche bis zur Klosterkapelle St. Magdalena gibt es atmosphärische Trauungsorte. Dieser Ratgeber führt durch die wichtigsten Optionen und Planungsschritte.",
     imageHue: 4,
     categories: [],
     wordCount: 620,

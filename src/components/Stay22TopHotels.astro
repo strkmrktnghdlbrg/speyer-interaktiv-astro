@@ -33,7 +33,7 @@ const {
   address = `${city.name}, Deutschland`,
   limit = 8,
   title = `Aktuell bestbewertete Hotels in ${city.name}`,
-  lead = "Live von Booking.com — aktuelle Bewertungen und Preise. Aktualisiert beim letzten Build.",
+  lead = "Live von Booking.com - aktuelle Bewertungen und Preise. Aktualisiert beim letzten Build.",
 } = Astro.props;
 
 let hotels: Stay22Accommodation[] | null = null;
@@ -131,7 +131,7 @@ if (visible.length > 0) {
     </div>
 
     <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-slate-steel);">
-      * Sponsored — Buchung läuft über Booking.com via Stay22-Affiliate.
+      * Sponsored - Buchung läuft über Booking.com via Stay22-Affiliate.
       Stand: {buildTime}. Preise und Verfügbarkeit ändern sich täglich.
     </p>
   </section>

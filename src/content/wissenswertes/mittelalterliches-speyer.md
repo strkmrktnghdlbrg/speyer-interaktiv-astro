@@ -1,5 +1,5 @@
 ---
-title: "Mittelalterliches Speyer — Reichsstadt der Kaiser"
+title: "Mittelalterliches Speyer - Reichsstadt der Kaiser"
 lead: 'Im Mittelalter wurde Speyer Bischofssitz, Reichsstadt und Tagungsort bedeutender Reichstage. Der Dom als Grablege der Kaiser machte die Stadt zur „Caput Sedis", dem Haupt des Reichs.'
 ---
 
@@ -25,7 +25,7 @@ Am Marktplatz spielte sich das wirtschaftliche und soziale Leben ab. Hier wurde 
 
 ## Bauten und Stadtbild
 
-Das Stadtbild prägten der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) als überragendes Zentrum, weitere Kirchen und Kapellen, das Rathaus und die Stadtmauer mit ihren Toren und Türmen — vom [Altpörtel](/sehenswuerdigkeiten/altpoertel/) bis zum Fischertor. Bürgerhäuser standen lange in Fachwerk: Holzgerüst mit Lehm-Stroh-Füllung. Erst im Lauf der Zeit setzten sich Steinmauern und Ziegeldächer durch, um die Brandgefahr zu verringern. Der **Stadtbrand von 1689**, ausgelöst durch französische Truppen im Pfälzischen Erbfolgekrieg, vernichtete einen Großteil der mittelalterlichen Substanz. Was wir heute als Altstadt erleben, ist überwiegend nach diesem Brand wiederaufgebaut.
+Das Stadtbild prägten der [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) als überragendes Zentrum, weitere Kirchen und Kapellen, das Rathaus und die Stadtmauer mit ihren Toren und Türmen - vom [Altpörtel](/sehenswuerdigkeiten/altpoertel/) bis zum Fischertor. Bürgerhäuser standen lange in Fachwerk: Holzgerüst mit Lehm-Stroh-Füllung. Erst im Lauf der Zeit setzten sich Steinmauern und Ziegeldächer durch, um die Brandgefahr zu verringern. Der **Stadtbrand von 1689**, ausgelöst durch französische Truppen im Pfälzischen Erbfolgekrieg, vernichtete einen Großteil der mittelalterlichen Substanz. Was wir heute als Altstadt erleben, ist überwiegend nach diesem Brand wiederaufgebaut.
 
 ## Leben der Handwerker
 
