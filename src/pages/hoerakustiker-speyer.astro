@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const title = "Hörakustiker in Speyer: Der große Überblick 2026";
+const description = "Wer in Speyer einen Hörakustiker sucht, findet hier 2 Fachgeschäfte mit Kontaktdaten sowie Antworten zu Kosten und Zuschüssen.";
+const faqLd = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wie viele Hörakustiker gibt es in Speyer?","acceptedAnswer":{"@type":"Answer","text":"In Speyer gibt es aktuell 2 Hörakustiker-Fachgeschäfte, verteilt über das Stadtgebiet. Darunter sind sowohl Filialen bundesweiter Ketten als auch unabhängige Meisterbetriebe."}},{"@type":"Question","name":"Was kostet ein Hörtest beim Hörakustiker?","acceptedAnswer":{"@type":"Answer","text":"In aller Regel nichts: Die Fachgeschäfte in Speyer bieten den Hörtest als kostenlosen Service an. Eingeplant werden sollten 20 bis 30 Minuten, gemessen werden Tongehör und Sprachverstehen, und das Ergebnis wird direkt im Anschluss erklärt."}},{"@type":"Question","name":"Brauche ich ein Rezept vom HNO-Arzt?","acceptedAnswer":{"@type":"Answer","text":"Nur wenn die Krankenkasse mitzahlen soll: Dann führt der Weg zuerst zum HNO-Arzt, der die Hörminderung feststellt und die Versorgung verordnet. Mit dieser Verordnung rechnet der Hörakustiker den Festbetrag direkt mit der Kasse ab. Ein privater Kauf ohne Rezept ist ebenfalls möglich, verschenkt aber den Zuschuss."}},{"@type":"Question","name":"Wie lange dauert die Anpassung eines Hörgeräts?","acceptedAnswer":{"@type":"Answer","text":"Eine gute Anpassung braucht mehrere Termine: Hörtest, Erstberatung, dann ein bis zwei Wochen Probetragen pro Gerät mit anschließender Feinjustierung. Insgesamt sollte man 4 bis 8 Wochen einplanen, bis das Hörgerät wirklich passt."}}]};
+const itemListLd = {"@context":"https://schema.org","@type":"ItemList","name":"Hörakustiker in Speyer","itemListElement":[{"@type":"ListItem","position":1,"name":"Hörakustik Am Roßmarkt GmbH"},{"@type":"ListItem","position":2,"name":"Jürgen Leist Hörgeräte Akustik GmbH"}]};
+---
+
+<BaseLayout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <div class="ha-wrap">
+    <div class="ha-surface">
+      <h1>Hörakustiker in Speyer finden: Der Überblick</h1>
+      <p class="ha-lead">Gutes Hören ist Lebensqualität, und der Weg dorthin beginnt beim Hörakustiker um die Ecke. In Speyer verteilen sich 2 Fachgeschäfte über die Stadt. Hier finden Sie die Adressen im Überblick sowie Antworten auf die Fragen, die vor dem ersten Termin am häufigsten gestellt werden. Eine laufend aktualisierte Liste führt hoer-gut.com unter <a href="https://hoer-gut.com/hoergeraeteakustiker/speyer/">Hörakustiker Speyer</a>.</p>
+
+      <h2>Das Wichtigste in Kürze</h2>
+      <ul>
+        <li>In Speyer gibt es aktuell 2 Hörakustiker-Fachgeschäfte, von der Ketten-Filiale bis zum unabhängigen Meisterbetrieb.</li>
+        <li>Der Hörtest beim Akustiker ist in der Regel kostenlos und dauert etwa 20 bis 30 Minuten.</li>
+        <li>Gesetzliche Kassen zahlen mit HNO-Verordnung einen Festbetrag von ca. 700 Euro pro Hörgerät, die Zuzahlung beträgt 10 Euro.</li>
+        <li>Jedes Fachgeschäft muss mindestens ein zuzahlungsfreies Hörgerät anbieten; Anspruch auf Neuversorgung besteht in der Regel alle 6 Jahre.</li>
+      </ul>
+
+      <h2>Hörakustiker in Speyer im Überblick</h2>
+      <p>Die folgende Liste führt alle 2 Fachgeschäfte in Speyer mit Adresse und Kontakt auf. Öffnungszeiten ändern sich gelegentlich, ein kurzer Anruf vor dem Besuch lohnt sich.</p>
+      <ul class="ha-list">
+        <li class="ha">
+          <span class="ha-name">1. Hörakustik Am Roßmarkt GmbH</span>
+          <span class="ha-lage">Schulplätzel 2, 67346 Speyer</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 06232/28582</span>
+          <span class="ha-hint">Ein kurzer Anruf vorab erspart Wartezeit im Geschäft.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">2. Jürgen Leist Hörgeräte Akustik GmbH</span>
+          <span class="ha-lage">Landauer Str. 1, 67346 Speyer</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 06232/74831</span>
+          <span class="ha-hint">Fragen zu Reparatur und Nachjustierung beantwortet das Team vor Ort.</span>
+        </li>
+      </ul>
+
+      <h2>Hörakustiker im Umland von Speyer</h2>
+      <p>Wer im Umland wohnt oder dort arbeitet, hat weitere Fachgeschäfte in erreichbarer Nähe:</p>
+      <ul class="ha-list">
+        <li class="ha">
+          <span class="ha-name">3. Hörgeräte Hörgeräte Studio Schifferstadt</span>
+          <span class="ha-lage">Kleine Kapellenstr. 4, 67105 Schifferstadt</span>
+          <span class="ha-meta"><strong>Telefon:</strong> 06235/81094</span>
+          <span class="ha-hint">Ein kurzer Anruf vorab erspart Wartezeit im Geschäft.</span>
+        </li>
+        <li class="ha">
+          <span class="ha-name">4. Schaaf &amp; Maier GmbH</span>
+          <span class="ha-lage">Karlsruher Str. 23, 68766 Hockenheim</span>
+          
+          <span class="ha-hint">Fragen zu Reparatur und Nachjustierung beantwortet das Team vor Ort.</span>
+        </li>
+      </ul>
+
+      <div class="ha-box">
+        <div class="ha-box-title">Noch mehr Details zu jedem Fachgeschäft</div>
+        <p class="ha-box-text">Die Adressdaten stammen von <a href="https://hoer-gut.com/hoergeraeteakustiker/speyer/">hoer-gut.com</a>; dort gibt es zu jedem Geschäft eine eigene Profilseite. Zu jedem Eintrag gibt es dort Adresse, Telefonnummer und, wo vorhanden, Website und E-Mail.</p>
+      </div>
+      <h2>So finden Sie den passenden Hörakustiker</h2>
+      <p>Nehmen Sie sich für die Auswahl Zeit und hören Sie auf Ihr Bauchgefühl beim ersten Termin: Wird der Hörtest gründlich gemacht und verständlich erklärt? Werden auch zuzahlungsfreie Geräte gezeigt, ohne dass Sie danach fragen müssen? Dürfen Sie mehrere Modelle im Alltag testen? Wenn ja, sind Sie richtig. Da die Anpassung mehrere Termine erfordert und ein Hörgerät etwa 6 Jahre lang begleitet wird, spielt auch die Erreichbarkeit des Geschäfts eine Rolle.</p>
+
+      <h2>Hörgeräte-Kosten: Das übernimmt die Krankenkasse</h2>
+      <p>Gesetzlich Versicherte haben mit ohrenärztlicher Verordnung Anspruch auf einen Festbetrag der Krankenkasse von ca. 700 Euro pro Hörgerät, dazu kommt lediglich die gesetzliche Zuzahlung von 10 Euro. Jeder Hörakustiker muss mindestens ein Gerät anbieten, das ohne weiteren Eigenanteil vollständig über diesen Festbetrag abgedeckt ist. Wer mehr Komfort möchte, etwa Bluetooth, Akku statt Batterie oder besseres Sprachverstehen in lauter Umgebung, zahlt die Differenz selbst; je nach Modell liegen die Gesamtpreise dann bei ca. 1.000 bis 2.500 Euro pro Ohr. Alle 6 Jahre besteht in der Regel Anspruch auf eine neue Versorgung.</p>
+
+      <h2>Häufig gestellte Fragen</h2>
+      <div class="faq-item">
+        <h3>Wie viele Hörakustiker gibt es in Speyer?</h3>
+        <p>In Speyer gibt es aktuell 2 Hörakustiker-Fachgeschäfte, verteilt über das Stadtgebiet. Darunter sind sowohl Filialen bundesweiter Ketten als auch unabhängige Meisterbetriebe.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Was kostet ein Hörtest beim Hörakustiker?</h3>
+        <p>In aller Regel nichts: Die Fachgeschäfte in Speyer bieten den Hörtest als kostenlosen Service an. Eingeplant werden sollten 20 bis 30 Minuten, gemessen werden Tongehör und Sprachverstehen, und das Ergebnis wird direkt im Anschluss erklärt.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Brauche ich ein Rezept vom HNO-Arzt?</h3>
+        <p>Nur wenn die Krankenkasse mitzahlen soll: Dann führt der Weg zuerst zum HNO-Arzt, der die Hörminderung feststellt und die Versorgung verordnet. Mit dieser Verordnung rechnet der Hörakustiker den Festbetrag direkt mit der Kasse ab. Ein privater Kauf ohne Rezept ist ebenfalls möglich, verschenkt aber den Zuschuss.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Wie lange dauert die Anpassung eines Hörgeräts?</h3>
+        <p>Eine gute Anpassung braucht mehrere Termine: Hörtest, Erstberatung, dann ein bis zwei Wochen Probetragen pro Gerät mit anschließender Feinjustierung. Insgesamt sollte man 4 bis 8 Wochen einplanen, bis das Hörgerät wirklich passt.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .ha-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .ha-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .ha-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .ha-surface .ha-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .ha-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .ha-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 1.5rem 0 0.5rem; }
+  .ha-surface p { margin: 0 0 1.05rem; }
+  .ha-surface ul, .ha-surface ol { margin: 0 0 1.15rem; padding-left: 1.4rem; }
+  .ha-surface li { margin-bottom: 0.5rem; }
+  .ha-surface strong { color: #20233a; font-weight: 700; }
+  .ha-surface a { color: #365DA3; text-decoration: underline; text-underline-offset: 3px; }
+  .ha-surface .ha-list { list-style: none; padding-left: 0; }
+  .ha-surface .ha { display: block; border: 1px solid #e6e6ef; border-radius: 12px; padding: 14px 16px; margin-bottom: 12px; background: #fafafd; }
+  .ha-surface .ha-name { display: block; font-weight: 800; color: #20233a; font-size: 1.05rem; }
+  .ha-surface .ha-lage { display: block; color: #4a4858; margin-top: 2px; }
+  .ha-surface .ha-meta { display: block; color: #33313f; margin-top: 6px; font-size: 0.97rem; }
+  .ha-surface .ha-hint { display: block; color: #6b7280; margin-top: 4px; font-size: 0.94rem; }
+  .ha-box { background: #f4f6fb; border: 1px solid #dde3f0; border-radius: 14px; padding: 22px 24px; margin: 28px 0; }
+  .ha-box-title { font-size: 19px; font-weight: 800; color: #20233a; margin-bottom: 6px; }
+  .ha-box-text { margin: 0; }
+  .ha-surface .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .ha-surface .faq-item h3 { margin-top: 0; font-size: 18px; }
+</style>
