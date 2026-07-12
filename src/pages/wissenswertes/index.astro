@@ -8,6 +8,41 @@ import { city } from "../../data/city";
 
 const title = `Wissenswertes über ${city.name}`;
 const description = `Hintergrund-Artikel zur Geschichte und Kultur ${city.name}s: vom Römerlager über die Salier bis zum UNESCO-Welterbe.`;
+
+// Epochen-Zeitleiste — jede Station verweist auf den passenden Volltext-Artikel.
+// Slugs entsprechen den Einträgen in src/content/wissenswertes/.
+const epochen = [
+  {
+    span: "um 10 n. Chr.",
+    titel: "Römische Anfänge",
+    text: "Als Militärlager Noviomagus beginnt die Siedlungsgeschichte am Rhein.",
+    href: "/wissenswertes/roemisches-speyer/",
+  },
+  {
+    span: "11. Jh.",
+    titel: "Zeitalter der Salier",
+    text: "Kaiser Konrad II. legt den Grundstein zum Dom, der Grablege der Salier.",
+    href: "/wissenswertes/salier/",
+  },
+  {
+    span: "Mittelalter",
+    titel: "Freie Reichsstadt",
+    text: "Bischofssitz, Reichstage und ein Zentrum der Reichspolitik.",
+    href: "/wissenswertes/mittelalterliches-speyer/",
+  },
+  {
+    span: "1529",
+    titel: "Die Protestation",
+    text: "Die Speyerer Protestation gibt dem Protestantismus seinen Namen.",
+    href: "/wissenswertes/reformation/",
+  },
+  {
+    span: "seit 1981",
+    titel: "UNESCO-Welterbe",
+    text: "Der Kaiserdom zählt zum Welterbe der Menschheit.",
+    href: "/wissenswertes/kulturerbe/",
+  },
+];
 ---
 
 <BaseLayout title={title} description={description}>
@@ -17,37 +52,102 @@ const description = `Hintergrund-Artikel zur Geschichte und Kultur ${city.name}s
       { label: "Wissenswertes" },
     ]} />
 
-    <header class="mb-10">
+    <header class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">Geschichte &amp; Kultur</p>
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="font-family: var(--font-display);">
         Wissenswertes über {city.name}
       </h1>
-      <p class="text-lg text-ink-700 max-w-3xl leading-relaxed">
-        Hintergrund-Artikel zu {wissenswertes.length} Themen rund um {city.name}s
-        Geschichte, Architektur und Kultur. Vom römischen Noviomagus bis zur
-        modernen Domstadt am Rhein.
+      <p class="text-lg text-ink-700 leading-relaxed">
+        Wenige Städte in Deutschland tragen so viel Geschichte auf so kleinem Raum
+        wie {city.name}. Auf {wissenswertes.length} Hintergrund-Artikeln folgen wir
+        den Spuren von rund zweitausend Jahren: vom römischen Noviomagus über die
+        Kaiserstadt der Salier und die reformatorische Protestation bis zur heutigen
+        Domstadt am Rhein mit ihren rund {city.population.toLocaleString("de-DE")} Einwohnern.
       </p>
     </header>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {wissenswertes.map((w) => (
-        <a
-          href={`/wissenswertes/${w.slug}/`}
-          class="group block rounded-2xl border border-ink-100 bg-white overflow-hidden transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
-        >
-          <div class="aspect-[4/3] relative">
-            <HueGradient hue={w.imageHue} label={w.title} />
-          </div>
-          <div class="p-5">
-            <h2 class="text-lg font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">
-              {w.title}
-            </h2>
-            <p class="text-sm text-ink-700 leading-relaxed line-clamp-3">
-              {w.shortDesc}
-            </p>
-          </div>
-        </a>
-      ))}
-    </div>
+    <!-- Redaktionelle Einordnung + interne Verweise -->
+    <section class="max-w-3xl mb-12 space-y-4 text-ink-700 leading-relaxed">
+      <p>
+        Am Anfang steht das Wasser: Die günstige Lage am Rhein macht {city.name}
+        schon zur Römerzeit zu einem Knotenpunkt für Handel und Verwaltung. Wie aus
+        dem Lager <a href="/wissenswertes/roemisches-speyer/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Noviomagus eine römische Civitas</a>
+        wird und welche Zeugnisse dieser Epoche bis heute im Boden stecken, zeigen
+        die <a href="/wissenswertes/archaeologische-funde/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">archäologischen Funde</a>
+        aus dem Stadtgebiet.
+      </p>
+      <p>
+        Zur europäischen Bühne wird {city.name} im Mittelalter. Unter den
+        <a href="/wissenswertes/salier/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Saliern</a>
+        entsteht der Dom als größte erhaltene romanische Kirche der Welt, die
+        <a href="/wissenswertes/mittelalterliches-speyer/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">freie Reichsstadt</a>
+        wird Tagungsort bedeutender Reichstage. 1529 formulieren evangelische Stände
+        hier die <a href="/wissenswertes/reformation/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Speyerer Protestation</a>
+        und geben damit dem Protestantismus seinen Namen. Krieg und Zerstörung,
+        etwa im <a href="/wissenswertes/dreissigjaehriger-krieg/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Dreißigjährigen Krieg</a>,
+        gehören ebenso zu dieser Geschichte wie die dunklen Kapitel der
+        <a href="/wissenswertes/hexenverfolgung/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Hexenverfolgung</a>.
+      </p>
+      <p>
+        Was bleibt, ist eine gebaute Erinnerung: Seit 1981 zählt der Kaiserdom zum
+        <a href="/wissenswertes/kulturerbe/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">UNESCO-Welterbe</a>,
+        und die <a href="/wissenswertes/baukunst/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Baukunst</a>
+        der Stadt erzählt jede Epoche mit. Wer die Orte dazu sehen möchte, findet sie
+        unter den <a href="/sehenswuerdigkeiten/" class="underline decoration-[var(--color-accent)] underline-offset-2 hover:text-[var(--color-accent)]">Sehenswürdigkeiten</a>.
+      </p>
+    </section>
+
+    <!-- Epochen-Zeitleiste -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold mb-6" style="font-family: var(--font-display);">
+        Speyer in fünf Epochen
+      </h2>
+      <ol class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        {epochen.map((e) => (
+          <li>
+            <a
+              href={e.href}
+              class="group flex h-full flex-col rounded-2xl border border-ink-100 bg-white p-5 transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
+            >
+              <span class="text-xs font-semibold uppercase tracking-wide text-[var(--color-accent)] mb-1">
+                {e.span}
+              </span>
+              <span class="text-base font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">
+                {e.titel}
+              </span>
+              <span class="text-sm text-ink-700 leading-relaxed">{e.text}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <!-- Alle Artikel -->
+    <section>
+      <h2 class="text-2xl font-bold mb-6" style="font-family: var(--font-display);">
+        Alle Hintergrund-Artikel
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {wissenswertes.map((w) => (
+          <a
+            href={`/wissenswertes/${w.slug}/`}
+            class="group block rounded-2xl border border-ink-100 bg-white overflow-hidden transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
+          >
+            <div class="aspect-[4/3] relative">
+              <HueGradient hue={w.imageHue} label={w.title} />
+            </div>
+            <div class="p-5">
+              <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">
+                {w.title}
+              </h3>
+              <p class="text-sm text-ink-700 leading-relaxed line-clamp-3">
+                {w.shortDesc}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
 
     <GetYourGuideWidget offerKey="page:wissenswertes" />
   </main>

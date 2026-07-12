@@ -19,25 +19,31 @@ export type NewsSource = {
 
 export const newsSources: NewsSource[] = [
   {
-    name: "Die Rheinpfalz",
-    // TODO: RSS-URL verifizieren — Rheinpfalz bietet Ressort-Feeds an
-    rssUrl: "https://www.rheinpfalz.de/rss.feed?resourceId=11717312",
-    websiteUrl: "https://www.rheinpfalz.de",
-    keywords: ["Speyer", "Speyerer"],
+    // Offizieller Feed der Stadtverwaltung Speyer — zu 100 % Speyer-relevant,
+    // daher KEIN Keyword-Filter (viele Titel nennen "Speyer" nicht explizit,
+    // würden sonst fälschlich verworfen). URL verifiziert 2026-07-12 (200, rss+xml).
+    name: "Stadt Speyer Pressemeldungen",
+    rssUrl: "https://www.speyer.de/de/pressemeldungen/rss.xml",
+    websiteUrl: "https://www.speyer.de",
     maxArticlesPerRun: 5,
   },
   {
+    // Landesweiter SWR-Feed → Keyword-Filter auf Speyer zwingend.
+    // URL verifiziert 2026-07-12 (200, rss+xml). Alte index~rss2.xml war 404.
     name: "SWR Aktuell Rheinland-Pfalz",
-    rssUrl: "https://www.swr.de/swraktuell/rheinland-pfalz/index~rss2.xml",
+    rssUrl: "https://www.swr.de/~rss/swraktuell/rheinland-pfalz/index.xml",
     websiteUrl: "https://www.swr.de",
     keywords: ["Speyer", "Speyerer"],
     maxArticlesPerRun: 5,
   },
   {
-    name: "Stadt Speyer Pressemitteilungen",
-    // TODO: RSS-Feed der Stadt Speyer prüfen — derzeit Platzhalter
-    rssUrl: "https://www.speyer.de/rss-pressemitteilungen.xml",
-    websiteUrl: "https://www.speyer.de",
+    // Lokalressort Speyer (deckt auch das direkte Umland ab) → Keyword-Filter
+    // hält die Auswahl auf Speyer fokussiert. Ersetzt den früheren Rheinpfalz-
+    // Eintrag, der keinen öffentlichen RSS-Feed anbietet (Paywall).
+    // URL verifiziert 2026-07-12 (200, rss+xml).
+    name: "Wochenblatt-Reporter Speyer",
+    rssUrl: "https://www.wochenblatt-reporter.de/speyer/rss",
+    websiteUrl: "https://www.wochenblatt-reporter.de",
     keywords: ["Speyer", "Speyerer"],
     maxArticlesPerRun: 5,
   },

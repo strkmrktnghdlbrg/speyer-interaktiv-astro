@@ -9,7 +9,8 @@
  */
 
 export const analytics = {
-  // TODO: GTM-ID für Speyer-Interaktiv nachreichen (Format GTM-XXXXXXX)
+  // GTM-Container für speyer-interaktiv.de (WEBMAGICS-Konto), provisioniert
+  // 2026-07-09. GA4 (G-EGMPZ5SQ1M) läuft über den GA4-Config-Tag im Container.
   gtmId: "GTM-W2JFBBW3",
   enabled: true,
 };
