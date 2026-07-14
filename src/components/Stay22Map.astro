@@ -13,8 +13,11 @@
  */
 import { affiliate, stay22Enabled } from "../data/affiliate";
 import { city } from "../data/city";
+import { type Locale } from "../i18n/config";
+import { t } from "../i18n/ui";
 
 interface Props {
+  locale?: Locale;
   /** Karten-Zentrum (Default: Stadt-Zentrum aus city.ts). */
   lat?: number;
   lng?: number;
@@ -35,6 +38,7 @@ const {
   heightClass = "h-[480px] sm:h-[560px]",
   title,
   lead,
+  locale = "de",
 } = Astro.props;
 
 /**
@@ -65,7 +69,7 @@ const embedUrl = embedId
   <section class="my-12">
     {title && (
       <div class="mb-6 max-w-3xl">
-        <p class="eyebrow mb-2">Hotel-Karte</p>
+        <p class="eyebrow mb-2">{t(locale, "stay22.mapEyebrow")}</p>
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-deep-plum);">
           {title}
         </h2>

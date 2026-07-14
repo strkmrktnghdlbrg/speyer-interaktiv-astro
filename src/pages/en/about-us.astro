@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={tf(locale, "about.title", { site: city.name })}
+  description={tf(locale, "about.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("about", "de"), en: indexUrl("about", "en") }}
+>
+  <main class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "about.eyebrow") }]} />
+
+    <article class="max-w-3xl">
+      <p class="eyebrow mb-2">{t(locale, "about.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+        {tf(locale, "about.heading", { site: city.name })}
+      </h1>
+
+      <div class="prose-content space-y-5 text-base sm:text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        <p>{tf(locale, "about.lead", { site: city.name })}</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">{t(locale, "about.standardsHeading")}</h2>
+        <p>{tf(locale, "about.standardsBody", { site: city.name })}</p>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">{t(locale, "about.selectionHeading")}</h2>
+        <ul class="list-disc pl-6 space-y-1.5">
+          <li>{t(locale, "about.selectionItem1")}</li>
+          <li>{t(locale, "about.selectionItem2")}</li>
+          <li>{t(locale, "about.selectionItem3")}</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">{t(locale, "about.affiliateHeading")}</h2>
+        <p set:html={tf(locale, "about.affiliateBody", {
+          link: `<a class="link-accent font-semibold" href="${indexUrl("privacy", locale)}">${t(locale, "about.privacyLinkLabel")}</a>`,
+        })} />
+
+        <h2 class="text-2xl font-bold mt-8 mb-3" style="color: var(--color-deep-plum);">{t(locale, "about.contactHeading")}</h2>
+        <p set:html={tf(locale, "about.contactBody", {
+          link: `<a class="link-accent font-semibold" href="${indexUrl("imprint", locale)}">${t(locale, "about.imprintLinkLabel")}</a>`,
+        })} />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

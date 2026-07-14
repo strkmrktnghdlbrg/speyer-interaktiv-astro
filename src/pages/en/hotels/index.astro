@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import HotelCard from "../../../components/HotelCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import Stay22Map from "../../../components/Stay22Map.astro";
+import Stay22TopHotels from "../../../components/Stay22TopHotels.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { hotels } from "../../../data/hotels";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+
+const locale = "en";
+const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+---
+
+<BaseLayout
+  title={`Hotels in ${city.name}`}
+  description={tf(locale, "hotels.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("hotels", "de"), en: indexUrl("hotels", "en") }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.hotels") }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">{t(locale, "hotels.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "hotels.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {t(locale, "hotels.intro")}
+      </p>
+    </div>
+
+    <Stay22Map
+      locale={locale}
+      title={tf(locale, "hotels.mapTitle", { site: city.name })}
+      lead={t(locale, "hotels.mapLead")}
+      zoom={13}
+    />
+
+    <Stay22TopHotels
+      locale={locale}
+      title={tf(locale, "hotels.topLiveTitle", { site: city.name })}
+      lead={t(locale, "hotels.topLiveLead")}
+      limit={8}
+    />
+
+    <h2 class="text-2xl font-bold tracking-tight mt-12 mb-6" style="color: var(--color-deep-plum);">
+      {t(locale, "hotels.editorial")}
+    </h2>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {sorted.map((h) => <HotelCard hotel={h} locale={locale} />)}
+    </div>
+
+    <GetYourGuideWidget
+      locale={locale}
+      offerKey="page:hotels"
+      title="Things to do in Speyer"
+      lead="Tours, tickets and day trips to fill your stay - book online, free cancellation on most options."
+    />
+  </div>
+</BaseLayout>

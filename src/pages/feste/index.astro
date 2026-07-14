@@ -10,7 +10,7 @@ const title = `Feste & Veranstaltungen in ${city.name}`;
 const description = `Wiederkehrende Stadtfeste in ${city.name}: Altdeutscher Weihnachtsmarkt, Fastnacht und weitere Höhepunkte des Speyerer Jahres.`;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} alternateUrls={{ de: "/feste/", en: "/en/festivals/" }}>
   <main class="container-page py-10">
     <Breadcrumbs items={[
       { label: "Startseite", href: "/" },

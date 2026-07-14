@@ -1,0 +1,203 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import RelatedItems from "../../../components/RelatedItems.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
+import MapEmbed from "../../../components/MapEmbed.astro";
+import { sights } from "../../../data/sights";
+import { sightsEn } from "../../../i18n/en/sights";
+import { getDistrict } from "../../../data/districts";
+import { districtsEn } from "../../../i18n/en/districts";
+import { topHotelsByDistrict } from "../../../data/hotels";
+import { hotelsEn } from "../../../i18n/en/hotels";
+import { getCategory } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return sights.map((s) => ({ params: { slug: sightsEn[s.slug].slug }, props: { sight: s, en: sightsEn[s.slug] } }));
+}
+
+const { sight, en } = Astro.props;
+const locale = "en";
+const district = getDistrict(sight.district)!;
+const districtEn = districtsEn[sight.district];
+const nearbyHotels = topHotelsByDistrict(sight.district, 3);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "TouristAttraction",
+  name: en.name,
+  description: en.longDesc,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressRegion: "RP", addressCountry: "DE" },
+  geo: { "@type": "GeoCoordinates", latitude: sight.coordinates[0], longitude: sight.coordinates[1] },
+  isAccessibleForFree: sight.priceFrom === null,
+  ...(en.openingHours ? { openingHours: en.openingHours } : {}),
+  ...(sight.websiteUrl ? { url: sight.websiteUrl } : {}),
+};
+---
+
+<BaseLayout
+  title={en.name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{ de: `/sehenswuerdigkeiten/${sight.slug}/`, en: detailUrl("sights", en.slug, locale) }}
+>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={sight.imageKey}
+        fallbackHue={sight.imageHue}
+        fallbackLabel={en.name}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { label: city.name, href: homeUrl(locale) },
+          { label: t(locale, "nav.sights"), href: indexUrl("sights", locale) },
+          { label: districtEn?.name ?? district.name, href: detailUrl("districts", districtEn?.slug ?? district.slug, locale) },
+          { label: en.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{en.type}</span>
+            <a href={detailUrl("districts", districtEn?.slug ?? district.slug, locale)} class="pill-accent hover:underline">
+              {districtEn?.name ?? district.name}
+            </a>
+            {sight.priceFrom === null && <span class="pill-accent">{t(locale, "detail.freeEntry")}</span>}
+            {sight.categories.map((c) => {
+              const cat = getCategory(c);
+              const catEn = categoriesEn[c];
+              return cat ? (
+                <a href={detailUrl("categories", catEn?.slug ?? cat.slug, locale)} class="pill hover:underline">
+                  {catEn?.name ?? cat.name}
+                </a>
+              ) : null;
+            })}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {en.name}
+          </h1>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {en.shortDesc}
+          </p>
+
+          <div class="prose-content max-w-none text-base leading-relaxed" style="color: var(--color-inkwell-purple);">
+            <p>{en.longDesc}</p>
+          </div>
+
+          {sight.websiteUrl && (
+            <div class="mt-6">
+              <a href={sight.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-outline">
+                {t(locale, "detail.officialWebsite")}
+              </a>
+            </div>
+          )}
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start space-y-5">
+          <div class="card p-5">
+            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+              {t(locale, "detail.ataGlance")}
+            </h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.district")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">{districtEn?.name ?? district.name}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.category")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">{en.type}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.admission")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">
+                  {sight.priceFrom === null ? t(locale, "detail.freeEntry") : `from ${sight.priceFrom} €`}
+                </dd>
+              </div>
+              {en.openingHours && (
+                <div class="flex justify-between gap-3">
+                  <dt class="font-semibold shrink-0" style="color: var(--color-slate-steel);">{t(locale, "detail.opening")}</dt>
+                  <dd class="text-right" style="color: var(--color-inkwell-purple);">{en.openingHours}</dd>
+                </div>
+              )}
+            </dl>
+          </div>
+
+          {nearbyHotels.length > 0 && (
+            <div class="card p-5">
+              <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+                {t(locale, "detail.nearbyHotels")}
+              </h3>
+              <ul class="space-y-3">
+                {nearbyHotels.map((h) => (
+                  <li>
+                    <a href={detailUrl("hotels", hotelsEn[h.slug]?.slug ?? h.slug, locale)} class="block hover:underline" style="text-underline-offset: 3px;">
+                      <p class="text-sm font-bold" style="color: var(--color-deep-plum);">
+                        {hotelsEn[h.slug]?.name ?? h.name}
+                      </p>
+                      <p class="text-xs mt-0.5" style="color: var(--color-slate-steel);">
+                        {"★".repeat(h.stars)} · from {h.priceFrom} €/night
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </aside>
+      </div>
+
+      {sight.gygActivityId ? (
+        <GetYourGuideWidget
+          locale={locale}
+          mode="availability"
+          activityId={sight.gygActivityId}
+          numberOfItems={3}
+          cmp={`sight-${sight.slug}-en`}
+          title={`Tickets & tours for ${en.name}`}
+          lead="Book online, skip the line where available, free cancellation on most options."
+        />
+      ) : (
+        <GetYourGuideWidget locale={locale} offerKey={`sight:${sight.slug}`} />
+      )}
+
+      <MapEmbed
+        locale={locale}
+        lat={sight.coordinates[0]}
+        lng={sight.coordinates[1]}
+        label={en.name}
+        zoom={16}
+        title={`Location of ${en.name}`}
+      />
+
+      <Stay22NearbyHotels
+        locale={locale}
+        lat={sight.coordinates[0]}
+        lng={sight.coordinates[1]}
+        near={en.name}
+        radius={1500}
+        limit={4}
+      />
+
+      <RelatedItems locale={locale} district={sight.district} excludeSlug={sight.slug} type="sights" />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

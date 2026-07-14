@@ -9,6 +9,7 @@ import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { hotels, getHotel } from "../../data/hotels";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
+import { hotelsEn } from "../../i18n/en/hotels";
 import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
@@ -38,7 +39,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={hotel.name} description={hotel.shortDesc}>
+<BaseLayout title={hotel.name} description={hotel.shortDesc} alternateUrls={hotelsEn[hotel.slug] ? { de: `/hotels/${hotel.slug}/`, en: `/en/hotels/${hotelsEn[hotel.slug].slug}/` } : undefined}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
       <ContentImage

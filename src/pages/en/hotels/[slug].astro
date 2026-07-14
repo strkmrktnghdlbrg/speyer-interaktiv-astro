@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import BookingCTA from "../../../components/BookingCTA.astro";
+import RelatedItems from "../../../components/RelatedItems.astro";
+import Stay22Map from "../../../components/Stay22Map.astro";
+import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
+import { hotels } from "../../../data/hotels";
+import { hotelsEn } from "../../../i18n/en/hotels";
+import { getDistrict } from "../../../data/districts";
+import { districtsEn } from "../../../i18n/en/districts";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return hotels.map((h) => ({ params: { slug: hotelsEn[h.slug].slug }, props: { hotel: h, en: hotelsEn[h.slug] } }));
+}
+
+const { hotel, en } = Astro.props;
+const locale = "en";
+const district = getDistrict(hotel.district)!;
+const districtEn = districtsEn[hotel.district];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Hotel",
+  name: en.name,
+  description: en.longDesc,
+  starRating: { "@type": "Rating", ratingValue: hotel.stars },
+  aggregateRating: { "@type": "AggregateRating", ratingValue: hotel.rating, bestRating: 10, reviewCount: hotel.reviews },
+  priceRange: `from ${hotel.priceFrom} EUR`,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: "DE" },
+};
+---
+
+<BaseLayout
+  title={en.name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{ de: `/hotels/${hotel.slug}/`, en: detailUrl("hotels", en.slug, locale) }}
+>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={hotel.imageKey}
+        fallbackHue={hotel.imageHue}
+        fallbackLabel={en.name}
+        showCredit
+        loading="eager"
+        sizes="100vw"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { label: city.name, href: homeUrl(locale) },
+          { label: t(locale, "nav.hotels"), href: indexUrl("hotels", locale) },
+          { label: districtEn?.name ?? district.name, href: detailUrl("districts", districtEn?.slug ?? district.slug, locale) },
+          { label: en.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{"★".repeat(hotel.stars)}</span>
+            <a href={detailUrl("districts", districtEn?.slug ?? district.slug, locale)} class="pill-accent hover:underline">
+              {districtEn?.name ?? district.name}
+            </a>
+            {hotel.guestFavorite && <span class="pill-accent">{t(locale, "detail.guestFavorite")}</span>}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {en.name}
+          </h1>
+
+          <div class="flex items-center gap-4 mb-6">
+            <div class="flex items-center gap-1.5">
+              <span class="text-2xl font-bold" style="color: var(--color-accent);">{hotel.rating.toFixed(1)}</span>
+              <span class="text-sm" style="color: var(--color-slate-steel);">/ 10</span>
+            </div>
+            <span style="color: var(--color-lavender-ash);">·</span>
+            <p class="text-sm" style="color: var(--color-shadow-graphite);">
+              {tf(locale, "detail.guestReviews", { n: hotel.reviews })}
+            </p>
+          </div>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {en.shortDesc}
+          </p>
+
+          <div class="prose-content max-w-none text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            <p>{en.longDesc}</p>
+          </div>
+
+          <h2 class="text-xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+            {t(locale, "detail.amenities")}
+          </h2>
+          <div class="flex flex-wrap gap-2 mb-8">
+            {en.amenities.map((a) => <span class="pill">{a}</span>)}
+          </div>
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          <BookingCTA hotel={hotel} locale={locale} />
+        </aside>
+      </div>
+
+      <Stay22Map
+        locale={locale}
+        title={`Hotels around ${en.name}`}
+        lead={`Live prices and availability for ${districtEn?.name ?? district.name} and the surrounding area.`}
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        zoom={15}
+      />
+
+      <Stay22NearbyHotels
+        locale={locale}
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        near={en.name}
+        radius={1500}
+        limit={4}
+      />
+
+      <RelatedItems locale={locale} district={hotel.district} excludeSlug={hotel.slug} type="hotels" title={t(locale, "related.hotels")} />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import SightCard from "../../../components/SightCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { sights } from "../../../data/sights";
+import { sightsEn } from "../../../i18n/en/sights";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+
+const locale = "en";
+const sorted = [...sights].sort((a, b) => sightsEn[a.slug].name.localeCompare(sightsEn[b.slug].name, "en"));
+---
+
+<BaseLayout
+  title={`Attractions in ${city.name}`}
+  description={tf(locale, "sights.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("sights", "de"), en: indexUrl("sights", "en") }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.sights") }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">{t(locale, "sights.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "sights.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {tf(locale, "sights.intro", { site: city.name })}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {sorted.map((s) => <SightCard sight={s} locale={locale} />)}
+    </div>
+
+    <GetYourGuideWidget
+      locale={locale}
+      offerKey="page:sehenswuerdigkeiten"
+      title="Guided tours and tickets in Speyer"
+      lead="Cathedral tours, city walks and skip-the-line tickets - book online, free cancellation on most options."
+    />
+  </div>
+</BaseLayout>

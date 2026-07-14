@@ -87,6 +87,9 @@ export default defineConfig({
         !page.includes("/impressum") &&
         !page.includes("/datenschutz") &&
         !page.includes("/agb") &&
+        !page.includes("/en/imprint") &&
+        !page.includes("/en/privacy") &&
+        !page.includes("/en/terms") &&
         !page.includes("/404") &&
         !page.includes("/werben/buchen") &&
         !page.includes("/news/"),

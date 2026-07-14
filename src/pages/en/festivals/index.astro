@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { feste } from "../../../data/feste";
+import { festeEn } from "../../../i18n/en/feste";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={`Festivals in ${city.name}`}
+  description={tf(locale, "feste.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("feste", "de"), en: indexUrl("feste", "en") }}
+>
+  <main class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.feste") }]} />
+
+    <header class="mb-10">
+      <p class="eyebrow mb-2">{t(locale, "feste.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "feste.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg max-w-3xl leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {tf(locale, "feste.intro", { site: city.name })}
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {feste.map((f) => {
+        const en = festeEn[f.slug];
+        return (
+          <a href={detailUrl("feste", en.slug, locale)} class="card group block overflow-hidden">
+            <div class="aspect-[4/3] relative overflow-hidden">
+              <ContentImage
+                imgKey={f.imageKey}
+                fallbackHue={f.imageHue}
+                fallbackLabel={en.name}
+                imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-6">
+              <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--color-accent);">
+                {en.termin}
+              </p>
+              <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-deep-plum);">
+                {en.name}
+              </h2>
+              <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">
+                {en.shortDesc}
+              </p>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+
+    <GetYourGuideWidget locale={locale} offerKey="page:feste" />
+  </main>
+</BaseLayout>

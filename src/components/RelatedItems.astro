@@ -3,15 +3,18 @@ import { sightsByDistrict } from "../data/sights";
 import { topHotelsByDistrict } from "../data/hotels";
 import SightCard from "./SightCard.astro";
 import HotelCard from "./HotelCard.astro";
+import type { Locale } from "../i18n/config";
+import { t } from "../i18n/ui";
 
 interface Props {
   district: string;
   excludeSlug?: string;
   type?: "sights" | "hotels";
   title?: string;
+  locale?: Locale;
 }
 
-const { district, excludeSlug, type = "sights", title } = Astro.props;
+const { district, excludeSlug, type = "sights", title, locale = "de" } = Astro.props;
 
 const sightItems = sightsByDistrict(district)
   .filter((s) => s.slug !== excludeSlug)
@@ -19,16 +22,18 @@ const sightItems = sightsByDistrict(district)
 const hotelItems = topHotelsByDistrict(district, 4)
   .filter((h) => h.slug !== excludeSlug);
 
-const heading = title ?? (type === "sights" ? "Weitere Sehenswürdigkeiten im Stadtteil" : "Hotels im Stadtteil");
+const heading = title ?? (type === "sights" ? t(locale, "related.sights") : t(locale, "related.hotelsDistrict"));
 ---
 
-<section class="py-12 border-t border-[var(--color-lavender-ash)]">
-  <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
-    {heading}
-  </h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-    {type === "sights"
-      ? sightItems.map((s) => <SightCard sight={s} />)
-      : hotelItems.map((h) => <HotelCard hotel={h} />)}
-  </div>
-</section>
+{(type === "sights" ? sightItems.length : hotelItems.length) > 0 && (
+  <section class="py-12 border-t border-[var(--color-lavender-ash)]">
+    <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+      {heading}
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      {type === "sights"
+        ? sightItems.map((s) => <SightCard sight={s} locale={locale} />)
+        : hotelItems.map((h) => <HotelCard hotel={h} locale={locale} />)}
+    </div>
+  </section>
+)}

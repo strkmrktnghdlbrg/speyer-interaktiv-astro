@@ -11,6 +11,8 @@
  */
 import { searchAccommodations, type Stay22Accommodation } from "../lib/stay22";
 import { affiliate } from "../data/affiliate";
+import { type Locale } from "../i18n/config";
+import { t, tf } from "../i18n/ui";
 
 interface Props {
   lat: number;
@@ -21,9 +23,12 @@ interface Props {
   radius?: number;
   /** Anzahl Hotels (max 6 sinnvoll). */
   limit?: number;
+  locale?: Locale;
 }
 
-const { lat, lng, near, radius = 1500, limit = 4 } = Astro.props;
+const { lat, lng, near, radius = 1500, limit = 4, locale = "de" } = Astro.props;
+const isEn = locale === "en";
+const perNight = isEn ? " / night" : " / Nacht";
 const lmaId = affiliate.stay22.apiAid;
 
 let hotels: Stay22Accommodation[] | null = null;
@@ -37,7 +42,7 @@ try {
     minguestrating: 7.5,
     limit,
     currency: "EUR",
-    lang: "de",
+    lang: locale,
     aid: lmaId,
     campaign: lmaId,
   });
@@ -51,12 +56,12 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
 {visible.length > 0 && (
   <section class="my-10">
     <div class="mb-5">
-      <p class="eyebrow mb-2">Live von Stay22</p>
+      <p class="eyebrow mb-2">{t(locale, "stay22.live")}</p>
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-2" style="color: var(--color-deep-plum);">
-        Hotels in der Nähe von {near}
+        {tf(locale, "stay22.nearbyHeading", { name: near })}
       </h2>
       <p class="text-base leading-relaxed" style="color: var(--color-shadow-graphite);">
-        Aktuelle Preise und Verfügbarkeit. Alle Hotels im Umkreis von {Math.round(radius / 100) * 100} m.
+        {tf(locale, "stay22.nearbyLead", { m: Math.round(radius / 100) * 100 })}
       </p>
     </div>
 
@@ -99,7 +104,7 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
             </h3>
             {h.distance !== undefined && (
               <p class="text-[11px] mb-2" style="color: var(--color-slate-steel);">
-                {Math.round(h.distance)} m entfernt
+                {tf(locale, "stay22.distanceAway", { m: Math.round(h.distance) })}
               </p>
             )}
             {(h.price?.formattedPerNight || h.price?.formattedTotal) && (
@@ -107,7 +112,7 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
                 {h.price?.formattedPerNight ?? h.price?.formattedTotal}
                 {h.price?.formattedPerNight && (
                   <span class="text-xs font-normal" style="color: var(--color-slate-steel);">
-                    {" "}/ Nacht
+                    {perNight}
                   </span>
                 )}
               </p>
@@ -118,7 +123,7 @@ const visible = hotels && hotels.length > 0 ? hotels.slice(0, limit) : [];
     </div>
 
     <p class="text-[11px] mt-3 leading-relaxed" style="color: var(--color-slate-steel);">
-      * Sponsored - Buchung läuft über Booking.com via Stay22-Affiliate.
+      {t(locale, "stay22.sponsored")}
     </p>
   </section>
 )}

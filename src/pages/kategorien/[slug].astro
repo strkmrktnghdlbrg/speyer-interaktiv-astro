@@ -9,6 +9,7 @@ import { categories, getCategory } from "../../data/categories";
 import { sightsByCategory } from "../../data/sights";
 import { restaurantsByCategory } from "../../data/restaurants";
 import { city } from "../../data/city";
+import { categoriesEn } from "../../i18n/en/categories";
 
 export function getStaticPaths() {
   return categories
@@ -62,6 +63,7 @@ const schema = {
 <BaseLayout
   title={`${category.name} in ${city.name}`}
   description={`Alle ${category.name.toLowerCase()} in ${city.name} auf einen Blick. ${category.shortDesc}`}
+  alternateUrls={categoriesEn[category.slug] ? { de: `/kategorien/${category.slug}/`, en: `/en/categories/${categoriesEn[category.slug].slug}/` } : undefined}
 >
   <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[50vh] overflow-hidden">
     <HueGradient hue={((sights[0]?.imageHue ?? 1))} label={category.name} />

@@ -11,6 +11,7 @@ import { getRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
 import { affiliate } from "../../data/affiliate";
+import { guidesEn } from "../../i18n/en/guides";
 
 export function getStaticPaths() {
   return guides.map((g) => ({ params: { slug: g.slug } }));
@@ -58,7 +59,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={guide.title} description={guide.shortDesc}>
+<BaseLayout title={guide.title} description={guide.shortDesc} alternateUrls={guidesEn[guide.slug] ? { de: `/reiseplaner/${guide.slug}/`, en: `/en/travel-planner/${guidesEn[guide.slug].slug}/` } : undefined}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
       <ContentImage

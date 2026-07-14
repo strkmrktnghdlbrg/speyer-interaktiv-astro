@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import SightCard from "../../../components/SightCard.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import HueGradient from "../../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { categories } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { sightsByCategory } from "../../../data/sights";
+import { restaurantsByCategory } from "../../../data/restaurants";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return categories
+    .filter((c) => sightsByCategory(c.slug).length > 0 || restaurantsByCategory(c.slug).length > 0)
+    .map((c) => ({ params: { slug: categoriesEn[c.slug].slug }, props: { category: c, en: categoriesEn[c.slug] } }));
+}
+
+const { category, en } = Astro.props;
+const locale = "en";
+const sights = sightsByCategory(category.slug);
+const restaurants = restaurantsByCategory(category.slug);
+const totalCount = sights.length + restaurants.length;
+const otherCategories = categories.filter((c) => c.slug !== category.slug).slice(0, 4);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${en.name} in ${city.name}`,
+  description: en.shortDesc,
+  numberOfItems: totalCount,
+};
+---
+
+<BaseLayout
+  title={tf(locale, "categories.detailHeading", { name: en.name, site: city.name })}
+  description={tf(locale, "categories.detailMeta", { name: en.name, site: city.name, desc: en.shortDesc })}
+  locale={locale}
+  alternateUrls={{ de: `/kategorien/${category.slug}/`, en: detailUrl("categories", en.slug, locale) }}
+>
+  <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[50vh] overflow-hidden">
+    <HueGradient hue={sights[0]?.imageHue ?? 1} label={en.name} />
+  </div>
+
+  <div class="container-page py-10">
+    <Breadcrumbs
+      locale={locale}
+      items={[
+        { label: city.name, href: homeUrl(locale) },
+        { label: t(locale, "nav.categories"), href: indexUrl("categories", locale) },
+        { label: en.name },
+      ]}
+    />
+
+    <div class="max-w-3xl mb-12">
+      <p class="eyebrow mb-2">{t(locale, "categories.detailEyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "categories.detailHeading", { name: en.name, site: city.name })}
+      </h1>
+      <p class="text-xl leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {en.shortDesc}. {totalCount} {totalCount === 1 ? "entry" : "entries"} from the portal.
+      </p>
+    </div>
+
+    {sights.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+          {t(locale, "categories.sightsHeading")} ({sights.length})
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {sights.map((s) => <SightCard sight={s} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    {restaurants.length > 0 && (
+      <section class="mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+          {t(locale, "categories.restaurantsHeading")} ({restaurants.length})
+        </h2>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {restaurants.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+        </div>
+      </section>
+    )}
+
+    <GetYourGuideWidget locale={locale} offerKey={`category:${category.slug}`} />
+
+    {otherCategories.length > 0 && (
+      <section class="py-10 border-t border-[var(--color-lavender-ash)]">
+        <h2 class="text-xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+          {tf(locale, "categories.otherHeading", { site: city.name })}
+        </h2>
+        <div class="flex flex-wrap gap-3">
+          {otherCategories.map((c) => (
+            <a href={detailUrl("categories", categoriesEn[c.slug]?.slug ?? c.slug, locale)} class="pill hover:underline" style="text-underline-offset: 3px;">
+              {categoriesEn[c.slug]?.name ?? c.name}
+            </a>
+          ))}
+          <a href={indexUrl("categories", locale)} class="pill-accent hover:underline" style="text-underline-offset: 3px;">
+            {t(locale, "categories.all")}
+          </a>
+        </div>
+      </section>
+    )}
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

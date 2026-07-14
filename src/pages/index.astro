@@ -70,7 +70,7 @@ const homepageSchema = [
 ];
 ---
 
-<BaseLayout title={city.name} description={city.description.short}>
+<BaseLayout title={city.name} description={city.description.short} alternateUrls={{ de: "/", en: "/en/" }}>
   <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} is:inline />
   <section
     class="relative overflow-hidden"

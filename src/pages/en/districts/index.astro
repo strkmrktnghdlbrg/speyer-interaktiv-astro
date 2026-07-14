@@ -1,0 +1,39 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import DistrictCard from "../../../components/DistrictCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { districts } from "../../../data/districts";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={`Neighborhoods in ${city.name}`}
+  description={tf(locale, "districts.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("districts", "de"), en: indexUrl("districts", "en") }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.districts") }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">{t(locale, "districts.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "districts.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {t(locale, "districts.intro")}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {districts.map((d) => <DistrictCard district={d} locale={locale} />)}
+    </div>
+
+    <GetYourGuideWidget locale={locale} offerKey="page:stadtteile" />
+  </div>
+</BaseLayout>

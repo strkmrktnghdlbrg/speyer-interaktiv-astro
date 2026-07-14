@@ -20,6 +20,7 @@ const withCounts = categories
 <BaseLayout
   title={`${city.name} nach Kategorien`}
   description={`${city.name} nach Interessen entdecken: Wahrzeichen, Museen, Kirchen, Parks, Familienspots und Feste.`}
+  alternateUrls={{ de: "/kategorien/", en: "/en/categories/" }}
 >
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Kategorien" }]} />

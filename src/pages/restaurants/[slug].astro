@@ -8,6 +8,7 @@ import { restaurants, getRestaurant, restaurantsByDistrict } from "../../data/re
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
 import { city } from "../../data/city";
+import { restaurantsEn } from "../../i18n/en/restaurants";
 import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
@@ -44,7 +45,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={restaurant.name} description={restaurant.shortDesc}>
+<BaseLayout title={restaurant.name} description={restaurant.shortDesc} alternateUrls={restaurantsEn[restaurant.slug] ? { de: `/restaurants/${restaurant.slug}/`, en: `/en/restaurants/${restaurantsEn[restaurant.slug].slug}/` } : undefined}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
       <ContentImage

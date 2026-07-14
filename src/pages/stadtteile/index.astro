@@ -7,7 +7,7 @@ import { districts } from "../../data/districts";
 import { city } from "../../data/city";
 ---
 
-<BaseLayout title={`Stadtteile in ${city.name}`} description={`Alle Stadtteile und Quartiere von ${city.name} im Überblick. Von der Altstadt über Speyer-Nord bis zum Rheinhafen.`}>
+<BaseLayout title={`Stadtteile in ${city.name}`} description={`Alle Stadtteile und Quartiere von ${city.name} im Überblick. Von der Altstadt über Speyer-Nord bis zum Rheinhafen.`} alternateUrls={{ de: "/stadtteile/", en: "/en/districts/" }}>
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Stadtteile" }]} />
 

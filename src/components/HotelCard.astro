@@ -2,54 +2,68 @@
 import ContentImage from "./ContentImage.astro";
 import type { Hotel } from "../data/hotels";
 import { getDistrict } from "../data/districts";
+import { type Locale, detailUrl } from "../i18n/config";
+import { hotelsEn } from "../i18n/en/hotels";
+import { districtsEn } from "../i18n/en/districts";
 
 interface Props {
   hotel: Hotel;
+  locale?: Locale;
 }
 
-const { hotel } = Astro.props;
+const { hotel, locale = "de" } = Astro.props;
+const isEn = locale === "en";
 const district = getDistrict(hotel.district);
+const en = isEn ? hotelsEn[hotel.slug] : undefined;
 const starsLabel = "★".repeat(hotel.stars);
+
+const href = isEn ? detailUrl("hotels", en!.slug, "en") : `/hotels/${hotel.slug}/`;
+const name = en?.name ?? hotel.name;
+const shortDesc = en?.shortDesc ?? hotel.shortDesc;
+const districtName = isEn ? (districtsEn[hotel.district]?.name ?? district?.name ?? hotel.district) : (district?.name ?? hotel.district);
+const favLabel = isEn ? "★ Guest favorite" : "★ Gästeliebling";
+const perNight = isEn ? " / night" : " / Nacht";
+const reviewsLabel = isEn ? "reviews" : "Bew.";
 ---
 
-<a href={`/hotels/${hotel.slug}/`} class="card group block">
+<a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
     <ContentImage
       imgKey={hotel.imageKey}
       fallbackHue={hotel.imageHue}
-      fallbackLabel={hotel.name}
+      fallbackLabel={name}
       imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute top-3 left-3 flex flex-col gap-1.5">
       {hotel.guestFavorite && (
-        <span class="pill-accent">★ Gästeliebling</span>
+        <span class="pill-accent">{favLabel}</span>
       )}
       <span class="pill bg-white/95 backdrop-blur-sm">{starsLabel}</span>
     </div>
   </div>
   <div class="p-3">
     <p class="text-xs font-semibold mb-1" style="color: var(--color-slate-steel);">
-      {district?.name ?? hotel.district}
+      {districtName}
     </p>
     <h3
       class="text-base font-bold tracking-tight leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
       style="color: var(--color-deep-plum);"
     >
-      {hotel.name}
+      {name}
     </h3>
     <p class="text-xs leading-relaxed line-clamp-2 mb-2" style="color: var(--color-shadow-graphite);">
-      {hotel.shortDesc}
+      {shortDesc}
     </p>
     <div class="flex items-end justify-between">
       <div>
-        <p class="text-xs" style="color: var(--color-slate-steel);">ab</p>
+        <p class="text-xs" style="color: var(--color-slate-steel);">{isEn ? "from" : "ab"}</p>
         <p class="text-base font-bold" style="color: var(--color-deep-plum);">
-          {hotel.priceFrom} €<span class="text-xs font-normal" style="color: var(--color-slate-steel);"> / Nacht</span>
+          {hotel.priceFrom} €<span class="text-xs font-normal" style="color: var(--color-slate-steel);">{perNight}</span>
         </p>
       </div>
       <div class="text-right">
         <p class="text-sm font-bold" style="color: var(--color-accent);">{hotel.rating.toFixed(1)}</p>
-        <p class="text-[10px]" style="color: var(--color-slate-steel);">{hotel.reviews} Bew.</p>
+        <p class="text-[10px]" style="color: var(--color-slate-steel);">{hotel.reviews} {reviewsLabel}</p>
       </div>
     </div>
   </div>

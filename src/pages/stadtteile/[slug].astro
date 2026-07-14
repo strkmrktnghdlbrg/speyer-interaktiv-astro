@@ -13,6 +13,7 @@ import { sightsByDistrict } from "../../data/sights";
 import { hotelsByDistrict, topHotelsByDistrict } from "../../data/hotels";
 import { restaurantsByDistrict } from "../../data/restaurants";
 import { city } from "../../data/city";
+import { districtsEn } from "../../i18n/en/districts";
 import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
@@ -42,7 +43,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={`${district.name} – Stadtteil in ${city.name}`} description={district.shortDesc}>
+<BaseLayout title={`${district.name} – Stadtteil in ${city.name}`} description={district.shortDesc} alternateUrls={districtsEn[district.slug] ? { de: `/stadtteile/${district.slug}/`, en: `/en/districts/${districtsEn[district.slug].slug}/` } : undefined}>
   <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
     <ContentImage
       imgKey={district.imageKey}

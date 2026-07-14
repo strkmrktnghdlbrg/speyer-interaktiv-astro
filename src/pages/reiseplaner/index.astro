@@ -10,6 +10,7 @@ import { city } from "../../data/city";
 <BaseLayout
   title={`Reiseplaner für ${city.name}`}
   description={`Vorgeplante ${city.name}-Reisen für jeden Anlass: 2 Tage als Erstbesuch, Wochenende mit Kindern. Fertige Tagespläne mit Hotels und Restaurants.`}
+  alternateUrls={{ de: "/reiseplaner/", en: "/en/travel-planner/" }}
 >
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Reiseplaner" }]} />

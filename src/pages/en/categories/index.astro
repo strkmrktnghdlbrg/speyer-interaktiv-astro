@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import HueGradient from "../../../components/HueGradient.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { categories } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { sightsByCategory } from "../../../data/sights";
+import { restaurantsByCategory } from "../../../data/restaurants";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+const locale = "en";
+const withCounts = categories
+  .map((c, idx) => ({
+    ...c,
+    en: categoriesEn[c.slug],
+    count: sightsByCategory(c.slug).length + restaurantsByCategory(c.slug).length,
+    hue: (idx % 5) + 1,
+  }))
+  .filter((c) => c.count > 0 && c.en);
+---
+
+<BaseLayout
+  title={`${city.name} by category`}
+  description={tf(locale, "categories.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("categories", "de"), en: indexUrl("categories", "en") }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.categories") }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">{t(locale, "categories.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "categories.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {t(locale, "categories.intro")}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {withCounts.map((c) => (
+        <a href={detailUrl("categories", c.en.slug, locale)} class="card group block">
+          <div class="aspect-[4/3] relative overflow-hidden">
+            <HueGradient hue={c.hue} label={c.en.name} />
+          </div>
+          <div class="p-5">
+            <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-deep-plum);">
+              {c.en.name}
+            </h2>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+              {c.en.shortDesc}
+            </p>
+            <p class="text-xs font-bold" style="color: var(--color-accent);">
+              {c.count} {c.count === 1 ? "entry" : "entries"} →
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <GetYourGuideWidget locale={locale} offerKey="page:kategorien" />
+  </div>
+</BaseLayout>

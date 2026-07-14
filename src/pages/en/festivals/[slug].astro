@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { feste } from "../../../data/feste";
+import { festeEn } from "../../../i18n/en/feste";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return feste.map((f) => ({ params: { slug: festeEn[f.slug].slug }, props: { fest: f, en: festeEn[f.slug] } }));
+}
+
+const { fest, en } = Astro.props;
+const locale = "en";
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: en.name,
+  description: en.shortDesc,
+  location: {
+    "@type": "Place",
+    name: `${city.name} Old Town`,
+    address: { "@type": "PostalAddress", addressLocality: city.name, addressRegion: "Rheinland-Pfalz", addressCountry: "DE" },
+    geo: { "@type": "GeoCoordinates", latitude: city.coordinates[0], longitude: city.coordinates[1] },
+  },
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  organizer: { "@type": "Organization", name: `City of ${city.name}`, url: `https://www.${city.slug}.de` },
+  ...(fest.websiteUrl ? { url: fest.websiteUrl } : {}),
+  inLanguage: "en-US",
+};
+---
+
+<BaseLayout
+  title={en.name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{ de: `/feste/${fest.slug}/`, en: detailUrl("feste", en.slug, locale) }}
+>
+  <article class="container-page py-10 max-w-3xl">
+    <Breadcrumbs
+      locale={locale}
+      items={[
+        { label: city.name, href: homeUrl(locale) },
+        { label: t(locale, "nav.feste"), href: indexUrl("feste", locale) },
+        { label: en.name },
+      ]}
+    />
+
+    <div class="aspect-[16/9] relative overflow-hidden rounded-2xl mb-6">
+      <ContentImage
+        imgKey={fest.imageKey}
+        fallbackHue={fest.imageHue}
+        fallbackLabel={en.name}
+        showCredit
+        loading="eager"
+        sizes="(min-width: 1024px) 768px, 100vw"
+      />
+    </div>
+
+    <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--color-accent);">
+      {en.termin}
+    </p>
+    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-6" style="color: var(--color-deep-plum);">
+      {en.name}
+    </h1>
+
+    <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+      {en.lead}
+    </p>
+
+    {fest.websiteUrl && (
+      <p class="mt-6">
+        <a href={fest.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-primary">
+          {tf(locale, "feste.officialWebsite", { name: en.name })}
+        </a>
+      </p>
+    )}
+
+    <GetYourGuideWidget locale={locale} offerKey={`fest:${fest.slug}`} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline />
+  </article>
+</BaseLayout>

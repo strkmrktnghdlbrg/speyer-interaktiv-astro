@@ -3,26 +3,39 @@ import ContentImage from "./ContentImage.astro";
 import type { District } from "../data/districts";
 import { sightsByDistrict } from "../data/sights";
 import { hotelsByDistrict } from "../data/hotels";
+import { type Locale, detailUrl } from "../i18n/config";
+import { districtsEn } from "../i18n/en/districts";
 
 interface Props {
   district: District;
+  locale?: Locale;
 }
 
-const { district } = Astro.props;
+const { district, locale = "de" } = Astro.props;
+const isEn = locale === "en";
+const en = isEn ? districtsEn[district.slug] : undefined;
 const sightCount = sightsByDistrict(district.slug).length;
 const hotelCount = hotelsByDistrict(district.slug).length;
+
+const href = isEn ? detailUrl("districts", en!.slug, "en") : `/stadtteile/${district.slug}/`;
+const name = en?.name ?? district.name;
+const shortDesc = en?.shortDesc ?? district.shortDesc;
+// characterTags werden nicht pro-Tag uebersetzt; auf EN-Karten zeigen wir nur DE-neutrale Kurzform aus dem EN-Datensatz.
+const tags = en?.characterTags ?? district.characterTags;
+const sightsLabel = isEn ? "Sights" : "Sights";
+const hotelsLabel = "Hotels";
 ---
 
-<a href={`/stadtteile/${district.slug}/`} class="card group block">
+<a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
     <ContentImage
       imgKey={district.imageKey}
       fallbackHue={district.hue}
-      fallbackLabel={district.name}
+      fallbackLabel={name}
       imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute bottom-3 left-3 flex flex-wrap gap-1.5">
-      {district.characterTags.slice(0, 2).map((tag) => (
+      {tags.slice(0, 2).map((tag) => (
         <span class="pill bg-white/95 backdrop-blur-sm">{tag}</span>
       ))}
     </div>
@@ -32,14 +45,14 @@ const hotelCount = hotelsByDistrict(district.slug).length;
       class="text-lg font-bold tracking-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
       style="color: var(--color-deep-plum);"
     >
-      {district.name}
+      {name}
     </h3>
     <p class="text-sm leading-relaxed line-clamp-2 mb-3" style="color: var(--color-shadow-graphite);">
-      {district.shortDesc}
+      {shortDesc}
     </p>
     <div class="flex items-center gap-4 text-xs" style="color: var(--color-slate-steel);">
-      <span><strong style="color: var(--color-inkwell-purple);">{sightCount}</strong> Sights</span>
-      <span><strong style="color: var(--color-inkwell-purple);">{hotelCount}</strong> Hotels</span>
+      <span><strong style="color: var(--color-inkwell-purple);">{sightCount}</strong> {sightsLabel}</span>
+      <span><strong style="color: var(--color-inkwell-purple);">{hotelCount}</strong> {hotelsLabel}</span>
     </div>
   </div>
 </a>

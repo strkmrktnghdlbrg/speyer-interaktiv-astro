@@ -3,27 +3,56 @@ import { Image } from "astro:assets";
 import { city } from "../data/city";
 import { features } from "../data/features";
 import logo from "../assets/branding/logo.svg";
+import { type Locale, indexUrl, homeUrl } from "../i18n/config";
+import { t, tf } from "../i18n/ui";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
-const navItems = [
-  { href: "/sehenswuerdigkeiten/", label: "Sehenswürdigkeiten", enabled: true },
-  { href: "/hotels/", label: "Hotels", enabled: true },
-  { href: "/restaurants/", label: "Restaurants", enabled: true },
-  { href: "/stadtteile/", label: "Stadtteile", enabled: true },
-  { href: "/reiseplaner/", label: "Reiseplaner", enabled: features.reiseplaner.enabled },
-  { href: "/wissenswertes/", label: "Wissenswertes", enabled: true },
-  { href: "/feste/", label: "Feste", enabled: true },
-  { href: "/news/", label: "News", enabled: features.news.enabled },
-].filter((item) => item.enabled);
+interface Props {
+  locale?: Locale;
+  alternateUrls?: { de?: string; en?: string };
+}
+
+const { locale = "de", alternateUrls } = Astro.props;
+const isEn = locale === "en";
+
+const navSource = isEn
+  ? [
+      { href: indexUrl("sights", "en"), label: t("en", "nav.sights"), enabled: true },
+      { href: indexUrl("hotels", "en"), label: t("en", "nav.hotels"), enabled: true },
+      { href: indexUrl("restaurants", "en"), label: t("en", "nav.restaurants"), enabled: true },
+      { href: indexUrl("districts", "en"), label: t("en", "nav.districts"), enabled: true },
+      { href: indexUrl("categories", "en"), label: t("en", "nav.categories"), enabled: true },
+      { href: indexUrl("guides", "en"), label: t("en", "nav.guides"), enabled: features.reiseplaner.enabled },
+      { href: indexUrl("feste", "en"), label: t("en", "nav.feste"), enabled: true },
+    ]
+  : [
+      { href: "/sehenswuerdigkeiten/", label: "Sehenswürdigkeiten", enabled: true },
+      { href: "/hotels/", label: "Hotels", enabled: true },
+      { href: "/restaurants/", label: "Restaurants", enabled: true },
+      { href: "/stadtteile/", label: "Stadtteile", enabled: true },
+      { href: "/reiseplaner/", label: "Reiseplaner", enabled: features.reiseplaner.enabled },
+      { href: "/wissenswertes/", label: "Wissenswertes", enabled: true },
+      { href: "/feste/", label: "Feste", enabled: true },
+      { href: "/news/", label: "News", enabled: features.news.enabled },
+    ];
+const navItems = navSource.filter((item) => item.enabled);
+
+const home = homeUrl(locale);
+const searchPlaceholder = tf(locale, "search.placeholder", { site: city.name });
+const searchAria = tf(locale, "aria.search", { site: city.name });
+const menuOpenLabel = isEn ? "Open menu" : "Menü öffnen";
+const menuCloseLabel = isEn ? "Close menu" : "Menü schließen";
+const searchLabel = isEn ? "Search" : "Suchen";
 ---
 
 <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-[var(--color-lavender-ash)]">
   <div class="container-page">
     <div class="flex items-center justify-between h-16 gap-4 md:gap-6">
-      <a href="/" class="flex items-center shrink-0" style="color: var(--color-accent);" aria-label={`${city.name}-Interaktiv Startseite`}>
+      <a href={home} class="flex items-center shrink-0" style="color: var(--color-accent);" aria-label={`${city.name}-Interaktiv`}>
         <Image src={logo} alt={`${city.name}-Interaktiv`} width={280} height={64} class="h-10 w-auto" />
       </a>
 
-      <nav class="hidden lg:flex items-center gap-1" aria-label="Hauptnavigation">
+      <nav class="hidden lg:flex items-center gap-1" aria-label={t(locale, "aria.mainNav")}>
         {navItems.map((item) => (
           <a href={item.href} class="px-3 py-2 text-sm font-semibold rounded-full transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-shadow-graphite);">
             {item.label}
@@ -31,44 +60,47 @@ const navItems = [
         ))}
       </nav>
 
-      <form
-        action="/suche/"
-        method="get"
-        class="hidden md:flex items-center gap-2 flex-1 max-w-xs"
-        role="search"
-      >
-        <div class="relative w-full">
-          <input
-            type="search"
-            name="q"
-            placeholder={`Suche in ${city.name}…`}
-            class="w-full bg-transparent border-b-2 pb-1.5 pt-2 pl-1 pr-8 text-sm focus:outline-none transition-colors"
-            style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
-            onfocus="this.style.borderColor='var(--color-accent)'"
-            onblur="this.style.borderColor='var(--color-lavender-ash)'"
-            aria-label={`Suche in ${city.name}`}
-          />
-          <button
-            type="submit"
-            class="absolute right-0 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 transition-colors"
-            style="color: var(--color-slate-steel);"
-            aria-label="Suchen"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
-          </button>
-        </div>
-      </form>
+      {!isEn && (
+        <form
+          action="/suche/"
+          method="get"
+          class="hidden md:flex items-center gap-2 flex-1 max-w-xs"
+          role="search"
+        >
+          <div class="relative w-full">
+            <input
+              type="search"
+              name="q"
+              placeholder={searchPlaceholder}
+              class="w-full bg-transparent border-b-2 pb-1.5 pt-2 pl-1 pr-8 text-sm focus:outline-none transition-colors"
+              style="border-color: var(--color-lavender-ash); color: var(--color-inkwell-purple);"
+              onfocus="this.style.borderColor='var(--color-accent)'"
+              onblur="this.style.borderColor='var(--color-lavender-ash)'"
+              aria-label={searchAria}
+            />
+            <button
+              type="submit"
+              class="absolute right-0 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-7 h-7 transition-colors"
+              style="color: var(--color-slate-steel);"
+              aria-label={searchLabel}
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      )}
 
       <div class="flex items-center gap-2 shrink-0">
-        <a href="/werben/" class="btn-outline hidden lg:inline-flex">Werben</a>
+        <LanguageSwitcher locale={locale} alternateUrls={alternateUrls} />
+        {!isEn && <a href="/werben/" class="btn-outline hidden lg:inline-flex">Werben</a>}
         <button
           type="button"
           id="mobile-menu-toggle"
           aria-expanded="false"
           aria-controls="mobile-menu"
-          aria-label="Menü öffnen"
+          aria-label={menuOpenLabel}
           class="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded-xl border border-[var(--color-lavender-ash)] hover:bg-[var(--color-porcelain-mist)] transition-colors"
           style="color: var(--color-shadow-graphite);"
         >
@@ -88,17 +120,17 @@ const navItems = [
   class="lg:hidden mobile-menu-panel"
   role="dialog"
   aria-modal="true"
-  aria-label="Mobile Navigation"
+  aria-label={isEn ? "Mobile navigation" : "Mobile Navigation"}
   aria-hidden="true"
 >
     <div class="flex items-center justify-between px-5 py-4 border-b border-[var(--color-lavender-ash)] shrink-0">
-      <a href="/" class="flex items-center shrink-0" aria-label={`${city.name}-Interaktiv Startseite`}>
+      <a href={home} class="flex items-center shrink-0" aria-label={`${city.name}-Interaktiv`}>
         <Image src={logo} alt={`${city.name}-Interaktiv`} width={280} height={64} class="h-8 w-auto" />
       </a>
       <button
         type="button"
         id="mobile-menu-close"
-        aria-label="Menü schließen"
+        aria-label={menuCloseLabel}
         class="inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-[var(--color-porcelain-mist)] transition-colors"
         style="color: var(--color-shadow-graphite);"
       >
@@ -108,35 +140,37 @@ const navItems = [
       </button>
     </div>
 
-    <form
-      action="/suche/"
-      method="get"
-      class="px-5 py-3 border-b border-[var(--color-lavender-ash)] shrink-0"
-      role="search"
-    >
-      <div class="relative w-full">
-        <input
-          type="search"
-          name="q"
-          placeholder={`Suche in ${city.name}…`}
-          class="w-full rounded-full py-2.5 pl-4 pr-11 text-sm focus:outline-none"
-          style="background: var(--color-porcelain-mist); color: var(--color-inkwell-purple);"
-          aria-label={`Suche in ${city.name}`}
-        />
-        <button
-          type="submit"
-          class="absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors"
-          style="color: var(--color-slate-steel);"
-          aria-label="Suchen"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
-          </svg>
-        </button>
-      </div>
-    </form>
+    {!isEn && (
+      <form
+        action="/suche/"
+        method="get"
+        class="px-5 py-3 border-b border-[var(--color-lavender-ash)] shrink-0"
+        role="search"
+      >
+        <div class="relative w-full">
+          <input
+            type="search"
+            name="q"
+            placeholder={searchPlaceholder}
+            class="w-full rounded-full py-2.5 pl-4 pr-11 text-sm focus:outline-none"
+            style="background: var(--color-porcelain-mist); color: var(--color-inkwell-purple);"
+            aria-label={searchAria}
+          />
+          <button
+            type="submit"
+            class="absolute right-1.5 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 rounded-full transition-colors"
+            style="color: var(--color-slate-steel);"
+            aria-label={searchLabel}
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
+        </div>
+      </form>
+    )}
 
-    <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label="Hauptnavigation mobil">
+    <nav class="flex-1 overflow-y-auto px-3 py-4" aria-label={t(locale, "aria.mainNav")}>
       <ul class="space-y-1">
         {navItems.map((item) => (
           <li>
@@ -155,18 +189,20 @@ const navItems = [
       </ul>
 
       <div class="mt-6 pt-6 border-t border-[var(--color-lavender-ash)]">
-        <p class="px-4 mb-2 text-xs uppercase tracking-widest font-bold" style="color: var(--color-slate-steel);">Service</p>
+        <p class="px-4 mb-2 text-xs uppercase tracking-widest font-bold" style="color: var(--color-slate-steel);">{t(locale, "footer.service")}</p>
         <ul class="space-y-1">
-          <li><a href="/impressum/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Impressum</a></li>
-          <li><a href="/datenschutz/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Datenschutz</a></li>
-          <li><a href="/kontakt/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Kontakt</a></li>
+          <li><a href={indexUrl("about", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.about")}</a></li>
+          <li><a href={indexUrl("imprint", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.imprint")}</a></li>
+          <li><a href={indexUrl("privacy", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.privacy")}</a></li>
         </ul>
       </div>
     </nav>
 
-    <div class="px-5 py-4 border-t border-[var(--color-lavender-ash)] shrink-0" style="background: var(--color-porcelain-mist);">
-      <a href="/werben/" class="btn-primary w-full justify-center">Werben auf {city.name}-Interaktiv</a>
-    </div>
+    {!isEn && (
+      <div class="px-5 py-4 border-t border-[var(--color-lavender-ash)] shrink-0" style="background: var(--color-porcelain-mist);">
+        <a href="/werben/" class="btn-primary w-full justify-center">Werben auf {city.name}-Interaktiv</a>
+      </div>
+    )}
   </aside>
 
 <style>
@@ -225,7 +261,6 @@ const navItems = [
       backdrop.classList.toggle('is-open', open);
       menu.setAttribute('aria-hidden', open ? 'false' : 'true');
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       document.body.style.overflow = open ? 'hidden' : '';
     }
     toggle.addEventListener('click', function () { setOpen(!openState); });

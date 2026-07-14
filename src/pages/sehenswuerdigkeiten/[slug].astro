@@ -13,6 +13,7 @@ import { getCategory } from "../../data/categories";
 import { wissenBySightCategories } from "../../data/wissenswertes";
 import { city } from "../../data/city";
 import HotelCard from "../../components/HotelCard.astro";
+import { sightsEn } from "../../i18n/en/sights";
 import { getEntry, render } from "astro:content";
 
 export function getStaticPaths() {
@@ -49,7 +50,7 @@ const schema = {
 };
 ---
 
-<BaseLayout title={sight.name} description={sight.shortDesc}>
+<BaseLayout title={sight.name} description={sight.shortDesc} alternateUrls={sightsEn[sight.slug] ? { de: `/sehenswuerdigkeiten/${sight.slug}/`, en: `/en/attractions/${sightsEn[sight.slug].slug}/` } : undefined}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
       <ContentImage

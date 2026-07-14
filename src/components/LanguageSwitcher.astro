@@ -1,0 +1,44 @@
+---
+import { city } from "../data/city";
+import { type Locale, locales, localeNames, homeUrl } from "../i18n/config";
+import { t } from "../i18n/ui";
+
+interface Props {
+  locale?: Locale;
+  alternateUrls?: { de?: string; en?: string };
+}
+
+const { locale = "de", alternateUrls } = Astro.props;
+
+/**
+ * Ziel-URL je Locale: bevorzugt die seitenspezifische Alternate-URL,
+ * sonst Home-URL der jeweiligen Sprache.
+ */
+function targetFor(target: Locale): string {
+  const alt = alternateUrls?.[target];
+  return alt ?? homeUrl(target);
+}
+---
+
+<div class="flex items-center gap-1" aria-label={t(locale, "aria.langSwitch")} role="group">
+  {locales.map((loc, i) => (
+    <>
+      {i > 0 && <span aria-hidden="true" style="color: var(--color-lavender-ash);">·</span>}
+      {loc === locale ? (
+        <span
+          class="px-1.5 py-1 text-xs font-bold uppercase tracking-wide"
+          style="color: var(--color-inkwell-purple);"
+          aria-current="true"
+        >{loc}</span>
+      ) : (
+        <a
+          href={targetFor(loc)}
+          class="px-1.5 py-1 text-xs font-semibold uppercase tracking-wide rounded transition-colors hover:bg-[var(--color-porcelain-mist)]"
+          style="color: var(--color-slate-steel);"
+          hreflang={loc}
+          aria-label={`${localeNames[loc]} - ${city.name}-Interaktiv`}
+        >{loc}</a>
+      )}
+    </>
+  ))}
+</div>

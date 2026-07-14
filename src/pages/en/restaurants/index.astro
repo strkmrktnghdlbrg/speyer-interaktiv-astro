@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { restaurants } from "../../../data/restaurants";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl } from "../../../i18n/config";
+
+const locale = "en";
+const all = [...restaurants].sort((a, b) =>
+  restaurantsEn[a.slug].name.localeCompare(restaurantsEn[b.slug].name, "en")
+);
+const cuisines = Array.from(new Set(restaurants.map((r) => restaurantsEn[r.slug].cuisine))).sort();
+---
+
+<BaseLayout
+  title={`Restaurants in ${city.name}`}
+  description={tf(locale, "restaurants.metaDescription", { site: city.name })}
+  locale={locale}
+  alternateUrls={{ de: indexUrl("restaurants", "de"), en: indexUrl("restaurants", "en") }}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "nav.restaurants") }]} />
+
+    <div class="max-w-3xl mb-10">
+      <p class="eyebrow mb-2">{t(locale, "restaurants.eyebrow")}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+        {tf(locale, "restaurants.heading", { site: city.name })}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {tf(locale, "restaurants.intro", { n: all.length })}
+      </p>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-10">
+      {cuisines.map((c) => <span class="pill">{c}</span>)}
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {all.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+    </div>
+
+    <GetYourGuideWidget
+      locale={locale}
+      offerKey="page:restaurants"
+      title="Food & wine experiences in the Palatinate"
+      lead="Wine tastings and guided tours in and around Speyer - book online, free cancellation on most options."
+    />
+  </div>
+</BaseLayout>

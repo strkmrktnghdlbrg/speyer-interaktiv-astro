@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { legal } from "../../data/legal";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={t(locale, "privacy.title")}
+  description={tf(locale, "privacy.metaDescription", { site: city.name })}
+  noindex
+  locale={locale}
+  alternateUrls={{ de: indexUrl("privacy", "de"), en: indexUrl("privacy", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "privacy.title") }]} />
+
+    <h1 class="text-3xl sm:text-4xl font-bold mb-8" style="color: var(--color-deep-plum);">
+      {t(locale, "privacy.title")}
+    </h1>
+
+    <div class="blog-prose">
+      <h2>{t(locale, "privacy.controllerHeading")}</h2>
+      <p>{t(locale, "privacy.controllerIntro")}</p>
+      <p>
+        {legal.companyName}<br />
+        {legal.registeredOffice.street}<br />
+        {legal.registeredOffice.postcode} {legal.registeredOffice.city}, {legal.registeredOffice.country}
+      </p>
+      <p>{t(locale, "privacy.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+
+      <h2>{t(locale, "privacy.generalHeading")}</h2>
+      <p>{t(locale, "privacy.generalBody")}</p>
+
+      <h2>{t(locale, "privacy.adsenseHeading")}</h2>
+      <p set:html={tf(locale, "privacy.adsenseBody", {
+        link: `<a href="https://policies.google.com/privacy" rel="noopener" target="_blank">${t(locale, "privacy.googlePrivacyLinkLabel")}</a>`,
+      })} />
+
+      <h2>{t(locale, "privacy.affiliateHeading")}</h2>
+      <p>{t(locale, "privacy.affiliateBody")}</p>
+      <ul>
+        <li><a href="https://stay22.com/privacy" rel="noopener" target="_blank">{t(locale, "privacy.affiliateStay22")}</a></li>
+        <li><a href="https://www.getyourguide.com/legal/privacy-policy" rel="noopener" target="_blank">{t(locale, "privacy.affiliateGyg")}</a></li>
+        <li><a href="https://www.booking.com/content/privacy.html" rel="noopener" target="_blank">{t(locale, "privacy.affiliateBooking")}</a></li>
+      </ul>
+
+      <h2>{t(locale, "privacy.rightsHeading")}</h2>
+      <ul>
+        <li>{t(locale, "privacy.rightsAccess")}</li>
+        <li>{t(locale, "privacy.rightsRectification")}</li>
+        <li>{t(locale, "privacy.rightsErasure")}</li>
+        <li>{t(locale, "privacy.rightsObjection")}</li>
+      </ul>
+      <p>{tf(locale, "privacy.rightsContact", { email: legal.email })}</p>
+
+      <h2>{t(locale, "privacy.lastUpdatedHeading")}</h2>
+      <p>{t(locale, "privacy.lastUpdatedBody")}</p>
+    </div>
+  </div>
+</BaseLayout>

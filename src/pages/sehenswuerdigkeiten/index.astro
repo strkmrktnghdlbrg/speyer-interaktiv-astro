@@ -7,7 +7,7 @@ import { sights } from "../../data/sights";
 import { city } from "../../data/city";
 ---
 
-<BaseLayout title={`Sehenswürdigkeiten in ${city.name}`} description={`Alle Wahrzeichen, Museen und Aussichtspunkte in ${city.name}. Vom Kaiserdom bis zum Technik Museum.`}>
+<BaseLayout title={`Sehenswürdigkeiten in ${city.name}`} description={`Alle Wahrzeichen, Museen und Aussichtspunkte in ${city.name}. Vom Kaiserdom bis zum Technik Museum.`} alternateUrls={{ de: "/sehenswuerdigkeiten/", en: "/en/attractions/" }}>
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Sehenswürdigkeiten" }]} />
 

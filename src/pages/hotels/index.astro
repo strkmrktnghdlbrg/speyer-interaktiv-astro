@@ -11,7 +11,7 @@ import { city } from "../../data/city";
 const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
 ---
 
-<BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in ${city.name}, von 3 bis 5 Sternen, sortiert nach Bewertung. Direkter Booking-Link, beste Preisgarantie.`}>
+<BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in ${city.name}, von 3 bis 5 Sternen, sortiert nach Bewertung. Direkter Booking-Link, beste Preisgarantie.`} alternateUrls={{ de: "/hotels/", en: "/en/hotels/" }}>
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Hotels" }]} />
 

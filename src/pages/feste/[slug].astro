@@ -3,6 +3,7 @@ import BlogArticle from "../../layouts/BlogArticle.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import { feste, getFest } from "../../data/feste";
+import { festeEn } from "../../i18n/en/feste";
 import { city } from "../../data/city";
 
 export function getStaticPaths() {
@@ -50,6 +51,7 @@ const eventSchema = {
   lead={item.lead}
   description={item.shortDesc}
   category="Fest"
+  alternateUrls={festeEn[item.slug] ? { de: `/feste/${item.slug}/`, en: `/en/festivals/${festeEn[item.slug].slug}/` } : undefined}
 >
   <div class="aspect-[16/9] relative overflow-hidden rounded-2xl mb-6">
     <ContentImage

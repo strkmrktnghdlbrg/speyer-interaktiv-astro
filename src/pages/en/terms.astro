@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { legal } from "../../data/legal";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={t(locale, "terms.title")}
+  description={tf(locale, "terms.metaDescription", { site: city.name })}
+  noindex
+  locale={locale}
+  alternateUrls={{ de: indexUrl("terms", "de"), en: indexUrl("terms", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "terms.title") }]} />
+
+    <h1 class="text-3xl sm:text-4xl font-bold mb-8" style="color: var(--color-deep-plum);">
+      {t(locale, "terms.heading")}
+    </h1>
+
+    <div class="blog-prose">
+      <h2>{t(locale, "terms.scopeHeading")}</h2>
+      <p>{tf(locale, "terms.scopeBody", { site: city.name, company: legal.companyName })}</p>
+
+      <h2>{t(locale, "terms.servicesHeading")}</h2>
+      <p>{tf(locale, "terms.servicesBody", { site: city.name })}</p>
+
+      <h2>{t(locale, "terms.affiliateHeading")}</h2>
+      <p>{tf(locale, "terms.affiliateBody", { site: city.name })}</p>
+
+      <h2>{t(locale, "terms.liabilityHeading")}</h2>
+      <p>{t(locale, "terms.liabilityBody")}</p>
+
+      <h2>{t(locale, "terms.copyrightHeading")}</h2>
+      <p>{t(locale, "terms.copyrightBody")}</p>
+
+      <h2>{t(locale, "terms.finalHeading")}</h2>
+      <p>{t(locale, "terms.finalBody")}</p>
+
+      <p style="margin-top: 2rem; font-size: 0.875rem; color: var(--color-slate-steel);">{t(locale, "terms.lastUpdated")}</p>
+    </div>
+  </div>
+</BaseLayout>

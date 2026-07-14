@@ -6,6 +6,7 @@ import { city } from "../data/city";
 import { affiliate, stay22Enabled } from "../data/affiliate";
 import { adsense, adsenseEnabled } from "../data/adsense";
 import { analytics, gtmEnabled } from "../data/analytics";
+import { type Locale, htmlLang, ogLocale } from "../i18n/config";
 
 interface Props {
   title: string;
@@ -13,6 +14,8 @@ interface Props {
   noindex?: boolean;
   canonical?: string;
   ogImage?: string;
+  locale?: Locale;
+  alternateUrls?: { de?: string; en?: string };
 }
 
 const {
@@ -21,18 +24,32 @@ const {
   noindex = false,
   canonical,
   ogImage,
+  locale = "de",
+  alternateUrls,
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, city.domain).toString();
 const fullTitle = title === city.name ? `${city.name} - Stadtportal` : `${title} · ${city.name}-Interaktiv`;
+
+const hreflangAlternates =
+  alternateUrls && (alternateUrls.de || alternateUrls.en)
+    ? [
+        ...(alternateUrls.de ? [{ hreflang: "de", href: `${city.domain}${alternateUrls.de}` }] : []),
+        ...(alternateUrls.en ? [{ hreflang: "en", href: `${city.domain}${alternateUrls.en}` }] : []),
+        ...(alternateUrls.de ? [{ hreflang: "x-default", href: `${city.domain}${alternateUrls.de}` }] : []),
+      ]
+    : [];
 ---
 
 <!doctype html>
-<html lang="de">
+<html lang={htmlLang[locale]}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="canonical" href={canonicalUrl} />
+    {hreflangAlternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
@@ -43,7 +60,7 @@ const fullTitle = title === city.name ? `${city.name} - Stadtportal` : `${title}
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content="de_DE" />
+    <meta property="og:locale" content={ogLocale[locale]} />
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     {stay22Enabled && (
@@ -85,10 +102,10 @@ const fullTitle = title === city.name ? `${city.name} - Stadtportal` : `${title}
         ></iframe>
       </noscript>
     )}
-    <Header />
+    <Header locale={locale} alternateUrls={alternateUrls} />
     <main class="flex-1">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
   </body>
 </html>

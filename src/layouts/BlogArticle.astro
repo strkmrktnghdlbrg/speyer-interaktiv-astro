@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
 import { city } from "../data/city";
+import type { Locale } from "../i18n/config";
 
 interface Crumb {
   label: string;
@@ -19,6 +20,8 @@ interface Props {
   noindex?: boolean;
   /** Optionale Breadcrumb-Pfade; wenn nicht gesetzt, wird [city.name > title] verwendet */
   breadcrumbItems?: Crumb[];
+  locale?: Locale;
+  alternateUrls?: { de?: string; en?: string };
 }
 
 const {
@@ -31,6 +34,8 @@ const {
   description,
   noindex = false,
   breadcrumbItems,
+  locale = "de",
+  alternateUrls,
 } = Astro.props;
 
 const metaDesc = description ?? lead ?? title;
@@ -58,7 +63,7 @@ const formattedDate = publishedAt
   : null;
 ---
 
-<BaseLayout title={title} description={metaDesc} noindex={noindex}>
+<BaseLayout title={title} description={metaDesc} noindex={noindex} locale={locale} alternateUrls={alternateUrls}>
   <article class="container-page py-10">
     <Breadcrumbs items={breadcrumbItems ?? [{ label: city.name, href: "/" }, { label: title }]} />
 

@@ -5,15 +5,33 @@ import { districts } from "../data/districts";
 import { categories } from "../data/categories";
 import { features } from "../data/features";
 import logo from "../assets/branding/logo.svg";
+import { type Locale, homeUrl, indexUrl, detailUrl } from "../i18n/config";
+import { t, tf } from "../i18n/ui";
+import { districtsEn } from "../i18n/en/districts";
+import { categoriesEn } from "../i18n/en/categories";
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = "de" } = Astro.props;
+const isEn = locale === "en";
 const year = new Date().getFullYear();
+
+const districtLink = (slug: string) =>
+  isEn ? detailUrl("districts", districtsEn[slug]?.slug ?? slug, "en") : `/stadtteile/${slug}/`;
+const districtName = (slug: string, fallback: string) =>
+  isEn ? districtsEn[slug]?.name ?? fallback : fallback;
+const categoryLink = (slug: string) =>
+  isEn ? detailUrl("categories", categoriesEn[slug]?.slug ?? slug, "en") : `/kategorien/${slug}/`;
+const categoryName = (slug: string, fallback: string) =>
+  isEn ? categoriesEn[slug]?.name ?? fallback : fallback;
 ---
 
 <footer class="mt-20 border-t border-[var(--color-lavender-ash)] bg-[var(--color-porcelain-mist)]">
   <div class="container-page py-14">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
       <div class="col-span-2 md:col-span-1">
-        <a href="/" class="inline-flex mb-4" style="color: var(--color-accent);" aria-label="Zur Startseite">
+        <a href={homeUrl(locale)} class="inline-flex mb-4" style="color: var(--color-accent);" aria-label={`${city.name}-Interaktiv`}>
           <Image
             src={logo}
             alt={`${city.name}-Interaktiv`}
@@ -23,23 +41,25 @@ const year = new Date().getFullYear();
           />
         </a>
         <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">
-          {city.description.short}
+          {isEn
+            ? "Speyer - two thousand years of history between the Imperial Cathedral and the Rhine. Attractions, hotels, neighborhoods and festivals on one portal."
+            : city.description.short}
         </p>
       </div>
 
       <div>
         <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
-          Stadtteile
+          {t(locale, "footer.districts")}
         </h4>
         <ul class="space-y-2">
           {districts.slice(0, 8).map((d) => (
             <li>
               <a
-                href={`/stadtteile/${d.slug}/`}
+                href={districtLink(d.slug)}
                 class="text-sm hover:underline"
                 style="color: var(--color-shadow-graphite); text-underline-offset: 3px;"
               >
-                {d.name}
+                {districtName(d.slug, d.name)}
               </a>
             </li>
           ))}
@@ -48,17 +68,17 @@ const year = new Date().getFullYear();
 
       <div>
         <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
-          Kategorien
+          {t(locale, "footer.categories")}
         </h4>
         <ul class="space-y-2">
           {categories.slice(0, 8).map((c) => (
             <li>
               <a
-                href={`/kategorien/${c.slug}/`}
+                href={categoryLink(c.slug)}
                 class="text-sm hover:underline"
                 style="color: var(--color-shadow-graphite); text-underline-offset: 3px;"
               >
-                {c.name}
+                {categoryName(c.slug, c.name)}
               </a>
             </li>
           ))}
@@ -67,33 +87,30 @@ const year = new Date().getFullYear();
 
       <div>
         <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
-          Service
+          {t(locale, "footer.service")}
         </h4>
         <ul class="space-y-2">
-          {features.werben.enabled && (
-            <li><a href="/werben/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Werben auf {city.name}-Interaktiv</a></li>
+          {!isEn && features.werben.enabled && (
+            <li><a href="/werben/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{tf(locale, "footer.advertise", { site: city.name })}</a></li>
           )}
           {features.reiseplaner.enabled && (
-            <li><a href="/reiseplaner/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Reiseplaner</a></li>
+            <li><a href={indexUrl("guides", locale)} class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{t(locale, "nav.guides")}</a></li>
           )}
-          <li><a href="/kategorien/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Kategorien</a></li>
-          <li><a href="/promis-in-speyer/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Promis in Speyer</a></li>
-          {features.news.enabled && (
-            <li><a href="/news/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Aktuelle News</a></li>
-          )}
+          <li><a href={indexUrl("categories", locale)} class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{t(locale, "footer.categories")}</a></li>
+          <li><a href={indexUrl("feste", locale)} class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{t(locale, "nav.feste")}</a></li>
         </ul>
       </div>
     </div>
 
     <div class="mt-12 pt-6 border-t border-[var(--color-lavender-ash)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <p class="text-xs" style="color: var(--color-slate-steel);">
-        © {year} {city.name}-Interaktiv. Inhalte unter Quellenangabe.
+        © {tf(locale, "footer.copyright", { year, site: city.name })}
       </p>
       <div class="flex items-center gap-5 flex-wrap">
-        <a href="/ueber-uns/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">Über uns</a>
-        <a href="/impressum/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">Impressum</a>
-        <a href="/datenschutz/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">Datenschutz</a>
-        <a href="/agb/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">AGB</a>
+        <a href={indexUrl("about", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.about")}</a>
+        <a href={indexUrl("imprint", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.imprint")}</a>
+        <a href={indexUrl("privacy", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.privacy")}</a>
+        <a href={indexUrl("terms", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.terms")}</a>
       </div>
     </div>
   </div>

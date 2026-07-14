@@ -13,6 +13,7 @@ const cuisines = Array.from(new Set(restaurants.map((r) => r.cuisine))).sort();
 <BaseLayout
   title={`Restaurants in ${city.name}`}
   description={`Pfälzer Küche, Weinstuben, Brauhäuser, Sterne-Küche, italienische Trattorien und kreative Bistros in allen Stadtteilen von ${city.name}.`}
+  alternateUrls={{ de: "/restaurants/", en: "/en/restaurants/" }}
 >
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Restaurants" }]} />

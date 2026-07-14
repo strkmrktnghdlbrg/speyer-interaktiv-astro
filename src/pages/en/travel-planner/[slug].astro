@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import Stay22TopHotels from "../../../components/Stay22TopHotels.astro";
+import { guides, type SlotType } from "../../../data/guides";
+import { guidesEn } from "../../../i18n/en/guides";
+import { getSight } from "../../../data/sights";
+import { sightsEn } from "../../../i18n/en/sights";
+import { getHotel } from "../../../data/hotels";
+import { hotelsEn } from "../../../i18n/en/hotels";
+import { getRestaurant } from "../../../data/restaurants";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { getDistrict } from "../../../data/districts";
+import { districtsEn } from "../../../i18n/en/districts";
+import { city } from "../../../data/city";
+import { affiliate } from "../../../data/affiliate";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return guides.map((g) => ({ params: { slug: guidesEn[g.slug].slug }, props: { guide: g, en: guidesEn[g.slug] } }));
+}
+
+const { guide, en } = Astro.props;
+const locale = "en";
+
+const slotTypeLabels: Record<SlotType, string> = {
+  morgens: t(locale, "slot.morgens"),
+  mittagessen: t(locale, "slot.mittagessen"),
+  nachmittag: t(locale, "slot.nachmittag"),
+  abendessen: t(locale, "slot.abendessen"),
+  abends: t(locale, "slot.abends"),
+  uebernachten: t(locale, "slot.uebernachten"),
+};
+
+const slotTypeColors: Record<SlotType, string> = {
+  morgens: "var(--color-accent-tint)",
+  mittagessen: "#fef3c7",
+  nachmittag: "#dbeafe",
+  abendessen: "#fce7f3",
+  abends: "#e0e7ff",
+  uebernachten: "var(--color-porcelain-mist)",
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: en.title,
+  description: en.shortDesc,
+  author: { "@type": "Organization", name: `${city.name}-Interaktiv` },
+  publisher: { "@type": "Organization", name: `${city.name}-Interaktiv` },
+  about: { "@type": "City", name: city.name },
+};
+---
+
+<BaseLayout
+  title={en.title}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{ de: `/reiseplaner/${guide.slug}/`, en: detailUrl("guides", en.slug, locale) }}
+>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={guide.imageKey}
+        fallbackHue={guide.imageHue}
+        fallbackLabel={en.title}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { label: city.name, href: homeUrl(locale) },
+          { label: t(locale, "nav.guides"), href: indexUrl("guides", locale) },
+          { label: en.title },
+        ]}
+      />
+
+      <div class="max-w-3xl mb-12">
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="pill-accent">{tf(locale, "guides.days", { n: guide.duration })}</span>
+          <span class="pill">{en.audience}</span>
+          {en.bestSeason && <span class="pill">{t(locale, "guides.bestSeason")} {en.bestSeason}</span>}
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+          {en.title}
+        </h1>
+        <p class="text-xl leading-relaxed" style="color: var(--color-shadow-graphite);">
+          {en.lead}
+        </p>
+      </div>
+
+      <nav class="mb-12 p-5 rounded-2xl" style="background: var(--color-porcelain-mist); border: 1px solid var(--color-lavender-ash);">
+        <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: var(--color-accent);">
+          {t(locale, "guides.toc")}
+        </p>
+        <ol class="space-y-1.5">
+          {guide.days.map((d, di) => (
+            <li>
+              <a href={`#day-${d.number}`} class="text-sm font-semibold hover:underline" style="color: var(--color-inkwell-purple); text-underline-offset: 3px;">
+                <span style="color: var(--color-accent);">{tf(locale, "guides.day", { n: d.number })}</span>
+                {" - "}
+                {en.days[di]?.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      {guide.days.map((day, di) => (
+        <section id={`day-${day.number}`} class="mb-16 scroll-mt-24">
+          <div class="mb-8">
+            <p class="text-sm font-bold uppercase tracking-widest mb-2" style="color: var(--color-accent);">
+              {tf(locale, "guides.day", { n: day.number })}
+            </p>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
+              {en.days[di]?.title}
+            </h2>
+            <p class="text-lg leading-relaxed max-w-3xl" style="color: var(--color-shadow-graphite);">
+              {en.days[di]?.intro}
+            </p>
+          </div>
+
+          <ol class="space-y-6">
+            {day.slots.map((slot, si) => {
+              const slotEn = en.days[di]?.slots[si];
+              const sight = slot.sightSlug ? getSight(slot.sightSlug) : null;
+              const restaurant = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+              const hotel = slot.hotelSlug ? getHotel(slot.hotelSlug) : null;
+              const district = slot.districtSlug ? getDistrict(slot.districtSlug) : null;
+              return (
+                <li class="grid grid-cols-[auto_1fr] gap-4 sm:gap-6">
+                  <div class="text-right pt-1">
+                    <p class="text-xs font-bold whitespace-nowrap" style="color: var(--color-accent);">
+                      {slot.time.split(" – ")[0]}
+                    </p>
+                    {slot.time.includes("–") && (
+                      <p class="text-[10px]" style="color: var(--color-slate-steel);">
+                        {tf(locale, "guides.until", { t: slot.time.split(" – ")[1] })}
+                      </p>
+                    )}
+                  </div>
+                  <div class="rounded-2xl p-5 sm:p-6" style={`background: ${slotTypeColors[slot.type]}; border: 1px solid var(--color-lavender-ash);`}>
+                    <p class="text-[10px] font-bold uppercase tracking-widest mb-2" style="color: var(--color-shadow-graphite);">
+                      {slotTypeLabels[slot.type]}
+                    </p>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2" style="color: var(--color-deep-plum);">
+                      {slotEn?.title}
+                    </h3>
+                    <p class="text-sm sm:text-base leading-relaxed mb-3" style="color: var(--color-inkwell-purple);">
+                      {slotEn?.description}
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      {sight && (
+                        <a href={detailUrl("sights", sightsEn[sight.slug].slug, locale)} class="pill-accent hover:underline">
+                          {sightsEn[sight.slug].name} →
+                        </a>
+                      )}
+                      {restaurant && (
+                        <a href={detailUrl("restaurants", restaurantsEn[restaurant.slug].slug, locale)} class="pill-accent hover:underline">
+                          {restaurantsEn[restaurant.slug].name} →
+                        </a>
+                      )}
+                      {hotel && (
+                        <a href={detailUrl("hotels", hotelsEn[hotel.slug].slug, locale)} class="pill-accent hover:underline">
+                          {hotelsEn[hotel.slug].name} →
+                        </a>
+                      )}
+                      {district && !sight && !restaurant && (
+                        <a href={detailUrl("districts", districtsEn[district.slug].slug, locale)} class="pill hover:underline">
+                          {tf(locale, "slot.district", { name: districtsEn[district.slug].name })}
+                        </a>
+                      )}
+                    </div>
+                    {slotEn?.tip && (
+                      <p class="text-xs leading-relaxed mt-3 pt-3 border-t border-[var(--color-lavender-ash)]" style="color: var(--color-shadow-graphite);">
+                        <strong style="color: var(--color-accent);">{t(locale, "guides.tip")}</strong> {slotEn.tip}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+
+          {day.number === 1 && (
+            <GetYourGuideWidget
+              locale={locale}
+              mode="city"
+              cityQuery={affiliate.getYourGuide.cityQuery}
+              numberOfItems={3}
+              cmp={`travel-planner-${guide.slug}-day1-en`}
+              title="Tours for your first day"
+              lead="Classic highlights ready to book, if you would rather skip the research."
+            />
+          )}
+          {day.number === 2 && (
+            <GetYourGuideWidget
+              locale={locale}
+              mode="activities"
+              q={`${city.name} tour`}
+              numberOfItems={3}
+              cmp={`travel-planner-${guide.slug}-day2-en`}
+              title="Guided tours around day 2"
+              lead="Curated tours that match the focus of this day."
+            />
+          )}
+        </section>
+      ))}
+
+      <Stay22TopHotels
+        locale={locale}
+        title={`Available hotels in ${city.name}`}
+        lead="Live prices and ratings for your dates. Book direct via Booking.com."
+        limit={8}
+      />
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

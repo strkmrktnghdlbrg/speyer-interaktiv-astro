@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { legal } from "../../data/legal";
+import { city } from "../../data/city";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const locale = "en";
+---
+
+<BaseLayout
+  title={t(locale, "imprint.title")}
+  description={t(locale, "imprint.metaDescription")}
+  noindex
+  locale={locale}
+  alternateUrls={{ de: indexUrl("imprint", "de"), en: indexUrl("imprint", "en") }}
+>
+  <div class="container-page py-12 max-w-3xl">
+    <Breadcrumbs locale={locale} items={[{ label: city.name, href: homeUrl(locale) }, { label: t(locale, "imprint.title") }]} />
+
+    <h1 class="text-3xl sm:text-4xl font-bold mb-8" style="color: var(--color-deep-plum);">
+      {t(locale, "imprint.title")}
+    </h1>
+
+    <div class="blog-prose">
+      <h2>{t(locale, "imprint.infoHeading")}</h2>
+      <p>
+        <strong>{legal.companyName}</strong><br />
+        {legal.companyType}
+      </p>
+      <p>
+        {t(locale, "imprint.registeredOffice")}<br />
+        {legal.registeredOffice.street}<br />
+        {legal.registeredOffice.postcode} {legal.registeredOffice.city}<br />
+        {legal.registeredOffice.country}
+      </p>
+
+      <h2>{t(locale, "imprint.registerHeading")}</h2>
+      <p>{t(locale, "imprint.registerBody")}</p>
+
+      <h2>{t(locale, "imprint.contactHeading")}</h2>
+      <p>{t(locale, "imprint.emailLabel")} <a href={`mailto:${legal.email}`}>{legal.email}</a></p>
+
+      {legal.vatId !== "TODO_VAT_ID" && (
+        <>
+          <h2>{t(locale, "imprint.vatHeading")}</h2>
+          <p>{t(locale, "imprint.vatLabel")} {legal.vatId}</p>
+        </>
+      )}
+
+      <h2>{t(locale, "imprint.responsibleHeading")}</h2>
+      <p>
+        {legal.contentResponsible.name}<br />
+        {t(locale, "imprint.responsibleSameOffice")}
+      </p>
+
+      <h2>{t(locale, "imprint.liabilityContentHeading")}</h2>
+      <p>{t(locale, "imprint.liabilityContentBody")}</p>
+
+      <h2>{t(locale, "imprint.liabilityLinksHeading")}</h2>
+      <p>{t(locale, "imprint.liabilityLinksBody")}</p>
+
+      <h2>{t(locale, "imprint.copyrightHeading")}</h2>
+      <p>{tf(locale, "imprint.copyrightBody", { site: city.name })}</p>
+
+      <h2>{t(locale, "imprint.affiliateHeading")}</h2>
+      <p>{t(locale, "imprint.affiliateBody")}</p>
+    </div>
+  </div>
+</BaseLayout>

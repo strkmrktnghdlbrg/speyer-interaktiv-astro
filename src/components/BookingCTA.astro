@@ -1,11 +1,15 @@
 ---
 import type { Hotel } from "../data/hotels";
+import type { Locale } from "../i18n/config";
+import { t } from "../i18n/ui";
 
 interface Props {
   hotel: Hotel;
+  locale?: Locale;
 }
 
-const { hotel } = Astro.props;
+const { hotel, locale = "de" } = Astro.props;
+const isEn = locale === "en";
 ---
 
 <div
@@ -13,13 +17,13 @@ const { hotel } = Astro.props;
   style="background: var(--color-porcelain-mist); border: 1px solid var(--color-lavender-ash);"
 >
   <p class="text-xs font-bold uppercase tracking-widest mb-2" style="color: var(--color-slate-steel);">
-    Direkt buchen
+    {t(locale, "detail.bookDirect")}
   </p>
   <div class="flex items-baseline gap-2 mb-4">
     <span class="text-3xl font-bold" style="color: var(--color-deep-plum);">
       {hotel.priceFrom} €
     </span>
-    <span class="text-sm" style="color: var(--color-slate-steel);">/ Nacht ab</span>
+    <span class="text-sm" style="color: var(--color-slate-steel);">{isEn ? "/ night from" : "/ Nacht ab"}</span>
   </div>
   <a
     href={hotel.bookingUrl}
@@ -27,10 +31,9 @@ const { hotel } = Astro.props;
     target="_blank"
     class="btn-primary w-full"
   >
-    Auf Booking.com prüfen →
+    {t(locale, "detail.checkBooking")}
   </a>
   <p class="text-[11px] mt-3 leading-relaxed" style="color: var(--color-slate-steel);">
-    * Affiliate-Link: Beim Buchen über diesen Link erhalten wir eine
-    Provision, du zahlst keinen Cent mehr.
+    {t(locale, "detail.affiliateNote")}
   </p>
 </div>

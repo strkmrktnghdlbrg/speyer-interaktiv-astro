@@ -2,26 +2,38 @@
 import ContentImage from "./ContentImage.astro";
 import type { Restaurant } from "../data/restaurants";
 import { getDistrict } from "../data/districts";
+import { type Locale, detailUrl } from "../i18n/config";
+import { restaurantsEn } from "../i18n/en/restaurants";
+import { districtsEn } from "../i18n/en/districts";
 
 interface Props {
   restaurant: Restaurant;
+  locale?: Locale;
 }
 
-const { restaurant } = Astro.props;
+const { restaurant, locale = "de" } = Astro.props;
+const isEn = locale === "en";
 const district = getDistrict(restaurant.district);
+const en = isEn ? restaurantsEn[restaurant.slug] : undefined;
+
+const href = isEn ? detailUrl("restaurants", en!.slug, "en") : `/restaurants/${restaurant.slug}/`;
+const name = en?.name ?? restaurant.name;
+const cuisine = en?.cuisine ?? restaurant.cuisine;
+const shortDesc = en?.shortDesc ?? restaurant.shortDesc;
+const districtName = isEn ? (districtsEn[restaurant.district]?.name ?? district?.name ?? restaurant.district) : (district?.name ?? restaurant.district);
 ---
 
-<a href={`/restaurants/${restaurant.slug}/`} class="card group block">
+<a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
     <ContentImage
       imgKey={restaurant.imageKey}
       fallbackHue={restaurant.imageHue}
-      fallbackLabel={restaurant.name}
+      fallbackLabel={name}
       imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute top-3 left-3">
       <span class="pill bg-white/95 backdrop-blur-sm">
-        {restaurant.cuisine}
+        {cuisine}
       </span>
     </div>
     <div class="absolute top-3 right-3">
@@ -32,16 +44,16 @@ const district = getDistrict(restaurant.district);
   </div>
   <div class="p-3">
     <p class="text-xs font-semibold mb-1" style="color: var(--color-slate-steel);">
-      {district?.name ?? restaurant.district}
+      {districtName}
     </p>
     <h3
       class="text-base font-bold tracking-tight leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors"
       style="color: var(--color-deep-plum);"
     >
-      {restaurant.name}
+      {name}
     </h3>
     <p class="text-xs leading-relaxed line-clamp-2" style="color: var(--color-shadow-graphite);">
-      {restaurant.shortDesc}
+      {shortDesc}
     </p>
   </div>
 </a>

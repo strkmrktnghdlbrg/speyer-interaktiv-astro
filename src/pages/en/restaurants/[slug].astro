@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import RestaurantCard from "../../../components/RestaurantCard.astro";
+import Stay22NearbyHotels from "../../../components/Stay22NearbyHotels.astro";
+import { restaurants, restaurantsByDistrict } from "../../../data/restaurants";
+import { restaurantsEn } from "../../../i18n/en/restaurants";
+import { getDistrict } from "../../../data/districts";
+import { districtsEn } from "../../../i18n/en/districts";
+import { getCategory } from "../../../data/categories";
+import { categoriesEn } from "../../../i18n/en/categories";
+import { city } from "../../../data/city";
+import { t, tf } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  return restaurants.map((r) => ({ params: { slug: restaurantsEn[r.slug].slug }, props: { restaurant: r, en: restaurantsEn[r.slug] } }));
+}
+
+const { restaurant, en } = Astro.props;
+const locale = "en";
+const district = getDistrict(restaurant.district)!;
+const districtEn = districtsEn[restaurant.district];
+const related = restaurantsByDistrict(restaurant.district)
+  .filter((r) => r.slug !== restaurant.slug)
+  .slice(0, 4);
+
+const reservationLabel =
+  restaurant.reservation === false
+    ? t(locale, "detail.walkIn")
+    : restaurant.reservation === true
+      ? t(locale, "detail.reservationRecommended")
+      : " - ";
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  name: en.name,
+  description: en.longDesc,
+  servesCuisine: en.cuisine,
+  priceRange: restaurant.priceLevel,
+  address: { "@type": "PostalAddress", addressLocality: city.name, addressRegion: "RP", addressCountry: "DE" },
+  ...(en.openingHours ? { openingHours: en.openingHours } : {}),
+  ...(restaurant.websiteUrl ? { url: restaurant.websiteUrl } : {}),
+  ...(restaurant.reservation !== undefined ? { acceptsReservations: restaurant.reservation } : {}),
+};
+---
+
+<BaseLayout
+  title={en.name}
+  description={en.shortDesc}
+  locale={locale}
+  alternateUrls={{ de: `/restaurants/${restaurant.slug}/`, en: detailUrl("restaurants", en.slug, locale) }}
+>
+  <article>
+    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+      <ContentImage
+        imgKey={restaurant.imageKey}
+        fallbackHue={restaurant.imageHue}
+        fallbackLabel={en.name}
+        showCredit
+        loading="eager"
+        imgClass="w-full h-full object-cover"
+      />
+    </div>
+
+    <div class="container-page py-10">
+      <Breadcrumbs
+        locale={locale}
+        items={[
+          { label: city.name, href: homeUrl(locale) },
+          { label: t(locale, "nav.restaurants"), href: indexUrl("restaurants", locale) },
+          { label: districtEn?.name ?? district.name, href: detailUrl("districts", districtEn?.slug ?? district.slug, locale) },
+          { label: en.name },
+        ]}
+      />
+
+      <div class="grid lg:grid-cols-3 gap-10">
+        <div class="lg:col-span-2">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="pill">{en.cuisine}</span>
+            <span class="pill">{restaurant.priceLevel}</span>
+            <a href={detailUrl("districts", districtEn?.slug ?? district.slug, locale)} class="pill-accent hover:underline">
+              {districtEn?.name ?? district.name}
+            </a>
+            {restaurant.reservation && <span class="pill-accent">{t(locale, "detail.reservationPossible")}</span>}
+            {restaurant.categories.map((c) => {
+              const cat = getCategory(c);
+              const catEn = categoriesEn[c];
+              return cat ? (
+                <a href={detailUrl("categories", catEn?.slug ?? cat.slug, locale)} class="pill hover:underline">
+                  {catEn?.name ?? cat.name}
+                </a>
+              ) : null;
+            })}
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+            {en.name}
+          </h1>
+
+          <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+            {en.shortDesc}
+          </p>
+
+          <div class="prose-content max-w-none text-base leading-relaxed mb-8" style="color: var(--color-inkwell-purple);">
+            <p>{en.longDesc}</p>
+          </div>
+
+          {restaurant.websiteUrl && (
+            <div class="mt-6">
+              <a href={restaurant.websiteUrl} rel="nofollow noopener" target="_blank" class="btn-outline">
+                {t(locale, "detail.website")}
+              </a>
+            </div>
+          )}
+        </div>
+
+        <aside class="lg:sticky lg:top-24 lg:self-start">
+          <div class="card p-5">
+            <h3 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+              {t(locale, "detail.ataGlance")}
+            </h3>
+            <dl class="space-y-3 text-sm">
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.district")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">{districtEn?.name ?? district.name}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.cuisine")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">{en.cuisine}</dd>
+              </div>
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.priceLevel")}</dt>
+                <dd class="font-bold" style="color: var(--color-accent);">{restaurant.priceLevel}</dd>
+              </div>
+              {en.openingHours && (
+                <div class="flex justify-between gap-3">
+                  <dt class="font-semibold shrink-0" style="color: var(--color-slate-steel);">{t(locale, "detail.opening")}</dt>
+                  <dd class="text-right" style="color: var(--color-inkwell-purple);">{en.openingHours}</dd>
+                </div>
+              )}
+              <div class="flex justify-between gap-3">
+                <dt class="font-semibold" style="color: var(--color-slate-steel);">{t(locale, "detail.reservation")}</dt>
+                <dd style="color: var(--color-inkwell-purple);">{reservationLabel}</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+
+      <Stay22NearbyHotels
+        locale={locale}
+        lat={district.coordinates[0]}
+        lng={district.coordinates[1]}
+        near={en.name}
+        radius={1500}
+        limit={4}
+      />
+
+      {related.length > 0 && (
+        <section class="py-12 border-t border-[var(--color-lavender-ash)] mt-10">
+          <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+            {tf(locale, "related.restaurantsIn", { name: districtEn?.name ?? district.name })}
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {related.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+          </div>
+        </section>
+      )}
+    </div>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</BaseLayout>

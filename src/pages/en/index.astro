@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SightCard from "../../components/SightCard.astro";
+import HotelCard from "../../components/HotelCard.astro";
+import RestaurantCard from "../../components/RestaurantCard.astro";
+import DistrictCard from "../../components/DistrictCard.astro";
+import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import { getTopHotels, type Stay22Accommodation } from "../../lib/stay22";
+import { city } from "../../data/city";
+import { affiliate } from "../../data/affiliate";
+import { features } from "../../data/features";
+import { sights } from "../../data/sights";
+import { hotels } from "../../data/hotels";
+import { restaurants } from "../../data/restaurants";
+import { districts } from "../../data/districts";
+import { t, tf } from "../../i18n/ui";
+import { homeUrl, indexUrl } from "../../i18n/config";
+
+const locale = "en";
+const topSights = sights.slice(0, 4);
+const topHotels = hotels.slice(0, 4);
+const topRestaurants = restaurants.slice(0, 4);
+const featuredDistricts = districts.slice(0, 4);
+
+let liveTopHotels: Stay22Accommodation[] | null = null;
+try {
+  liveTopHotels = await getTopHotels(`${city.name}, Germany`, affiliate.stay22.apiAid, { limit: 4 });
+} catch (err) {
+  console.error("[en/index] Stay22 live-hotels build fetch failed:", err);
+}
+const hasLiveHotels = !!liveTopHotels && liveTopHotels.length > 0;
+const hotelBuildDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+
+const homepageSchema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: `${city.name}-Interaktiv`,
+    url: `${city.domain}/en/`,
+    description:
+      "Speyer travel guide - the UNESCO Imperial Cathedral, the ShUM Jewish heritage, the Technik Museum, hotels, restaurants and neighborhoods for your trip.",
+    inLanguage: "en-US",
+  },
+];
+
+const stats = [
+  { label: t(locale, "home.statSights"), value: city.stats.sights },
+  { label: t(locale, "home.statHotels"), value: city.stats.hotels },
+  { label: t(locale, "home.statRestaurants"), value: city.stats.restaurants },
+  { label: t(locale, "home.statDistricts"), value: city.stats.districts },
+];
+---
+
+<BaseLayout
+  title={city.name}
+  description="Speyer travel guide - the UNESCO Imperial Cathedral, the ShUM Jewish heritage, the Technik Museum, hotels, restaurants and neighborhoods, all ready for your trip."
+  locale={locale}
+  alternateUrls={{ de: homeUrl("de"), en: homeUrl("en") }}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} is:inline />
+  <section
+    class="relative overflow-hidden"
+    style="background: linear-gradient(135deg, var(--color-deep-plum) 0%, var(--color-inkwell-purple) 60%, var(--color-accent) 100%);"
+  >
+    <div class="absolute inset-0 opacity-20" aria-hidden="true">
+      <div class="absolute top-10 left-10 w-72 h-72 rounded-full" style="background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 70%);"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 rounded-full" style="background: radial-gradient(circle, rgba(240,85,55,0.5) 0%, transparent 70%);"></div>
+    </div>
+
+    <div class="container-page py-20 sm:py-28 lg:py-32 relative">
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-4">
+          {tf(locale, "home.eyebrow", { site: city.name })}
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
+          {tf(locale, "home.heroTitle", { site: city.name })}
+        </h1>
+        <p class="mt-6 text-lg sm:text-xl leading-relaxed text-white/85 max-w-2xl">
+          {t(locale, "home.heroTagline")}
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={indexUrl("sights", locale)} class="btn-primary bg-white" style="color: var(--color-accent); background: #ffffff;">
+            {t(locale, "home.ctaSights")}
+          </a>
+          <a href={features.reiseplaner.enabled ? indexUrl("guides", locale) : indexUrl("hotels", locale)} class="btn-ghost" style="color: white; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3);">
+            {features.reiseplaner.enabled ? t(locale, "home.ctaGuides") : t(locale, "home.ctaHotels")}
+          </a>
+        </div>
+        <dl class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl">
+          {stats.map((s) => (
+            <div>
+              <dd class="text-3xl font-bold text-white">{s.value}</dd>
+              <dt class="text-xs uppercase tracking-widest text-white/70 mt-1">{s.label}</dt>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">{t(locale, "home.sightsEyebrow")}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          {tf(locale, "home.sightsHeading", { site: city.name })}
+        </h2>
+      </div>
+      <a href={indexUrl("sights", locale)} class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        {t(locale, "home.allSights")}
+      </a>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {topSights.map((s) => <SightCard sight={s} locale={locale} />)}
+    </div>
+  </section>
+
+  <section class="section container-page" style="background: var(--color-porcelain-mist); border-radius: 24px;">
+    <div class="px-4 sm:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <p class="eyebrow mb-2">{t(locale, "home.hotelsEyebrow")}</p>
+          <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            {t(locale, "home.hotelsHeading")}
+          </h2>
+        </div>
+        <a href={indexUrl("hotels", locale)} class="hidden sm:inline-flex link-accent font-semibold text-sm">
+          {t(locale, "home.allHotels")}
+        </a>
+      </div>
+      {hasLiveHotels ? (
+        <>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {liveTopHotels!.map((h) => (
+              <a href={h.link || "#"} target="_blank" rel="sponsored noopener nofollow" class="card group block overflow-hidden hover:shadow-lg transition-all">
+                <div class="aspect-[4/3] relative overflow-hidden bg-[var(--color-porcelain-mist)]">
+                  {h.image ? (
+                    <img src={h.image} alt={h.name} loading="lazy" decoding="async" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  ) : (
+                    <div class="w-full h-full" style="background: var(--color-porcelain-mist);"></div>
+                  )}
+                  <div class="absolute top-3 left-3 flex flex-col gap-1.5">
+                    {h.rating?.score && <span class="pill-accent">{h.rating.score.toFixed(1)} / 10</span>}
+                    {h.starRating && <span class="pill bg-white/95 backdrop-blur-sm">{"★".repeat(Math.round(h.starRating))}</span>}
+                  </div>
+                </div>
+                <div class="p-3">
+                  {h.address?.areaName && <p class="text-xs font-semibold mb-1" style="color: var(--color-slate-steel);">{h.address.areaName}</p>}
+                  <h3 class="text-base font-bold tracking-tight leading-tight mb-2 group-hover:text-[var(--color-accent)] transition-colors line-clamp-2" style="color: var(--color-deep-plum);">{h.name}</h3>
+                  {(h.price?.formattedPerNight || h.price?.formattedTotal) && (
+                    <div>
+                      <p class="text-xs" style="color: var(--color-slate-steel);">from</p>
+                      <p class="text-base font-bold" style="color: var(--color-deep-plum);">
+                        {h.price?.formattedPerNight ?? h.price?.formattedTotal}
+                        <span class="text-xs font-normal" style="color: var(--color-slate-steel);">{h.price?.formattedPerNight ? " / night" : ""}</span>
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </a>
+            ))}
+          </div>
+          <p class="text-[11px] mt-4 leading-relaxed" style="color: var(--color-slate-steel);">
+            * Sponsored - bookings are handled by Booking.com via the Stay22 affiliate program. Live prices and availability, updated: {hotelBuildDate}. Prices and dates change daily.
+          </p>
+        </>
+      ) : (
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          {topHotels.map((h) => <HotelCard hotel={h} locale={locale} />)}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">{t(locale, "home.restaurantsEyebrow")}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          {t(locale, "home.restaurantsHeading")}
+        </h2>
+      </div>
+      <a href={indexUrl("restaurants", locale)} class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        {t(locale, "home.allRestaurants")}
+      </a>
+    </div>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      {topRestaurants.map((r) => <RestaurantCard restaurant={r} locale={locale} />)}
+    </div>
+  </section>
+
+  <section class="section container-page">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <p class="eyebrow mb-2">{t(locale, "home.districtsEyebrow")}</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          {tf(locale, "home.districtsHeading", { site: city.name })}
+        </h2>
+      </div>
+      <a href={indexUrl("districts", locale)} class="hidden sm:inline-flex link-accent font-semibold text-sm">
+        {t(locale, "home.allDistricts")}
+      </a>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {featuredDistricts.map((d) => <DistrictCard district={d} locale={locale} />)}
+    </div>
+  </section>
+
+  <section class="container-page">
+    <GetYourGuideWidget
+      locale={locale}
+      mode="city"
+      cityQuery={affiliate.getYourGuide.cityQuery}
+      numberOfItems={4}
+      cmp="homepage-city-en"
+      title={tf(locale, "home.toursTitle", { site: city.name })}
+      lead={tf(locale, "home.toursLead", { site: city.name })}
+    />
+  </section>
+</BaseLayout>
