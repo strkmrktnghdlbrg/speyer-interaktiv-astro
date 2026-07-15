@@ -192,6 +192,17 @@ export const wissenswertes: WissenItem[] = [
     categories: [],
     wordCount: 620,
   },
+  {
+    slug: "fahrzeugbeschriftung-marketingkanal",
+    title: "Fahrzeugbeschriftung als Marketingkanal: Was Unternehmer wissen sollten",
+    shortDesc:
+      "Wie Fahrzeug- und Flottenbeschriftung als Werbekanal wirkt, was sie kostet und welche Gestaltungsfehler Unternehmer vermeiden sollten.",
+    lead: "Ein Transporter, der täglich durch die Stadt fährt, ist eine fahrende Werbefläche. Dieser Ratgeber zeigt, wie Fahrzeugbeschriftungen effektiv eingesetzt werden, was sie realistisch kosten und welche Fehler bei der Gestaltung immer wieder gemacht werden.",
+    imageHue: 3,
+    categories: [],
+    wordCount: 700,
+    publishedAt: "2026-02-25",
+  },
 ];
 
 export const getWissen = (slug: string) =>
