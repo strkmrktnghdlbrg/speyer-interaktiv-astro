@@ -35,6 +35,12 @@
      3 = Vogelgesang-Grün (Süd — Naherholung, Parkanlagen)
      4 = Salier-Burgunder (West — historisch, fürstlich)
      5 = Sandocker (Südwest — Klöster, Bildung, weicher Sand)        */
+}
+
+/* HUE-Palette bewusst in :root statt @theme: Tailwind 4 entfernt
+   @theme-Variablen ohne Utility-Nutzung aus dem Build; diese Variablen
+   werden nur zur Laufzeit via Inline-Style (HueGradient) referenziert. */
+:root {
   --hue-1: linear-gradient(135deg, #fbeaec 0%, #f0a4af 50%, #a8323f 100%);
   --hue-2: linear-gradient(135deg, #e6f2f8 0%, #7eb6d4 50%, #2a6f97 100%);
   --hue-3: linear-gradient(135deg, #ecfdf5 0%, #86efac 50%, #15803d 100%);
