@@ -1,0 +1,164 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Faktische Google-Standort-Aggregate (gewichteter Durchschnitt, Anzahl
+// Bewertungen) und öffentliche Filialadressen, erhoben über die Google
+// Places API. Es werden ausschließlich Kennzahlen und Adressen dargestellt,
+// keine Rezensionstexte. Quelle je Bank: die verlinkte bankscore.de-Seite.
+const stadt = "Speyer";
+const banken = [
+  { name: "Sparkasse Vorderpfalz", rating: 3.2, count: 123, adresse: "Postplatz 1, 67346 Speyer", stadtteil: "Innenstadt / stadtweit", url: "https://bankscore.de/filialen/speyer/sparkasse/",
+    text: "Die Sparkasse Vorderpfalz betreibt mit rund neun Geschäftsstellen das dichteste Filialnetz in Speyer und deckt von der Innenstadt am Postplatz bis in die Wohnviertel Nord, West und Süd die ganze Stadt ab. Die Hauptstelle liegt zentral wenige Schritte von der Maximilianstraße entfernt. Der Durchschnitt aus über hundert Bewertungen fällt eher durchwachsen aus, was bei einer stark frequentierten Filialbank mit vielen Schalter- und Servicekontakten nicht ungewöhnlich ist. Für die Kontoführung fallen je nach Modell Gebühren an." },
+  { name: "Vereinigte VR Bank Kur- und Rheinpfalz", rating: 3.4, count: 93, adresse: "Bahnhofstraße 19, 67346 Speyer", stadtteil: "Bahnhofsviertel / stadtweit", url: "https://bankscore.de/filialen/speyer/volksbank-raiffeisenbank/",
+    text: "Die genossenschaftliche Vereinigte VR Bank Kur- und Rheinpfalz ist in Speyer die zweite große Regionalbank mit rund einem halben Dutzend Standorten. Die Speyerer Geschäftsstelle in der Bahnhofstraße liegt verkehrsgünstig zwischen Hauptbahnhof und Altstadt. Als Genossenschaftsbank machen Mitglieder ihre Kunden zu Miteigentümern mit Stimmrecht in der Vertreterversammlung. Die Bewertung liegt im soliden Mittelfeld." },
+  { name: "Postbank", rating: 3.6, count: 178, adresse: null, stadtteil: "Innenstadt", url: "https://bankscore.de/filialen/speyer/postbank/",
+    text: "Die Postbank kommt in Speyer auf die meisten Bewertungen aller Filialbanken, was den hohen Publikumsverkehr am kombinierten Bank- und Postschalter widerspiegelt. Eine eigene, dauerhaft gelistete Schalteradresse liegt in den öffentlichen Standortdaten aktuell nicht vor, Bankgeschäfte laufen bei der Postbank vielerorts über Partnerstandorte im Einzelhandel. Die vollständige und tagesaktuelle Standortübersicht findest du daher am besten über die verlinkte bankscore-Seite." },
+  { name: "Santander", rating: 4.2, count: 61, adresse: "Schulergasse 2, 67346 Speyer", stadtteil: "Altstadt", url: "https://bankscore.de/filialen/speyer/santander/",
+    text: "Santander sitzt mit einer Filiale in der Schulergasse mitten in der Speyerer Altstadt, nur einen kurzen Weg von der Maximilianstraße entfernt. Der Schwerpunkt liegt auf Krediten, Kreditkarten und einem gebührenfreien Girokonto. Mit gut vier von fünf Sternen erreicht die Filiale eine der besseren Bewertungen im Speyerer Vergleich." },
+  { name: "Commerzbank", rating: 4.3, count: 45, adresse: "Maximilianstraße 47, 67346 Speyer", stadtteil: "Altstadt", url: "https://bankscore.de/filialen/speyer/commerzbank/",
+    text: "Die Commerzbank ist in Speyer mit einer Filiale direkt an der Maximilianstraße vertreten, der zentralen Fußgängerachse zwischen Altpörtel und Kaiserdom. Die Lage ist damit eine der besten der Stadt. Mit rund 4,3 von 5 Sternen zählt der Standort zu den bestbewerteten Filialen in Speyer und ist für Kundschaft interessant, die ein bundesweites Netz und eine bei Gehaltseingang kostenfreie Kontoführung schätzt." },
+  { name: "Deutsche Bank", rating: 2.9, count: 36, adresse: "Postplatz 4, 67346 Speyer", stadtteil: "Innenstadt", url: "https://bankscore.de/filialen/speyer/deutsche-bank/",
+    text: "Die Deutsche Bank bündelt ihr Speyerer Geschäft in einer einzelnen Filiale am Postplatz, zentral und in unmittelbarer Nachbarschaft zur Sparkassen-Hauptstelle. Die Bewertung liegt mit unter drei Sternen im unteren Bereich des Speyerer Vergleichs, die Filiale bleibt für Beratungs- und Anlagekundschaft aber der zentrale Anlaufpunkt der Marke in der Stadt." },
+  { name: "Targobank", rating: 5.0, count: 31, adresse: "Maximilianstraße 27, 67346 Speyer", stadtteil: "Altstadt", url: "https://bankscore.de/filialen/speyer/targobank/",
+    text: "Das Targobank-Beratungsbüro an der Maximilianstraße erreicht in Speyer die formal beste Bewertung, wobei die Datenbasis mit gut drei Dutzend Bewertungen deutlich schmaler ist als bei den großen Regionalbanken, die Note also weniger belastbar. Der traditionelle Schwerpunkt liegt auf Konsumentenkrediten und Ratenfinanzierung, dazu Giro- und Anlageberatung an prominenter Lage in der Altstadt." },
+  { name: "HypoVereinsbank", rating: 1.9, count: 12, adresse: "Ludwigstraße 9, 67346 Speyer", stadtteil: "Altstadt", url: "https://bankscore.de/filialen/speyer/hypovereinsbank/",
+    text: "Die HypoVereinsbank (UniCredit) ist in Speyer nur mit einem Standort in der Ludwigstraße nahe dem Kaiserdom vertreten. Die Bewertung ist schwach und beruht auf lediglich rund einem Dutzend Rückmeldungen, die Aussagekraft der Note ist damit begrenzt. Wer die HVB gezielt sucht, findet hier den zentralen Anlaufpunkt für die Beratung in der Domstadt." },
+];
+
+const fmt = (n) => n.toLocaleString("de-DE");
+const komma = (n) => n.toFixed(1).replace(".", ",");
+const ratingSum = banken.reduce((s, b) => s + b.count, 0);
+
+const faqs = [
+  { q: "Welche Bank hat in Speyer die beste Bewertung?", a: "Formal liegt das Targobank-Beratungsbüro an der Maximilianstraße mit fünf von fünf Sternen vorn, allerdings auf sehr schmaler Datenbasis. Mit belastbarerer Bewertungszahl schneiden die Commerzbank (rund 4,3) und Santander (rund 4,2) am besten ab. Die Werte sind nach Bewertungsanzahl gewichtete Durchschnitte der öffentlich bei Google gelisteten Standorte." },
+  { q: "Welche Bank hat in Speyer die meisten Filialen?", a: "Das dichteste Netz hat die Sparkasse Vorderpfalz mit rund neun Geschäftsstellen über das Stadtgebiet verteilt, gefolgt von der Vereinigten VR Bank Kur- und Rheinpfalz mit etwa einem halben Dutzend Standorten. Deutsche Bank, Commerzbank, Postbank, Targobank, Santander und HypoVereinsbank konzentrieren ihr Geschäft dagegen auf jeweils eine zentrale Filiale rund um Postplatz, Maximilianstraße und Altstadt." },
+  { q: "Wo finde ich in der Speyerer Altstadt eine Bankfiliale?", a: "Die meisten Filialen liegen in oder direkt an der Altstadt: Commerzbank und Targobank an der Maximilianstraße, Santander in der Schulergasse, die HypoVereinsbank in der Ludwigstraße nahe dem Kaiserdom sowie Sparkasse und Deutsche Bank am zentralen Postplatz. Damit ist die Fußgängerachse zwischen Altpörtel und Dom faktisch die Bankenmeile Speyers." },
+  { q: "Lohnt sich neben dem Filialkonto ein kostenloses Online-Konto?", a: "Für viele ja. Die klassischen Filialkonten von Sparkasse und VR Bank kosten je nach Modell eine monatliche Grundgebühr. Wer die Filiale nur noch selten braucht, kann ein gebührenfreies Online-Girokonto parallel führen und die laufenden Kosten sparen, ohne die Hausbank in Speyer ganz aufzugeben." },
+  { q: "Woher stammen die Bewertungen und Adressen?", a: "Die Sterne-Werte sind nach Bewertungsanzahl gewichtete Durchschnitte der öffentlich bei Google gelisteten Standorte der jeweiligen Marke in Speyer. Die Adressen stammen aus den öffentlichen Standortdaten. Es werden ausschließlich Kennzahlen und Adressen dargestellt, keine Rezensionstexte. Die vollständige Filialübersicht je Bank findest du auf der jeweils verlinkten bankscore.de-Seite." },
+];
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Banken in ${stadt}`,
+  itemListElement: banken.map((b, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: b.name,
+    url: b.url,
+  })),
+};
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+};
+const articleLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `Banken in ${stadt}: Filialen, Adressen und Bewertungen`,
+  about: `Filialbanken in ${stadt}`,
+  author: { "@type": "Organization", name: "Speyer-Interaktiv" },
+  publisher: { "@type": "Organization", name: "Speyer-Interaktiv" },
+};
+---
+
+<BaseLayout title="Banken in Speyer: Filialen, Adressen & Bewertungen" description="Die Filialbanken in Speyer im Überblick: Sparkasse Vorderpfalz, VR Bank, Postbank, Santander, Commerzbank, Deutsche Bank, Targobank und HypoVereinsbank mit zentraler Adresse, Google-Bewertung und Filialnetz. Ratgeber von Speyer-Interaktiv.">
+  <div class="bnk-wrap">
+    <div class="bnk-surface" style="--color-accent:#a8323f;--color-accent-hover:#8a2734;">
+      <h1>Banken in Speyer: Filialen, Adressen &amp; Bewertungen</h1>
+      <p class="bnk-lead">Welche Filialbank passt in Speyer zu dir? Von der Sparkasse Vorderpfalz mit dem dichtesten Netz bis zu den bestbewerteten Häusern an der Maximilianstraße: Hier findest du die großen Banken der Domstadt mit zentraler Adresse, Google-Bewertung und einer ehrlichen Einordnung, sortiert nach Bekanntheit.</p>
+      <p class="bnk-meta">Redaktion Speyer-Interaktiv</p>
+
+      <p>Speyer ist eine kompakte Dom- und Verwaltungsstadt am Rhein, und ihr Bankangebot konzentriert sich fast vollständig auf die Altstadt zwischen Altpörtel und Kaiserdom. Die Maximilianstraße, die zentrale Fußgängerachse, ist zugleich die Bankenmeile: Hier und rund um den Postplatz reihen sich die meisten Filialen aneinander. Die beiden Regionalinstitute, die Sparkasse Vorderpfalz und die Vereinigte VR Bank Kur- und Rheinpfalz, teilen sich das dichteste Filialnetz, während die überregionalen Häuser jeweils einen zentralen Standort betreiben. Die folgende Übersicht beruht auf {fmt(ratingSum)} öffentlichen Google-Bewertungen und den öffentlich gelisteten Filialadressen.</p>
+
+      <h2>Die Banken in Speyer auf einen Blick</h2>
+      <div class="bnk-tablewrap">
+        <table>
+          <thead>
+            <tr><th>Bank</th><th>Ø Google</th><th>Bewertungen</th><th>Zentrale Adresse</th><th>Details</th></tr>
+          </thead>
+          <tbody>
+            {banken.map((b) => (
+              <tr>
+                <td data-l="Bank"><strong>{b.name}</strong></td>
+                <td data-l="Ø Google"><span class="bnk-star">{komma(b.rating)}</span></td>
+                <td data-l="Bewertungen">{fmt(b.count)}</td>
+                <td data-l="Adresse">{b.adresse ?? "keine feste Filiale gelistet"}</td>
+                <td data-l="Details"><a href={b.url} target="_blank" rel="noopener">Filialen &amp; Bewertungen &rarr;</a></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="bnk-note">Ø Google = nach Bewertungsanzahl gewichteter Durchschnitt der öffentlich gelisteten Standorte der Marke in Speyer. Stand der Erhebung: Juli 2026. Es werden nur Kennzahlen und Adressen dargestellt, keine Rezensionstexte.</p>
+
+      <h2>Die Banken im Einzelnen</h2>
+      {banken.map((b) => (
+        <div class="bnk-card">
+          <div class="bnk-cardhead">
+            <h3>{b.name}</h3>
+            <span class="bnk-badge">{komma(b.rating)} &#9733; · {fmt(b.count)} Bew.</span>
+          </div>
+          <p class="bnk-addr">{b.adresse ? `${b.adresse} · Stadtteil: ${b.stadtteil}` : `Stadtteil: ${b.stadtteil}`}</p>
+          <p>{b.text}</p>
+          <p class="bnk-src">Quelle und vollständige Filialübersicht: <a href={b.url} target="_blank" rel="noopener">{b.name} in Speyer auf bankscore.de</a></p>
+        </div>
+      ))}
+
+      <h2>Filialbank oder kostenloses Online-Konto?</h2>
+      <p>Die klassischen Filialkonten der Sparkasse Vorderpfalz und der VR Bank punkten mit Beratung vor Ort und einem Automaten um die Ecke, kosten je nach Modell aber eine monatliche Grundgebühr. Wer ohnehin fast alles per App erledigt, kombiniert die Speyerer Hausbank häufig mit einem gebührenfreien Online-Girokonto und spart so die laufenden Kosten. Einen neutralen Vergleich der Konditionen samt Bewertungsmethodik findest du im <a href="https://bankscore.de/girokonto/" target="_blank" rel="noopener">Girokonto-Vergleich auf bankscore.de</a>.</p>
+
+      <h2>Häufige Fragen zu Banken in Speyer</h2>
+      {faqs.map((f) => (
+        <div class="faq-item">
+          <h3>{f.q}</h3>
+          <p>{f.a}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</BaseLayout>
+
+<style>
+  .bnk-wrap { max-width: 900px; margin: 0 auto; padding: 2.5rem 1rem 3rem; }
+  .bnk-surface {
+    background: #ffffff; color: #33313f; border-radius: 16px;
+    padding: clamp(20px, 4vw, 40px);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 30px rgba(0,0,0,0.05);
+    font-size: 16.5px; line-height: 1.7;
+  }
+  .bnk-surface h1 { color: #20233a; font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; margin: 0 0 1rem; }
+  .bnk-lead { font-size: 1.12rem; color: #4a4858; margin: 0 0 1.6rem; }
+  .bnk-meta { font-size: 13px; color: #8a8896; margin: 0 0 1.6rem; }
+  .bnk-surface h2 { color: #20233a; font-size: 1.55rem; font-weight: 800; line-height: 1.25; letter-spacing: -0.3px; margin: 2.2rem 0 0.8rem; }
+  .bnk-surface h3 { color: #20233a; font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin: 0; }
+  .bnk-surface p { margin: 0 0 1.05rem; }
+  .bnk-surface strong { color: #20233a; font-weight: 700; }
+  .bnk-surface a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+  .bnk-note { font-size: 13px; color: #8a8896; margin: 0.6rem 0 0; }
+  .bnk-tablewrap { overflow-x: auto; margin: 0 0 0.4rem; }
+  .bnk-surface table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  .bnk-surface th, .bnk-surface td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #ececf3; vertical-align: top; }
+  .bnk-surface th { color: #6b7280; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .bnk-star { display: inline-block; background: #eef7ee; color: #237a37; font-weight: 800; border-radius: 6px; padding: 1px 8px; }
+  .bnk-card { border: 1px solid #ececf3; border-radius: 12px; padding: 18px 20px; margin: 1rem 0; }
+  .bnk-cardhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 0.3rem; }
+  .bnk-badge { background: #f6f6fb; color: #20233a; font-weight: 700; font-size: 13px; border-radius: 999px; padding: 3px 12px; white-space: nowrap; }
+  .bnk-addr { font-size: 14px; color: #6b7280; margin: 0 0 0.7rem; }
+  .bnk-src { font-size: 14px; color: #6b7280; margin: 0.6rem 0 0; }
+  .faq-item { border-top: 1px solid #e6e6ef; padding-top: 1.1rem; margin-top: 1.1rem; }
+  .faq-item:first-of-type { border-top: none; }
+  .faq-item h3 { font-size: 18px; }
+  @media (max-width: 640px) {
+    .bnk-surface table, .bnk-surface thead, .bnk-surface tbody, .bnk-surface tr, .bnk-surface th, .bnk-surface td { display: block; }
+    .bnk-surface thead { display: none; }
+    .bnk-surface tr { border: 1px solid #ececf3; border-radius: 10px; margin-bottom: 10px; padding: 6px 4px; }
+    .bnk-surface td { border: none; padding: 5px 12px; }
+    .bnk-surface td::before { content: attr(data-l) ": "; color: #8a8896; font-size: 12px; font-weight: 700; }
+    .bnk-surface td[data-l="Bank"]::before { content: ""; }
+  }
+</style>
