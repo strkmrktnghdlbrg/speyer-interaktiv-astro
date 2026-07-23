@@ -181,3 +181,105 @@ h1, h2, h3, h4 {
 .gyg-widget-host a[href*="partner-program"] {
   display: none !important;
 }
+
+/* ---------------------------------------------------------------------------
+ * .blog-prose - Fliesstext-Typografie fuer redaktionelle Langtexte.
+ *
+ * Lag frueher als <style is:global> in BlogArticle.astro. Astro buendelt CSS
+ * pro Seite: Seiten, die dieses Layout NICHT benutzen (Impressum, Datenschutz,
+ * AGB, Ueber uns, die EN-Rechtstexte), bekamen das Stylesheet nie geliefert
+ * und rendern ihre Ueberschriften wie Fliesstext. Deshalb steht die Regel
+ * hier, in dem von BaseLayout auf jeder Seite geladenen Stylesheet.
+ * ------------------------------------------------------------------------ */
+
+.blog-prose {
+  color: var(--color-inkwell-purple);
+  font-size: 17px;
+  line-height: 1.7;
+}
+.blog-prose h2 {
+  color: var(--color-deep-plum);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.blog-prose h3 {
+  color: var(--color-deep-plum);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.blog-prose p {
+  margin-bottom: 1.1rem;
+}
+.blog-prose strong {
+  color: var(--color-deep-plum);
+  font-weight: 700;
+}
+.blog-prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.blog-prose a:hover {
+  text-decoration-thickness: 2px;
+}
+.blog-prose ul,
+.blog-prose ol {
+  margin-bottom: 1.2rem;
+  padding-left: 1.5rem;
+}
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
+.blog-prose li {
+  margin-bottom: 0.4rem;
+}
+.blog-prose .callout {
+  background: var(--color-porcelain-mist);
+  border-left: 3px solid var(--color-accent);
+  padding: 1.1rem 1.25rem;
+  border-radius: 0 0.75rem 0.75rem 0;
+  margin: 1.5rem 0;
+}
+.blog-prose .callout p:last-child {
+  margin-bottom: 0;
+}
+.blog-prose .faq-item {
+  border-top: 1px solid var(--color-lavender-ash);
+  padding-top: 1.25rem;
+  margin-top: 1.25rem;
+}
+.blog-prose .faq-item:first-of-type {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
+}
+.blog-prose .faq-item h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+.blog-prose .related-block {
+  background: var(--color-porcelain-mist);
+  border: 1px solid var(--color-lavender-ash);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin: 2.5rem 0;
+}
+.blog-prose .related-block h3 {
+  margin-top: 0;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-accent);
+  font-weight: 800;
+}
