@@ -13,4 +13,4 @@ Rund um den Hafen liegen einige der bekanntesten Speyerer Anziehungspunkte am Wa
 
 ## Wohnen, Verkehr und Alltag
 
-Wer im Neuen Rheinhafen wohnt, schaetzt die Mischung aus Wasserblick, kurzen Wegen zur Altstadt und guter Anbindung. Die Bundesstraße B9 fuehrt ortsnah Richtung Ludwigshafen und Karlsruhe, mit dem Rad ist man in wenigen Minuten am Domplatz. Gastronomie konzentriert sich auf Adressen mit Hafen- und Flussbezug, für den taeglichen Einkauf liegen die Angebote der angrenzenden Quartiere ebenfalls in Reichweite. Der Stadtteil eignet sich besonders für Menschen, die urbanes Wohnen mit Wasser- und Naturkante kombinieren moechten.
+Wer im Neuen Rheinhafen wohnt, schätzt die Mischung aus Wasserblick, kurzen Wegen zur Altstadt und guter Anbindung. Die Bundesstraße B9 führt ortsnah Richtung Ludwigshafen und Karlsruhe, mit dem Rad ist man in wenigen Minuten am Domplatz. Gastronomie konzentriert sich auf Adressen mit Hafen- und Flussbezug, für den täglichen Einkauf liegen die Angebote der angrenzenden Quartiere ebenfalls in Reichweite. Der Stadtteil eignet sich besonders für Menschen, die urbanes Wohnen mit Wasser- und Naturkante kombinieren möchten.

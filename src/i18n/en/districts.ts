@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "districts" (Stadtteile).
+ * Englische Inhaltsdaten für die Sektion "districts" (Stadtteile).
  * Gekeyt nach dem DEUTSCHEN slug. Nicht uebersetzt: hue, imageKey, coordinates.
  */
 export type DistrictEn = {

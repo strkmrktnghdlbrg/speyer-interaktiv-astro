@@ -13,4 +13,4 @@ Auf der Speisekarte stehen ehrliche Pfälzer Klassiker, die hervorragend zum Bie
 
 ## Praktische Hinweise und Reservierung
 
-Vor allem an Wochenenden, bei Domhof-Veranstaltungen und in der warmen Saison mit Biergarten-Betrieb ist eine Reservierung sinnvoll. Die Anreise mit der Bahn über den Speyerer Hauptbahnhof ist unkompliziert, Parkplaetze gibt es in den Tiefgaragen rund um die Altstadt. Weitere Empfehlungen finden sich im [Restaurants-Index](/restaurants/).
+Vor allem an Wochenenden, bei Domhof-Veranstaltungen und in der warmen Saison mit Biergarten-Betrieb ist eine Reservierung sinnvoll. Die Anreise mit der Bahn über den Speyerer Hauptbahnhof ist unkompliziert, Parkplätze gibt es in den Tiefgaragen rund um die Altstadt. Weitere Empfehlungen finden sich im [Restaurants-Index](/restaurants/).

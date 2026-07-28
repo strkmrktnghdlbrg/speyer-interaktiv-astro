@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "feste" (Festivals).
+ * Englische Inhaltsdaten für die Sektion "feste" (Festivals).
  * Gekeyt nach dem DEUTSCHEN slug. Nicht uebersetzt: imageKey, imageHue,
  * websiteUrl, district.
  */

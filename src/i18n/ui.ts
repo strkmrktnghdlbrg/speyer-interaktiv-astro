@@ -1,5 +1,5 @@
 /**
- * UI-Wortschatz (Oberflaechen-Strings) de/en.
+ * UI-Wortschatz (Oberflächen-Strings) de/en.
  * Zugriff via t(locale, "key"). Platzhalter {x} via tf(locale, key, {x: ...}).
  */
 import type { Locale } from "./config";

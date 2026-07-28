@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "guides" (Reiseplaner).
+ * Englische Inhaltsdaten für die Sektion "guides" (Reiseplaner).
  * Gekeyt nach dem DEUTSCHEN slug. Struktur spiegelt guides.ts: Tage und Slots
  * in gleicher Reihenfolge. Zeit, Slot-Typ und Sight/Hotel/Restaurant-Referenzen
  * kommen aus dem Basis-Eintrag (per Index gemappt); hier nur uebersetzte Texte.

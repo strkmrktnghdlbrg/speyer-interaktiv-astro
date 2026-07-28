@@ -9,8 +9,8 @@ Im "Zum alten Engel" steht die Pfälzer Küche im Mittelpunkt. Auf der Karte fin
 
 ## Atmosphäre und Lage
 
-Das Restaurant liegt in der Speyerer [Altstadt](/stadtteile/altstadt/) in einem historischen Gewölbekeller, der mit dunklem Holz, Kerzenlicht und rustikalen Details eine urgemuetliche Stimmung erzeugt. Die zentrale Lage macht es zu einer guten Adresse für einen Abend nach dem Besuch am [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) oder einem Bummel über die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/). Gäste schaetzen die persoenliche Atmosphäre, die freundliche Bedienung und den Mix aus Einheimischen und Reisenden, der typisch für traditionelle Pfälzer Wirtshaeuser ist. Weitere Adressen in der Nähe finden Sie im [Restaurantverzeichnis](/restaurants/).
+Das Restaurant liegt in der Speyerer [Altstadt](/stadtteile/altstadt/) in einem historischen Gewölbekeller, der mit dunklem Holz, Kerzenlicht und rustikalen Details eine urgemuetliche Stimmung erzeugt. Die zentrale Lage macht es zu einer guten Adresse für einen Abend nach dem Besuch am [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) oder einem Bummel über die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/). Gäste schätzen die persönliche Atmosphäre, die freundliche Bedienung und den Mix aus Einheimischen und Reisenden, der typisch für traditionelle Pfälzer Wirtshäuser ist. Weitere Adressen in der Nähe finden Sie im [Restaurantverzeichnis](/restaurants/).
 
 ## Praktische Hinweise und Reservierung
 
-Wegen der begrenzten Platzzahl im Gewölbekeller ist eine Reservierung besonders an Wochenenden und in der Hauptsaison empfehlenswert. Das Lokal ist fußläufig vom Altpoertel und vom Hauptbahnhof aus gut zu erreichen. Parkplaetze finden sich in den umliegenden Parkhaeusern der Altstadt.
+Wegen der begrenzten Platzzahl im Gewölbekeller ist eine Reservierung besonders an Wochenenden und in der Hauptsaison empfehlenswert. Das Lokal ist fußläufig vom Altpoertel und vom Hauptbahnhof aus gut zu erreichen. Parkplätze finden sich in den umliegenden Parkhäusern der Altstadt.

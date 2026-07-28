@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "hotels".
+ * Englische Inhaltsdaten für die Sektion "hotels".
  * Gekeyt nach dem DEUTSCHEN slug (Hotel.slug). Nicht uebersetzt: stars,
  * priceFrom, rating, reviews, bookingUrl, imageKey, coordinates.
  */

@@ -1,5 +1,5 @@
 /**
- * Englische Inhaltsdaten fuer die Sektion "restaurants".
+ * Englische Inhaltsdaten für die Sektion "restaurants".
  * Gekeyt nach dem DEUTSCHEN slug. Nicht uebersetzt: priceLevel, openingHours-
  * Zeiten (Wochentage werden im UI uebersetzt), websiteUrl, imageKey, categories.
  */

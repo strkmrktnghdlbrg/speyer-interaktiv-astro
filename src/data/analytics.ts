@@ -5,7 +5,7 @@
  * anderen Portal übernehmen.
  *
  * GTM ist der zentrale Tag-Manager — Marketing-Pixel, GA4, Conversion-
- * Tracking etc. werden ueber das GTM-Dashboard verwaltet, nicht hier.
+ * Tracking etc. werden über das GTM-Dashboard verwaltet, nicht hier.
  */
 
 export const analytics = {

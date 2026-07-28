@@ -1,5 +1,5 @@
 /**
- * Englische Uebersetzungen der Kategorien, gekeyt nach deutschem slug.
+ * Englische Übersetzungen der Kategorien, gekeyt nach deutschem slug.
  * Enthaelt den englischen slug + uebersetzte Felder (name, shortDesc).
  * Nicht uebersetzt: icon (bleibt aus dem Basis-Eintrag).
  */
