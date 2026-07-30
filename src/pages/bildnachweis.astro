@@ -1,0 +1,140 @@
+---
+/**
+ * Zentraler Bildnachweis - listet jedes auf dem Portal verwendete Foto mit
+ * Motiv, Verwendungsort, Urheber, Lizenz (verlinkt) und Quelle auf.
+ *
+ * Die Daten kommen direkt aus der Bildregistry (src/data/images.ts) und
+ * bleiben damit automatisch synchron: Jeder neue Registry-Eintrag mit
+ * credit-Block erscheint hier ohne weiteren Pflegeaufwand.
+ *
+ * Lizenz-Audit 2026-07-30: Alle Wikimedia-Dateien wurden per Commons-API
+ * (extmetadata) gegen die Original-Dateiseite verifiziert.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import { city } from "../data/city";
+import { images } from "../data/images";
+import { getSight } from "../data/sights";
+import { getDistrict } from "../data/districts";
+import { getHotel } from "../data/hotels";
+import { getRestaurant } from "../data/restaurants";
+import { getFest } from "../data/feste";
+
+type Row = {
+  subject: string;
+  usedOn: { label: string; href: string };
+  author: string;
+  license: string;
+  licenseUrl: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  illustrative: boolean;
+};
+
+const sourceLabels: Record<string, string> = {
+  wikimedia: "Wikimedia Commons",
+  unsplash: "Unsplash",
+  pexels: "Pexels",
+  own: "Eigenes Bild",
+  manufacturer: "Hersteller",
+};
+
+function resolveEntity(key: string): { subject: string; label: string; href: string } | null {
+  const [prefix, slug] = key.split(":");
+  switch (prefix) {
+    case "sight": {
+      const s = getSight(slug);
+      return s ? { subject: s.name, label: s.name, href: `/sehenswuerdigkeiten/${slug}/` } : null;
+    }
+    case "district": {
+      const d = getDistrict(slug);
+      return d ? { subject: d.name, label: `Stadtteil ${d.name}`, href: `/stadtteile/${slug}/` } : null;
+    }
+    case "hotel": {
+      const h = getHotel(slug);
+      return h ? { subject: h.name, label: h.name, href: `/hotels/${slug}/` } : null;
+    }
+    case "restaurant": {
+      const r = getRestaurant(slug);
+      return r ? { subject: r.name, label: r.name, href: `/restaurants/${slug}/` } : null;
+    }
+    case "fest": {
+      const f = getFest(slug);
+      return f ? { subject: f.name, label: f.name, href: `/feste/${slug}/` } : null;
+    }
+    default:
+      return null;
+  }
+}
+
+const rows: Row[] = Object.entries(images)
+  .filter(([, entry]) => entry.credit && entry.src)
+  .map(([key, entry]) => {
+    const ent = resolveEntity(key);
+    return {
+      subject: ent?.subject ?? entry.alt,
+      usedOn: ent
+        ? { label: ent.label, href: ent.href }
+        : { label: "Portalseite", href: "/" },
+      author: entry.credit!.author,
+      license: entry.credit!.license,
+      licenseUrl: entry.credit!.licenseUrl,
+      sourceUrl: entry.credit!.sourceUrl,
+      sourceLabel: sourceLabels[entry.source] ?? entry.source,
+      illustrative: Boolean(entry.illustrative),
+    };
+  })
+  .sort((a, b) => a.subject.localeCompare(b.subject, "de"));
+---
+
+<BaseLayout
+  title="Bildnachweis"
+  description={`Bildnachweis für ${city.name}-Interaktiv: Urheber, Lizenzen und Quellen aller auf dem Portal verwendeten Fotos.`}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Bildnachweis" }]} />
+
+    <div class="max-w-3xl">
+      <p class="eyebrow mb-3">Rechtliches</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        Bildnachweis
+      </h1>
+      <p class="text-lg leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
+        Auf diesem Portal verwenden wir Fotos aus frei lizenzierten Quellen
+        (Wikimedia Commons, Unsplash, Pexels). Hier findest du für jedes Bild
+        den Urheber, die Lizenz und die Originalquelle. Mit
+        <strong>Symbolbild</strong> gekennzeichnete Fotos zeigen nicht den
+        tatsächlichen Ort, sondern ein thematisch passendes Illustrationsfoto.
+      </p>
+      <p class="text-sm leading-relaxed mb-10" style="color: var(--color-slate-steel);">
+        Sollte dir ein fehlerhafter oder unvollständiger Nachweis auffallen,
+        melde dich gern über die <a href="/kontakt/" class="underline" style="text-underline-offset: 3px;">Kontaktseite</a> -
+        wir korrigieren das umgehend.
+      </p>
+    </div>
+
+    <ul class="max-w-4xl space-y-4">
+      {rows.map((row) => (
+        <li
+          class="rounded-2xl p-5"
+          style="background: var(--color-porcelain-mist); border: 1px solid var(--color-lavender-ash);"
+        >
+          <div class="flex flex-wrap items-baseline gap-x-2 mb-1">
+            <span class="font-semibold" style="color: var(--color-inkwell-purple);">{row.subject}</span>
+            {row.illustrative && (
+              <span class="text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5 rounded-full" style="background: var(--color-lavender-ash); color: var(--color-inkwell-purple);">
+                Symbolbild
+              </span>
+            )}
+          </div>
+          <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">
+            Verwendet auf: <a href={row.usedOn.href} class="underline" style="text-underline-offset: 3px;">{row.usedOn.label}</a>
+            {" · "}Foto: {row.author}
+            {" · "}Lizenz: <a href={row.licenseUrl} rel="nofollow noopener" target="_blank" class="underline" style="text-underline-offset: 3px;">{row.license}</a>
+            {" · "}Quelle: <a href={row.sourceUrl} rel="nofollow noopener" target="_blank" class="underline" style="text-underline-offset: 3px;">{row.sourceLabel}</a>
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

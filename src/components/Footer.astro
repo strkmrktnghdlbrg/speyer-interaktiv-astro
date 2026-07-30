@@ -116,6 +116,7 @@ const categoryName = (slug: string, fallback: string) =>
         <a href={indexUrl("about", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.about")}</a>
         <a href={indexUrl("imprint", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.imprint")}</a>
         <a href={indexUrl("privacy", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.privacy")}</a>
+        <a href="/bildnachweis/" class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{isEn ? "Image credits" : "Bildnachweis"}</a>
         <a href={indexUrl("terms", locale)} class="text-xs hover:underline" style="color: var(--color-slate-steel); text-underline-offset: 3px;">{t(locale, "nav.terms")}</a>
       </div>
     </div>
