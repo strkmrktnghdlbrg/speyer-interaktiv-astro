@@ -1,0 +1,118 @@
+---
+/**
+ * Kontakt-Seite — zentrale Anlaufstelle für alle CTAs
+ * (Werben, Branchenverzeichnis, Korrekturen, Presse).
+ *
+ * Formular-Handling: Es existiert noch kein Form-Endpoint im Projekt.
+ * Das Formular rendert daher NUR, wenn PUBLIC_WEB3FORMS_KEY gesetzt ist
+ * (siehe .env.example) — sonst wird die obfuskierte E-Mail angezeigt.
+ * Niemals einen Key hardcoden.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import ObfuscatedEmail from "../components/ObfuscatedEmail.astro";
+import { legal } from "../data/legal";
+import { city } from "../data/city";
+
+const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+const formEnabled = typeof formKey === "string" && formKey.length > 0;
+
+const anliegen = [
+  {
+    title: "Werbung & Premium-Partner",
+    desc: "Du möchtest dein Unternehmen auf dem Portal sichtbar machen?",
+    href: "/werben/",
+    linkLabel: "Zu den Werbeformen",
+  },
+  {
+    title: "Branchenverzeichnis",
+    desc: "Kostenlosen Eintrag anlegen oder bestehenden Eintrag übernehmen.",
+    href: "/branchenverzeichnis/eintrag-beanspruchen/",
+    linkLabel: "Eintrag beanspruchen",
+  },
+  {
+    title: "Korrekturen & Hinweise",
+    desc: "Etwas ist veraltet oder falsch? Sag uns kurz Bescheid - wir prüfen es.",
+    href: null,
+    linkLabel: null,
+  },
+];
+---
+
+<BaseLayout
+  title="Kontakt"
+  description={`Kontakt zu ${city.name}-Interaktiv: Werbung, Branchenverzeichnis, Korrekturen und redaktionelle Hinweise.`}
+>
+  <div class="container-page py-12">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Kontakt" }]} />
+
+    <div class="max-w-3xl">
+      <p class="eyebrow mb-3">Kontakt</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        Schreib uns - wir antworten werktags zügig.
+      </h1>
+      <p class="text-lg leading-relaxed mb-10" style="color: var(--color-shadow-graphite);">
+        Ob Werbe-Anfrage, Eintrag im Branchenverzeichnis oder ein Hinweis zu
+        unseren Inhalten: Der schnellste Weg ist eine E-Mail an{" "}
+        <strong><ObfuscatedEmail email={legal.email} /></strong>.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mb-12">
+      {anliegen.map((a) => (
+        <div class="card p-6">
+          <h2 class="text-lg font-bold mb-2" style="color: var(--color-deep-plum);">{a.title}</h2>
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">{a.desc}</p>
+          {a.href && a.linkLabel && (
+            <a href={a.href} class="link-accent text-sm font-semibold">{a.linkLabel} →</a>
+          )}
+        </div>
+      ))}
+    </div>
+
+    {formEnabled ? (
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+          Kontaktformular
+        </h2>
+        <form action="https://api.web3forms.com/submit" method="POST" class="card p-6 space-y-5">
+          <input type="hidden" name="access_key" value={formKey} />
+          <input type="hidden" name="subject" value={`Kontaktanfrage über ${city.name}-interaktiv.de`} />
+          <!-- Honeypot gegen Spam-Bots -->
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" />
+
+          <div>
+            <label for="kontakt-name" class="block text-sm font-semibold mb-1.5" style="color: var(--color-inkwell-purple);">Name *</label>
+            <input id="kontakt-name" name="name" type="text" required class="w-full rounded-xl border border-[var(--color-lavender-ash)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+          <div>
+            <label for="kontakt-email" class="block text-sm font-semibold mb-1.5" style="color: var(--color-inkwell-purple);">E-Mail *</label>
+            <input id="kontakt-email" name="email" type="email" required class="w-full rounded-xl border border-[var(--color-lavender-ash)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]" />
+          </div>
+          <div>
+            <label for="kontakt-nachricht" class="block text-sm font-semibold mb-1.5" style="color: var(--color-inkwell-purple);">Nachricht *</label>
+            <textarea id="kontakt-nachricht" name="message" rows="6" required class="w-full rounded-xl border border-[var(--color-lavender-ash)] px-4 py-2.5 text-sm focus:outline-none focus:border-[var(--color-accent)]"></textarea>
+          </div>
+          <p class="text-xs leading-relaxed" style="color: var(--color-slate-steel);">
+            Mit dem Absenden erklärst du dich einverstanden, dass wir deine Angaben
+            zur Bearbeitung der Anfrage verwenden. Details in der{" "}
+            <a href="/datenschutz/" class="underline" style="text-underline-offset: 2px;">Datenschutzerklärung</a>.
+          </p>
+          <button type="submit" class="btn-primary">Nachricht senden</button>
+        </form>
+      </div>
+    ) : (
+      <div class="max-w-2xl card p-6">
+        <h2 class="text-xl font-bold mb-3" style="color: var(--color-deep-plum);">Per E-Mail erreichen</h2>
+        <p class="text-sm leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
+          Schreib uns an <strong><ObfuscatedEmail email={legal.email} /></strong>{" "}
+          - am besten mit einem kurzen Betreff wie "Werbung", "Branchenverzeichnis"
+          oder "Korrektur", dann landet die Anfrage direkt beim richtigen Thema.
+        </p>
+        <p class="text-xs" style="color: var(--color-slate-steel);">
+          Ein Kontaktformular ist in Vorbereitung.
+        </p>
+      </div>
+    )}
+  </div>
+</BaseLayout>

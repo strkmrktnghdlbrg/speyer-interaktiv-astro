@@ -74,7 +74,9 @@ export default defineConfig({
     "/thema/sehenswuerdigkeiten": "/sehenswuerdigkeiten",
     "/thema/tourismus": "/sehenswuerdigkeiten",
     "/thema/veranstaltungen": "/feste",
-    "/thema/dienstleistungen": "/branchen",
+    "/thema/dienstleistungen": "/branchenverzeichnis",
+    // Alter Stub /branchen → neues Verzeichnis
+    "/branchen": "/branchenverzeichnis",
     "/thema/immobilien": "/wissenswertes",
     "/thema/hochzeitsplanung": "/wissenswertes/hochzeitsplanung",
     "/thema/technologie": "/wissenswertes",

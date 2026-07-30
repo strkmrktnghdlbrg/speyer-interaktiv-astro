@@ -1,0 +1,66 @@
+---
+/**
+ * /branchenverzeichnis/<slug>/ — Detailseite eines PREMIUM-Partners.
+ * Nur Premium-Partner bekommen eine eigene Seite; freie Einträge mit
+ * bestehender Detailseite (Restaurants/Hotels) verlinken dorthin.
+ * Solange `premiumPartner` leer ist, erzeugt diese Route keine Seiten.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import ObfuscatedEmail from "../../components/ObfuscatedEmail.astro";
+import { city } from "../../data/city";
+import { premiumPartner, getKategorie } from "../../data/branchenbuch";
+
+export function getStaticPaths() {
+  return premiumPartner.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const partner = premiumPartner.find((p) => p.slug === slug)!;
+const kategorie = getKategorie(partner.kategorie);
+---
+
+<BaseLayout
+  title={`${partner.name} - Premium-Partner`}
+  description={`${partner.name} in ${city.name}: ${partner.beschreibung}`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Branchenverzeichnis", href: "/branchenverzeichnis/" },
+        ...(kategorie
+          ? [{ label: kategorie.name, href: `/branchenverzeichnis/kategorie/${kategorie.slug}/` }]
+          : []),
+        { label: partner.name },
+      ]}
+    />
+
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-5 mb-6">
+        <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl text-2xl font-bold text-white shrink-0" style="background: var(--color-accent);">
+          {partner.initialen}
+        </span>
+        <div>
+          <h1 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+            {partner.name}
+          </h1>
+          <p class="text-xs font-bold uppercase tracking-widest mt-1" style="color: var(--color-accent);">
+            ★ Premium-Partner
+          </p>
+        </div>
+      </div>
+
+      <p class="text-lg leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
+        {partner.beschreibung}
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <a href={partner.websiteUrl} class="btn-primary">Zur Website</a>
+        {partner.email && (
+          <span class="btn-outline"><ObfuscatedEmail email={partner.email} /></span>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

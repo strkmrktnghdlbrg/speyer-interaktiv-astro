@@ -1,0 +1,17 @@
+---
+/**
+ * Spamschutz: E-Mail-Adresse ohne mailto: und ohne Klartext-@.
+ * Sichtbar: name(at)domain.de — Screenreader lesen das echte @.
+ */
+interface Props {
+  email: string;
+  className?: string;
+}
+
+const { email, className = "" } = Astro.props;
+const [user, domain] = email.split("@");
+---
+
+<span class={`whitespace-nowrap ${className}`}
+  >{user}<span aria-hidden="true">(at)</span><span class="sr-only">@</span>{domain}</span
+>

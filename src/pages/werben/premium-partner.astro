@@ -1,0 +1,304 @@
+---
+/**
+ * /werben/premium-partner/ — Premium-Angebot (B2B, Inquiry-Funnel).
+ * Preis: 199 € / Jahr zzgl. USt (236,81 € inkl. 19 % USt).
+ * Keine Selbstbuchung, kein Stripe — CTAs → /kontakt/.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { city } from "../../data/city";
+
+const leistungen = [
+  {
+    title: "Hervorgehobenes Listing",
+    desc: "Dein Eintrag steht in seiner Kategorie ganz oben - mit Logo-Feld, Beschreibung und ★-Badge statt grauer Textzeile.",
+    icon: '<path d="m12 2 2.9 6.26L21 9.27l-5 4.6L17.2 21 12 17.6 6.8 21 8 13.87l-5-4.6 6.1-1.01L12 2z"/>',
+  },
+  {
+    title: "1 gesponserter Artikel pro Jahr",
+    desc: "Ein redaktioneller Beitrag über dein Unternehmen - dauerhaft online und intern verlinkt.",
+    icon: '<path d="M7 3h7l5 5v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM14 3v5h5M9 12h6M9 16h6"/>',
+  },
+  {
+    title: "Newsletter-Erwähnung",
+    desc: "Sobald der Newsletter startet, wird dein Unternehmen dort vorgestellt. Der Kanal ist derzeit im Aufbau.",
+    icon: '<path d="M3 6h18v12H3zM3 7l9 6 9-6"/>',
+  },
+  {
+    title: "Dofollow-Backlink",
+    desc: "Direkter, suchmaschinenwirksamer Link von deinem Eintrag und aus dem Artikel auf deine Website.",
+    icon: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+  },
+];
+
+const vergleich = [
+  { label: "Eintrag im Branchenverzeichnis", free: true, premium: true },
+  { label: "Position", free: "alphabetisch", premium: "ganz oben" },
+  { label: "Logo", free: false, premium: true },
+  { label: "Beschreibungstext", free: false, premium: true },
+  { label: "Website- & E-Mail-Button", free: false, premium: true },
+  { label: "Dofollow-Backlink", free: false, premium: true },
+  { label: "Verlinkung aus Ratgeber-Artikeln", free: false, premium: true },
+  { label: "Dauerhaft sichtbar", free: true, premium: true },
+];
+
+const schritte = [
+  {
+    title: "Im Branchenverzeichnis",
+    desc: "Dein hervorgehobener Eintrag steht in deiner Kategorie an erster Stelle.",
+  },
+  {
+    title: "In Ratgeber-Artikeln",
+    desc: "Wo es thematisch passt, verlinken wir aus bestehenden und neuen Artikeln auf deinen Eintrag.",
+  },
+  {
+    title: "Im gesponserten Artikel",
+    desc: "Dein eigener Beitrag stellt dein Unternehmen ausführlich vor - dauerhaft erreichbar.",
+  },
+];
+
+const faqs = [
+  {
+    q: "Was kostet der Premium-Partner-Eintrag?",
+    a: "199 € pro Jahr zzgl. USt (236,81 € inkl. 19 % USt). Das Angebot richtet sich ausschließlich an Unternehmer (B2B). Es gibt keine automatische Verlängerung.",
+  },
+  {
+    q: "Was passiert nach Ablauf des Jahres?",
+    a: "Der Eintrag fällt auf das kostenlose Listing zurück, wenn du nicht verlängerst. Wir melden uns rechtzeitig vor Ablauf - es verlängert sich nichts automatisch.",
+  },
+  {
+    q: "Mein Unternehmen ist noch gar nicht gelistet - geht das trotzdem?",
+    a: "Ja. Du kannst deinen Betrieb zuerst kostenlos eintragen lassen und jederzeit auf Premium wechseln - oder direkt mit Premium starten.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const Check = "✓";
+const Cross = "✕";
+---
+
+<BaseLayout
+  title="Premium-Partner werden"
+  description={`Premium-Partner auf ${city.name}-Interaktiv: hervorgehobenes Listing, gesponserter Artikel, Dofollow-Backlink. 199 € / Jahr zzgl. USt, nur für Unternehmer.`}
+>
+  <section
+    class="relative overflow-hidden py-16 sm:py-20"
+    style="background: linear-gradient(120deg, var(--color-deep-plum) 0%, var(--color-accent) 100%);"
+  >
+    <div class="container-page relative">
+      <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Werben", href: "/werben/" }, { label: "Premium-Partner" }]} />
+      <div class="max-w-3xl">
+        <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-4">
+          Premium-Partner
+        </p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
+          Aus deinem kostenlosen Eintrag wird ein Premium-Auftritt.
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-white/85 max-w-2xl">
+          Ganz oben in deiner Kategorie, mit Logo, Beschreibung und direktem
+          Link zu deiner Website - statt einer grauen Zeile in der Liste.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a href="/kontakt/" class="inline-flex items-center rounded-full px-6 py-3 text-sm font-bold bg-white hover:bg-white/90 transition-colors" style="color: var(--color-deep-plum);">
+            Premium-Partner anfragen
+          </a>
+          <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="text-sm font-semibold text-white/90 underline" style="text-underline-offset: 3px;">
+            Noch gar nicht gelistet? Erst kostenlos eintragen →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <p class="eyebrow mb-2">Leistungen</p>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+        Das steckt im Premium-Paket
+      </h2>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      {leistungen.map((l) => (
+        <div class="card p-6 flex gap-4">
+          <span class="inline-flex items-center justify-center w-11 h-11 rounded-xl shrink-0" style="background: var(--color-accent-tint); color: var(--color-accent);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={l.icon} />
+          </span>
+          <div>
+            <h3 class="font-bold mb-1.5" style="color: var(--color-deep-plum);">{l.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{l.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="max-w-3xl mx-auto rounded-3xl p-8 sm:p-10 text-center" style="background: var(--color-porcelain-mist);">
+      <p class="eyebrow mb-3">Preis</p>
+      <p class="text-5xl font-bold mb-2" style="color: var(--color-deep-plum);">
+        199 €<span class="text-xl font-semibold"> / Jahr</span>
+      </p>
+      <p class="text-sm mb-5" style="color: var(--color-shadow-graphite);">
+        zzgl. USt · entspricht 236,81 € inkl. 19 % USt
+      </p>
+      <div class="flex flex-wrap justify-center gap-2 mb-7">
+        <span class="pill">Nur für Unternehmer (B2B)</span>
+        <span class="pill">Keine automatische Verlängerung</span>
+        <span class="pill">Laufzeit 12 Monate</span>
+      </div>
+      <a href="/kontakt/" class="btn-primary">Jetzt anfragen</a>
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <p class="eyebrow mb-2">Der direkte Unterschied</p>
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+        Kostenlos vs. Premium
+      </h2>
+      <p class="mt-3 text-sm" style="color: var(--color-slate-steel);">
+        Dargestellt an einem fiktiven Beispielbetrieb.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-14">
+      <!-- Free-Mock -->
+      <div class="rounded-2xl border border-[var(--color-lavender-ash)] bg-white p-5">
+        <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-slate-steel);">Kostenloser Eintrag</p>
+        <div class="flex items-center gap-4 rounded-xl border border-[var(--color-lavender-ash)] p-4" style="background: var(--color-porcelain-mist);">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full text-lg font-bold shrink-0" style="background: var(--color-lavender-ash); color: var(--color-slate-steel);">
+            BC
+          </span>
+          <div class="min-w-0">
+            <p class="font-semibold truncate" style="color: var(--color-inkwell-purple);">Beispiel Café Domblick</p>
+            <p class="text-xs" style="color: var(--color-slate-steel);">Maximilianstraße, 67346 {city.name}</p>
+            <p class="text-xs mt-1" style="color: var(--color-slate-steel);">kein Logo · keine Beschreibung · kein Link</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Premium-Mock -->
+      <div class="rounded-2xl border-2 p-5" style="border-color: var(--color-accent); background: white;">
+        <p class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">Premium-Eintrag</p>
+        <div class="rounded-xl border p-4" style="border-color: var(--color-accent-tint); background: var(--color-accent-tint);">
+          <div class="flex items-center gap-4 mb-3">
+            <span class="inline-flex items-center justify-center w-12 h-12 rounded-full text-lg font-bold text-white shrink-0" style="background: var(--color-accent);">
+              BC
+            </span>
+            <div class="min-w-0">
+              <p class="font-bold truncate flex items-center gap-1.5" style="color: var(--color-deep-plum);">
+                Beispiel Café Domblick
+                <span class="text-[10px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5 text-white" style="background: var(--color-accent);">★ Premium</span>
+              </p>
+              <p class="text-xs" style="color: var(--color-shadow-graphite);">Maximilianstraße, 67346 {city.name}</p>
+            </div>
+          </div>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-inkwell-purple);">
+            Kaffeehaus mit hausgemachten Kuchen und Blick auf die Fußgängerzone -
+            dein Beschreibungstext, wie du gefunden werden willst.
+          </p>
+          <div class="flex gap-2">
+            <span class="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-white" style="background: var(--color-accent);">Website</span>
+            <span class="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold border" style="border-color: var(--color-accent); color: var(--color-accent);">E-Mail</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vergleichstabelle -->
+    <div class="max-w-3xl mx-auto overflow-x-auto">
+      <table class="w-full text-sm border-separate" style="border-spacing: 0;">
+        <thead>
+          <tr>
+            <th class="text-left py-3 px-4 font-bold" style="color: var(--color-deep-plum);">Leistung</th>
+            <th class="text-center py-3 px-4 font-bold" style="color: var(--color-slate-steel);">Kostenlos</th>
+            <th class="text-center py-3 px-4 font-bold" style="color: var(--color-accent);">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          {vergleich.map((v) => (
+            <tr class="border-t">
+              <td class="py-3 px-4 border-t border-[var(--color-lavender-ash)]" style="color: var(--color-inkwell-purple);">{v.label}</td>
+              <td class="py-3 px-4 text-center border-t border-[var(--color-lavender-ash)]" style="color: var(--color-slate-steel);">
+                {typeof v.free === "boolean" ? (v.free ? Check : Cross) : v.free}
+              </td>
+              <td class="py-3 px-4 text-center font-semibold border-t border-[var(--color-lavender-ash)]" style="color: var(--color-accent);">
+                {typeof v.premium === "boolean" ? (v.premium ? Check : Cross) : v.premium}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="rounded-3xl p-8 sm:p-12" style="background: var(--color-porcelain-mist);">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <p class="eyebrow mb-2">Sichtbarkeit</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          Wo dein Premium-Eintrag auftaucht
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {schritte.map((s, i) => (
+          <div class="text-center">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full text-white font-bold mb-4" style="background: var(--color-accent);">
+              {i + 1}
+            </span>
+            <h3 class="font-bold mb-2" style="color: var(--color-deep-plum);">{s.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-16">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="eyebrow mb-2">Häufige Fragen</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          Gut zu wissen
+        </h2>
+      </div>
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="card p-5">
+            <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-20">
+    <div
+      class="rounded-3xl px-8 py-12 text-center"
+      style="background: linear-gradient(120deg, var(--color-deep-plum) 0%, var(--color-accent) 100%);"
+    >
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white text-balance mb-4">
+        Sichere dir den Premium-Platz in deiner Kategorie.
+      </h2>
+      <p class="text-white/85 max-w-xl mx-auto mb-8">
+        199 € / Jahr zzgl. USt (236,81 € inkl. 19 % USt) - nur für Unternehmer,
+        keine automatische Verlängerung.
+      </p>
+      <a href="/kontakt/" class="inline-flex items-center rounded-full px-6 py-3 text-sm font-bold bg-white hover:bg-white/90 transition-colors" style="color: var(--color-deep-plum);">
+        Premium-Partner anfragen
+      </a>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</BaseLayout>

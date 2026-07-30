@@ -1,67 +1,81 @@
 ---
+/**
+ * /werben/ — Werbe-Hub (Inquiry-Funnel, keine Selbstbuchung).
+ * Preise nur auf der Premium-Partner-Seite; alle CTAs → /kontakt/.
+ */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import { city } from "../../data/city";
 
-const tiers = [
+const werbeformen = [
   {
-    label: "Basic",
-    price: "0 €",
-    period: "/ Monat",
-    desc: "Kostenloses Free-Listing für lokale Unternehmen.",
-    features: [
-      "Name, Adresse, Telefon",
-      "1 Foto",
-      "Stadtteil-Zuordnung",
-      "Auto-Listing nach Verifizierung",
-    ],
-    cta: "Listing anlegen",
-    highlighted: false,
+    title: "Premium-Partner",
+    desc: `Hervorgehobener Eintrag im Branchenverzeichnis mit Logo, Beschreibung, Website-Link und Verlinkung aus passenden Ratgebern.`,
+    href: "/werben/premium-partner/",
+    linkLabel: "Premium-Partner ansehen",
   },
   {
-    label: "Premium",
-    price: "49 €",
-    period: "/ Monat",
-    desc: `Für Unternehmen, die in ${city.name} sichtbar sein wollen.`,
-    features: [
-      "Alles aus Basic",
-      "Foto-Galerie (bis 10 Bilder)",
-      "Volltext-Beschreibung",
-      "Öffnungszeiten",
-      "Direkt-Link zur Website",
-      "Höhere Position in Stadtteil-Hubs",
-    ],
-    cta: "Premium starten",
-    highlighted: true,
+    title: "Gesponserte Artikel",
+    desc: `Ein redaktioneller Beitrag über dein Unternehmen - dauerhaft online, mit dofollow-Verlinkung auf deine Website.`,
+    href: "/werben/gesponserte-artikel/",
+    linkLabel: "Mehr zu Artikeln",
   },
   {
-    label: "Featured",
-    price: "149 €",
-    period: "/ Monat",
-    desc: "Maximale Sichtbarkeit für lokale Marken.",
-    features: [
-      "Alles aus Premium",
-      "Banner in Kategorie-Hub",
-      "In-Article-Box auf 3 relevanten News",
-      "Hero-Slot rotierend auf Homepage",
-      "Newsletter-Erwähnung 1x pro Monat",
-    ],
-    cta: "Featured starten",
-    highlighted: false,
+    title: "Newsletter",
+    desc: `Erwähnung im ${city.name}-Interaktiv Newsletter - der Kanal befindet sich derzeit im Aufbau.`,
+    href: "/werben/newsletter/",
+    linkLabel: "Mehr zum Newsletter",
   },
 ];
 
-const adSlots = [
-  { name: "Homepage Hero-Banner", size: "1500 × 400 px", price: "1.500 €", period: "Monat" },
-  { name: "Stadtteil-Hub Sidebar", size: "300 × 600 px", price: "250 €", period: "Monat pro Stadtteil" },
-  { name: "News-Artikel In-Read", size: "728 × 250 px", price: "350 €", period: "Monat" },
-  { name: "Newsletter-Sponsor", size: "Logo + 120 Wörter", price: "450 €", period: "pro Ausgabe" },
+const steps = [
+  {
+    title: "Anfragen",
+    desc: "Schick uns über die Kontaktseite kurz, wer du bist und was du erreichen willst.",
+  },
+  {
+    title: "Angebot erhalten",
+    desc: "Wir melden uns mit einem konkreten Vorschlag samt Preis - ohne versteckte Kosten.",
+  },
+  {
+    title: "Live gehen",
+    desc: "Nach Freigabe setzen wir deinen Auftritt um. Änderungswünsche klären wir direkt mit dir.",
+  },
 ];
+
+const faqs = [
+  {
+    q: "Für wen ist Werbung auf dem Portal geeignet?",
+    a: `Für Unternehmen mit Bezug zu ${city.name} und Umgebung: Gastronomie, Hotellerie, Handel, Handwerk und Dienstleister, die lokal gefunden werden wollen. Alle Angebote richten sich ausschließlich an Unternehmer (B2B).`,
+  },
+  {
+    q: "Wie schnell ist mein Auftritt online?",
+    a: "Nach Beauftragung und Freigabe der Inhalte in der Regel innerhalb weniger Werktage.",
+  },
+  {
+    q: "Gibt es Laufzeiten oder automatische Verlängerungen?",
+    a: "Nein. Der Premium-Partner-Eintrag läuft ein Jahr und verlängert sich nicht automatisch. Rechtzeitig vor Ablauf melden wir uns.",
+  },
+  {
+    q: "Kann ich zuerst kostenlos gelistet werden?",
+    a: "Ja. Im Branchenverzeichnis kannst du deinen Betrieb jederzeit kostenlos eintragen lassen - Premium ist optional.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 ---
 
 <BaseLayout
   title={`Werben auf ${city.name}-Interaktiv`}
-  description={`Premium-Business-Listings, Banner-Werbung und Newsletter-Sponsoring auf ${city.name}-Interaktiv. Drei Tier-Pakete für jedes Budget.`}
+  description={`Lokal sichtbar werden: Premium-Partner-Eintrag, gesponserte Artikel und mehr auf ${city.name}-Interaktiv. Angebote für Unternehmen (B2B).`}
 >
   <section
     class="relative overflow-hidden py-16 sm:py-20"
@@ -71,98 +85,105 @@ const adSlots = [
       <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Werben" }]} />
       <div class="max-w-3xl">
         <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-4">
-          Für Unternehmen
+          Werben auf {city.name}-Interaktiv
         </p>
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white text-balance leading-[1.05]">
-          Erreiche Speyerer Leser im Monat
+          Lokal sichtbar werden - bei Menschen, die {city.name} lieben.
         </h1>
         <p class="mt-5 text-lg leading-relaxed text-white/85 max-w-2xl">
-          {city.name}-Interaktiv ist das Stadtportal für Touristen, Neuzugezogene und
-          Einheimische. Drei Wege, dein Unternehmen sichtbar zu machen.
+          {city.name}-Interaktiv ist das Stadtportal für Gäste, Neuzugezogene und
+          Einheimische. Erreiche genau die Menschen, die gerade nach {city.name} suchen.
         </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/kontakt/" class="btn-primary">Unverbindlich anfragen</a>
+          <a href="/branchenverzeichnis/" class="inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold text-white border border-white/40 hover:bg-white/10 transition-colors">
+            Zum Branchenverzeichnis
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="container-page py-16">
     <div class="text-center max-w-2xl mx-auto mb-10">
-      <p class="eyebrow mb-2">Business-Listings</p>
+      <p class="eyebrow mb-2">Werbeformen</p>
       <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
-        Drei Tiers, drei Preise
+        Drei Wege zu mehr Sichtbarkeit
       </h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-      {tiers.map((tier) => (
-        <div
-          class={`card p-6 ${tier.highlighted ? "ring-2" : ""}`}
-          style={tier.highlighted ? "border-color: var(--color-accent); ring-color: var(--color-accent);" : ""}
-        >
-          {tier.highlighted && (
-            <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: var(--color-accent);">
-              Empfohlen
-            </p>
-          )}
-          <h3 class="text-lg font-bold mb-2" style="color: var(--color-deep-plum);">
-            {tier.label}
+      {werbeformen.map((w) => (
+        <a href={w.href} class="card p-6 block group">
+          <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-deep-plum);">
+            {w.title}
           </h3>
-          <div class="flex items-baseline gap-1 mb-3">
-            <span class="text-4xl font-bold" style="color: var(--color-deep-plum);">{tier.price}</span>
-            <span class="text-sm" style="color: var(--color-slate-steel);">{tier.period}</span>
-          </div>
-          <p class="text-sm leading-relaxed mb-5" style="color: var(--color-shadow-graphite);">
-            {tier.desc}
+          <p class="text-sm leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
+            {w.desc}
           </p>
-          <ul class="space-y-2 mb-6">
-            {tier.features.map((f) => (
-              <li class="flex items-start gap-2 text-sm" style="color: var(--color-inkwell-purple);">
-                <span style="color: var(--color-accent);" class="font-bold">✓</span>
-                <span>{f}</span>
-              </li>
-            ))}
-          </ul>
-          <a href="mailto:werben@speyer-interaktiv.de" class={tier.highlighted ? "btn-primary w-full" : "btn-outline w-full"}>
-            {tier.cta}
-          </a>
-        </div>
+          <span class="link-accent text-sm font-semibold">{w.linkLabel} →</span>
+        </a>
       ))}
     </div>
   </section>
 
-  <section class="container-page py-16" style="background: var(--color-porcelain-mist); border-radius: 24px;">
-    <div class="text-center max-w-2xl mx-auto mb-10">
-      <p class="eyebrow mb-2">Banner-Werbung</p>
-      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
-        Werbeplätze im Inventar
+  <section class="container-page py-16">
+    <div class="rounded-3xl p-8 sm:p-12" style="background: var(--color-porcelain-mist);">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <p class="eyebrow mb-2">So funktioniert's</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          In drei Schritten zum Auftritt
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        {steps.map((s, i) => (
+          <div class="text-center">
+            <span class="inline-flex items-center justify-center w-10 h-10 rounded-full text-white font-bold mb-4" style="background: var(--color-accent);">
+              {i + 1}
+            </span>
+            <h3 class="font-bold mb-2" style="color: var(--color-deep-plum);">{s.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16">
+    <div class="max-w-3xl mx-auto">
+      <div class="text-center mb-10">
+        <p class="eyebrow mb-2">Häufige Fragen</p>
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+          Gut zu wissen
+        </h2>
+      </div>
+      <div class="space-y-3">
+        {faqs.map((f) => (
+          <details class="card p-5">
+            <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+            <p class="mt-3 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page pb-20">
+    <div
+      class="rounded-3xl px-8 py-12 text-center"
+      style="background: linear-gradient(120deg, var(--color-deep-plum) 0%, var(--color-accent) 100%);"
+    >
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white text-balance mb-4">
+        Bereit, in {city.name} gefunden zu werden?
       </h2>
-      <p class="mt-3 text-base leading-relaxed" style="color: var(--color-shadow-graphite);">
-        Statt blindem Programmatic: ausgewählte Slots mit lokalem Bezug,
-        gut sichtbar und ohne Banner-Blindness.
+      <p class="text-white/85 max-w-xl mx-auto mb-8">
+        Schreib uns, was du vorhast - wir melden uns mit einem konkreten Vorschlag.
       </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
-      {adSlots.map((slot) => (
-        <div class="card p-5 flex items-center justify-between gap-4">
-          <div>
-            <h4 class="font-bold mb-1" style="color: var(--color-deep-plum);">{slot.name}</h4>
-            <p class="text-xs" style="color: var(--color-slate-steel);">{slot.size}</p>
-          </div>
-          <div class="text-right shrink-0">
-            <p class="text-xl font-bold" style="color: var(--color-accent);">{slot.price}</p>
-            <p class="text-xs" style="color: var(--color-slate-steel);">{slot.period}</p>
-          </div>
-        </div>
-      ))}
-    </div>
-
-    <div class="text-center mt-10">
-      <a href="mailto:werben@speyer-interaktiv.de?subject=Werbeplatz-Anfrage" class="btn-primary">
-        Werbeplatz anfragen →
+      <a href="/kontakt/" class="inline-flex items-center rounded-full px-6 py-3 text-sm font-bold bg-white hover:bg-white/90 transition-colors" style="color: var(--color-deep-plum);">
+        Jetzt Kontakt aufnehmen
       </a>
-      <p class="text-xs mt-3" style="color: var(--color-slate-steel);">
-        Aktuell per Mail. Self-Service-Buchung via Stripe folgt in Phase 2.
-      </p>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 </BaseLayout>

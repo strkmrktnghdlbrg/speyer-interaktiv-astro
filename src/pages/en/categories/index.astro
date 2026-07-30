@@ -45,7 +45,7 @@ const withCounts = categories
       {withCounts.map((c) => (
         <a href={detailUrl("categories", c.en.slug, locale)} class="card group block">
           <div class="aspect-[4/3] relative overflow-hidden">
-            <HueGradient hue={c.hue} label={c.en.name} />
+            <HueGradient kind="generic" hue={c.hue} label={c.en.name} />
           </div>
           <div class="p-5">
             <h2 class="text-xl font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-deep-plum);">

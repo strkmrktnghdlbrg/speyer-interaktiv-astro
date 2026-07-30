@@ -1,0 +1,71 @@
+---
+/**
+ * /branchenverzeichnis/ — Hub des Branchenverzeichnisses.
+ * Kategorien mit Zählern (auch leere — sie laden zum ersten Eintrag ein).
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import { city } from "../../data/city";
+import {
+  kategorien,
+  eintraegeByKategorie,
+  premiumByKategorie,
+} from "../../data/branchenbuch";
+
+const withCounts = kategorien.map((k) => ({
+  ...k,
+  count: eintraegeByKategorie(k.slug).length + premiumByKategorie(k.slug).length,
+}));
+const total = withCounts.reduce((s, k) => s + k.count, 0);
+---
+
+<BaseLayout
+  title={`Branchenverzeichnis ${city.name}`}
+  description={`Das Branchenverzeichnis für ${city.name}: Gastronomie, Hotels, Gesundheit, Banken und mehr. Kostenlos eintragen lassen oder Premium-Partner werden.`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Branchenverzeichnis" }]} />
+
+    <header class="max-w-3xl mb-12">
+      <p class="eyebrow mb-3">Branchenverzeichnis</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        Unternehmen in {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed mb-6" style="color: var(--color-shadow-graphite);">
+        {total} Einträge aus Gastronomie, Hotellerie, Gesundheit und Finanzen -
+        zusammengetragen aus den Inhalten des Portals. Dein Betrieb fehlt oder
+        gehört dir? Trag ihn kostenlos ein oder übernimm deinen Eintrag.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="btn-primary">Kostenlos eintragen</a>
+        <a href="/werben/premium-partner/" class="btn-outline">Premium-Partner werden</a>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {withCounts.map((k) => (
+        <a href={`/branchenverzeichnis/kategorie/${k.slug}/`} class="card p-5 block group">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <h2 class="font-bold group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-deep-plum);">
+              {k.name}
+            </h2>
+            <span class="pill shrink-0">{k.count}</span>
+          </div>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">{k.desc}</p>
+          {k.count === 0 && (
+            <p class="text-xs font-semibold" style="color: var(--color-accent);">
+              Noch keine Einträge - sei der erste Betrieb →
+            </p>
+          )}
+        </a>
+      ))}
+    </div>
+
+    <p class="mt-10 text-xs max-w-3xl" style="color: var(--color-slate-steel);">
+      Die kostenlosen Einträge stammen aus redaktionellen Inhalten von
+      {city.name}-Interaktiv (Restaurant- und Hotelporträts sowie
+      Ratgeber-Artikeln). Angaben ohne Gewähr - Betriebe können ihren Eintrag
+      jederzeit <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="underline" style="text-underline-offset: 2px;">übernehmen und korrigieren</a>.
+    </p>
+  </div>
+</BaseLayout>

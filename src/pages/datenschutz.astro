@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Breadcrumbs from "../components/Breadcrumbs.astro";
+import ObfuscatedEmail from "../components/ObfuscatedEmail.astro";
 import { legal } from "../data/legal";
 import { city } from "../data/city";
 ---
@@ -24,7 +25,7 @@ import { city } from "../data/city";
         {legal.registeredOffice.street}<br />
         {legal.registeredOffice.postcode} {legal.registeredOffice.city}<br />
         {legal.registeredOffice.country}<br />
-        E-Mail: <a href={`mailto:${legal.email}`}>{legal.email}</a>
+        E-Mail: <ObfuscatedEmail email={legal.email} />
       </p>
 
       <h2>Erhebung allgemeiner Informationen beim Besuch der Website</h2>
@@ -113,7 +114,7 @@ import { city } from "../data/city";
       </ul>
       <p>
         Zur Ausübung deiner Rechte genügt eine formlose Nachricht an
-        <a href={`mailto:${legal.email}`}>{legal.email}</a>.
+        <ObfuscatedEmail email={legal.email} />.
       </p>
 
       <h2>Beschwerderecht bei der Aufsichtsbehörde</h2>

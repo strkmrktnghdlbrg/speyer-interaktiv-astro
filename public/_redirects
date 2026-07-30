@@ -63,7 +63,9 @@
 /thema/sehenswuerdigkeiten                          /sehenswuerdigkeiten                                    301
 /thema/tourismus                                    /sehenswuerdigkeiten                                    301
 /thema/veranstaltungen                              /feste                                                  301
-/thema/dienstleistungen                             /branchen                                               301
+/thema/dienstleistungen                             /branchenverzeichnis                                    301
+/branchen                                           /branchenverzeichnis                                    301
+/branchen/                                          /branchenverzeichnis                                    301
 /thema/immobilien                                   /wissenswertes                                          301
 /thema/hochzeitsplanung                             /wissenswertes/hochzeitsplanung                         301
 /thema/technologie                                  /wissenswertes                                          301

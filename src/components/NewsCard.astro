@@ -18,6 +18,7 @@ const date = new Date(item.publishedAt).toLocaleDateString("de-DE", {
   <a href={`/news/${item.slug}/`} class="card group block">
     <div class="aspect-[4/3] relative overflow-hidden">
       <ContentImage
+      kind="article"
         imgKey={item.imageKey}
         fallbackHue={item.imageHue}
         fallbackLabel={item.category}
@@ -48,6 +49,7 @@ const date = new Date(item.publishedAt).toLocaleDateString("de-DE", {
   <a href={`/news/${item.slug}/`} class="flex gap-3 group">
     <div class="shrink-0 w-20 h-20 rounded-xl overflow-hidden">
       <ContentImage
+      kind="article"
         imgKey={item.imageKey}
         fallbackHue={item.imageHue}
         imgClass="w-full h-full object-cover"

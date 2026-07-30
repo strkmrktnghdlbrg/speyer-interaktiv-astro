@@ -1,3 +1,8 @@
+import { sights } from "./sights";
+import { hotels } from "./hotels";
+import { restaurants } from "./restaurants";
+import { districts } from "./districts";
+
 export const city = {
   name: "Speyer",
   nameEn: "Speyer",
@@ -14,10 +19,11 @@ export const city = {
       "Speyer - zweitausend Jahre Geschichte zwischen Kaiserdom und Rhein. Sehenswürdigkeiten, Hotels, Stadtteile, Feste und Wissenswertes auf einem Portal.",
     long: "Speyer-Interaktiv ist dein Stadtportal für die alte Kaiser- und Domstadt am Rhein. Vom UNESCO-Welterbe-Dom über die jüdischen SchUM-Stätten bis zum Technik Museum und der Maximilianstraße - Geschichte, die du heute noch besuchen kannst.",
   },
+  // Aus den Daten abgeleitet — nie hart pflegen (waren zuvor als 16/12/22 erfunden).
   stats: {
-    sights: 16,
-    hotels: 12,
-    restaurants: 22,
-    districts: 8,
+    sights: sights.length,
+    hotels: hotels.length,
+    restaurants: restaurants.length,
+    districts: districts.length,
   },
 };

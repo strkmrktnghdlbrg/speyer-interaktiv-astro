@@ -107,7 +107,7 @@ export const districts: District[] = [
   },
   {
     slug: "erlach",
-    imageKey: "district:erlach",
+    // Kein freilizenziertes Commons-Foto verfügbar (Stand Juli 2026) — HueGradient-Placeholder.
     name: "Erlach",
     shortDesc:
       "Wohn- und Gewerbegebiet östlich der Bundesstraße 9 - Industriestandort mit Stadtnähe.",

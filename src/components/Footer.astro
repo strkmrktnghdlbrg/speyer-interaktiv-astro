@@ -93,6 +93,12 @@ const categoryName = (slug: string, fallback: string) =>
           {!isEn && features.werben.enabled && (
             <li><a href="/werben/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{tf(locale, "footer.advertise", { site: city.name })}</a></li>
           )}
+          {!isEn && features.branchen.enabled && (
+            <li><a href="/branchenverzeichnis/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Branchenverzeichnis</a></li>
+          )}
+          {!isEn && (
+            <li><a href="/kontakt/" class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">Kontakt</a></li>
+          )}
           {features.reiseplaner.enabled && (
             <li><a href={indexUrl("guides", locale)} class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">{t(locale, "nav.guides")}</a></li>
           )}

@@ -26,6 +26,7 @@ const districtName = isEn ? (districtsEn[restaurant.district]?.name ?? district?
 <a href={href} class="card group block">
   <div class="aspect-[4/3] relative overflow-hidden">
     <ContentImage
+      kind="restaurant"
       imgKey={restaurant.imageKey}
       fallbackHue={restaurant.imageHue}
       fallbackLabel={name}

@@ -16,7 +16,7 @@ export const features = {
   news: {
     enabled: false,
   },
-  /** Reiseplaner-Guides — bleibt aktiv für Köln. */
+  /** Reiseplaner-Guides — aktiv für Speyer. */
   reiseplaner: {
     enabled: true,
   },
@@ -24,8 +24,8 @@ export const features = {
   werben: {
     enabled: true,
   },
-  /** Branchen-Verzeichnis (Phase 2 — Self-Service-Listings via Stripe). */
+  /** Branchen-Verzeichnis unter /branchenverzeichnis/ (Inquiry-Funnel, keine Selbstbuchung). */
   branchen: {
-    enabled: false,
+    enabled: true,
   },
 };

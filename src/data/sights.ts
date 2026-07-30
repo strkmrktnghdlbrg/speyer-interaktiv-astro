@@ -237,7 +237,7 @@ export const sights: Sight[] = [
   {
     slug: "sea-life",
     gygActivityId: "40356",
-    imageKey: "sight:sea-life",
+    // Keine freilizenzierte Außenaufnahme auf Commons (nur MS Sea Life Schiff) — HueGradient-Placeholder.
     name: "Sea Life Speyer",
     categories: ["familie"],
     district: "altstadt",

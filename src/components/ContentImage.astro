@@ -1,12 +1,15 @@
 ---
 import { Image } from "astro:assets";
 import HueGradient from "./HueGradient.astro";
+import type { PlaceholderKind } from "../lib/placeholder";
 import { getImage } from "../data/images";
 
 interface Props {
   imgKey?: string;
   fallbackHue?: number;
   fallbackLabel?: string;
+  /** Inhaltstyp für das Placeholder-Icon (sight/restaurant/hotel/district/fest/article) */
+  kind?: PlaceholderKind;
   className?: string;
   imgClass?: string;
   loading?: "lazy" | "eager";
@@ -20,6 +23,7 @@ const {
   imgKey,
   fallbackHue = 1,
   fallbackLabel,
+  kind = "generic",
   className = "",
   imgClass = "w-full h-full object-cover",
   loading = "lazy",
@@ -73,7 +77,7 @@ const wrapperClass = aspect ? `${aspect} ${className}` : className;
     )}
   </figure>
 ) : (
-  <div class={`relative ${wrapperClass}`}>
-    <HueGradient hue={fallbackHue} label={fallbackLabel} />
+  <div class={`relative w-full h-full min-h-[220px] ${wrapperClass}`}>
+    <HueGradient hue={fallbackHue} label={fallbackLabel} kind={kind} />
   </div>
 )}

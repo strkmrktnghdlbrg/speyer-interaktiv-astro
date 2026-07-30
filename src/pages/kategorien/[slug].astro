@@ -66,7 +66,7 @@ const schema = {
   alternateUrls={categoriesEn[category.slug] ? { de: `/kategorien/${category.slug}/`, en: `/en/categories/${categoriesEn[category.slug].slug}/` } : undefined}
 >
   <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[50vh] overflow-hidden">
-    <HueGradient hue={((sights[0]?.imageHue ?? 1))} label={category.name} />
+    <HueGradient kind="generic" hue={((sights[0]?.imageHue ?? 1))} label={category.name} />
   </div>
 
   <div class="container-page py-10">

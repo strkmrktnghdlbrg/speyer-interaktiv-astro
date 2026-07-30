@@ -35,7 +35,6 @@ const eventSchema = {
   },
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  description2: item.termin,
   organizer: {
     "@type": "Organization",
     name: `Stadt ${city.name}`,
@@ -44,6 +43,18 @@ const eventSchema = {
   ...(item.websiteUrl ? { url: item.websiteUrl } : {}),
   inLanguage: "de-DE",
 };
+
+const faqSchema = item.guide
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: item.guide.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  : null;
 ---
 
 <BlogArticle
@@ -55,6 +66,7 @@ const eventSchema = {
 >
   <div class="aspect-[16/9] relative overflow-hidden rounded-2xl mb-6">
     <ContentImage
+      kind="fest"
       imgKey={item.imageKey}
       fallbackHue={item.imageHue}
       fallbackLabel={item.name}
@@ -86,7 +98,48 @@ const eventSchema = {
     </p>
   )}
 
+  {item.guide && (
+    <>
+      <h2 id="termin-ort">Termin &amp; Ort</h2>
+      {item.guide.terminOrt.map((p) => <p>{p}</p>)}
+
+      <h2 id="anreise">Anreise</h2>
+      {item.guide.anreise.map((p) => <p>{p}</p>)}
+
+      <h2 id="tipps">Tipps für den Besuch</h2>
+      <ul>
+        {item.guide.tipps.map((t) => <li>{t}</li>)}
+      </ul>
+
+      <h2 id="umgebung">In der Umgebung</h2>
+      <ul>
+        {item.guide.umgebung.map((u) => (
+          <li>
+            <a href={u.href} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+              {u.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <h2 id="faq">Häufige Fragen</h2>
+      <div class="space-y-3 not-prose">
+        {item.guide.faq.map((f) => (
+          <details class="card p-4">
+            <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+            <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
+        Stand: {item.guide.stand}. Termine und Details veröffentlicht der Veranstalter jeweils vor Saisonbeginn.
+      </p>
+    </>
+  )}
+
   <GetYourGuideWidget offerKey={`fest:${item.slug}`} />
 
   <script type="application/ld+json" set:html={JSON.stringify(eventSchema)} is:inline />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />}
 </BlogArticle>

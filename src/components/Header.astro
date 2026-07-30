@@ -192,6 +192,9 @@ const searchLabel = isEn ? "Search" : "Suchen";
         <p class="px-4 mb-2 text-xs uppercase tracking-widest font-bold" style="color: var(--color-slate-steel);">{t(locale, "footer.service")}</p>
         <ul class="space-y-1">
           <li><a href={indexUrl("about", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.about")}</a></li>
+          {!isEn && (
+            <li><a href="/kontakt/" class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">Kontakt</a></li>
+          )}
           <li><a href={indexUrl("imprint", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.imprint")}</a></li>
           <li><a href={indexUrl("privacy", locale)} class="block px-4 py-2.5 rounded-xl text-sm transition-colors hover:bg-[var(--color-porcelain-mist)]" style="color: var(--color-slate-steel);">{t(locale, "nav.privacy")}</a></li>
         </ul>

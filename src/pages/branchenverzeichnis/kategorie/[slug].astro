@@ -1,0 +1,155 @@
+---
+/**
+ * /branchenverzeichnis/kategorie/<slug>/ — Kategorie-Seite.
+ * Premium-Partner zuerst (Logo-Initialen, Beschreibung, dofollow-Buttons,
+ * ★-Badge), danach freie Einträge alphabetisch.
+ */
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ObfuscatedEmail from "../../../components/ObfuscatedEmail.astro";
+import { city } from "../../../data/city";
+import {
+  kategorien,
+  getKategorie,
+  eintraegeByKategorie,
+  premiumByKategorie,
+} from "../../../data/branchenbuch";
+
+export function getStaticPaths() {
+  return kategorien.map((k) => ({ params: { slug: k.slug } }));
+}
+
+const { slug } = Astro.params;
+const kategorie = getKategorie(slug!)!;
+const premium = premiumByKategorie(kategorie.slug);
+const frei = eintraegeByKategorie(kategorie.slug);
+const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as string[];
+---
+
+<BaseLayout
+  title={`${kategorie.name} in ${city.name}`}
+  description={`${kategorie.name} in ${city.name} im Branchenverzeichnis von ${city.name}-Interaktiv. ${kategorie.desc}`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Branchenverzeichnis", href: "/branchenverzeichnis/" },
+        { label: kategorie.name },
+      ]}
+    />
+
+    <header class="max-w-3xl mb-10">
+      <p class="eyebrow mb-3">Branchenverzeichnis</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        {kategorie.name} in {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {kategorie.desc}
+      </p>
+    </header>
+
+    {premium.length > 0 && (
+      <section class="mb-10">
+        <h2 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-accent);">
+          Premium-Partner
+        </h2>
+        <ul class="space-y-4">
+          {premium.map((p) => (
+            <li class="rounded-2xl border-2 p-5" style="border-color: var(--color-accent); background: var(--color-accent-tint);">
+              <div class="flex items-center gap-4 mb-3">
+                <span class="inline-flex items-center justify-center w-12 h-12 rounded-full text-lg font-bold text-white shrink-0" style="background: var(--color-accent);">
+                  {p.initialen}
+                </span>
+                <div class="min-w-0">
+                  <p class="font-bold flex items-center gap-1.5 flex-wrap" style="color: var(--color-deep-plum);">
+                    <a href={`/branchenverzeichnis/${p.slug}/`} class="hover:underline" style="text-underline-offset: 3px;">{p.name}</a>
+                    <span class="text-[10px] font-bold uppercase tracking-wide rounded-full px-2 py-0.5 text-white" style="background: var(--color-accent);">★ Premium</span>
+                  </p>
+                </div>
+              </div>
+              <p class="text-sm leading-relaxed mb-3" style="color: var(--color-inkwell-purple);">{p.beschreibung}</p>
+              <div class="flex flex-wrap gap-2">
+                <a href={p.websiteUrl} class="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold text-white" style="background: var(--color-accent);">
+                  Website
+                </a>
+                {p.email && (
+                  <span class="inline-flex items-center rounded-full px-3.5 py-1.5 text-xs font-semibold border" style="border-color: var(--color-accent); color: var(--color-accent);">
+                    <ObfuscatedEmail email={p.email} />
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {frei.length > 0 ? (
+      <section>
+        <h2 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-slate-steel);">
+          Alle Einträge (alphabetisch)
+        </h2>
+        <ul class="divide-y divide-[var(--color-lavender-ash)] border-y border-[var(--color-lavender-ash)]">
+          {frei.map((e) => (
+            <li class="py-4 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4">
+              <div class="min-w-0 flex-1">
+                <p class="font-semibold" style="color: var(--color-inkwell-purple);">
+                  {e.detailPath ? (
+                    <a href={e.detailPath} class="hover:underline" style="text-underline-offset: 3px;">{e.name}</a>
+                  ) : (
+                    e.name
+                  )}
+                </p>
+                <p class="text-xs mt-0.5" style="color: var(--color-slate-steel);">
+                  {e.ort}
+                  {e.telefon && <> · Tel. {e.telefon}</>}
+                </p>
+              </div>
+              {e.detailPath && (
+                <a href={e.detailPath} class="link-accent text-xs font-semibold shrink-0">Zum Porträt →</a>
+              )}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-4 text-xs" style="color: var(--color-slate-steel);">
+          Angaben ohne Gewähr.
+          {quellen.length > 0 && (
+            <>
+              {" "}Quelle{quellen.length > 1 ? "n" : ""}:{" "}
+              {quellen.map((q, i) => (
+                <>
+                  {i > 0 && ", "}
+                  <a href={q} class="underline" style="text-underline-offset: 2px;">Ratgeber</a>
+                </>
+              ))}
+              .
+            </>
+          )}
+        </p>
+      </section>
+    ) : (
+      <section class="rounded-2xl border border-dashed border-[var(--color-lavender-ash)] p-8 text-center max-w-2xl">
+        <p class="font-semibold mb-2" style="color: var(--color-deep-plum);">
+          Noch keine Einträge in dieser Kategorie.
+        </p>
+        <p class="text-sm leading-relaxed mb-5" style="color: var(--color-shadow-graphite);">
+          Dein Betrieb gehört hierher? Sichere dir den ersten Platz -
+          der Eintrag ist kostenlos.
+        </p>
+        <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="btn-primary">Jetzt kostenlos eintragen</a>
+      </section>
+    )}
+
+    <section class="mt-12 rounded-3xl px-8 py-10 text-center" style="background: var(--color-porcelain-mist);">
+      <h2 class="text-2xl font-bold tracking-tight text-balance mb-3" style="color: var(--color-deep-plum);">
+        Ganz oben stehen statt in der Liste?
+      </h2>
+      <p class="text-sm leading-relaxed max-w-xl mx-auto mb-6" style="color: var(--color-shadow-graphite);">
+        Premium-Partner erscheinen in ihrer Kategorie zuerst - mit Logo,
+        Beschreibung und direktem Link zur Website.
+      </p>
+      <a href="/werben/premium-partner/" class="btn-primary">Premium-Partner werden</a>
+    </section>
+  </div>
+</BaseLayout>

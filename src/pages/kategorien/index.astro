@@ -40,7 +40,7 @@ const withCounts = categories
       {withCounts.map((c) => (
         <a href={`/kategorien/${c.slug}/`} class="card group block">
           <div class="aspect-[4/3] relative overflow-hidden">
-            <HueGradient hue={c.hue} label={c.name} />
+            <HueGradient kind="generic" hue={c.hue} label={c.name} />
           </div>
           <div class="p-5">
             <h2
