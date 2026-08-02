@@ -53,6 +53,22 @@ const hreflangAlternates =
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
+    {/* Selbst gehostete Schriften (DSGVO) — kritische Latin-Schnitte vorladen */}
+    <link
+      rel="preload"
+      href="/fonts/inter-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/fraunces-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
 
