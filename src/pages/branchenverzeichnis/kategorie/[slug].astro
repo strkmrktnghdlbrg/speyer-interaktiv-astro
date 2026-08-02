@@ -2,17 +2,26 @@
 /**
  * /branchenverzeichnis/kategorie/<slug>/ — Kategorie-Seite.
  * Premium-Partner zuerst (Logo-Initialen, Beschreibung, dofollow-Buttons,
- * ★-Badge), danach freie Einträge alphabetisch.
+ * ★-Badge), danach die Branchen der Kategorie und die freien Einträge.
+ *
+ * Grosse Branchen (ab MIN_BRANCHE_SEITE Einträgen) bekommen eine eigene
+ * Unterseite und werden hier nur verlinkt; kleinere Branchen laufen in der
+ * Liste darunter mit. OSM-Einträge sind reine Listings ohne Detailseite —
+ * wo sie erscheinen, steht die ODbL-Attribution.
  */
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import ObfuscatedEmail from "../../../components/ObfuscatedEmail.astro";
+import OsmAttribution from "../../../components/OsmAttribution.astro";
 import { city } from "../../../data/city";
 import {
   kategorien,
   getKategorie,
   eintraegeByKategorie,
+  eintraegeAufKategorieSeite,
+  branchenMitSeite,
   premiumByKategorie,
+  kategorieHatOsm,
 } from "../../../data/branchenbuch";
 
 export function getStaticPaths() {
@@ -22,8 +31,11 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const kategorie = getKategorie(slug!)!;
 const premium = premiumByKategorie(kategorie.slug);
-const frei = eintraegeByKategorie(kategorie.slug);
+const gesamt = eintraegeByKategorie(kategorie.slug).length;
+const branchen = branchenMitSeite(kategorie.slug);
+const frei = eintraegeAufKategorieSeite(kategorie.slug);
 const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as string[];
+const zeigtOsm = kategorieHatOsm(kategorie.slug);
 ---
 
 <BaseLayout
@@ -47,6 +59,12 @@ const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as s
       <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
         {kategorie.desc}
       </p>
+      {gesamt > 0 && (
+        <p class="text-sm mt-3" style="color: var(--color-slate-steel);">
+          {gesamt} {gesamt === 1 ? "Eintrag" : "Einträge"}
+          {branchen.length > 0 && <> in {branchen.length} {branchen.length === 1 ? "Branche" : "Branchen"} und weiteren Betrieben</>}. Angaben ohne Gewähr.
+        </p>
+      )}
     </header>
 
     {premium.length > 0 && (
@@ -85,10 +103,32 @@ const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as s
       </section>
     )}
 
+    {branchen.length > 0 && (
+      <section class="mb-10">
+        <h2 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-slate-steel);">
+          Branchen in dieser Kategorie
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {branchen.map((b) => (
+            <a
+              href={`/branchenverzeichnis/kategorie/${kategorie.slug}/${b.slug}/`}
+              class="flex items-center justify-between gap-3 rounded-xl border px-4 py-3 group"
+              style="border-color: var(--color-lavender-ash);"
+            >
+              <span class="font-semibold text-sm group-hover:text-[var(--color-accent)] transition-colors" style="color: var(--color-inkwell-purple);">
+                {b.name}
+              </span>
+              <span class="pill shrink-0">{b.count}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+
     {frei.length > 0 ? (
       <section>
         <h2 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-slate-steel);">
-          Alle Einträge (alphabetisch)
+          {branchen.length > 0 ? "Weitere Betriebe (alphabetisch)" : "Alle Einträge (alphabetisch)"}
         </h2>
         <ul class="divide-y divide-[var(--color-lavender-ash)] border-y border-[var(--color-lavender-ash)]">
           {frei.map((e) => (
@@ -102,6 +142,7 @@ const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as s
                   )}
                 </p>
                 <p class="text-xs mt-0.5" style="color: var(--color-slate-steel);">
+                  {e.branche && <><span class="font-semibold">{e.branche}</span> · </>}
                   {e.ort}
                   {e.telefon && <> · Tel. {e.telefon}</>}
                 </p>
@@ -140,6 +181,8 @@ const quellen = [...new Set(frei.map((e) => e.quellePath).filter(Boolean))] as s
         <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="btn-primary">Jetzt kostenlos eintragen</a>
       </section>
     )}
+
+    {zeigtOsm && <OsmAttribution class="mt-4" />}
 
     <section class="mt-12 rounded-3xl px-8 py-10 text-center" style="background: var(--color-porcelain-mist);">
       <h2 class="text-2xl font-bold tracking-tight text-balance mb-3" style="color: var(--color-deep-plum);">

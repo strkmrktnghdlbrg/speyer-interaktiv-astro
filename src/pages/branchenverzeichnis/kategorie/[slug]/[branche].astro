@@ -1,0 +1,100 @@
+---
+/**
+ * /branchenverzeichnis/kategorie/<kategorie>/<branche>/ — Branchen-Seite.
+ *
+ * Nur Branchen ab MIN_BRANCHE_SEITE Einträgen bekommen hier eine Seite;
+ * kleinere laufen auf der Kategorie-Seite mit, damit keine dünnen Seiten
+ * entstehen. Die Einträge sind reine Listings: Betriebe aus OpenStreetMap
+ * haben bewusst keine Detailseite und keinen Website-Link.
+ */
+import BaseLayout from "../../../../layouts/BaseLayout.astro";
+import Breadcrumbs from "../../../../components/Breadcrumbs.astro";
+import OsmAttribution from "../../../../components/OsmAttribution.astro";
+import { city } from "../../../../data/city";
+import {
+  alleBranchenSeiten,
+  getKategorie,
+  eintraegeByBranche,
+  hatOsm,
+} from "../../../../data/branchenbuch";
+
+export function getStaticPaths() {
+  return alleBranchenSeiten().map((b) => ({
+    params: { slug: b.kategorie, branche: b.slug },
+    props: { branche: b },
+  }));
+}
+
+const { branche } = Astro.props;
+const kategorie = getKategorie(branche.kategorie)!;
+const eintraege = eintraegeByBranche(branche.kategorie, branche.slug);
+const zeigtOsm = hatOsm(eintraege);
+---
+
+<BaseLayout
+  title={`${branche.name} in ${city.name}`}
+  description={`${branche.name} in ${city.name}: ${eintraege.length} Einträge mit Adresse im Branchenverzeichnis von ${city.name}-Interaktiv. Angaben ohne Gewähr.`}
+>
+  <div class="container-page py-10">
+    <Breadcrumbs
+      items={[
+        { label: city.name, href: "/" },
+        { label: "Branchenverzeichnis", href: "/branchenverzeichnis/" },
+        { label: kategorie.name, href: `/branchenverzeichnis/kategorie/${kategorie.slug}/` },
+        { label: branche.name },
+      ]}
+    />
+
+    <header class="max-w-3xl mb-10">
+      <p class="eyebrow mb-3">{kategorie.name}</p>
+      <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
+        {branche.name} in {city.name}
+      </h1>
+      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
+        {eintraege.length} {eintraege.length === 1 ? "Betrieb" : "Betriebe"} mit Adresse in
+        {" "}{city.name}. Die Liste ist alphabetisch sortiert, alle Angaben ohne Gewähr.
+      </p>
+    </header>
+
+    <section>
+      <ul class="divide-y divide-[var(--color-lavender-ash)] border-y border-[var(--color-lavender-ash)]">
+        {eintraege.map((e) => (
+          <li class="py-4 flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4">
+            <div class="min-w-0 flex-1">
+              <p class="font-semibold" style="color: var(--color-inkwell-purple);">
+                {e.detailPath ? (
+                  <a href={e.detailPath} class="hover:underline" style="text-underline-offset: 3px;">{e.name}</a>
+                ) : (
+                  e.name
+                )}
+              </p>
+              <p class="text-xs mt-0.5" style="color: var(--color-slate-steel);">
+                {e.ort}
+                {e.telefon && <> · Tel. {e.telefon}</>}
+              </p>
+            </div>
+            {e.detailPath && (
+              <a href={e.detailPath} class="link-accent text-xs font-semibold shrink-0">Zum Porträt →</a>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 text-xs" style="color: var(--color-slate-steel);">
+        Angaben ohne Gewähr. Stimmt etwas nicht?
+        {" "}<a href="/branchenverzeichnis/eintrag-beanspruchen/" class="underline" style="text-underline-offset: 2px;">Eintrag übernehmen und korrigieren</a>.
+      </p>
+      {zeigtOsm && <OsmAttribution class="mt-1.5" />}
+    </section>
+
+    <section class="mt-12 rounded-3xl px-8 py-10 text-center" style="background: var(--color-porcelain-mist);">
+      <h2 class="text-2xl font-bold tracking-tight text-balance mb-3" style="color: var(--color-deep-plum);">
+        Ganz oben stehen statt in der Liste?
+      </h2>
+      <p class="text-sm leading-relaxed max-w-xl mx-auto mb-6" style="color: var(--color-shadow-graphite);">
+        Premium-Partner erscheinen in ihrer Kategorie zuerst - mit Logo,
+        Beschreibung und direktem Link zur Website.
+      </p>
+      <a href="/werben/premium-partner/" class="btn-primary">Premium-Partner werden</a>
+    </section>
+  </div>
+</BaseLayout>

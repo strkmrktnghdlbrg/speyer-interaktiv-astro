@@ -1,0 +1,31 @@
+---
+/**
+ * Pflicht-Attribution für OpenStreetMap-Daten (ODbL).
+ * Muss auf jeder Seite stehen, die OSM-Betriebsdaten anzeigt.
+ */
+interface Props {
+  lang?: "de" | "en";
+  class?: string;
+}
+const { lang = "de", class: className = "" } = Astro.props;
+---
+<p class:list={["osm-attr", className]}>
+  {lang === "en" ? (
+    <>Business data partly from <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a> contributors (ODbL), without guarantee.</>
+  ) : (
+    <>Betriebsdaten teils von <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>-Mitwirkenden (ODbL), ohne Gewähr.</>
+  )}
+</p>
+
+<style>
+  .osm-attr {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: var(--color-slate-steel);
+  }
+  .osm-attr a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>

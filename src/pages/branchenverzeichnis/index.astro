@@ -5,11 +5,13 @@
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import OsmAttribution from "../../components/OsmAttribution.astro";
 import { city } from "../../data/city";
 import {
   kategorien,
   eintraegeByKategorie,
   premiumByKategorie,
+  branchenbuchStats,
 } from "../../data/branchenbuch";
 
 const withCounts = kategorien.map((k) => ({
@@ -32,9 +34,10 @@ const total = withCounts.reduce((s, k) => s + k.count, 0);
         Unternehmen in {city.name}
       </h1>
       <p class="text-lg leading-relaxed mb-6" style="color: var(--color-shadow-graphite);">
-        {total} Einträge aus Gastronomie, Hotellerie, Gesundheit und Finanzen -
-        zusammengetragen aus den Inhalten des Portals. Dein Betrieb fehlt oder
-        gehört dir? Trag ihn kostenlos ein oder übernimm deinen Eintrag.
+        {total} Einträge aus Gastronomie, Handel, Handwerk, Gesundheit und
+        Dienstleistung - zusammengetragen aus den Inhalten des Portals und aus
+        OpenStreetMap. Dein Betrieb fehlt oder gehört dir? Trag ihn kostenlos
+        ein oder übernimm deinen Eintrag.
       </p>
       <div class="flex flex-wrap gap-3">
         <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="btn-primary">Kostenlos eintragen</a>
@@ -63,9 +66,12 @@ const total = withCounts.reduce((s, k) => s + k.count, 0);
 
     <p class="mt-10 text-xs max-w-3xl" style="color: var(--color-slate-steel);">
       Die kostenlosen Einträge stammen aus redaktionellen Inhalten von
-      {city.name}-Interaktiv (Restaurant- und Hotelporträts sowie
-      Ratgeber-Artikeln). Angaben ohne Gewähr - Betriebe können ihren Eintrag
+      {city.name}-Interaktiv ({branchenbuchStats.portal} Restaurant- und
+      Hotelporträts, {branchenbuchStats.ratgeber} Betriebe aus Ratgeber-Artikeln)
+      sowie aus OpenStreetMap ({branchenbuchStats.osm} Betriebe mit Adresse in
+      {city.name}). Angaben ohne Gewähr - Betriebe können ihren Eintrag
       jederzeit <a href="/branchenverzeichnis/eintrag-beanspruchen/" class="underline" style="text-underline-offset: 2px;">übernehmen und korrigieren</a>.
     </p>
+    <OsmAttribution class="mt-2 max-w-3xl" />
   </div>
 </BaseLayout>
