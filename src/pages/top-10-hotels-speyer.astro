@@ -152,7 +152,7 @@ const itemListSchema = {
                     )}
                     {h.rating?.score && (
                       <span class="pill-accent text-[10px]">
-                        {h.rating.score.toFixed(1)} / 10
+                        {Number.isInteger(h.rating.score) ? h.rating.score : h.rating.score.toFixed(1)} / 10
                         {h.rating.count && ` · ${h.rating.count} Bewertungen`}
                       </span>
                     )}

@@ -123,7 +123,7 @@ const schema = {
                       </span>
                     )}
                     {h.rating?.score && (
-                      <span class="pill-accent text-[10px]">{h.rating.score.toFixed(1)} / 10</span>
+                      <span class="pill-accent text-[10px]">{Number.isInteger(h.rating.score) ? h.rating.score : h.rating.score.toFixed(1)} / 10</span>
                     )}
                   </div>
                   <h2 class="text-xl font-bold leading-tight mb-1" style="color: var(--color-deep-plum);">
