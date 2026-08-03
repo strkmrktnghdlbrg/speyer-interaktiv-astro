@@ -39,6 +39,46 @@ const hreflangAlternates =
         ...(alternateUrls.de ? [{ hreflang: "x-default", href: `${city.domain}${alternateUrls.de}` }] : []),
       ]
     : [];
+
+// Sitewide-Entities als @graph mit stabilen @id's. Unterseiten-Schemata
+// referenzieren `${city.domain}/#organization` statt eigene Organization-
+// Nodes anzulegen, sonst entstehen doppelte Entities.
+// Betreiber (legalName) = Impressum dieser Domain (src/data/legal.ts).
+import { legal } from "../data/legal";
+const siteGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${city.domain}/#organization`,
+      name: `${city.name}-Interaktiv`,
+      legalName: legal.companyName,
+      url: `${city.domain}/`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${city.domain}/favicon.svg`,
+      },
+      email: legal.email,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${city.domain}/#website`,
+      name: `${city.name}-Interaktiv`,
+      url: `${city.domain}/`,
+      description: city.description.long,
+      inLanguage: ["de", "en"],
+      publisher: { "@id": `${city.domain}/#organization` },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${city.domain}/suche/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -71,6 +111,8 @@ const hreflangAlternates =
 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(siteGraph)} />
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />

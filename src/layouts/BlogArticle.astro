@@ -47,11 +47,14 @@ const articleSchema = {
   description: metaDesc,
   ...(publishedAt ? { datePublished: publishedAt } : {}),
   ...(updatedAt ? { dateModified: updatedAt } : {}),
-  author: { "@type": "Organization", name: author },
-  publisher: {
-    "@type": "Organization",
-    name: `${city.name}-Interaktiv`,
-  },
+  // Publisher/Author referenzieren die sitewide Organization aus dem
+  // BaseLayout-@graph, statt eigene Organization-Nodes anzulegen.
+  // Nur wenn ein abweichender Autor übergeben wird, eigener Node.
+  author:
+    author === `${city.name}-Interaktiv Redaktion`
+      ? { "@id": `${city.domain}/#organization` }
+      : { "@type": "Organization", name: author },
+  publisher: { "@id": `${city.domain}/#organization` },
 };
 
 const formattedDate = publishedAt

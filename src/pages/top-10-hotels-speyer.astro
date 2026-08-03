@@ -65,16 +65,6 @@ const itemListSchema = {
       ...(h.starRating
         ? { starRating: { "@type": "Rating", ratingValue: h.starRating } }
         : {}),
-      ...(h.rating?.score
-        ? {
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: h.rating.score,
-              bestRating: 10,
-              ...(h.rating.count ? { ratingCount: h.rating.count } : {}),
-            },
-          }
-        : {}),
     },
   })),
 };

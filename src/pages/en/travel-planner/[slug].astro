@@ -49,8 +49,9 @@ const schema = {
   "@type": "Article",
   headline: en.title,
   description: en.shortDesc,
-  author: { "@type": "Organization", name: `${city.name}-Interaktiv` },
-  publisher: { "@type": "Organization", name: `${city.name}-Interaktiv` },
+  // Referenz auf die sitewide Organization aus dem BaseLayout-@graph.
+  author: { "@id": `${city.domain}/#organization` },
+  publisher: { "@id": `${city.domain}/#organization` },
   about: { "@type": "City", name: city.name },
 };
 ---

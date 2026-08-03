@@ -31,17 +31,9 @@ try {
 const hasLiveHotels = !!liveTopHotels && liveTopHotels.length > 0;
 const hotelBuildDate = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
-const homepageSchema = [
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: `${city.name}-Interaktiv`,
-    url: `${city.domain}/en/`,
-    description:
-      "Speyer travel guide - the UNESCO Imperial Cathedral, the ShUM Jewish heritage, the Technik Museum, hotels, restaurants and neighborhoods for your trip.",
-    inLanguage: "en-US",
-  },
-];
+// Organization + WebSite kommen sitewide als @graph aus dem BaseLayout
+// (stabile @id's, inLanguage ["de","en"]). Kein eigener WebSite-Node hier,
+// sonst entstehen doppelte Entities.
 
 const stats = [
   { label: t(locale, "home.statSights"), value: city.stats.sights },
@@ -57,7 +49,6 @@ const stats = [
   locale={locale}
   alternateUrls={{ de: homeUrl("de"), en: homeUrl("en") }}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} is:inline />
   <section
     class="relative overflow-hidden"
     style="background: linear-gradient(135deg, var(--color-deep-plum) 0%, var(--color-inkwell-purple) 60%, var(--color-accent) 100%);"

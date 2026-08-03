@@ -35,6 +35,9 @@ const eventSchema = {
   },
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
+  // Kein startDate: Die Termine liegen nur als Freitext vor ("Ende November
+  // bis 23. Dezember"), ein ISO-Datum wäre geraten. `description2` war keine
+  // gültige schema.org-Property — Termin-Freitext gehört in die Description.
   organizer: {
     "@type": "Organization",
     name: `Stadt ${city.name}`,

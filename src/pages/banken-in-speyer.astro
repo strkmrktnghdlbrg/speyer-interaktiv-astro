@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { city } from "../data/city";
 
 // Faktische Google-Standort-Aggregate (gewichteter Durchschnitt, Anzahl
 // Bewertungen) und öffentliche Filialadressen, erhoben über die Google
@@ -58,8 +59,9 @@ const articleLd = {
   "@type": "Article",
   headline: `Banken in ${stadt}: Filialen, Adressen und Bewertungen`,
   about: `Filialbanken in ${stadt}`,
-  author: { "@type": "Organization", name: "Speyer-Interaktiv" },
-  publisher: { "@type": "Organization", name: "Speyer-Interaktiv" },
+  // Referenz auf die sitewide Organization aus dem BaseLayout-@graph.
+  author: { "@id": `${city.domain}/#organization` },
+  publisher: { "@id": `${city.domain}/#organization` },
 };
 ---
 

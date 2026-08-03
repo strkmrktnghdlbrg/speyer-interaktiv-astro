@@ -51,10 +51,8 @@ const schema = {
   description: row.lead,
   datePublished: row.published_at,
   mainEntityOfPage: Astro.url.toString(),
-  publisher: {
-    "@type": "Organization",
-    name: `${city.name}-Interaktiv`,
-  },
+  // Referenz auf die sitewide Organization aus dem BaseLayout-@graph.
+  publisher: { "@id": `${city.domain}/#organization` },
   citation: {
     "@type": "CreativeWork",
     name: row.source_name,

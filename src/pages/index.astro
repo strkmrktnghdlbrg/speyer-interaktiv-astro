@@ -42,36 +42,12 @@ const topRestaurants = restaurants.slice(0, 4);
 const featuredDistricts = districts.slice(0, 4);
 const latestNews = recentNews(3);
 
-const homepageSchema = [
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: `${city.name}-Interaktiv`,
-    url: city.domain,
-    description: city.description.long,
-    inLanguage: "de-DE",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `https://www.google.com/search?q=site:speyer-interaktiv.de+{search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: `${city.name}-Interaktiv`,
-    url: city.domain,
-    logo: `${city.domain}/favicon.svg`,
-    sameAs: [] as string[],
-  },
-];
+// Organization + WebSite kommen sitewide als @graph aus dem BaseLayout
+// (stabile @id's). Hier keinen eigenen Block mehr ausspielen, sonst
+// entstehen doppelte Entities.
 ---
 
 <BaseLayout title={city.name} description={city.description.short} alternateUrls={{ de: "/", en: "/en/" }}>
-  <script type="application/ld+json" set:html={JSON.stringify(homepageSchema)} is:inline />
   <section
     class="relative overflow-hidden"
     style="background: linear-gradient(135deg, var(--color-deep-plum) 0%, var(--color-inkwell-purple) 60%, var(--color-accent) 100%);"

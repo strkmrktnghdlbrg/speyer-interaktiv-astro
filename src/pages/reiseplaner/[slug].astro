@@ -44,14 +44,10 @@ const schema = {
   "@type": "Article",
   headline: guide.title,
   description: guide.shortDesc,
-  author: {
-    "@type": "Organization",
-    name: `${city.name}-Interaktiv`,
-  },
-  publisher: {
-    "@type": "Organization",
-    name: `${city.name}-Interaktiv`,
-  },
+  // Referenz auf die sitewide Organization aus dem BaseLayout-@graph,
+  // kein eigener Organization-Node (sonst doppelte Entities).
+  author: { "@id": `${city.domain}/#organization` },
+  publisher: { "@id": `${city.domain}/#organization` },
   about: {
     "@type": "City",
     name: city.name,
