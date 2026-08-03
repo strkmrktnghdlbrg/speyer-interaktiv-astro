@@ -36,9 +36,6 @@ const reviewsLabel = isEn ? "reviews" : "Bew.";
       imgClass="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
     />
     <div class="absolute top-3 left-3 flex flex-col gap-1.5">
-      {hotel.guestFavorite && (
-        <span class="pill-accent">{favLabel}</span>
-      )}
       <span class="pill bg-white/95 backdrop-blur-sm">{starsLabel}</span>
     </div>
   </div>
@@ -63,8 +60,6 @@ const reviewsLabel = isEn ? "reviews" : "Bew.";
         </p>
       </div>
       <div class="text-right">
-        <p class="text-sm font-bold" style="color: var(--color-accent);">{hotel.rating.toFixed(1)}</p>
-        <p class="text-[10px]" style="color: var(--color-slate-steel);">{hotel.reviews} {reviewsLabel}</p>
       </div>
     </div>
   </div>

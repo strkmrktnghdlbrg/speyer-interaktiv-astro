@@ -28,12 +28,6 @@ const schema = {
   name: hotel.name,
   description: hotel.longDesc,
   starRating: { "@type": "Rating", ratingValue: hotel.stars },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: hotel.rating,
-    bestRating: 10,
-    reviewCount: hotel.reviews,
-  },
   priceRange: `ab ${hotel.priceFrom} EUR`,
   address: { "@type": "PostalAddress", addressLocality: city.name, addressCountry: "DE" },
 };
@@ -69,25 +63,11 @@ const schema = {
             <a href={`/stadtteile/${district.slug}/`} class="pill-accent hover:underline">
               {district.name}
             </a>
-            {hotel.guestFavorite && <span class="pill-accent">★ Gästeliebling</span>}
           </div>
 
           <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-balance mb-4" style="color: var(--color-deep-plum);">
             {hotel.name}
           </h1>
-
-          <div class="flex items-center gap-4 mb-6">
-            <div class="flex items-center gap-1.5">
-              <span class="text-2xl font-bold" style="color: var(--color-accent);">
-                {hotel.rating.toFixed(1)}
-              </span>
-              <span class="text-sm" style="color: var(--color-slate-steel);">/ 10</span>
-            </div>
-            <span style="color: var(--color-lavender-ash);">·</span>
-            <p class="text-sm" style="color: var(--color-shadow-graphite);">
-              {hotel.reviews} Bewertungen auf Booking.com
-            </p>
-          </div>
 
           <p class="text-xl leading-relaxed mb-8" style="color: var(--color-shadow-graphite);">
             {hotel.shortDesc}
