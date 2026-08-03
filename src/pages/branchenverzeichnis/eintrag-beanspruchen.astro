@@ -15,7 +15,11 @@ import { city } from "../../data/city";
 import { legal } from "../../data/legal";
 import { kategorien } from "../../data/branchenbuch";
 
-const formKey = import.meta.env.PUBLIC_WEB3FORMS_KEY as string | undefined;
+// Web3Forms nimmt die Zuschrift entgegen. Der Access-Key ist oeffentlich, er
+// steht im ausgelieferten Formular-HTML; per PUBLIC_WEB3FORMS_KEY pro Domain
+// ueberschreibbar, falls die Zuschriften getrennt eingehen sollen.
+const formKey = (import.meta.env.PUBLIC_WEB3FORMS_KEY ??
+  "b65f4e95-6ac7-4003-a46a-fe4e08b120e2") as string | undefined;
 const formEnabled = typeof formKey === "string" && formKey.length > 0;
 ---
 
