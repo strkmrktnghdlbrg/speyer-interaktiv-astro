@@ -14,6 +14,13 @@
  *   node scripts/fetch-osm-partners.mjs --write    # schreibt das JSON
  *   node scripts/fetch-osm-partners.mjs --refresh  # Cache ignorieren
  *
+ * Sperrliste: src/data/osm-blocklist.json listet Betriebe, die die Loeschung
+ * ihres Eintrags verlangt haben. Sie werden hier herausgefiltert, BEVOR
+ * partners.osm.json geschrieben wird - ein Loeschwunsch bleibt damit auch
+ * nach dem naechsten Import wirksam. Gesperrt ist, wessen osmId passt ODER
+ * wessen normalisierter Name UND normalisierte Strasse passen. Dieselbe Liste
+ * greift ein zweites Mal in der Datenschicht (src/data/osm-blocklist.ts).
+ *
  * Gebiet: Speyer ist eine kreisfreie Stadt (admin_level 6). Die Relation wird
  * vor der eigentlichen Abfrage geprueft und per ID gepinnt - waechst oder
  * aendert sich der Treffersatz, bricht das Skript ab, statt stillschweigend
@@ -518,8 +525,56 @@ const quality = rows
 
 console.log("Verzeichnis-Qualitaet (Name + Strasse, dedupliziert): " + quality.length);
 
+// ---------------------------------------------------------------------------
+// Sperrliste: Betriebe, die die Loeschung ihres Eintrags verlangt haben.
+// Sie fliegen raus, BEVOR geschrieben wird - sonst holt der naechste Lauf sie
+// zurueck. Gesperrt ist, wessen osmId passt ODER wessen normalisierter Name
+// UND normalisierte Strasse passen. Ein Eintrag nur mit Name (ohne Strasse)
+// sperrt bewusst nichts, damit keine namensgleichen Betriebe mitgerissen
+// werden. Die Trefferregel ist identisch zu src/data/osm-blocklist.ts -
+// wer sie hier aendert, muss sie dort mitaendern.
+// ---------------------------------------------------------------------------
+const BLOCKLIST_FILE = "src/data/osm-blocklist.json";
+const blocklist = existsSync(BLOCKLIST_FILE)
+  ? JSON.parse(readFileSync(BLOCKLIST_FILE, "utf8"))
+  : [];
+
+// Eigener Normalisierer, absichtlich nicht `norm` von oben: der steuert die
+// Deduplizierung und darf sich nicht aendern. Hier werden zusaetzlich Umlaute
+// aufgeloest, damit "Waldseer Strasse" und "Waldseer Straße" denselben Betrieb
+// treffen - an einer Schreibweise darf ein Loeschwunsch nicht scheitern.
+const normBlock = (x) =>
+  (x || "")
+    .toLowerCase()
+    .replace(/ä/g, "ae")
+    .replace(/ö/g, "oe")
+    .replace(/ü/g, "ue")
+    .replace(/ß/g, "ss")
+    .replace(/[^a-z0-9]/g, "");
+
+const istGesperrt = (r) => {
+  const id = (r.osmId || "").trim().toLowerCase();
+  const name = normBlock(r.name);
+  const strasse = normBlock(r.strasse);
+  return blocklist.some((b) => {
+    const bId = (b.osmId || "").trim().toLowerCase();
+    if (bId && id && bId === id) return true;
+    const bName = normBlock(b.name);
+    const bStreet = normBlock(b.street);
+    if (!bName || !bStreet) return false;
+    return bName === name && bStreet === strasse;
+  });
+};
+
+const erlaubt = quality.filter((r) => !istGesperrt(r));
+const unterdrueckt = quality.length - erlaubt.length;
+console.log(
+  `Sperrliste (${BLOCKLIST_FILE}): ${blocklist.length} Eintraege, ${unterdrueckt} Betriebe unterdrueckt`,
+);
+console.log("Verbleibend fuer das Verzeichnis: " + erlaubt.length);
+
 const qBranche = {};
-for (const r of quality) qBranche[r.branche] = (qBranche[r.branche] || 0) + 1;
+for (const r of erlaubt) qBranche[r.branche] = (qBranche[r.branche] || 0) + 1;
 console.log("");
 console.log("Top-Branchen (Qualitaet):");
 Object.entries(qBranche)
@@ -529,8 +584,9 @@ Object.entries(qBranche)
 
 if (WRITE) {
   mkdirSync(dirname(OUT), { recursive: true });
-  quality.sort((a, b) => a.name.localeCompare(b.name, "de"));
-  writeFileSync(OUT, JSON.stringify(quality, null, 2) + "\n", "utf8");
+  erlaubt.sort((a, b) => a.name.localeCompare(b.name, "de"));
+  writeFileSync(OUT, JSON.stringify(erlaubt, null, 2) + "\n", "utf8");
   console.log("");
-  console.log(`Geschrieben: ${quality.length} Betriebe -> ${OUT}`);
+  console.log(`Geschrieben: ${erlaubt.length} Betriebe -> ${OUT}`);
+  console.log(`Durch die Sperrliste unterdrueckt: ${unterdrueckt}`);
 }

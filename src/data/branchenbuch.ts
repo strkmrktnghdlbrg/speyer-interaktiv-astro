@@ -28,6 +28,7 @@ import { restaurants } from "./restaurants";
 import { hotels } from "./hotels";
 import { districts } from "./districts";
 import osmRaw from "./partners.osm.json";
+import { ohneGesperrte } from "./osm-blocklist";
 
 export type BranchenKategorie = {
   slug: string;
@@ -225,9 +226,20 @@ type OsmRow = {
   plz: string;
   ort: string;
   telefon: string;
+  osmId?: string;
 };
 
-const osmEintraege: BranchenEintrag[] = (osmRaw as OsmRow[]).map((r) => ({
+/**
+ * Sperrliste (src/data/osm-blocklist.json): Betriebe, die ihre Löschung
+ * verlangt haben. Das Import-Skript filtert sie bereits heraus - hier wird
+ * ein zweites Mal gefiltert, damit auch eine veraltete partners.osm.json
+ * einen gesperrten Betrieb nicht doch wieder ausspielt.
+ */
+const osmGefiltert = ohneGesperrte(
+  (osmRaw as OsmRow[]).map((r) => ({ ...r, street: r.strasse })),
+);
+
+const osmEintraege: BranchenEintrag[] = osmGefiltert.map((r) => ({
   name: r.name,
   kategorie: r.kategorie,
   ort: [r.strasse, [r.plz, r.ort].filter(Boolean).join(" ")].filter(Boolean).join(", "),
