@@ -8,7 +8,7 @@ import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { hotels } from "../../data/hotels";
 import { city } from "../../data/city";
 
-const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+const sorted = [...hotels].sort((a, b) => b.stars - a.stars || a.priceFrom - b.priceFrom);
 ---
 
 <BaseLayout title={`Hotels in ${city.name}`} description={`Hotels in ${city.name}, von 3 bis 5 Sternen, sortiert nach Bewertung. Direkter Booking-Link, beste Preisgarantie.`} alternateUrls={{ de: "/hotels/", en: "/en/hotels/" }}>

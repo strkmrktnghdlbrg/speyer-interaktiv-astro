@@ -86,7 +86,7 @@ export const ui = {
   },
   "hotels.metaDescription": {
     de: "Hotels in {site}, von 3 bis 5 Sternen, sortiert nach Bewertung. Direkter Booking-Link, beste Preisgarantie.",
-    en: "Hotels in {site} from 3 to 5 stars, sorted by guest rating. Direct booking links and live prices.",
+    en: "Hotels in {site} from 3 to 5 stars, sorted by star category and entry-level price. Direct booking links and live prices.",
   },
   "hotels.mapTitle": { de: "{site} auf einen Blick", en: "{site} at a glance" },
   "hotels.mapLead": {

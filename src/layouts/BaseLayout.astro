@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { getImage } from "astro:assets";
+import ogDefault from "../assets/images/sights/kaiserdom.jpg";
 import { city } from "../data/city";
 import { affiliate, stay22Enabled } from "../data/affiliate";
 import { adsense, adsenseEnabled } from "../data/adsense";
@@ -29,6 +31,21 @@ const {
 } = Astro.props;
 
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, city.domain).toString();
+
+/**
+ * Standard-Social-Bild. Vorher trug keine einzige Seite ein og:image,
+ * weil nirgends eines uebergeben wurde - geteilte Links blieben ohne
+ * Vorschaubild. Quelle ist der lizenzgeprueste Bildbestand; relative
+ * Pfade werden absolut, relative URLs akzeptiert kein Social-Netz.
+ */
+const ogFallback = await getImage({
+  src: ogDefault,
+  width: 1200,
+  height: 630,
+  format: "jpg",
+  fit: "cover",
+});
+const ogImageUrl = new URL(ogImage ?? ogFallback.src, city.domain).toString();
 const fullTitle = title === city.name ? `${city.name} - Stadtportal` : `${title} · ${city.name}-Interaktiv`;
 
 const hreflangAlternates =
@@ -119,7 +136,13 @@ const siteGraph = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={ogLocale[locale]} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
 
     {stay22Enabled && (
       <script

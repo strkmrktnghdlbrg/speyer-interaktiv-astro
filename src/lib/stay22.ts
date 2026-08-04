@@ -317,22 +317,54 @@ export async function searchAccommodations(
  * Convenience: Top-Hotels nach Adresse + Bewertung.
  * Default-Filter: ab 8.0 Gäste-Score, 3+ Sterne.
  */
+/**
+ * Haeuser, die nicht in der Zielstadt liegen, fliegen raus.
+ *
+ * Eine reine address-Suche liefert auch Haeuser der Nachbarstadt - auf
+ * ludwigshafen standen fuenf von acht "bestbewerteten Hotels" auf der
+ * Mannheimer Rheinseite. Deshalb: enger Radius um die Stadtkoordinate plus
+ * Abgleich des von der API gelieferten Ortsnamens.
+ */
+export function isInCity(h: Stay22Accommodation, cityName: string): boolean {
+  const fold = (s: string) =>
+    s.toLowerCase()
+      .replace(/ä/g, "a").replace(/ö/g, "o").replace(/ü/g, "u").replace(/ß/g, "ss");
+  const needle = fold(cityName);
+  const haystack = fold(
+    [h.address?.cityName, h.address?.full].filter(Boolean).join(" "),
+  );
+  // Ohne Ortsangabe der API laesst sich nichts widerlegen -> drin lassen,
+  // der Radius-Filter hat dann schon gegriffen.
+  if (!haystack.trim()) return true;
+  return haystack.includes(needle);
+}
+
 export async function getTopHotels(
   address: string,
   lmaId: string,
-  opts: Partial<Stay22SearchOptions> = {},
+  opts: Partial<Stay22SearchOptions> & { cityName?: string } = {},
 ): Promise<Stay22Accommodation[] | null> {
-  return searchAccommodations({
+  const { cityName, ...searchOpts } = opts;
+  const wanted = searchOpts.limit ?? 12;
+  // Koordinate + Radius schlagen die Adresse: beides gleichzeitig zu schicken
+  // ueberlaesst der API die Wahl. Nur eines von beidem geht raus.
+  const byGeo = searchOpts.lat !== undefined && searchOpts.lng !== undefined;
+
+  const results = await searchAccommodations({
     provider: "booking",
-    address,
+    ...(byGeo ? {} : { address }),
     type: "hotel",
     minguestrating: 8.0,
     minstarrating: 3,
-    limit: 12,
     currency: "EUR",
     lang: "de",
     aid: lmaId,
     campaign: lmaId,
-    ...opts,
+    ...searchOpts,
+    // Nach dem Stadt-Filter bleibt weniger uebrig, als die API liefert.
+    limit: cityName ? Math.max(wanted * 3, 30) : wanted,
   });
+
+  if (!results || !cityName) return results;
+  return results.filter((h) => isInCity(h, cityName)).slice(0, wanted);
 }

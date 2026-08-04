@@ -25,6 +25,7 @@ interface Props {
   address?: string;
   /** Anzahl Hotels (max 12 sinnvoll für Grid). */
   limit?: number;
+  radius?: number;
   /** Headline. */
   title?: string;
   /** Lead unter Headline. */
@@ -35,6 +36,7 @@ interface Props {
 const {
   address = `${city.name}, Deutschland`,
   limit = 8,
+  radius = 4000,
   locale = "de",
 } = Astro.props;
 const isEn = locale === "en";
@@ -44,7 +46,13 @@ const lead = Astro.props.lead ?? t(locale, "hotels.topLiveLead");
 
 let hotels: Stay22Accommodation[] | null = null;
 try {
-  hotels = await getTopHotels(address, affiliate.stay22.apiAid, { limit });
+  hotels = await getTopHotels(address, affiliate.stay22.apiAid, {
+    limit,
+    lat: city.coordinates[0],
+    lng: city.coordinates[1],
+    radius,
+    cityName: city.name.split(" ")[0],
+  });
 } catch (err) {
   console.error("[Stay22TopHotels] Fehler beim Build-Fetch:", err);
   hotels = null;

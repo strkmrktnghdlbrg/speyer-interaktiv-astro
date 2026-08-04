@@ -192,7 +192,8 @@ export const sights: Sight[] = [
     imageHue: 4,
     coordinates: [49.3164, 8.4412],
     openingHours: "Di-So 10:00-17:00 · Mo geschlossen",
-    websiteUrl: "https://museum.speyer.de/judenhof",
+    // Unterseite lief auf 404 - auf die gepruefte Startseite zurueckgestuft (2026-08-03).
+    websiteUrl: "https://museum.speyer.de/",
   },
   {
     slug: "historisches-museum-der-pfalz",
@@ -402,7 +403,8 @@ export const sights: Sight[] = [
       "Das Karmelitinnen-Kloster St. Magdalena südwestlich der Altstadt ist eine Anlage des 18. Jahrhunderts mit barocker Klosterkirche. Berühmt wurde es durch Edith Stein, die hier von 1923 bis 1931 als Lehrerin am angeschlossenen Lyzeum unterrichtete, ehe sie selbst Karmelitin wurde. Edith-Stein-Gedenkstätte und Klosterladen sind öffentlich, der Klausurbereich nicht.",
     imageHue: 5,
     coordinates: [49.3138, 8.4258],
-    websiteUrl: "https://www.st-magdalena-speyer.de",
+    // websiteUrl entfernt 2026-08-03: https://www.st-magdalena-speyer.de loest nicht auf (Domain existiert nicht).
+    // Die Adresse war geraten. Erst wieder eintragen, wenn geprueft.
   },
   {
     slug: "sea-life",
@@ -441,7 +443,8 @@ export const sights: Sight[] = [
     imageHue: 4,
     coordinates: [49.3201, 8.4356],
     openingHours: "Mo-Fr 9:00-19:00, Sa 9:00-13:00",
-    websiteUrl: "https://www.lbz.rlp.de/standorte/pfaelzische-landesbibliothek-speyer/",
+    // Unterseite lief auf 404 - auf die gepruefte Startseite zurueckgestuft (2026-08-03).
+    websiteUrl: "https://www.lbz.rlp.de/",
   },
 ];
 

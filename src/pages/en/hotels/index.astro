@@ -11,7 +11,7 @@ import { t, tf } from "../../../i18n/ui";
 import { homeUrl, indexUrl } from "../../../i18n/config";
 
 const locale = "en";
-const sorted = [...hotels].sort((a, b) => b.rating - a.rating);
+const sorted = [...hotels].sort((a, b) => b.stars - a.stars || a.priceFrom - b.priceFrom);
 ---
 
 <BaseLayout
