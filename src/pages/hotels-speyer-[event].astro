@@ -96,6 +96,13 @@ const nights = Math.round(
       <p class="text-lg leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
         {event.intro}
       </p>
+      {event.guideHref && (
+        <p class="mb-4">
+          <a href={event.guideHref} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+            {event.guideLabel ?? "Zum Guide mit Terminen und Öffnungszeiten"} &rarr;
+          </a>
+        </p>
+      )}
       <div class="flex flex-wrap items-center gap-3 text-sm" style="color: var(--color-slate-steel);">
         <span class="pill">Anreise: {checkinFmt}</span>
         <span class="pill">Abreise: {checkoutFmt}</span>

@@ -42,6 +42,9 @@ export interface CityEvent {
   maxPricePerNight?: number;
   /** Limit für Hotel-Grid. Default 12. */
   limit?: number;
+  /** Interner Link auf den redaktionellen Guide zum Event (Termine, Zeiten). */
+  guideHref?: string;
+  guideLabel?: string;
 }
 
 export const events: CityEvent[] = [
@@ -67,9 +70,9 @@ export const events: CityEvent[] = [
     title: "Hotels in Speyer zum Weihnachtsmarkt",
     eyebrow: "Weihnachtsmarkt 2026",
     intro:
-      "Vier Wochen Altdeutscher Weihnachtsmarkt zwischen Altpörtel und Dom, dazu das Riesenrad am Domgarten mit Blick auf den beleuchteten Kaiserdom. Hotels in der Altstadt sind besonders an den Adventswochenenden früh ausgebucht.",
+      "Der Speyerer Weihnachts- und Neujahrsmarkt läuft vom 23. November 2026 bis zum 10. Januar 2027 rund um den Kaiserdom, dazu kommt eine Schlittschuhbahn am Altpörtel. Hotels in der Altstadt sind besonders an den vier Adventswochenenden früh ausgebucht. Alle Termine und Öffnungszeiten stehen im Guide zum Weihnachtsmarkt Speyer.",
     description:
-      "Hotels in Speyer zum Weihnachtsmarkt 2026 - Live-Preise für die Adventszeit, Ende November bis 23. Dezember.",
+      "Hotels in Speyer zum Weihnachtsmarkt 2026 - Live-Preise für die Adventszeit, 23. November 2026 bis 10. Januar 2027.",
     checkin: "2026-12-04",
     checkout: "2026-12-06",
     address: "Speyer Altstadt, Deutschland",
@@ -78,6 +81,8 @@ export const events: CityEvent[] = [
     radius: 2500,
     maxPricePerNight: 350,
     limit: 12,
+    guideHref: "/feste/weihnachtsmarkt/",
+    guideLabel: "Weihnachtsmarkt Speyer 2026/27: Termine und Öffnungszeiten",
   },
   {
     slug: "fastnacht",

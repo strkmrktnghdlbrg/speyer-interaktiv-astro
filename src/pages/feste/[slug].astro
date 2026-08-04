@@ -2,6 +2,7 @@
 import BlogArticle from "../../layouts/BlogArticle.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import ContentImage from "../../components/ContentImage.astro";
+import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
 import { feste, getFest } from "../../data/feste";
 import { festeEn } from "../../i18n/en/feste";
 import { city } from "../../data/city";
@@ -35,9 +36,11 @@ const eventSchema = {
   },
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
-  // Kein startDate: Die Termine liegen nur als Freitext vor ("Ende November
-  // bis 23. Dezember"), ein ISO-Datum wäre geraten. `description2` war keine
-  // gültige schema.org-Property — Termin-Freitext gehört in die Description.
+  // startDate/endDate nur, wenn die Termine offiziell bestätigt sind. Bei
+  // Festen, deren Termin nur als Freitext vorliegt ("11.11. bis
+  // Aschermittwoch"), waere ein ISO-Datum geraten und bleibt deshalb weg.
+  ...(item.startDate ? { startDate: item.startDate } : {}),
+  ...(item.endDate ? { endDate: item.endDate } : {}),
   organizer: {
     "@type": "Organization",
     name: `Stadt ${city.name}`,
@@ -61,7 +64,8 @@ const faqSchema = item.guide
 ---
 
 <BlogArticle
-  title={item.name}
+  title={item.headline ?? item.name}
+  seoTitle={item.seoTitle}
   lead={item.lead}
   description={item.shortDesc}
   category="Fest"
@@ -105,8 +109,65 @@ const faqSchema = item.guide
       <h2 id="termin-ort">Termin &amp; Ort</h2>
       {item.guide.terminOrt.map((p) => <p>{p}</p>)}
 
+      {item.guide.oeffnungszeiten && (
+        <>
+          <h2 id="oeffnungszeiten">Öffnungszeiten</h2>
+          <table>
+            <thead>
+              <tr><th>Tage</th><th>Zeiten</th></tr>
+            </thead>
+            <tbody>
+              {item.guide.oeffnungszeiten.map((z) => (
+                <tr><td>{z.tage}</td><td>{z.zeit}</td></tr>
+              ))}
+            </tbody>
+          </table>
+          {item.guide.sonderzeiten && (
+            <>
+              <h3 id="sonderoeffnungszeiten">Abweichende Zeiten an Feiertagen</h3>
+              <table>
+                <thead>
+                  <tr><th>Tag</th><th>Zeiten</th></tr>
+                </thead>
+                <tbody>
+                  {item.guide.sonderzeiten.map((z) => (
+                    <tr><td>{z.tag}</td><td>{z.zeit}</td></tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+        </>
+      )}
+
+      {item.guide.angebot && (
+        <>
+          <h2 id="angebot">Stände und Angebot</h2>
+          {item.guide.angebot.map((p) => <p>{p}</p>)}
+        </>
+      )}
+
+      {item.guide.neujahrsmarkt && (
+        <>
+          <h2 id="neujahrsmarkt">Neujahrsmarkt: der Markt nach dem Jahreswechsel</h2>
+          {item.guide.neujahrsmarkt.map((p) => <p>{p}</p>)}
+        </>
+      )}
+
       <h2 id="anreise">Anreise</h2>
       {item.guide.anreise.map((p) => <p>{p}</p>)}
+
+      {item.guide.parken && (
+        <>
+          <h2 id="parken">Parken</h2>
+          {item.guide.parken.map((p) => <p>{p}</p>)}
+          <p>
+            <a href="/parken-in-speyer/" class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+              Alle Parkhäuser, Tarife und kostenfreien Alternativen im Überblick
+            </a>
+          </p>
+        </>
+      )}
 
       <h2 id="tipps">Tipps für den Besuch</h2>
       <ul>
@@ -136,8 +197,28 @@ const faqSchema = item.guide
 
       <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
         Stand: {item.guide.stand}. Termine und Details veröffentlicht der Veranstalter jeweils vor Saisonbeginn.
+        {item.guide.quelle && (
+          <>
+            {" "}Quelle der Termin- und Zeitangaben:{" "}
+            <a href={item.guide.quelle.url} rel="nofollow noopener" target="_blank" class="underline">
+              {item.guide.quelle.label}
+            </a>.
+          </>
+        )}
       </p>
     </>
+  )}
+
+  {item.geo && (
+    <Stay22NearbyHotels lat={item.geo.lat} lng={item.geo.lng} near={item.geo.label} radius={1500} limit={4} />
+  )}
+
+  {item.hotelEventSlug && (
+    <p class="mt-4">
+      <a href={`/hotels-speyer-${item.hotelEventSlug}/`} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+        Hotels in Speyer für {item.headline ?? item.name} mit Preisen für den Reisezeitraum
+      </a>
+    </p>
   )}
 
   <GetYourGuideWidget offerKey={`fest:${item.slug}`} />

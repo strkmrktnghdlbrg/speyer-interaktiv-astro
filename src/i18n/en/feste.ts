@@ -14,11 +14,11 @@ export type FestEn = {
 export const festeEn: Record<string, FestEn> = {
   weihnachtsmarkt: {
     slug: "christmas-market",
-    name: "Speyer Old German Christmas Market",
+    name: "Speyer Christmas and New Year Market",
     shortDesc:
-      "Four weeks of cathedral-city glow: the Old German Christmas market in front of the Maximilianstraße, with a Ferris wheel, Domhof mulled wine and a nativity trail.",
-    lead: "The Speyer Christmas market is one of the most tradition-rich in the Palatinate. From late November until just before Christmas Eve, the stalls stand between the Altpörtel gate and the cathedral, the Ferris wheel in the cathedral garden offers a rare view of the illuminated Imperial Cathedral, and a nativity trail runs through several churches at the same time.",
-    termin: "Late November to December 23 (annually)",
+      "Seven weeks of cathedral-city glow: the Christmas and New Year market around the Imperial Cathedral, from 23 November 2026 to 10 January 2027.",
+    lead: "Speyer runs one of the few German Christmas markets that stays open beyond New Year. In its 51st edition it runs from 23 November 2026 to 10 January 2027, with the stalls set out in the city centre in front of Europe's largest Romanesque church. Visitors arriving between Christmas and early January still find the market fully in place, long after most others have closed.",
+    termin: "23 November 2026 to 10 January 2027",
   },
   fastnacht: {
     slug: "carnival",

@@ -11,6 +11,8 @@ interface Crumb {
 
 interface Props {
   title: string;
+  /** Abweichender <title>, wenn H1 und Meta-Titel auseinanderfallen sollen */
+  seoTitle?: string;
   lead?: string;
   publishedAt?: string;       // ISO-Datum
   updatedAt?: string;
@@ -26,6 +28,7 @@ interface Props {
 
 const {
   title,
+  seoTitle,
   lead,
   publishedAt,
   updatedAt,
@@ -66,7 +69,7 @@ const formattedDate = publishedAt
   : null;
 ---
 
-<BaseLayout title={title} description={metaDesc} noindex={noindex} locale={locale} alternateUrls={alternateUrls}>
+<BaseLayout title={seoTitle ?? title} description={metaDesc} noindex={noindex} locale={locale} alternateUrls={alternateUrls}>
   <article class="container-page py-10">
     <Breadcrumbs items={breadcrumbItems ?? [{ label: city.name, href: "/" }, { label: title }]} />
 
@@ -94,7 +97,7 @@ const formattedDate = publishedAt
     </header>
 
     <div class="lg:grid lg:grid-cols-[minmax(0,48rem)_1fr] lg:gap-12 lg:items-start">
-      <div>
+      <div class="min-w-0">
         <!-- Mobile: einklappbares Inhaltsverzeichnis -->
         <details id="toc-mobile" class="lg:hidden mb-8 rounded-2xl border border-[var(--color-lavender-ash)] bg-[var(--color-porcelain-mist)] p-4" hidden>
           <summary class="text-sm font-bold cursor-pointer" style="color: var(--color-deep-plum);">
