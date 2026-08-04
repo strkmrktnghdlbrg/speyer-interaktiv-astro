@@ -3,11 +3,75 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import SightCard from "../../components/SightCard.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
+import MapEmbed from "../../components/MapEmbed.astro";
 import { sights } from "../../data/sights";
 import { city } from "../../data/city";
+import { getDistrict } from "../../data/districts";
+
+// Die Top-Liste ist die eigentliche Rankingseite: sortierte Empfehlung mit
+// Begruendung, Dauer und Preis. Die Karten darunter bleiben als vollstaendige
+// Uebersicht bestehen.
+const top = sights
+  .filter((s) => typeof s.rank === "number")
+  .sort((a, b) => (a.rank ?? 99) - (b.rank ?? 99));
+
+const priceLabel = (p: number | null) => (p === null ? "kostenlos" : `ab ${p} €`);
+
+const title = `Sehenswürdigkeiten in ${city.name}: die Top 10 mit Dauer und Preis`;
+const description =
+  "Die wichtigsten Sehenswürdigkeiten in Speyer im Ranking: Kaiserdom, Technik Museum, Historisches Museum, Judenhof und mehr, jeweils mit Aufenthaltsdauer, Eintritt und Stadtteil.";
+
+const faq = [
+  {
+    q: "Was muss man in Speyer gesehen haben?",
+    a: "Der Kaiserdom ist gesetzt: die größte erhaltene romanische Kirche der Welt und seit 1981 UNESCO-Welterbe. Danach folgen das Technik Museum, das Historische Museum der Pfalz am Domplatz, der Judenhof mit der ältesten erhaltenen Mikwe Mitteleuropas und das Altpörtel als 55 Meter hohes Stadttor mit Aussichtsplattform.",
+  },
+  {
+    q: "Wie viel Zeit sollte man für Speyer einplanen?",
+    a: "Für die Altstadt mit Dom, Maximilianstraße, Judenhof und Altpörtel reicht ein halber Tag. Wer zusätzlich das Technik Museum oder das Historische Museum besuchen will, sollte einen ganzen Tag einplanen, für beide Museen zusammen eher zwei.",
+  },
+  {
+    q: "Welche Sehenswürdigkeiten in Speyer sind kostenlos?",
+    a: "Der Dom selbst, die Maximilianstraße, die Dreifaltigkeitskirche, die Gedächtniskirche, das Rathaus, der Adenauerpark mit der Stadtmauer und der Rheinstrand kosten keinen Eintritt. Gebühren fallen für Krypta und Kaisersaal im Dom, für das Altpörtel, den Judenhof sowie für die Museen und das Sea Life an.",
+  },
+  {
+    q: "Was kann man in Speyer bei Regen machen?",
+    a: "Das Technik Museum, das Historische Museum der Pfalz und das Sea Life sind vollständig überdacht und füllen jeweils mehrere Stunden. Dazu kommen der Dom mit seiner Krypta und die Pfälzische Landesbibliothek.",
+  },
+  {
+    q: "Sind die Sehenswürdigkeiten in Speyer zu Fuß erreichbar?",
+    a: "Die meisten ja. Dom, Maximilianstraße, Altpörtel, Judenhof, Rathaus, Dreifaltigkeits- und Gedächtniskirche liegen alle in der Altstadt und sind untereinander in wenigen Minuten zu Fuß verbunden. Technik Museum und Rheinstrand liegen außerhalb dieses Kerns, sind aber mit dem Rad oder mit dem Bus gut erreichbar.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const itemListLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `Sehenswürdigkeiten in ${city.name}`,
+  numberOfItems: top.length,
+  itemListElement: top.map((s, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: s.name,
+    url: `${city.domain}/sehenswuerdigkeiten/${s.slug}/`,
+  })),
+};
 ---
 
-<BaseLayout title={`Sehenswürdigkeiten in ${city.name}`} description={`Alle Wahrzeichen, Museen und Aussichtspunkte in ${city.name}. Vom Kaiserdom bis zum Technik Museum.`} alternateUrls={{ de: "/sehenswuerdigkeiten/", en: "/en/attractions/" }}>
+<BaseLayout title={title} description={description} alternateUrls={{ de: "/sehenswuerdigkeiten/", en: "/en/attractions/" }}>
+  <script type="application/ld+json" set:html={JSON.stringify(itemListLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+
   <div class="container-page py-10">
     <Breadcrumbs items={[{ label: city.name, href: "/" }, { label: "Sehenswürdigkeiten" }]} />
 
@@ -16,15 +80,108 @@ import { city } from "../../data/city";
       <h1 class="text-4xl sm:text-5xl font-bold tracking-tight mb-4" style="color: var(--color-deep-plum);">
         Sehenswürdigkeiten in {city.name}
       </h1>
-      <p class="text-lg leading-relaxed" style="color: var(--color-shadow-graphite);">
-        Vom Kaiserdom über den Judenhof bis zum Technik Museum, von der Maximilianstraße
-        bis zum Altpörtel. Alle Highlights mit Stadtteil, Eintrittspreis und Anfahrt.
+      <p class="text-lg leading-relaxed mb-4" style="color: var(--color-shadow-graphite);">
+        Speyer packt zwei UNESCO-Welterbestätten, eines der größten Technikmuseen Europas und eine
+        vollständig erhaltene Altstadtachse auf eine Fläche, die sich an einem Tag zu Fuß ablaufen
+        lässt. Diese Übersicht sortiert die Ziele nach Bedeutung und nennt zu jedem die realistische
+        Aufenthaltsdauer, den Eintritt und den Stadtteil, damit sich daraus ein Tagesplan bauen lässt.
+      </p>
+      <p class="text-base leading-relaxed" style="color: var(--color-shadow-graphite);">
+        Die kompakte Version: vormittags Dom, Krypta und Maximilianstraße, mittags Judenhof und
+        Altpörtel, nachmittags eines der beiden großen Museen. Wer mit Kindern kommt, dreht die
+        Reihenfolge um und startet im Technik Museum, weil dort die meiste Zeit draufgeht.
       </p>
     </div>
 
+    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+      Die Top 10 im Überblick
+    </h2>
+
+    <div class="overflow-x-auto mb-10">
+      <table class="w-full text-sm border-collapse">
+        <thead>
+          <tr class="text-left" style="background: var(--color-porcelain-mist);">
+            <th class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-deep-plum);">#</th>
+            <th class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-deep-plum);">Sehenswürdigkeit</th>
+            <th class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-deep-plum);">Dauer</th>
+            <th class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-deep-plum);">Eintritt</th>
+            <th class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-deep-plum);">Stadtteil</th>
+          </tr>
+        </thead>
+        <tbody>
+          {top.map((s, i) => (
+            <tr>
+              <td class="p-3 border border-[var(--color-lavender-ash)] font-bold" style="color: var(--color-accent);">{i + 1}</td>
+              <td class="p-3 border border-[var(--color-lavender-ash)]">
+                <a href={`/sehenswuerdigkeiten/${s.slug}/`} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+                  {s.name}
+                </a>
+              </td>
+              <td class="p-3 border border-[var(--color-lavender-ash)] whitespace-nowrap">{s.visitDuration}</td>
+              <td class="p-3 border border-[var(--color-lavender-ash)] whitespace-nowrap">{priceLabel(s.priceFrom)}</td>
+              <td class="p-3 border border-[var(--color-lavender-ash)] whitespace-nowrap">{getDistrict(s.district)?.name}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <ol class="space-y-6 mb-12">
+      {top.map((s, i) => (
+        <li class="card p-5">
+          <div class="flex items-baseline gap-3 mb-2">
+            <span class="text-2xl font-bold" style="color: var(--color-accent);">{i + 1}</span>
+            <h3 class="text-xl font-bold tracking-tight" style="color: var(--color-deep-plum);">
+              <a href={`/sehenswuerdigkeiten/${s.slug}/`} class="hover:underline" style="text-underline-offset: 3px;">
+                {s.name}
+              </a>
+            </h3>
+          </div>
+          <p class="text-sm leading-relaxed mb-3" style="color: var(--color-shadow-graphite);">
+            {s.rankReason}
+          </p>
+          <p class="text-xs" style="color: var(--color-slate-steel);">
+            {s.visitDuration} · Eintritt {priceLabel(s.priceFrom)} · {getDistrict(s.district)?.name}
+            {s.openingHours ? ` · ${s.openingHours}` : ""}
+          </p>
+        </li>
+      ))}
+    </ol>
+
+    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+      Alle Sehenswürdigkeiten in {city.name}
+    </h2>
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
       {sights.map((s) => <SightCard sight={s} />)}
     </div>
+
+    <MapEmbed
+      lat={city.coordinates[0]}
+      lng={city.coordinates[1]}
+      label={`Altstadt ${city.name}`}
+      zoom={15}
+      title={`Lage der Sehenswürdigkeiten in ${city.name}`}
+    />
+
+    <section class="py-12 border-t border-[var(--color-lavender-ash)] mt-10">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-6" style="color: var(--color-deep-plum);">
+        Häufige Fragen zu Speyers Sehenswürdigkeiten
+      </h2>
+      <div class="space-y-3 max-w-3xl">
+        {faq.map((f) => (
+          <details class="card p-4">
+            <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+            <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="mt-8 text-sm leading-relaxed max-w-3xl" style="color: var(--color-shadow-graphite);">
+        Passend dazu: der Überblick zum <a href="/parken-in-speyer/" class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">Parken in Speyer</a>,
+        die <a href="/hotels/" class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">Hotels in Speyer</a> für
+        eine Übernachtung und die <a href="/feste/" class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">Feste und Veranstaltungen</a>,
+        die den Besuch je nach Jahreszeit ergänzen.
+      </p>
+    </section>
 
     <GetYourGuideWidget offerKey="page:sehenswuerdigkeiten" />
   </div>

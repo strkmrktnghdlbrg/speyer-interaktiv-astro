@@ -29,6 +29,16 @@ export type Sight = {
    * (Oeffnungszeiten, Preise, Parken).
    */
   faq?: { q: string; a: string }[];
+  /**
+   * Realistische Aufenthaltsdauer, z. B. "45 bis 60 Min.". Gesetzt bei den
+   * Zielen, die in der Top-Liste auf /sehenswuerdigkeiten/ stehen - die
+   * Reihenfolge dieser Liste ergibt sich aus `rank`.
+   */
+  visitDuration?: string;
+  /** Platz in der Top-Liste auf dem Hub; ohne rank taucht das Ziel dort nicht auf */
+  rank?: number;
+  /** Ein Satz, warum das Ziel auf der Liste steht */
+  rankReason?: string;
   /** Stand-Vermerk fuer zeitsensible Angaben, z. B. "August 2026" */
   stand?: string;
   /** Offizielle Quelle der zeitsensiblen Angaben */
@@ -50,10 +60,44 @@ export const sights: Sight[] = [
       "Die größte erhaltene romanische Kirche der Welt. UNESCO-Welterbe seit 1981, Grabstätte salischer und staufischer Kaiser.",
     longDesc:
       "Der Kaiserdom (offiziell Domkirche St. Maria und St. Stephan) wurde unter Konrad II. ab 1030 begonnen und 1061 geweiht. Heinrich IV. ließ ihn nochmals umbauen - das Resultat ist die größte erhaltene romanische Kirche weltweit. Die Hallenkrypta unter Chor und Querhaus ist die größte ihrer Art und beherbergt die Grablege von acht Kaisern und Königen, darunter Konrad II. und Heinrich IV. Seit 1981 UNESCO-Welterbe. Im Sommer steigt man auf den Südwestturm und schaut über den Rhein bis in den Pfälzerwald.",
+    seoTitle: "Dom zu Speyer: Öffnungszeiten, Eintritt und Turmbesteigung",
+    seoDescription:
+      "Kaiserdom Speyer: Öffnungszeiten im Sommer und Winter, Eintritt und Tickets für Krypta und Kaisersaal, Turmbesteigung, Anfahrt und Parken.",
+    rank: 1,
+    visitDuration: "60 bis 90 Min.",
+    rankReason:
+      "Größte erhaltene romanische Kirche der Welt und seit 1981 UNESCO-Welterbe. Ohne den Dom kein Speyer-Besuch.",
     imageHue: 1,
     coordinates: [49.3173, 8.4427],
-    openingHours: "April-Okt: Mo-Sa 9:00-19:00, So 11:30-17:30 · Nov-März: kürzer",
+    openingHours: "Apr-Okt: Mo-Sa 9-19, So 11:30-17:30 Uhr · Nov-März: Mo-Sa 9-17, So 11:30-17 Uhr",
     websiteUrl: "https://www.dom-zu-speyer.de",
+    stand: "August 2026",
+    quelle: {
+      label: "Dom zu Speyer, Öffnungszeiten",
+      url: "https://www.dom-zu-speyer.de/besuchen/oeffnungszeiten/",
+    },
+    faq: [
+      {
+        q: "Welche Öffnungszeiten hat der Dom zu Speyer?",
+        a: "Von April bis Oktober ist der Dom montags bis samstags von 9 bis 19 Uhr und sonntags von 11:30 bis 17:30 Uhr geöffnet. Von November bis März schließt er früher: montags bis samstags 9 bis 17 Uhr, sonntags 11:30 bis 17 Uhr. An Feiertagen und zu besonderen Anlässen gelten abweichende Zeiten.",
+      },
+      {
+        q: "Was kostet der Eintritt in den Dom zu Speyer?",
+        a: "Der Eintritt in den Dom ist frei. Eine Gebühr wird nur für Krypta und Kaisergräber sowie für Kaisersaal und Aussichtsplattform erhoben. Tickets gibt es in der Dom-Info oder am Eingang zur Krypta, die aktuellen Preise nennt die Dombauverwaltung.",
+      },
+      {
+        q: "Kann man den Turm des Speyerer Doms besteigen?",
+        a: "Ja, von April bis Oktober. Der Aufstieg über den Südwestturm führt in den Kaisersaal und weiter auf die Aussichtsplattform, letzter Einlass ist montags bis samstags um 17 Uhr, sonntags ab 12 Uhr bis 17 Uhr. Von November bis März sind beide Bereiche für Einzelbesucher geschlossen, Führungen bleiben möglich.",
+      },
+      {
+        q: "Wann hat die Krypta geöffnet?",
+        a: "Die Krypta mit den Kaisergräbern öffnet eine halbe Stunde nach dem Dom und schließt eine halbe Stunde vor ihm. Sie ist die größte Hallenkrypta der Romanik und Grablege von acht Kaisern und Königen.",
+      },
+      {
+        q: "Wo parkt man am Dom zu Speyer?",
+        a: "Am nächsten liegt der Domparkplatz am Edith-Stein-Platz mit rund 160 Plätzen. Günstiger sind Festplatz und Naturfreundehaus in Tarifzone D mit gebührenfreier erster Stunde, wetterfest parkt man im Parkhaus Zentrum oder in der Tiefgarage Postgalerie.",
+      },
+    ],
   },
   {
     slug: "altpoertel",
@@ -67,6 +111,10 @@ export const sights: Sight[] = [
       "Eines der höchsten erhaltenen Stadttore Deutschlands. 55 Meter hoch, Wahrzeichen der Maximilianstraße.",
     longDesc:
       "Das Altpörtel ist das westliche Tor der ehemaligen Speyerer Stadtbefestigung. Der Unterbau stammt aus dem 13. Jahrhundert, der Aufbau wurde im 15. und 16. Jahrhundert ergänzt - daher die markante Mischung aus Wehrturm und Renaissance-Galerie oben. Mit 55 Metern Höhe gehört es zu den höchsten Stadttoren Deutschlands. Von der Aussichtsplattform schaut man die Maximilianstraße entlang direkt auf den Dom - vom einen Wahrzeichen zum anderen.",
+    rank: 5,
+    visitDuration: "30 Min.",
+    rankReason:
+      "55 Meter hohes Stadttor mit Aussichtsplattform und dem Blick die Maximilianstraße hinunter auf den Dom.",
     imageHue: 1,
     coordinates: [49.3186, 8.4359],
     openingHours: "April-Okt: Di-So 10:00-12:00, 14:00-17:00",
@@ -83,6 +131,10 @@ export const sights: Sight[] = [
       "Die 600 Meter lange Flaniermeile vom Altpörtel bis zum Dom. Speyers Lebensader seit dem Mittelalter.",
     longDesc:
       "Die Maximilianstraße ist seit dem Mittelalter Speyers zentrale Achse. Sie war Kaiserstraße der Reichstage und Krönungszug-Route, heute ist sie Fußgängerzone mit Cafés, Geschäften, Eis-Cafés und dem Rathaus. Wer am Altpörtel startet und gerade auf den Dom zugeht, läuft buchstäblich 2000 Jahre Stadtgeschichte ab.",
+    rank: 6,
+    visitDuration: "45 bis 60 Min.",
+    rankReason:
+      "Die Achse der Altstadt zwischen Altpörtel und Dom, zugleich die Einkaufs- und Caféstraße der Stadt.",
     imageHue: 1,
     coordinates: [49.3179, 8.4393],
   },
@@ -99,6 +151,10 @@ export const sights: Sight[] = [
       "UNESCO-Welterbe SchUM seit 2021. Mittelalterlicher jüdischer Sakralbezirk mit Mikwe von 1128 - eines der ältesten erhaltenen Ritualbäder Europas.",
     longDesc:
       'Der Judenhof in der Kleinen Pfaffengasse umfasst die Reste der mittelalterlichen Synagoge, die Frauenschul und die berühmte Mikwe - ein um 1128 angelegtes jüdisches Ritualbad, das tief in den Grundwasserspiegel hinabreicht. Speyer war im Mittelalter Teil des SchUM-Bunds (Schpira-Warmaisa-Magenza, also Speyer-Worms-Mainz). Seit 2021 zählen die Speyerer Stätten zum UNESCO-Welterbe "Die SchUM-Stätten". Im Museum SchPIRA daneben sind Funde aus der mittelalterlichen jüdischen Gemeinde ausgestellt.',
+    rank: 4,
+    visitDuration: "30 bis 45 Min.",
+    rankReason:
+      "Älteste erhaltene Mikwe Mitteleuropas, seit 2021 als SchUM-Stätte ebenfalls UNESCO-Welterbe.",
     imageHue: 4,
     coordinates: [49.3164, 8.4412],
     openingHours: "Di-So 10:00-17:00 · Mo geschlossen",
@@ -116,6 +172,10 @@ export const sights: Sight[] = [
       "Direkt am Domplatz. Goldener Hut, Pfälzischer Wein-Schatz, große Sonderausstellungen zu Antike und Mittelalter.",
     longDesc:
       'Das Historische Museum der Pfalz am Domplatz zählt zu den bedeutendsten kulturhistorischen Museen Deutschlands. Highlights der Dauerausstellung sind der bronzezeitliche "Goldene Hut von Schifferstadt", die ältesten Weinflaschen der Welt (Pfälzischer Wein-Schatz, 4. Jh.) und die Domschatz-Sammlung. Die großen Sonderausstellungen - zuletzt etwa zu den Wikingern, den Habsburgern oder Richard Löwenherz - sind überregional Programm.',
+    rank: 3,
+    visitDuration: "2 bis 3 Std.",
+    rankReason:
+      "Goldener Hut, Pfälzischer Wein-Schatz und die großen Sonderausstellungen direkt am Domplatz.",
     imageHue: 4,
     coordinates: [49.3170, 8.4422],
     openingHours: "Di-So 10:00-18:00 · Mo geschlossen",
@@ -134,6 +194,10 @@ export const sights: Sight[] = [
       "Eines der größten Technikmuseen Europas. Lufthansa-Jumbo, U-Boot U9, russische Buran-Raumfähre, IMAX-Dome.",
     longDesc:
       "Das Technik Museum Speyer ist ein Publikumsmagnet weit über die Region hinaus. Eine Lufthansa-Boeing 747 lässt sich begehen, ebenso das U-Boot U9. Highlight ist die sowjetische Raumfähre Buran in der Raumfahrt-Halle - das einzige Exemplar außerhalb Russlands. Dazu Oldtimer, Lokomotiven, Flugzeuge, ein IMAX-Dome-Kino und ein gemeinsames Kombiticket mit dem Schwester-Museum in Sinsheim.",
+    rank: 2,
+    visitDuration: "3 bis 4 Std.",
+    rankReason:
+      "Begehbare Boeing 747, U-Boot und Raumfahrthalle. Das Ziel, für das Familien eine eigene Anreise planen.",
     imageHue: 2,
     coordinates: [49.3036, 8.4477],
     openingHours: "Täglich 9:00-18:00",
@@ -152,6 +216,10 @@ export const sights: Sight[] = [
       "Barocke evangelische Hofkirche von 1717. Reich bemaltes Holzgewölbe, eine der schönsten Barockkirchen der Pfalz.",
     longDesc:
       "Die Dreifaltigkeitskirche wurde 1701-1717 als evangelische Hauptkirche nach der französischen Zerstörung Speyers errichtet. Bemerkenswert ist das vollständig in Holz ausgeführte Tonnengewölbe mit ausführlichen Bibel-Bildprogrammen, dazu die hölzernen Emporen und die barocke Stuckdecke. Sie gilt neben der Heidelberger Heiliggeistkirche als wichtigste protestantische Barockkirche der Pfalz.",
+    rank: 8,
+    visitDuration: "20 bis 30 Min.",
+    rankReason:
+      "Barocke Predigtkirche mit vollständig erhaltener Holzausstattung und bemalten Emporen.",
     imageHue: 1,
     coordinates: [49.3179, 8.4399],
     openingHours: "April-Okt: Mo-Sa 10:00-17:00, So 11:30-17:00",
@@ -214,6 +282,10 @@ export const sights: Sight[] = [
       "Stadtpark am westlichen Altstadtrand mit dem längsten erhaltenen Teil der mittelalterlichen Stadtmauer.",
     longDesc:
       "Der Adenauerpark zieht sich entlang des längsten erhaltenen Abschnitts der mittelalterlichen Speyerer Stadtbefestigung. Wo einst Wehrgang und Verteidigungstürme die Bürger schützten, läuft heute ein schattiger Spazierweg. Spielplatz, Liegewiesen und vereinzelte Wehrtürme machen den Park zu einer ruhigen Pause vom Altstadt-Trubel.",
+    rank: 10,
+    visitDuration: "30 bis 45 Min.",
+    rankReason:
+      "Längster erhaltener Abschnitt der mittelalterlichen Stadtbefestigung, als schattiger Spazierweg angelegt.",
     imageHue: 3,
     coordinates: [49.3196, 8.4378],
   },
@@ -231,6 +303,10 @@ export const sights: Sight[] = [
       "Strandbar am südlichen Ende der Speyerer Rheinpromenade: über 1.500 Quadratmeter mit Liegestühlen, Hängematten und Blick auf die Rheinschifffahrt.",
     longDesc:
       "Der Rheinstrand Speyer ist die Strandbar am südlichen Ende der Uferpromenade, hinter dem Freizeitbad Bademaxx. Auf über 1.500 Quadratmetern stehen Liegestühle, Hängematten und Loungegruppen direkt am Wasser. Ein paar hundert Meter flussaufwärts liegt mit dem Alter Hammer der älteste Biergarten der Stadt. Beides zusammen macht das Speyerer Rheinufer zum wichtigsten Sommer-Ausflugsziel neben der Altstadt.",
+    rank: 9,
+    visitDuration: "2 bis 3 Std.",
+    rankReason:
+      "Strandbar am südlichen Ende der Uferpromenade, im Sommer das Gegenprogramm zur Altstadt.",
     imageHue: 5,
     coordinates: [49.3138, 8.4537],
     openingHours: "In der Saison täglich ab 12 Uhr",
@@ -307,6 +383,10 @@ export const sights: Sight[] = [
       "Aquarium am Hafenbecken mit ~30 Becken: Rhein-Fische, Hochsee-Hai-Tunnel, Seepferdchen-Zuchtstation.",
     longDesc:
       "Das Sea Life Speyer liegt am alten Hafenbecken zwischen Altstadt und Rhein. Schwerpunkt ist die Reise vom Quellbach über Rhein und Nordsee bis ins offene Meer. Der Glas-Tunnel mit Haien und Rochen ist Familien-Magnet, die Seepferdchen-Zuchtstation ein internationaler Forschungsschwerpunkt.",
+    rank: 7,
+    visitDuration: "2 Std.",
+    rankReason:
+      "Großes Aquarium mitten in der Altstadt, das zweite Schlechtwetter-Ziel für Familien neben dem Technik Museum.",
     imageHue: 2,
     coordinates: [49.3219, 8.4490],
     openingHours: "Täglich 10:00-17:00 (Sommer bis 18:00)",
