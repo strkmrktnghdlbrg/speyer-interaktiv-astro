@@ -219,6 +219,20 @@ export const gygOffers: Record<string, GygOffer> = {
     title: "Touren & Tickets für Speyers Sehenswürdigkeiten",
     lead: "Vom Kaiserdom bis zum Technik Museum: Sichere dir die beliebtesten Touren und Tickets rund um Speyers Highlights.",
   },
+  "page:freizeit": {
+    mode: "city",
+    cityQuery: "Speyer",
+    numberOfItems: 4,
+    title: "Mehr unternehmen in Speyer",
+    lead: "Wenn die Runde Minigolf zu kurz war: Touren und Aktivitäten in Speyer und der Pfalz.",
+  },
+  "page:familie": {
+    mode: "city",
+    cityQuery: "Speyer",
+    numberOfItems: 4,
+    title: "Ausflüge und Tickets für den Familientag",
+    lead: "Touren und Tickets in Speyer und Umgebung, die sich mit Kindern verbinden lassen.",
+  },
   "page:restaurants": {
     mode: "activities",
     q: "Pfalz Weinprobe",

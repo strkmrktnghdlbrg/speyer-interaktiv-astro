@@ -25,11 +25,25 @@ const categoryLink = (slug: string) =>
   isEn ? detailUrl("categories", categoriesEn[slug]?.slug ?? slug, "en") : `/kategorien/${slug}/`;
 const categoryName = (slug: string, fallback: string) =>
   isEn ? categoriesEn[slug]?.name ?? fallback : fallback;
+
+// Die Service- und Ratgeberseiten waren bis August 2026 aus dem gesamten
+// Seitenbaum nicht verlinkt und nur ueber die Sitemap erreichbar - klassische
+// Waisen. Sie stehen deshalb hier fest im Footer.
+const vorOrt = [
+  { href: "/parken-in-speyer/", label: "Parken in Speyer" },
+  { href: "/speyer-mit-kindern/", label: "Speyer mit Kindern" },
+  { href: "/minigolf-speyer/", label: "Minigolf in Speyer" },
+  { href: "/top-10-hotels-speyer/", label: "Top 10 Hotels" },
+  { href: "/wellness-hotels-speyer/", label: "Wellness-Hotels" },
+  { href: "/apotheken-speyer/", label: "Apotheken" },
+  { href: "/banken-in-speyer/", label: "Banken" },
+  { href: "/promis-in-speyer/", label: "Promis aus Speyer" },
+];
 ---
 
 <footer class="mt-20 border-t border-[var(--color-lavender-ash)] bg-[var(--color-porcelain-mist)]">
   <div class="container-page py-14">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
       <div class="col-span-2 md:col-span-1">
         <a href={homeUrl(locale)} class="inline-flex mb-4" style="color: var(--color-accent);" aria-label={`${city.name}-Interaktiv`}>
           <Image
@@ -84,6 +98,23 @@ const categoryName = (slug: string, fallback: string) =>
           ))}
         </ul>
       </div>
+
+      {!isEn && (
+        <div>
+          <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">
+            Vor Ort
+          </h4>
+          <ul class="space-y-2">
+            {vorOrt.map((l) => (
+              <li>
+                <a href={l.href} class="text-sm hover:underline" style="color: var(--color-shadow-graphite); text-underline-offset: 3px;">
+                  {l.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div>
         <h4 class="text-xs font-bold uppercase tracking-widest mb-4" style="color: var(--color-inkwell-purple);">

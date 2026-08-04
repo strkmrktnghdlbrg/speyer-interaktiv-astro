@@ -1,0 +1,145 @@
+---
+/**
+ * Speyer mit Kindern: Indoorspielplatz und Familienziele.
+ *
+ * Ziel-Keywords "indoorspielplatz speyer" (3x 480 SV) und "speyer mit
+ * kindern". Wettbewerber ist wieder inside-speyer.de mit einem kurzen
+ * Blogpost - schlagbar mit einer Seite, die Indoor und Outdoor, Preise,
+ * Alterseignung und Schlechtwetter-Plan zusammen abdeckt.
+ */
+import BlogArticle from "../layouts/BlogArticle.astro";
+import GetYourGuideWidget from "../components/GetYourGuideWidget.astro";
+
+const title = "Speyer mit Kindern: Indoorspielplatz, Museen und Ausflugsziele";
+const description =
+  "Speyer mit Kindern: Indoorspielplatz FunDolino, Technik Museum, Sea Life, Minigolf im Domgarten, bademaxx und Kletterwald - mit Alterseignung, Preisen und Schlechtwetter-Plan.";
+
+const faq = [
+  {
+    q: "Gibt es in Speyer einen Indoorspielplatz?",
+    a: "Ja, das FunDolino in der Tullastraße 41 im Nordosten der Stadt. Es ist auf jüngere Kinder ausgelegt, etwa bis zum Grundschulalter, und bietet Klettern, Rutschen, Ballbereiche und Kindergeburtstage. Die Öffnungszeiten wechseln je nach Saison, Ferien und Wetter, ein Anruf vorab lohnt sich.",
+  },
+  {
+    q: "Was kann man in Speyer mit Kindern bei Regen machen?",
+    a: "Das Technik Museum ist das größte Schlechtwetter-Ziel und füllt problemlos drei bis vier Stunden. Dazu kommen das Sea Life mitten in der Altstadt, das Historische Museum der Pfalz mit seinen Familienausstellungen, der Indoorspielplatz FunDolino und der Hallenbereich des bademaxx.",
+  },
+  {
+    q: "Welches Museum in Speyer eignet sich für Kinder?",
+    a: "Das Technik Museum, weil dort fast alles begehbar ist: Flugzeuge, ein U-Boot und die Raumfahrthalle. Für kleinere Kinder ist das Sea Life näher am Interesse, es liegt zudem in der Altstadt und lässt sich mit einem Stadtbummel verbinden.",
+  },
+  {
+    q: "Was kostet ein Familientag in Speyer?",
+    a: "Der Dom, die Maximilianstraße, der Adenauerpark, die Spielplätze und der Rheinstrand kosten nichts. Eintritt fällt für Technik Museum, Sea Life, Historisches Museum, Indoorspielplatz, Kletterwald und bademaxx an, Minigolf liegt bei 6 Euro für Erwachsene und 5 Euro für Kinder unter 14.",
+  },
+  {
+    q: "Kann man in Speyer mit Kindern im Rhein baden?",
+    a: "Nein. Der Rhein ist an Speyer eine stark befahrene Wasserstraße, Strömung und der Sog vorbeifahrender Schiffe machen das Baden gefährlich, in weiten Abschnitten ist es verboten. Zum Schwimmen ist das bademaxx die richtige Adresse, der Rheinstrand daneben ist eine Strandbar und kein Badestrand.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<BlogArticle
+  title="Speyer mit Kindern"
+  seoTitle={title}
+  description={description}
+  category="Familie"
+  lead="Speyer ist für Familien ungewöhnlich dankbar: Die Altstadt ist kompakt und autofrei, das Technik Museum füllt einen halben Tag, und für Regentage stehen mit Sea Life, Historischem Museum und Indoorspielplatz gleich mehrere überdachte Ziele bereit. Diese Übersicht sortiert die Familienziele nach Indoor und Outdoor und nennt zu jedem die Alterseignung."
+>
+  <h2 id="indoorspielplatz">Indoorspielplatz in Speyer: FunDolino</h2>
+  <p>
+    Der Indoorspielplatz der Stadt ist das FunDolino in der Tullastraße 41 im Gewerbegebiet im
+    Nordosten. Er ist auf jüngere Kinder ausgelegt, in der Praxis etwa bis zum Ende der
+    Grundschulzeit, und bietet die üblichen Bewegungsflächen zum Klettern, Rutschen, Springen und
+    Ballspielen. Kindergeburtstage werden nach Voranmeldung ausgerichtet.
+  </p>
+  <p>
+    Ein Hinweis zur Planung: Die Öffnungszeiten wechseln nach Saison, Ferien und Wetterlage, und die
+    Angaben auf der Betreiberseite sind seit Längerem unverändert. Vor der Anfahrt sollte man
+    deshalb kurz anrufen, statt sich auf eine im Netz gefundene Zeit zu verlassen. Wer einen
+    größeren Indoorspielplatz sucht, wird im Umland fündig, etwa in Philippsburg, Eppelheim oder
+    Mannheim, alle rund eine halbe Stunde entfernt.
+  </p>
+
+  <h2 id="regen">Der Schlechtwetter-Plan</h2>
+  <ul>
+    <li>
+      <strong><a href="/sehenswuerdigkeiten/technik-museum/">Technik Museum Speyer</a></strong> ist
+      das Ziel, für das Familien eine eigene Anreise planen: begehbare Boeing 747, U-Boot,
+      Raumfahrthalle. Drei bis vier Stunden sind realistisch, mit IMAX auch mehr.
+    </li>
+    <li>
+      <strong><a href="/sehenswuerdigkeiten/sea-life/">Sea Life Speyer</a></strong> liegt mitten in
+      der Altstadt und passt für jüngere Kinder besser als ein technisches Museum. Rund zwei Stunden.
+    </li>
+    <li>
+      <strong><a href="/sehenswuerdigkeiten/historisches-museum-der-pfalz/">Historisches Museum der Pfalz</a></strong>
+      am Domplatz fährt regelmäßig große Familienausstellungen, die deutlich zugänglicher sind als
+      der Name vermuten lässt.
+    </li>
+    <li>
+      <strong>bademaxx</strong> in der Geibstraße mit Hallen- und Freibadbereich, die
+      wetterunabhängige Lösung.
+    </li>
+    <li>
+      <strong>FunDolino</strong> für die Altersgruppe, die von Museen noch nichts hat.
+    </li>
+  </ul>
+
+  <h2 id="draussen">Draußen: Domgarten, Rhein und Kletterwald</h2>
+  <p>
+    Bei gutem Wetter ist der Domgarten der natürliche Ausgangspunkt. Dort liegt auch die
+    <a href="/minigolf-speyer/">Minigolf-Anlage mit 18 Bahnen</a>, die sich gut an einen Dombesuch
+    anhängen lässt. Ein paar Minuten weiter südlich beginnt die Rheinpromenade, an deren Ende der
+    <a href="/sehenswuerdigkeiten/rheinstrand/">Rheinstrand</a> und das bademaxx liegen.
+  </p>
+  <p>
+    Für ältere Kinder ist der Kletterwald Speyer am Ersten Richtweg im Norden der Stadt die
+    Alternative mit Höhenmeter. Ruhiger wird es im
+    <a href="/sehenswuerdigkeiten/adenauerpark/">Adenauerpark</a> entlang der mittelalterlichen
+    Stadtmauer, dort gibt es Liegewiesen und einen Spielplatz.
+  </p>
+
+  <h2 id="tagesplan">Ein Tag, der funktioniert</h2>
+  <p>
+    Vormittags Technik Museum, mittags mit dem Rad oder Bus in die Altstadt, nachmittags Dom und
+    Domgarten mit einer Runde Minigolf, danach über die Rheinpromenade zum bademaxx. Wer nur einen
+    halben Tag hat, streicht das Museum und bleibt in der Altstadt: Dom, Krypta,
+    <a href="/sehenswuerdigkeiten/altpoertel/">Altpörtel</a> mit Aussichtsplattform und
+    Maximilianstraße reichen dafür aus.
+  </p>
+  <p>
+    Im Advent kommt der <a href="/feste/weihnachtsmarkt/">Weihnachtsmarkt</a> dazu, der bis in den
+    Januar hinein läuft und am Altpörtel eine Schlittschuhbahn hat. Wer übernachtet, findet die
+    Adressen in der <a href="/hotels/">Hotelübersicht</a>, alle Stellplätze im Überblick zum
+    <a href="/parken-in-speyer/">Parken in Speyer</a>.
+  </p>
+
+  <h2 id="faq">Häufige Fragen</h2>
+  <div class="space-y-3 not-prose">
+    {faq.map((f) => (
+      <details class="card p-4">
+        <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+        <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+      </details>
+    ))}
+  </div>
+
+  <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
+    Stand: August 2026. Öffnungszeiten und Preise ändern sich saisonal, im Zweifel beim jeweiligen
+    Betrieb prüfen.
+  </p>
+
+  <GetYourGuideWidget offerKey="page:familie" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline />
+</BlogArticle>
