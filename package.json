@@ -6,7 +6,10 @@
     "dev": "astro dev --port 4327",
     "build": "astro build",
     "preview": "astro preview --port 4327",
-    "astro": "astro"
+    "astro": "astro",
+    "redirects:build": "node scripts/build-redirects.mjs",
+    "redirects:verify": "node scripts/verify-redirects.mjs",
+    "redirects:verify:live": "node scripts/verify-redirects.mjs https://speyer-interaktiv.de"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.13",
