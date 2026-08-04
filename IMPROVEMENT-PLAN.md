@@ -80,3 +80,9 @@ Umsetzung jeweils als eigene `.astro`-Page nach Vorbild `src/pages/wellness-hote
 8. [ ] **FAQ/GEO-Ausbau:** FAQ-Blöcke + FAQPage-Schema auf `src/pages/hotels/index.astro`, `src/pages/top-10-hotels-speyer.astro` und die Kaiserdom-/Technik-Museum-Sights ergänzen (frage-basierte H2/H3, extrahierbare Antworten in 2-4 Sätzen).
 9. [ ] **News-Pipeline aktivieren (optional, Phase 2):** `wrangler d1 create speyer-news`, ID in `wrangler.toml` einkommentieren, `wrangler d1 migrations apply speyer-news --remote`, `wrangler deploy worker/cron.ts` (Secret `ANTHROPIC_API_KEY` setzen), dann `news.enabled = true` in `src/data/features.ts`.
 10. [ ] **DEPLOYMENT-PLAN.md abgleichen:** erledigte Punkte (Stay22/GYG enabled, Bodies migriert, Domain live) als erledigt markieren, damit künftige Sessions nicht Veraltetes abarbeiten.
+
+## Update 2026-07-04 (Fix-Session)
+
+- Erledigt: `functions/_middleware.js` (www -> Apex 301) committet und gepusht; Impressum-Fix (Zypern-Rechtsform) ebenfalls im Repo.
+- BLOCKER Deploy: Der lokale wrangler-Account (a04ff89ae...) hat KEIN Pages-Projekt "speyer-interaktiv" - die Live-Site läuft auf einem anderen Cloudflare-Account (vermutlich zweiter Account wbmgx vs. j.stark, siehe STAY22-IDS-REFERENCE.md). `npx wrangler pages deploy` schlägt mit "Project not found" fehl.
+- Nächster Schritt (manuell): Im richtigen CF-Account einloggen (`npx wrangler login` bzw. CLOUDFLARE_API_TOKEN/CLOUDFLARE_ACCOUNT_ID setzen), dann `npm run build && npx wrangler pages deploy`. Danach greifen Middleware-301 UND das korrigierte Impressum live. Alternativ: CF-Pages-Projekt mit Git-Integration auf strkmrktnghdlbrg/speyer-interaktiv-astro verbinden, dann ist Push = Deploy.

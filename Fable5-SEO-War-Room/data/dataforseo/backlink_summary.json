@@ -1,0 +1,42 @@
+{
+ "speyer-interaktiv.de": {
+  "rank": 0,
+  "backlinks": 12,
+  "referring_domains": 7,
+  "referring_domains_nofollow": 7,
+  "broken_backlinks": 0,
+  "referring_main_domains": 7
+ },
+ "visitspeyer.de": {
+  "rank": 408,
+  "backlinks": 297560,
+  "referring_domains": 203,
+  "referring_domains_nofollow": 41,
+  "broken_backlinks": 1,
+  "referring_main_domains": 193
+ },
+ "speyer-kurier.de": {
+  "rank": 254,
+  "backlinks": 2916,
+  "referring_domains": 1078,
+  "referring_domains_nofollow": 112,
+  "broken_backlinks": 829,
+  "referring_main_domains": 1037
+ },
+ "inside-speyer.de": {
+  "rank": 53,
+  "backlinks": 19,
+  "referring_domains": 15,
+  "referring_domains_nofollow": 11,
+  "broken_backlinks": 0,
+  "referring_main_domains": 15
+ },
+ "speyer-info.de": {
+  "rank": 113,
+  "backlinks": 172,
+  "referring_domains": 87,
+  "referring_domains_nofollow": 16,
+  "broken_backlinks": 0,
+  "referring_main_domains": 84
+ }
+}
