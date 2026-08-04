@@ -111,6 +111,23 @@ export const sights: Sight[] = [
       "Eines der höchsten erhaltenen Stadttore Deutschlands. 55 Meter hoch, Wahrzeichen der Maximilianstraße.",
     longDesc:
       "Das Altpörtel ist das westliche Tor der ehemaligen Speyerer Stadtbefestigung. Der Unterbau stammt aus dem 13. Jahrhundert, der Aufbau wurde im 15. und 16. Jahrhundert ergänzt - daher die markante Mischung aus Wehrturm und Renaissance-Galerie oben. Mit 55 Metern Höhe gehört es zu den höchsten Stadttoren Deutschlands. Von der Aussichtsplattform schaut man die Maximilianstraße entlang direkt auf den Dom - vom einen Wahrzeichen zum anderen.",
+    seoTitle: "Altpörtel Speyer: das Stadttor, Aussichtsplattform und Öffnungszeiten",
+    seoDescription:
+      "Das Altpörtel ist das Stadttor von Speyer: 55 Meter hoch, 154 Stufen zur Aussichtsplattform. Öffnungszeiten, Aussicht und die Verwechslung mit dem Speyerer Tor.",
+    faq: [
+      {
+        q: "Heißt das Stadttor von Speyer Speyerer Tor?",
+        a: "Nein. Das Stadttor von Speyer heißt Altpörtel. Speyerer Tor heißen jene Stadttore in Nachbarstädten wie Germersheim, Landau oder Bruchsal, die in Richtung Speyer zeigten. Die Bezeichnung beschreibt dort die Richtung, nicht den Standort.",
+      },
+      {
+        q: "Wie hoch ist das Altpörtel und wie viele Stufen hat es?",
+        a: "Das Altpörtel ist 55 Meter hoch und gehört damit zu den höchsten erhaltenen Stadttoren Deutschlands. Zur Aussichtsplattform führen 154 Stufen.",
+      },
+      {
+        q: "Wann kann man das Altpörtel besteigen?",
+        a: "Von April bis Oktober dienstags bis sonntags, jeweils von 10 bis 12 Uhr und von 14 bis 17 Uhr. Von November bis März bleibt der Aufstieg für Einzelbesucher geschlossen, gebuchte Führungen sind ganzjährig möglich.",
+      },
+    ],
     rank: 5,
     visitDuration: "30 Min.",
     rankReason:
@@ -131,6 +148,23 @@ export const sights: Sight[] = [
       "Die 600 Meter lange Flaniermeile vom Altpörtel bis zum Dom. Speyers Lebensader seit dem Mittelalter.",
     longDesc:
       "Die Maximilianstraße ist seit dem Mittelalter Speyers zentrale Achse. Sie war Kaiserstraße der Reichstage und Krönungszug-Route, heute ist sie Fußgängerzone mit Cafés, Geschäften, Eis-Cafés und dem Rathaus. Wer am Altpörtel startet und gerade auf den Dom zugeht, läuft buchstäblich 2000 Jahre Stadtgeschichte ab.",
+    seoTitle: "Maximilianstraße Speyer: Fußgängerzone zwischen Altpörtel und Dom",
+    seoDescription:
+      "Die Maximilianstraße in Speyer: 600 Meter Fußgängerzone vom Altpörtel bis zum Kaiserdom, mit Geschäften, Gastronomie, Anfahrt und Parken.",
+    faq: [
+      {
+        q: "Wie lang ist die Maximilianstraße in Speyer?",
+        a: "Rund 600 Meter, vom Altpörtel im Westen bis zum Domplatz im Osten. Ohne Stopps läuft man die Strecke in etwa zehn Minuten, mit Bummel und Pause sind zwei bis drei Stunden realistisch.",
+      },
+      {
+        q: "Ist die Maximilianstraße eine Fußgängerzone?",
+        a: "Ja, sie ist auf voller Länge autofrei und barrierearm. Sie ist zugleich die Einkaufsachse der Stadt mit Filialisten, inhabergeführten Geschäften, Bäckereien, Cafés und Eisdielen.",
+      },
+      {
+        q: "Wo parkt man an der Maximilianstraße?",
+        a: "Am nächsten liegen das Parkhaus Zentrum in der Heydenreichstraße und die Tiefgarage Postgalerie, beide wenige Schritte abseits der Achse. Günstiger sind Festplatz und Naturfreundehaus in Tarifzone D mit gebührenfreier erster Stunde.",
+      },
+    ],
     rank: 6,
     visitDuration: "45 bis 60 Min.",
     rankReason:

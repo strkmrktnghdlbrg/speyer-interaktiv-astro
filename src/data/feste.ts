@@ -167,6 +167,215 @@ export const feste: Fest[] = [
     },
   },
   {
+    slug: "brezelfest",
+    name: "Speyerer Brezelfest",
+    seoTitle: "Brezelfest Speyer: Termin, Festumzug und Festplatz",
+    shortDesc:
+      "Das größte Heimat- und Volksfest der Pfalz: fünf Tage Festplatz, Festumzug und Brezelkönigin, immer am zweiten Juli-Wochenende.",
+    lead: "Das Brezelfest ist das größte Heimat- und Volksfest der Pfalz und der Termin, an dem Speyer im Ausnahmezustand ist. Es findet traditionell am zweiten Juli-Wochenende statt, beginnt donnerstags mit Eröffnung und Bieranstich und läuft auf dem Festplatz. Höhepunkt ist der Festumzug am Brezelfest-Sonntag um 13:30 Uhr.",
+    termin: "Jährlich am zweiten Juli-Wochenende, Beginn donnerstags",
+    district: "altstadt",
+    imageHue: 3,
+    geo: { lat: 49.3205, lng: 8.4412, label: "Festplatz Speyer" },
+    hotelEventSlug: "brezelfest",
+    websiteUrl: "https://www.speyerer-brezelfest.de/",
+    guide: {
+      terminOrt: [
+        "Das Brezelfest findet nach Angaben des Veranstalters immer am zweiten Wochenende im Juli statt. Der Startschuss fällt donnerstags mit der feierlichen Eröffnung und dem Brezelfestbieranstich, danach läuft das Fest über das gesamte Wochenende.",
+        "Veranstaltungsort ist der Festplatz unterhalb des Doms, dieselbe Fläche, auf der im Oktober die Herbstmesse steht. Der Weg von dort in die Altstadt und zum Dom dauert nur wenige Minuten zu Fuß.",
+      ],
+      angebot: [
+        "Das Brezelfest ist ein klassisches Volksfest mit Fahrgeschäften, Festzelten und Schaustellerbetrieben, ergänzt um die Speyerer Eigenheiten: die Brezelkönigin, das Brezelfestbier und den Umzug. Der Name kommt vom Brauch, bei dem Umzug Brezeln in die Menge zu werfen.",
+        "Der traditionelle Straßenumzug startet am Brezelfest-Sonntag um 13:30 Uhr und zieht durch die Stadt. Er ist der meistbesuchte Programmpunkt und der Grund, warum am Sonntagmittag die halbe Region in Speyer ist. Das genaue Programm und die Umzugsstrecke veröffentlicht der Veranstalter jeweils im Frühsommer.",
+      ],
+      anreise: [
+        "Zum Brezelfest ist die Bahn die klar bessere Wahl. Vom Hauptbahnhof Speyer sind es wenige Minuten zu Fuß, und die Innenstadt ist rund um Umzug und Festbetrieb streckenweise gesperrt.",
+      ],
+      parken: [
+        "Der Festplatz selbst fällt während des Fests als Parkfläche komplett aus, was die Parksituation in der ganzen Innenstadt verschärft. Wer mit dem Auto kommt, plant großzügig Zeit ein und weicht auf den Parkplatz am Technik Museum oder auf das Naturfreundehaus aus. Alle Optionen stehen im Überblick zum Parken in Speyer.",
+      ],
+      tipps: [
+        "Zum Umzug am Sonntag deutlich vor 13:30 Uhr einen Platz an der Strecke suchen.",
+        "Der Donnerstag mit Eröffnung und Bieranstich ist der ruhigste Tag des Fests.",
+        "Unterkünfte in Speyer sind zur Festwoche früh ausgebucht, das gilt auch für die Nachbarorte.",
+        "Der Festplatz liegt in Gehweite zum Dom: Ein Vormittag in der Altstadt und ein Nachmittag auf dem Fest lassen sich gut verbinden.",
+      ],
+      umgebung: [
+        { label: "Kaiserdom zu Speyer", href: "/sehenswuerdigkeiten/kaiserdom/" },
+        { label: "Maximilianstraße", href: "/sehenswuerdigkeiten/maximilianstrasse/" },
+        { label: "Herbstmesse auf demselben Platz", href: "/feste/herbstmesse/" },
+        { label: "Parken in Speyer", href: "/parken-in-speyer/" },
+        { label: "Hotels in Speyer", href: "/hotels/" },
+      ],
+      faq: [
+        {
+          q: "Wann findet das Speyerer Brezelfest statt?",
+          a: "Immer am zweiten Wochenende im Juli. Es beginnt donnerstags mit der feierlichen Eröffnung und dem Brezelfestbieranstich. Die genauen Tage und das Programm veröffentlicht der Veranstalter jeweils im Frühsommer.",
+        },
+        {
+          q: "Wann ist der Brezelfestumzug?",
+          a: "Am Brezelfest-Sonntag um 13:30 Uhr. Der Straßenumzug ist der bekannteste Programmpunkt des Fests, dabei werden traditionell Brezeln in die Menge geworfen.",
+        },
+        {
+          q: "Wo findet das Brezelfest statt?",
+          a: "Auf dem Festplatz unterhalb des Doms, derselben Fläche, auf der im Oktober die Herbstmesse steht. Von dort sind es nur wenige Minuten zu Fuß in die Altstadt und zum Dom.",
+        },
+        {
+          q: "Warum heißt es Brezelfest?",
+          a: "Die Brezel ist das Wahrzeichen des Fests: Beim Umzug werden Brezeln in die Menge geworfen, und das Fest hat mit der Brezelkönigin eine eigene Repräsentantin. Es gilt als größtes Heimat- und Volksfest der Pfalz.",
+        },
+      ],
+      stand: "August 2026",
+      quelle: {
+        label: "Speyerer Brezelfest, häufige Fragen",
+        url: "https://www.speyerer-brezelfest.de/faqs",
+      },
+    },
+  },
+  {
+    slug: "altstadtfest",
+    name: "Speyerer Altstadtfest",
+    headline: "Altstadtfest Speyer 2026",
+    seoTitle: "Altstadtfest Speyer 2026: Termin, Programm und Entenrennen",
+    shortDesc:
+      "Zwei Tage Livemusik und Gastronomie in den Gassen der Altstadt: Das 49. Altstadtfest läuft am 11. und 12. September 2026.",
+    lead: "Das Altstadtfest ist das Fest, bei dem die Speyerer Vereine und die Anwohnerinnen und Anwohner der Altstadt die Gassen selbst bespielen. 2026 findet es in der 49. Auflage am Freitag, dem 11., und Samstag, dem 12. September statt, mit Bühnen quer durch die Altstadt und dem Entenrennen auf dem Speyerbach als traditionellem Höhepunkt am Samstag.",
+    termin: "11. und 12. September 2026",
+    district: "altstadt",
+    imageHue: 2,
+    startDate: "2026-09-11",
+    endDate: "2026-09-12",
+    geo: { lat: 49.3179, lng: 8.4393, label: "Altstadtfest in der Speyerer Altstadt" },
+    guide: {
+      terminOrt: [
+        "Das 49. Altstadtfest läuft am Freitag, dem 11. September 2026, und am Samstag, dem 12. September 2026. Gefeiert wird in den Gassen der Speyerer Altstadt, also im Quartier rund um die Maximilianstraße zwischen Altpörtel und Dom.",
+        "Getragen wird das Fest von den Anwohnerinnen und Anwohnern der Altstadt und von den Speyerer Vereinen, die die Stände und Bühnen betreiben. Das unterscheidet es von den großen Volksfesten der Stadt: Das Programm entsteht in der Nachbarschaft, nicht auf einem Festplatz.",
+      ],
+      oeffnungszeiten: [
+        { tage: "Freitag, 11. September 2026", zeit: "16 bis 1 Uhr, Musik bis 24 Uhr" },
+        { tage: "Samstag, 12. September 2026", zeit: "11 bis 1 Uhr, Musik bis 24 Uhr" },
+      ],
+      angebot: [
+        "Auf den Bühnen spielen Bands unterschiedlicher Stilrichtungen, dazu kommt ein breites gastronomisches Angebot der Vereine und Anwohner. Weil sich das Fest über mehrere Gassen verteilt, lohnt es sich, einmal komplett durchzulaufen, statt an der ersten Bühne stehen zu bleiben.",
+        "Höhepunkt am Samstag ist das traditionelle Entenrennen auf dem Speyerbach. Es ist der Programmpunkt, für den auch Familien mit kleineren Kindern anreisen, und entsprechend voll wird es an den Brücken entlang der Strecke.",
+      ],
+      anreise: [
+        "Die Altstadt ist während des Fests weitgehend gesperrt oder nur eingeschränkt befahrbar. Vom Hauptbahnhof Speyer sind es wenige Minuten zu Fuß in die Maximilianstraße, das ist an beiden Tagen die entspannteste Anreise.",
+      ],
+      parken: [
+        "Mit dem Auto sind die innenstadtnahen Parkhäuser und die großen Flächen am Rand der Altstadt die Wahl: Parkhaus Zentrum, Tiefgarage Postgalerie, Festplatz und Naturfreundehaus. Der Domparkplatz am Edith-Stein-Platz ist am Festsamstag früh belegt.",
+      ],
+      tipps: [
+        "Freitagabend ist entspannter als der Samstag, das Fest startet dort erst um 16 Uhr.",
+        "Zum Entenrennen am Samstag früh an den Speyerbach kommen, die Plätze an den Brücken sind schnell besetzt.",
+        "Die Musik endet an beiden Tagen um Mitternacht, ausgeschenkt wird bis 1 Uhr.",
+        "Einmal komplett durch die Gassen laufen: Das Programm verteilt sich, jede Ecke hat ein eigenes Publikum.",
+      ],
+      umgebung: [
+        { label: "Maximilianstraße", href: "/sehenswuerdigkeiten/maximilianstrasse/" },
+        { label: "Kaiserdom zu Speyer", href: "/sehenswuerdigkeiten/kaiserdom/" },
+        { label: "Stadtteil Altstadt", href: "/stadtteile/altstadt/" },
+        { label: "Parken in Speyer", href: "/parken-in-speyer/" },
+        { label: "Restaurants in Speyer", href: "/restaurants/" },
+      ],
+      faq: [
+        {
+          q: "Wann ist das Altstadtfest in Speyer 2026?",
+          a: "Am Freitag, dem 11. September 2026, von 16 bis 1 Uhr und am Samstag, dem 12. September 2026, von 11 bis 1 Uhr. Die Musik spielt an beiden Tagen bis Mitternacht (Quelle: Stadt Speyer, Stand August 2026).",
+        },
+        {
+          q: "Wo findet das Altstadtfest statt?",
+          a: "In den Gassen der Speyerer Altstadt rund um die Maximilianstraße zwischen Altpörtel und Dom. Es gibt keinen einzelnen Festplatz, das Programm verteilt sich über das ganze Quartier.",
+        },
+        {
+          q: "Was ist das Entenrennen beim Altstadtfest?",
+          a: "Am Samstag findet auf dem Speyerbach das traditionelle Entenrennen statt, bei dem nummerierte Plastikenten die Strecke hinuntertreiben. Es ist der bekannteste Programmpunkt des Fests und besonders bei Familien beliebt.",
+        },
+        {
+          q: "Kostet das Altstadtfest Eintritt?",
+          a: "Das Fest findet im öffentlichen Straßenraum der Altstadt statt und ist frei zugänglich. Bezahlt wird an den Ständen der Vereine und Anwohner.",
+        },
+      ],
+      stand: "August 2026",
+      quelle: {
+        label: "Stadt Speyer, 49. Altstadtfest",
+        url: "https://www.speyer.de/de/veranstaltungen/messen-maerkte-und-veranstaltungen/altstadtfest/",
+      },
+    },
+  },
+  {
+    slug: "herbstmesse",
+    name: "Speyerer Herbstmesse",
+    headline: "Herbstmesse Speyer 2026",
+    seoTitle: "Herbstmesse Speyer 2026: Termine, Öffnungszeiten und Fahrgeschäfte",
+    shortDesc:
+      "Zehn Tage Volksfest auf dem Festplatz unterhalb des Doms: Die 779. Speyerer Herbstmesse läuft vom 16. bis 25. Oktober 2026.",
+    lead: "Die Speyerer Herbstmesse ist mit ihrer 779. Auflage eines der ältesten Volksfeste der Region. Vom 16. bis 25. Oktober 2026 bauen die Schausteller ihre Fahrgeschäfte auf dem Festplatz unterhalb des Doms auf, von Riesenrad und Skooter bis zu Biergärten und Imbissständen mit rund 600 Sitzplätzen.",
+    termin: "16. bis 25. Oktober 2026",
+    district: "altstadt",
+    imageHue: 6,
+    startDate: "2026-10-16",
+    endDate: "2026-10-25",
+    geo: { lat: 49.3205, lng: 8.4412, label: "Festplatz Speyer" },
+    guide: {
+      terminOrt: [
+        "Die 779. Speyerer Herbstmesse läuft vom 16. bis zum 25. Oktober 2026 und damit über zwei Wochenenden. Aufgebaut wird auf dem Festplatz unterhalb des Doms, in Gehweite zum Domplatz.",
+        "Die Zahl im Namen ist kein Marketing: Die Messe gehört zu den ältesten durchgehend veranstalteten Volksfesten in Deutschland und ist neben dem Brezelfest im Juli der zweite große Volksfesttermin im Speyerer Jahr.",
+      ],
+      oeffnungszeiten: [
+        { tage: "Montag bis Donnerstag", zeit: "14 bis 22 Uhr" },
+        { tage: "Freitag, Samstag und Tage vor Feiertagen", zeit: "14 bis 23 Uhr" },
+        { tage: "Sonn- und Feiertage", zeit: "12 bis 22 Uhr" },
+      ],
+      angebot: [
+        "Auf dem Platz stehen Riesenrad, Rundfahrgeschäfte, ein Automatik-Skooter, eine Hochfahrattraktion und mehrere Kinderfahrgeschäfte. Dazu kommen die klassischen Geschicklichkeitsstände mit Ball-, Pfeil- und Ringwerfen, Angeln und Schießständen.",
+        "Für die Gastronomie sind Biergärten und Imbissstände mit rund 600 Sitzplätzen angekündigt, dazu Süßwaren-, Eis- und Crêpewagen sowie Verkaufsstände. Sonntags öffnet die Messe bereits um 12 Uhr und ist damit der beste Termin für einen Besuch mit kleineren Kindern.",
+      ],
+      anreise: [
+        "Vom Hauptbahnhof Speyer sind es rund 15 Minuten zu Fuß. Weil der Festplatz während der Messe belegt ist, fällt er als Parkfläche für die Altstadt aus, was den Parkdruck in der Innenstadt spürbar erhöht.",
+      ],
+      parken: [
+        "Genau deshalb ist die Bahn während der Messe die bessere Wahl. Wer mit dem Auto kommt, weicht auf das Parkhaus Zentrum, die Tiefgarage Postgalerie, den Parkplatz Naturfreundehaus oder den großen Parkplatz am Technik Museum aus.",
+      ],
+      tipps: [
+        "Sonntags öffnet die Messe schon um 12 Uhr, das ist der ruhigste Zeitpunkt für Familien.",
+        "Freitag und Samstag ist bis 23 Uhr geöffnet, unter der Woche endet der Betrieb um 22 Uhr.",
+        "Der Festplatz fällt während der Messe als Parkplatz aus, das im Zeitplan einkalkulieren.",
+        "Der Weg zum Dom dauert vom Festplatz nur wenige Minuten, ein Messebesuch lässt sich gut mit der Altstadt verbinden.",
+      ],
+      umgebung: [
+        { label: "Kaiserdom zu Speyer", href: "/sehenswuerdigkeiten/kaiserdom/" },
+        { label: "Maximilianstraße", href: "/sehenswuerdigkeiten/maximilianstrasse/" },
+        { label: "Parken in Speyer", href: "/parken-in-speyer/" },
+        { label: "Speyer mit Kindern", href: "/speyer-mit-kindern/" },
+        { label: "Hotels in Speyer", href: "/hotels/" },
+      ],
+      faq: [
+        {
+          q: "Wann ist die Herbstmesse in Speyer 2026?",
+          a: "Die 779. Speyerer Herbstmesse läuft vom 16. bis 25. Oktober 2026 (Quelle: Stadt Speyer, Stand August 2026).",
+        },
+        {
+          q: "Welche Öffnungszeiten hat die Speyerer Herbstmesse?",
+          a: "Montags bis donnerstags von 14 bis 22 Uhr, freitags, samstags und an Tagen vor Feiertagen von 14 bis 23 Uhr, sonn- und feiertags von 12 bis 22 Uhr.",
+        },
+        {
+          q: "Wo findet die Herbstmesse in Speyer statt?",
+          a: "Auf dem Festplatz unterhalb des Doms. Der Platz ist vom Domplatz und vom Hauptbahnhof aus zu Fuß erreichbar.",
+        },
+        {
+          q: "Welche Fahrgeschäfte gibt es auf der Herbstmesse?",
+          a: "Angekündigt sind unter anderem ein Riesenrad, Rundfahrgeschäfte, ein Automatik-Skooter, eine Hochfahrattraktion und mehrere Kinderfahrgeschäfte, dazu Geschicklichkeitsstände, Biergärten und Imbissstände mit rund 600 Sitzplätzen.",
+        },
+      ],
+      stand: "August 2026",
+      quelle: {
+        label: "Stadt Speyer, 779. Herbstmesse",
+        url: "https://www.speyer.de/de/veranstaltungen/messen-maerkte-und-veranstaltungen/herbstmesse/",
+      },
+    },
+  },
+  {
     slug: "fastnacht",
     name: "Speyerer Fastnacht",
     shortDesc:

@@ -128,6 +128,27 @@ export const gygOffers: Record<string, GygOffer> = {
     title: "Erlebnisse rund um den Speyerer Weihnachtsmarkt",
     lead: "Du bist im Advent in Speyer? Entdecke Touren & Tickets rund um Dom und Altstadt fürs Drumherum.",
   },
+  "fest:brezelfest": {
+    mode: "city",
+    cityQuery: "Speyer",
+    numberOfItems: 4,
+    title: "Rund um das Brezelfest",
+    lead: "Wer zur Festwoche anreist, verbindet den Festplatz am besten mit einer Führung durch die Domstadt.",
+  },
+  "fest:altstadtfest": {
+    mode: "city",
+    cityQuery: "Speyer",
+    numberOfItems: 4,
+    title: "Rund um das Altstadtfest",
+    lead: "Wer fürs Altstadtfest anreist, kombiniert es am besten mit einer Führung durch die Domstadt.",
+  },
+  "fest:herbstmesse": {
+    mode: "city",
+    cityQuery: "Speyer",
+    numberOfItems: 4,
+    title: "Rund um die Herbstmesse",
+    lead: "Der Festplatz liegt wenige Minuten vom Dom entfernt: Touren und Tickets für den Rest des Tages.",
+  },
   "fest:fastnacht": {
     mode: "city",
     cityQuery: "Speyer",

@@ -9,7 +9,7 @@ Der Neue Rheinhafen liegt im Osten Speyers direkt am Strom und verbindet aktive 
 
 ## Freizeit und Veranstaltungsort
 
-Rund um den Hafen liegen einige der bekanntesten Speyerer Anziehungspunkte am Wasser. Direkt am Hafenbecken befindet sich [Sea Life Speyer](/sehenswuerdigkeiten/sea-life) mit seinen Aquarienlandschaften, in Sichtweite das große [Technik Museum Speyer](/sehenswuerdigkeiten/technik-museum) mit Boeing 747 und U-Boot U9. Vom Quartier sind es nur wenige Schritte in die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse) und hinüber zum [Kaiserdom](/sehenswuerdigkeiten/kaiserdom), sodass Hafenkante und mittelalterliche Innenstadt nah beieinander liegen. Die Festwiese am Rhein ist Schauplatz des [Speyerer Brezelfests](/feste/brezelfest), das im Juli als groesstes Heimat- und Volksfest der Pfalz mehrere hunderttausend Besucher anzieht und den Hafenbereich für einige Tage in eine Festmeile verwandelt.
+Rund um den Hafen liegen einige der bekanntesten Speyerer Anziehungspunkte am Wasser. Direkt am Hafenbecken befindet sich [Sea Life Speyer](/sehenswuerdigkeiten/sea-life/) mit seinen Aquarienlandschaften, in Sichtweite das große [Technik Museum Speyer](/sehenswuerdigkeiten/technik-museum/) mit Boeing 747 und U-Boot U9. Vom Quartier sind es nur wenige Schritte in die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/) und hinüber zum [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/), sodass Hafenkante und mittelalterliche Innenstadt nah beieinander liegen. Die Festwiese am Rhein ist Schauplatz des [Speyerer Brezelfests](/feste/brezelfest/), das im Juli als größtes Heimat- und Volksfest der Pfalz mehrere hunderttausend Besucher anzieht und den Hafenbereich für einige Tage in eine Festmeile verwandelt.
 
 ## Wohnen, Verkehr und Alltag
 

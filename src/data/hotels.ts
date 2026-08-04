@@ -47,13 +47,13 @@ export const hotels: Hotel[] = [
     stars: 3,
     priceFrom: 95,
     shortDesc:
-      "Familiengeführtes Hotel direkt am Dom. Eigene Brauerei mit Speyerer Bier im Innenhof.",
+      "Hotel im Bauhof, eine Minute vom Dom. 43 Zimmer und drei Suiten, Rezeption rund um die Uhr, eigene Parkplätze auf dem Grundstück.",
     longDesc:
-      "Das Hotel Domhof liegt eine Minute zu Fuß vom Kaiserdom entfernt im Bauhof. Familiengeführt, eigene Hausbrauerei (Domhof-Bräu) mit großem Innenhof-Biergarten, gemütlich-traditionelle Zimmer. Beliebt bei Dom-Besuchern, die zentral und unprätentiös übernachten wollen.",
+      "Das Hotel Domhof liegt im Bauhof, rund eine Gehminute vom Kaiserdom entfernt. Es hat nach eigenen Angaben 43 Zimmer und drei Suiten, die 2019 und 2021 renoviert wurden, dazu Rezeption und Bar rund um die Uhr, Frühstücksbuffet, Innenhofterrasse und kostenfreies WLAN. Auf dem Grundstück stehen eigene, kostenpflichtige Parkplätze zur Verfügung. Die bekannte Hausbrauerei Domhof ist ein eigener Betrieb wenige Schritte entfernt in der Großen Himmelsgasse, nicht Teil des Hotels.",
     imageHue: 1,
     imageKey: "hotel:hotel-domhof",
     bookingUrl: "https://www.booking.com/hotel/de/hotel-domhof.de.html",
-    amenities: ["Hausbrauerei", "Biergarten", "Familiengeführt", "Dom-nah"],
+    amenities: ["24h-Rezeption", "Eigene Parkplätze", "Frühstücksbuffet", "Dom-nah"],
   },
   {
     slug: "hotel-goldener-engel",

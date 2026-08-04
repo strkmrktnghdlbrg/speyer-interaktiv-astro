@@ -1,0 +1,153 @@
+---
+/**
+ * Tourist-Information Speyer.
+ *
+ * Ziel-Keywords "speyer tourist info" und "speyer tourist information"
+ * (2x 1.000 SV), die bisher auf der Startseite auf Pos 86-92 hingen.
+ *
+ * Haltung: Die Tourist-Information ist eine staedtische Einrichtung, kein
+ * Wettbewerber. Die Seite nennt ihre Daten korrekt und verlinkt fair
+ * dorthin, statt sie zu verdraengen.
+ */
+import BlogArticle from "../layouts/BlogArticle.astro";
+import MapEmbed from "../components/MapEmbed.astro";
+
+const title = "Tourist-Information Speyer: Adresse, Öffnungszeiten und Leistungen";
+const description =
+  "Tourist-Information Speyer in der Maximilianstraße 13: Öffnungszeiten im Sommer und Winter, Telefon, Leistungen von Stadtführung bis Zimmervermittlung, Anfahrt und Parken.";
+
+const faq = [
+  {
+    q: "Wo ist die Tourist-Information in Speyer?",
+    a: "In der Maximilianstraße 13, direkt neben dem Historischen Rathaus und damit mitten in der Fußgängerzone zwischen Altpörtel und Dom.",
+  },
+  {
+    q: "Welche Öffnungszeiten hat die Tourist-Information Speyer?",
+    a: "Von April bis Oktober montags bis freitags von 9 bis 17 Uhr und samstags von 10 bis 15 Uhr. Von November bis März montags bis freitags von 9 bis 17 Uhr und samstags von 10 bis 12 Uhr. Sonn- und feiertags ist geschlossen (Stand August 2026).",
+  },
+  {
+    q: "Wie erreicht man die Tourist-Information Speyer telefonisch?",
+    a: "Unter +49 6232 14-2392 oder per E-Mail an touristinformation@stadt-speyer.de.",
+  },
+  {
+    q: "Was bietet die Tourist-Information Speyer an?",
+    a: "Beratung zu Sehenswürdigkeiten und Anreise, Infomaterial, Stadt- und Themenführungen sowie Gruppenangebote, Vermittlung von Hotelzimmern und Ferienwohnungen und den Vorverkauf für Veranstaltungen. Auch die Minigolf-Anlage im Domgarten wird über die Tourist-Information gebucht.",
+  },
+  {
+    q: "Ist die Tourist-Information barrierefrei?",
+    a: "Die Räume in der Maximilianstraße 13 sind für Menschen mit Mobilitätseinschränkung zugänglich, und die Fußgängerzone davor ist eben und barrierearm.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+const placeLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristInformationCenter",
+  name: "Tourist-Information Speyer",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Maximilianstraße 13",
+    postalCode: "67346",
+    addressLocality: "Speyer",
+    addressRegion: "RP",
+    addressCountry: "DE",
+  },
+  telephone: "+49 6232 14-2392",
+  email: "touristinformation@stadt-speyer.de",
+  geo: { "@type": "GeoCoordinates", latitude: 49.3181, longitude: 8.4385 },
+  url: "https://www.visitspeyer.de/",
+};
+---
+
+<BlogArticle
+  title="Tourist-Information Speyer"
+  seoTitle={title}
+  description={description}
+  category="Service"
+  lead="Die Tourist-Information der Stadt Speyer sitzt in der Maximilianstraße 13, direkt neben dem Historischen Rathaus. Sie ist die Anlaufstelle für Stadtführungen, Zimmervermittlung und den Veranstaltungsvorverkauf. Diese Seite fasst Adresse, Öffnungszeiten, Kontakt und Leistungen zusammen und sagt, was sich davon auch online erledigen lässt."
+>
+  <h2 id="adresse-zeiten">Adresse, Kontakt und Öffnungszeiten</h2>
+  <table>
+    <thead>
+      <tr><th>Angabe</th><th>Wert</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Adresse</td><td>Maximilianstraße 13, 67346 Speyer (neben dem Historischen Rathaus)</td></tr>
+      <tr><td>Telefon</td><td>+49 6232 14-2392</td></tr>
+      <tr><td>E-Mail</td><td>touristinformation@stadt-speyer.de</td></tr>
+      <tr><td>April bis Oktober</td><td>Mo bis Fr 9 bis 17 Uhr, Sa 10 bis 15 Uhr</td></tr>
+      <tr><td>November bis März</td><td>Mo bis Fr 9 bis 17 Uhr, Sa 10 bis 12 Uhr</td></tr>
+      <tr><td>Sonn- und Feiertage</td><td>geschlossen</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Die Lage ist praktisch gewählt: Die Maximilianstraße 13 liegt etwa auf halber Strecke zwischen
+    <a href="/sehenswuerdigkeiten/altpoertel/">Altpörtel</a> und
+    <a href="/sehenswuerdigkeiten/kaiserdom/">Kaiserdom</a>, also genau dort, wo die meisten Besucher
+    ohnehin vorbeikommen. Vom Hauptbahnhof sind es rund zehn Gehminuten.
+  </p>
+
+  <h2 id="leistungen">Was die Tourist-Information anbietet</h2>
+  <ul>
+    <li><strong>Stadt- und Themenführungen</strong> sowie gesonderte Angebote für Gruppen. Hier laufen auch die Buchungen für Führungen zusammen, die nicht online angeboten werden.</li>
+    <li><strong>Zimmervermittlung</strong> für Hotels und Ferienwohnungen in Speyer.</li>
+    <li><strong>Vorverkauf</strong> für Veranstaltungen in der Region und darüber hinaus.</li>
+    <li><strong>Beratung und Infomaterial</strong> zu Sehenswürdigkeiten, Anreise und Barrierefreiheit, auf Wunsch auch per Post.</li>
+    <li><strong>Buchung der Minigolf-Anlage</strong> im Domgarten für Gruppen und Feiern, siehe <a href="/minigolf-speyer/">Minigolf in Speyer</a>.</li>
+  </ul>
+
+  <h2 id="online">Was sich vorab online klären lässt</h2>
+  <p>
+    Für die klassischen Planungsfragen braucht es den Weg in die Maximilianstraße nicht. Öffnungszeiten
+    und Eintritt der wichtigsten Ziele stehen bei den
+    <a href="/sehenswuerdigkeiten/">Sehenswürdigkeiten in Speyer</a>, die Stellplätze samt Tarifen im
+    Überblick zum <a href="/parken-in-speyer/">Parken in Speyer</a>, die Termine der Stadtfeste bei den
+    <a href="/feste/">Festen und Veranstaltungen</a>. Unterkünfte lassen sich über die
+    <a href="/hotels/">Hotelübersicht</a> vergleichen.
+  </p>
+  <p>
+    Die offiziellen Seiten der Stadt sind speyer.de für Verwaltung und Veranstaltungen und
+    <a href="https://www.visitspeyer.de/" rel="nofollow noopener" target="_blank">visitspeyer.de</a> für
+    das touristische Angebot. Wir sind ein privates Stadtportal und keine städtische Einrichtung: Für
+    verbindliche Auskünfte zu Führungen, Vorverkauf und Zimmervermittlung ist die Tourist-Information
+    die richtige Adresse.
+  </p>
+
+  <h2 id="anfahrt">Anfahrt und Parken</h2>
+  <p>
+    Vom Hauptbahnhof führt der Weg über die Bahnhofstraße zum Altpörtel und von dort die
+    <a href="/sehenswuerdigkeiten/maximilianstrasse/">Maximilianstraße</a> hinunter, insgesamt rund zehn
+    Minuten. Mit dem Auto liegen das Parkhaus Zentrum in der Heydenreichstraße und die Tiefgarage
+    Postgalerie am nächsten. Weil die Maximilianstraße Fußgängerzone ist, endet die Anfahrt in jedem
+    Fall ein Stück vorher.
+  </p>
+
+  <h2 id="faq">Häufige Fragen</h2>
+  <div class="space-y-3 not-prose">
+    {faq.map((f) => (
+      <details class="card p-4">
+        <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+        <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+      </details>
+    ))}
+  </div>
+
+  <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
+    Stand: August 2026. Öffnungszeiten und Leistungen können sich ändern. Quelle der Angaben:
+    <a href="https://www.visitspeyer.de/de/kontakt-oeffnungszeiten" rel="nofollow noopener" target="_blank" class="underline">Tourist-Information Speyer, Kontakt und Öffnungszeiten</a>.
+  </p>
+
+  <MapEmbed lat={49.3181} lng={8.4385} label="Tourist-Information Speyer" zoom={17} title="Lage der Tourist-Information Speyer" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(placeLd)} is:inline />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline />
+</BlogArticle>
