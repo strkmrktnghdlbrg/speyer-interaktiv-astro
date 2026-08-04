@@ -36,7 +36,12 @@ async function probe(c) {
   const locPath = loc.startsWith("http") ? loc : loc;
   const wantStatus = c.status || 301;
   const okStatus = res.status === wantStatus;
-  const okTarget = c.status === 302 ? loc === c.expected : new URL(loc, base).pathname === c.expected;
+  // Pages prozentkodiert Query-Werte im Ziel (adcell param0) - das ist korrekt,
+  // deshalb wird das Affiliate-Ziel dekodiert verglichen.
+  const okTarget =
+    c.status === 302
+      ? decodeURIComponent(loc) === decodeURIComponent(c.expected)
+      : new URL(loc, base).pathname === c.expected;
   return { ok: okStatus && okTarget, status: res.status, loc: locPath };
 }
 
@@ -48,7 +53,7 @@ for (const c of cases) {
   for (let attempt = 1; attempt <= 3; attempt++) {
     r = await probe(c);
     if (r.ok) break;
-    if (attempt < 3) await new Promise((ok) => setTimeout(ok, 1500));
+    if (attempt < 3) await new Promise((ok) => setTimeout(ok, 4000 * attempt));
   }
   if (r.ok) pass++;
   else failed.push({ ...c, ...r });
