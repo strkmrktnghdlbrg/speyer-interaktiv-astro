@@ -120,6 +120,16 @@ export const sightsEn: Record<string, SightEn> = {
     longDesc:
       "Adenauer Park runs along the longest surviving section of Speyer's medieval fortifications. Where a rampart walk and defensive towers once protected the townspeople, a shady footpath now leads through the greenery. A playground, lawns and a few remaining wall towers make the park a quiet break from the bustle of the Old Town.",
   },
+  rheinstrand: {
+    slug: "rhine-beach",
+    name: "Rheinstrand Speyer",
+    type: "Leisure",
+    shortDesc:
+      "Beach bar at the southern end of the Speyer riverside promenade: more than 1,500 square metres of deckchairs, hammocks and lounge seating right by the water.",
+    longDesc:
+      "The Rheinstrand is Speyer's beach bar, set at the southern end of the riverside promenade behind the Bademaxx swimming pool. The operator gives its size as more than 1,500 square metres, laid out with deckchairs, hammocks and lounge groups facing the shipping lane. It is a summer operation and weather dependent, opening daily from noon in season. Swimming in the Rhine is dangerous here because of the current, the suction of passing freighters and commercial traffic, and is prohibited along much of the bank, so the adjacent Bademaxx pool is the safe alternative. Half a kilometre upstream, at Leinpfad 1c, the Alter Hammer has been serving since 1919 and is the oldest beer garden in town, open daily from 11am with a full kitchen.",
+    openingHours: "In season daily from 12:00",
+  },
   fischertor: {
     slug: "fishermens-gate",
     name: "Fishermen's Gate",

@@ -48,9 +48,21 @@ const schema = {
   ...(sight.openingHours ? { openingHours: sight.openingHours } : {}),
   ...(sight.websiteUrl ? { url: sight.websiteUrl } : {}),
 };
+
+const faqSchema = sight.faq?.length
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: sight.faq.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    }
+  : null;
 ---
 
-<BaseLayout title={sight.name} description={sight.shortDesc} alternateUrls={sightsEn[sight.slug] ? { de: `/sehenswuerdigkeiten/${sight.slug}/`, en: `/en/attractions/${sightsEn[sight.slug].slug}/` } : undefined}>
+<BaseLayout title={sight.seoTitle ?? sight.name} description={sight.seoDescription ?? sight.shortDesc} alternateUrls={sightsEn[sight.slug] ? { de: `/sehenswuerdigkeiten/${sight.slug}/`, en: `/en/attractions/${sightsEn[sight.slug].slug}/` } : undefined}>
   <article>
     <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
       <ContentImage
@@ -106,6 +118,36 @@ const schema = {
               <p>{sight.longDesc}</p>
             )}
           </div>
+
+          {sight.faq && sight.faq.length > 0 && (
+            <section class="mt-10">
+              <h2 class="text-2xl font-bold tracking-tight mb-5" style="color: var(--color-deep-plum);">
+                Häufige Fragen
+              </h2>
+              <div class="space-y-3">
+                {sight.faq.map((f) => (
+                  <details class="card p-4">
+                    <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+                    <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {sight.stand && (
+            <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
+              Stand: {sight.stand}. Öffnungszeiten und Preise können sich ändern, im Zweifel beim Betreiber prüfen.
+              {sight.quelle && (
+                <>
+                  {" "}Quelle:{" "}
+                  <a href={sight.quelle.url} rel="nofollow noopener" target="_blank" class="underline">
+                    {sight.quelle.label}
+                  </a>.
+                </>
+              )}
+            </p>
+          )}
 
           {sight.websiteUrl && (
             <div class="mt-6">
@@ -221,4 +263,5 @@ const schema = {
   </article>
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} is:inline />}
 </BaseLayout>

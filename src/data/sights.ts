@@ -1,8 +1,12 @@
 export type Sight = {
   slug: string;
   name: string;
+  /** Abweichender <title>, wenn H1 und Meta-Titel auseinanderfallen sollen */
+  seoTitle?: string;
+  /** Abweichende Meta-Description, sonst wird shortDesc verwendet */
+  seoDescription?: string;
   district: string;
-  type: "Wahrzeichen" | "Museum" | "Kirche" | "Park" | "Markt" | "Modern" | "Aussicht";
+  type: "Wahrzeichen" | "Museum" | "Kirche" | "Park" | "Markt" | "Modern" | "Aussicht" | "Freizeit";
   priceFrom: number | null; // null = kostenlos
   shortDesc: string;
   longDesc: string;
@@ -19,6 +23,16 @@ export type Sight = {
    * Mehrere IDs Komma-separiert: "12345,67890,11223"
    */
   gygActivityId?: string;
+  /**
+   * Optionale FAQ. Wird als eigener Abschnitt und als FAQPage-Schema
+   * ausgespielt - sinnvoll ueberall dort, wo die SERP echte Fragen zeigt
+   * (Oeffnungszeiten, Preise, Parken).
+   */
+  faq?: { q: string; a: string }[];
+  /** Stand-Vermerk fuer zeitsensible Angaben, z. B. "August 2026" */
+  stand?: string;
+  /** Offizielle Quelle der zeitsensiblen Angaben */
+  quelle?: { label: string; url: string };
 };
 
 export const sights: Sight[] = [
@@ -202,6 +216,52 @@ export const sights: Sight[] = [
       "Der Adenauerpark zieht sich entlang des längsten erhaltenen Abschnitts der mittelalterlichen Speyerer Stadtbefestigung. Wo einst Wehrgang und Verteidigungstürme die Bürger schützten, läuft heute ein schattiger Spazierweg. Spielplatz, Liegewiesen und vereinzelte Wehrtürme machen den Park zu einer ruhigen Pause vom Altstadt-Trubel.",
     imageHue: 3,
     coordinates: [49.3196, 8.4378],
+  },
+  {
+    slug: "rheinstrand",
+    name: "Rheinstrand Speyer",
+    seoTitle: "Rheinstrand Speyer: Strandbar am Rhein, Anfahrt und Parken",
+    seoDescription:
+      "Rheinstrand Speyer: Strandbar am südlichen Ende der Rheinpromenade hinter dem Bademaxx, mit Liegestühlen und Hängematten. Dazu der Biergarten Alter Hammer, Anfahrt und Parken.",
+    categories: ["parks", "familie"],
+    district: "rheinhafen",
+    type: "Freizeit",
+    priceFrom: null,
+    shortDesc:
+      "Strandbar am südlichen Ende der Speyerer Rheinpromenade: über 1.500 Quadratmeter mit Liegestühlen, Hängematten und Blick auf die Rheinschifffahrt.",
+    longDesc:
+      "Der Rheinstrand Speyer ist die Strandbar am südlichen Ende der Uferpromenade, hinter dem Freizeitbad Bademaxx. Auf über 1.500 Quadratmetern stehen Liegestühle, Hängematten und Loungegruppen direkt am Wasser. Ein paar hundert Meter flussaufwärts liegt mit dem Alter Hammer der älteste Biergarten der Stadt. Beides zusammen macht das Speyerer Rheinufer zum wichtigsten Sommer-Ausflugsziel neben der Altstadt.",
+    imageHue: 5,
+    coordinates: [49.3138, 8.4537],
+    openingHours: "In der Saison täglich ab 12 Uhr",
+    websiteUrl: "https://www.rheinstrand-speyer.de/",
+    stand: "August 2026",
+    quelle: {
+      label: "Betreiberangaben rheinstrand-speyer.de und alter-hammer.de",
+      url: "https://www.rheinstrand-speyer.de/",
+    },
+    faq: [
+      {
+        q: "Wo ist der Rheinstrand in Speyer?",
+        a: "Am südlichen Ende der Speyerer Uferpromenade, hinter dem Freizeitbad Bademaxx, Adresse Am Neuen Rheinhafen 1. Von der Altstadt sind es rund 25 Minuten zu Fuß über die Rheinpromenade, mit dem Rad etwa zehn.",
+      },
+      {
+        q: "Wann hat der Rheinstrand Speyer geöffnet?",
+        a: "Der Betreiber nennt für die Saison täglich ab 12 Uhr. Die Strandbar ist ein Sommerbetrieb und stark wetterabhängig, deshalb vor der Anfahrt kurz die Seite des Betreibers prüfen (Stand August 2026).",
+      },
+      {
+        q: "Kann man am Rheinstrand Speyer baden?",
+        a: "Der Rheinstrand ist eine Strandbar, kein bewachtes Freibad. Das Baden im Rhein ist wegen Strömung, Sog und Berufsschifffahrt gefährlich und in weiten Abschnitten verboten. Zum Schwimmen ist das direkt benachbarte Bademaxx die sichere Alternative.",
+      },
+      {
+        q: "Was ist der Unterschied zwischen Rheinstrand und Alter Hammer?",
+        a: "Der Rheinstrand ist eine Strandbar mit Liegestühlen, Hängematten und Barbetrieb. Der Alter Hammer an der Adresse Leinpfad 1c ist ein klassischer Biergarten mit Restaurant und warmer Küche, der seit 1919 besteht und täglich ab 11 Uhr öffnet.",
+      },
+      {
+        q: "Wo parkt man am Rheinstrand Speyer?",
+        a: "Direkt daneben liegt der gebührenfreie Parkplatz am Bademaxx (P9). Er ist der einzige kostenlose Parkplatz in Speyer und an heißen Sommertagen entsprechend früh voll. Ausweichfläche ist der große Parkplatz am Technik Museum.",
+      },
+    ],
   },
   {
     slug: "fischertor",
