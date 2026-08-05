@@ -34,6 +34,10 @@ const navSource = isEn
       { href: "/wissenswertes/", label: "Wissenswertes", enabled: true },
       { href: "/feste/", label: "Feste", enabled: true },
       { href: "/news/", label: "News", enabled: features.news.enabled },
+      // Verzeichnis-Einstieg: stand bisher nur im Footer. Wer den kostenlosen
+      // Eintrag nicht findet, kommt auch nicht zum Premium-Angebot.
+      // Nur im DE-Zweig, ein EN-Pendant gibt es nicht.
+      { href: "/branchenverzeichnis/", label: "Branchen", enabled: features.branchen.enabled },
     ];
 const navItems = navSource.filter((item) => item.enabled);
 
