@@ -1,0 +1,238 @@
+---
+/**
+ * Werbeanlagen und Denkmalschutz in der Speyerer Altstadt.
+ *
+ * Ratgeber fuer Gewerbetreibende im Geltungsbereich der Werbesatzung.
+ * Alle Maße und Verbote stammen aus der Werbesatzung vom 18.09.1998
+ * (Ortsrechtssammlung 6.1.08) und der Altstadtsatzung vom 14.02.1975
+ * (6.1.09). Nichts hier ist geschaetzt - bei Aenderungen der Satzung
+ * muessen die Zahlen gegen das aktuelle PDF geprueft werden.
+ */
+import BlogArticle from "../layouts/BlogArticle.astro";
+
+const title =
+  "Werbeanlagen und Denkmalschutz in der Speyerer Altstadt: Was erlaubt ist";
+const description =
+  "Werbesatzung, Altstadtsatzung und Stadtdenkmal: Welche Maße für Werbeanlagen in der Speyerer Altstadt gelten, welche Bauarten verboten sind und wie die Genehmigung abläuft.";
+
+const faq = [
+  {
+    q: "Braucht man in der Speyerer Altstadt für jedes Firmenschild eine Genehmigung?",
+    a: "Ja. § 8 der Werbesatzung hebt die sonst geltende Verfahrensfreiheit der Landesbauordnung ausdrücklich auf: Aufstellen, Anbringen, Erneuern und Verändern von Werbeanlagen und Warenautomaten brauchen im Geltungsbereich eine Baugenehmigung. Auch der reine Austausch eines vorhandenen Schilds fällt darunter.",
+  },
+  {
+    q: "Wie groß darf eine Werbeanlage in der Speyerer Altstadt sein?",
+    a: "Höchstens 0,60 m hoch, höchstens drei Viertel der Fassadenlänge lang und maximal zwei Zeilen Schrift. Sie darf nur bis zur Fensterbrüstung des ersten Obergeschosses reichen und nie höher als 4,50 m über der Gehwegoberfläche liegen. Pro Gewerbe- oder Ladeneinheit sind zwei Werbeanlagen zulässig.",
+  },
+  {
+    q: "Sind Leuchtkästen in der Speyerer Altstadt erlaubt?",
+    a: "Nein. § 5 der Werbesatzung untersagt Leuchtkästen ebenso wie Blinklichter, laufende Schriftbänder und im Wechsel oder in Stufen schaltbare Anlagen. Zulässig bleibt Lichtwerbung, die auch bei Tag die Fassade nicht stört, etwa beleuchtete Einzelbuchstaben mit verdeckt geführten Kabeln.",
+  },
+  {
+    q: "Wo genau gilt die Speyerer Werbesatzung?",
+    a: "Im engeren Altstadtbereich innerhalb der Straßenzüge Hirschgraben, Petschengasse, Eselsdamm, Nonnenbachstraße, Schillerweg, Klipfelsau, Steingasse, St.-German-Straße, Hilgardstraße, Bartholomäus-Weltz-Platz, Schützenstraße, Mühlturmstraße, Untere Langgasse und Bahnhofstraße. Alle Grundstücke innerhalb dieser Fläche sind eingeschlossen.",
+  },
+  {
+    q: "Sind Ausleger und Nasenschilder zulässig?",
+    a: "Ausnahmsweise ja: bis 1,00 m Ausladung und 1,00 m² Gesamtfläche, wobei eine einzelne geschlossene Fläche 0,40 m² und mehrere geschlossene Flächen zusammen 0,60 m² nicht überschreiten dürfen. In der Maximilianstraße gilt diese Ausnahme nicht.",
+  },
+  {
+    q: "Was ändert sich durch das Stadtdenkmal Speyer?",
+    a: "Die Generaldirektion Kulturelles Erbe Rheinland-Pfalz hat die Speyerer Altstadt mit der aktualisierten Denkmalliste vom 11. Februar 2026 als Stadtdenkmal aufgenommen. Bauliche Maßnahmen in der Altstadt werden damit stärker denkmalrechtlich beurteilt. Die Vorgaben der Werbesatzung gelten unverändert weiter, denkmalrechtliche Anforderungen kommen hinzu.",
+  },
+];
+
+const faqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+---
+
+<BlogArticle
+  title="Werbeanlagen und Denkmalschutz in der Speyerer Altstadt"
+  seoTitle={title}
+  description={description}
+  category="Ratgeber"
+  publishedAt="2026-03-20"
+  updatedAt="2026-08-05"
+  breadcrumbItems={[
+    { label: "Speyer", href: "/" },
+    { label: "Werbeanlagen und Denkmalschutz" },
+  ]}
+  lead="Wer in der Speyerer Altstadt ein Ladenschild anbringen will, plant nicht auf der grünen Wiese: Eine eigene Werbesatzung schreibt Höhe, Länge, Zeilenzahl und Bauart vor, und seit Februar 2026 ist die Altstadt zusätzlich als Stadtdenkmal eingetragen. Dieser Überblick fasst zusammen, was zulässig ist, was ausdrücklich verboten bleibt und welchen Weg die Genehmigung nimmt."
+>
+  <h2 id="stadtdenkmal">Die Altstadt ist seit Februar 2026 Stadtdenkmal</h2>
+  <p>
+    Die Generaldirektion Kulturelles Erbe Rheinland-Pfalz hat die aktualisierte Denkmalliste am
+    11. Februar 2026 veröffentlicht und der Stadt übermittelt. Damit ist die Speyerer Altstadt als
+    Stadtdenkmal eingetragen, nach Angaben der Stadt das flächenmäßig größte und zugleich dichteste
+    Stadtdenkmal in Rheinland-Pfalz. Bauliche Maßnahmen in der Altstadt werden seither stärker
+    denkmalrechtlich beurteilt. Für kleinere Vorhaben kann das sogar Erleichterungen bringen, weil
+    manches im denkmalrechtlichen Verfahren vereinfacht und gebührenfrei genehmigt wird.
+  </p>
+  <p>
+    Für Werbeanlagen ändert das aber nichts an der Grundregel: Die städtische Werbesatzung gilt
+    unverändert weiter, und ihr § 9 stellt ausdrücklich klar, dass das Landesgesetz zum Schutz und zur
+    Pflege der Kulturdenkmäler unberührt bleibt. Wer plant, hat es also mit zwei Regelwerken zu tun,
+    die nebeneinander stehen und nicht gegeneinander ausgespielt werden können.
+  </p>
+
+  <h2 id="geltungsbereich">Wo die Werbesatzung gilt</h2>
+  <p>
+    Maßgeblich ist die Satzung über die äußere Gestaltung von Werbeanlagen und Warenautomaten zum
+    Schutz des engeren Altstadtbereiches vom 18. September 1998. Sie löste eine Vorgängersatzung von
+    1975 ab und gilt für den engeren Altstadtbereich innerhalb dieser Straßenzüge:
+  </p>
+  <p>
+    Hirschgraben, Petschengasse, Eselsdamm, Nonnenbachstraße, Schillerweg, Klipfelsau, Steingasse,
+    St.-German-Straße, Hilgardstraße, Bartholomäus-Weltz-Platz, Schützenstraße, Mühlturmstraße,
+    Untere Langgasse und Bahnhofstraße. Eingeschlossen sind sämtliche Grundstücke innerhalb der von
+    diesen Straßen umschlossenen Fläche.
+  </p>
+  <p>
+    Das ist praktisch der gesamte historische Kern rund um
+    <a href="/sehenswuerdigkeiten/maximilianstrasse/">Maximilianstraße</a>,
+    <a href="/sehenswuerdigkeiten/kaiserdom/">Kaiserdom</a> und
+    <a href="/sehenswuerdigkeiten/altpoertel/">Altpörtel</a>. Ein Blick auf die Adresse genügt in
+    Grenzfällen nicht, weil die Satzung die Fläche innerhalb der genannten Straßen erfasst und nicht
+    nur die Straßen selbst. Im Zweifel klärt die Bauaufsicht, ob ein Grundstück im Geltungsbereich
+    liegt.
+  </p>
+
+  <h2 id="masse">Die Maße: Was zulässig ist</h2>
+  <p>
+    § 3 der Satzung regelt Anbringung und Größe sehr konkret. Diese Werte sind der Kern jeder Planung:
+  </p>
+  <table>
+    <thead>
+      <tr><th>Vorgabe</th><th>Wert</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Standort</td><td>nur am Ort der Leistung, also am eigenen Betrieb</td></tr>
+      <tr><td>Maximale Höhe über Gehweg</td><td>bis Fensterbrüstung 1. Obergeschoss, höchstens 4,50 m</td></tr>
+      <tr><td>Gesamthöhe der Anlage</td><td>höchstens 0,60 m</td></tr>
+      <tr><td>Länge</td><td>höchstens drei Viertel der Fassadenlänge</td></tr>
+      <tr><td>Zeilen</td><td>höchstens zwei</td></tr>
+      <tr><td>Anzahl je Gewerbe- oder Ladeneinheit</td><td>höchstens zwei Werbeanlagen</td></tr>
+      <tr><td>Schriftzug in der Vordachblende</td><td>nur integriert, höchstens 0,40 m hoch</td></tr>
+      <tr><td>Hinweisschild auf Beruf und Wohnung</td><td>0,25 m² je Schild, 1,0 m² Gesamtbeschilderung</td></tr>
+    </tbody>
+  </table>
+  <p>
+    Zwei Details werden in der Praxis gern übersehen. Erstens muss die Anlage unmittelbar flach an der
+    Wand sitzen und darf Bauelemente wie Gesimse, Lisenen oder Fensterlaibungen nicht überlagern.
+    Zweitens gelten dieselben Regeln, wenn statt einer Anlage das Schaufenster beklebt wird: Nach
+    § 3 Abs. 5 ist die Fensterfläche als Werbefläche nutzbar, aber eben nach denselben Maßvorgaben.
+    Eine vollflächige Folierung ist damit ausgeschlossen.
+  </p>
+
+  <h2 id="verboten">Was ausdrücklich verboten ist</h2>
+  <p>
+    Die Verbote stehen verstreut in den §§ 2 und 5 und sind eindeutig formuliert:
+  </p>
+  <ul>
+    <li><strong>Leuchtkästen</strong> sind unzulässig, ebenso Blinklichter, laufende Schriftbänder und Anlagen, die im Wechsel oder in Stufen schaltbar sind.</li>
+    <li><strong>Zum Anschlag bestimmte Flächen, Tafeln und Säulen</strong> sind unzulässig, ebenso Zettel- und Bogenanschläge unmittelbar an baulichen Anlagen. Ausgenommen sind allein Aushangkästen ortsansässiger Vereine und Verbände.</li>
+    <li><strong>Fremdwerbung</strong> scheidet praktisch aus, weil Werbeanlagen nur am Ort der Leistung zulässig sind.</li>
+    <li><strong>Sichtbare Kabel und Tragkonstruktionen</strong> bei Lichtwerbung: Sie sind verdeckt anzuordnen, und die Anlage darf auch bei Tageslicht die Fassade nicht stören.</li>
+  </ul>
+  <p>
+    Das Verbot der Leuchtkästen ist die Vorgabe mit den größten Folgen für die Planung. Ein flächig
+    hinterleuchtetes Transparent, in Gewerbegebieten die naheliegendste und günstigste Lösung, ist im
+    Altstadtbereich schlicht keine Option.
+  </p>
+
+  <h2 id="ausleger">Ausleger: die Ausnahme mit einer Ausnahme</h2>
+  <p>
+    Nasenschilder, die quer zur Fassade in den Straßenraum ragen, passen historisch gut in eine
+    Altstadt und sind deshalb ausnahmsweise zugelassen. Die Grenzen aus § 3 Abs. 6:
+  </p>
+  <ul>
+    <li>Ausladung bis 1,00 m</li>
+    <li>Gesamtfläche bis 1,00 m²</li>
+    <li>eine einzelne geschlossene Fläche höchstens 0,40 m²</li>
+    <li>mehrere geschlossene Flächen zusammen höchstens 0,60 m²</li>
+  </ul>
+  <p>
+    Der entscheidende Satz steht am Ende des Absatzes: In der Maximilianstraße findet diese
+    Ausnahmeregelung keine Anwendung. Ausgerechnet in der Hauptgeschäftsstraße, wo Ausleger am meisten
+    bringen würden, sind sie damit nicht zugelassen. Wer dort plant, arbeitet an der Fassade.
+  </p>
+
+  <h2 id="genehmigung">Der Weg zur Genehmigung</h2>
+  <p>
+    § 8 der Werbesatzung ist der Punkt, an dem die meisten Vorhaben stolpern. Abweichend von der
+    Landesbauordnung, nach der viele Werbeanlagen verfahrensfrei wären, gilt im Altstadtbereich: Das
+    Aufstellen, Anbringen, Erneuern oder Verändern von Werbeanlagen und Warenautomaten bedarf einer
+    Baugenehmigung. Auch wer nur ein vorhandenes Schild durch ein neues ersetzt, braucht sie.
+  </p>
+  <p>
+    Zuständig ist die Abteilung 530, Bauaufsicht und Denkmalpflege, der Stadtverwaltung Speyer. Zum
+    Bauantrag gehören nach Angaben der Stadt Baubeschreibung, Flächenberechnung, amtlicher Lageplan
+    und Bauzeichnungen mit Ansichten, teils in zweifacher Ausfertigung, dazu auf Anforderung ein
+    Standsicherheitsnachweis. Die Gebühr richtet sich nach der Größe der Anlage. Kommt die Werbung auf
+    öffentliche Flächen, etwa als Aufsteller auf dem Gehweg, ist zusätzlich eine Sondernutzungserlaubnis
+    der Straßenverkehrsbehörde nötig.
+  </p>
+  <p>
+    Ohne Genehmigung zu bauen ist keine Kleinigkeit: § 11 der Satzung stuft sowohl den Verstoß gegen
+    das Anschlagverbot als auch die ungenehmigte Anbringung als Ordnungswidrigkeit ein. Der dort
+    genannte Bußgeldrahmen ist noch in D-Mark angegeben und zeigt, wie alt der Text ist. Verbindlich
+    ist die Auskunft der Bauaufsicht.
+  </p>
+  <p>
+    Neben der Werbesatzung greift in weiten Teilen des Kerns die Altstadtsatzung vom 14. Februar 1975.
+    Sie stellt in § 3 alle baulichen Maßnahmen an Gebäudeteilen, die von öffentlichen Verkehrsflächen
+    einsehbar sind, unter Genehmigungsvorbehalt, selbst wenn die Landesbauordnung sie freistellen
+    würde. Für ein Fassadenschild bedeutet das im Regelfall: Der Antrag wird ohnehin gebraucht.
+  </p>
+
+  <h2 id="planung">Was das für die Planung bedeutet</h2>
+  <p>
+    Aus den Vorgaben ergibt sich fast von selbst, welche Bauart in der Altstadt funktioniert. § 4
+    nennt sie sogar beim Namen: Schriftzüge sollen auf die Fassade gemalt oder als plastische
+    <a href="https://assion.de/spektrum/einzelbuchstaben/" rel="noopener" target="_blank">Einzelbuchstaben</a>
+    direkt auf der Wand angebracht werden, wahlweise auf einem Schriftträger, der in Farbe und Gestalt
+    zur Fassade passt. Farbe und Helligkeit sollen harmonieren, Kontraste kleinflächig bleiben.
+  </p>
+  <p>
+    Praktisch heißt das: Ein Schriftzug aus Einzelbuchstaben, in der Höhe auf 0,60 m begrenzt, ohne
+    durchgehenden Kasten, mit dezenter Ausleuchtung und verdeckt geführter Elektrik. Weil die
+    Buchstabenhöhe damit feststeht, entscheidet die Länge des Firmennamens über die Wirkung, und
+    genau hier lohnt es sich, früh mit Fachbetrieb und Bauaufsicht zu sprechen statt nach der
+    Bestellung. Wer den Auftritt konsequent weiterdenkt, achtet darauf, dass Fassade und
+    <a href="/wissenswertes/fahrzeugbeschriftung-marketingkanal/">Fahrzeugbeschriftung</a> dieselbe
+    Handschrift tragen.
+  </p>
+  <p>
+    Ein letzter Hinweis zur Reihenfolge: Erst Entwurf und Vorabstimmung, dann Fertigung. Weil im
+    Altstadtbereich auch die Änderung einer bestehenden Anlage genehmigungspflichtig ist, lässt sich
+    ein bereits produziertes Schild kaum noch anpassen, wenn die Bauaufsicht Einwände hat.
+  </p>
+
+  <h2 id="faq">Häufige Fragen</h2>
+  <div class="space-y-3 not-prose">
+    {faq.map((f) => (
+      <details class="card p-4">
+        <summary class="font-semibold cursor-pointer" style="color: var(--color-deep-plum);">{f.q}</summary>
+        <p class="mt-2 text-sm leading-relaxed" style="color: var(--color-shadow-graphite);">{f.a}</p>
+      </details>
+    ))}
+  </div>
+
+  <p class="mt-6 text-xs" style="color: var(--color-slate-steel);">
+    Stand: August 2026. Dieser Beitrag gibt den Inhalt der Satzungen wieder und ersetzt keine
+    Rechtsberatung. Verbindlich sind die Satzungstexte und die Auskunft der Bauaufsicht. Quellen:
+    <a href="https://www.speyer.de/de/rathaus/verwaltung/ortsrechtssammlung/6.1.08-werbesatzung-1998.pdf?cid=8eg" rel="nofollow noopener" target="_blank" class="underline">Werbesatzung vom 18.09.1998</a>,
+    <a href="https://www.speyer.de/de/rathaus/verwaltung/ortsrechtssammlung/6.1.09-altstadtsatzung-1975.pdf?cid=8ej" rel="nofollow noopener" target="_blank" class="underline">Altstadtsatzung vom 14.02.1975</a>,
+    <a href="https://www.speyer.de/de/buergerservice/leistungen/RLP:entry:75237/werbeanlagen-bauantrag/" rel="nofollow noopener" target="_blank" class="underline">Stadt Speyer, Werbeanlagen Bauantrag</a> und
+    <a href="https://www.speyer.de/de/standort/denkmalschutz/stadtdenkmal-speyer/" rel="nofollow noopener" target="_blank" class="underline">Stadtdenkmal Speyer</a>.
+  </p>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} is:inline />
+</BlogArticle>
