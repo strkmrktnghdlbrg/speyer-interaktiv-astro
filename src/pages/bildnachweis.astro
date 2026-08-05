@@ -17,7 +17,7 @@ import { images } from "../data/images";
 import { getSight } from "../data/sights";
 import { getDistrict } from "../data/districts";
 import { getHotel } from "../data/hotels";
-import { getRestaurant } from "../data/restaurants";
+import { getRestaurant, isUnverifiedRestaurant } from "../data/restaurants";
 import { getFest } from "../data/feste";
 
 type Row = {
@@ -55,6 +55,9 @@ function resolveEntity(key: string): { subject: string; label: string; href: str
       return h ? { subject: h.name, label: h.name, href: `/hotels/${slug}/` } : null;
     }
     case "restaurant": {
+      // Zurueckgezogener Betrieb: das Bild wird nirgends mehr ausgespielt,
+      // also gehoert auch der Nachweis mit Name und Link nicht mehr hierher.
+      if (isUnverifiedRestaurant(slug)) return null;
       const r = getRestaurant(slug);
       return r ? { subject: r.name, label: r.name, href: `/restaurants/${slug}/` } : null;
     }

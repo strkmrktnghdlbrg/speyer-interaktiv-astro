@@ -1,10 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import UnverifiedNotice from "../../components/UnverifiedNotice.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
 import RestaurantCard from "../../components/RestaurantCard.astro";
 import Stay22NearbyHotels from "../../components/Stay22NearbyHotels.astro";
-import { restaurants, getRestaurant, restaurantsByDistrict } from "../../data/restaurants";
+import { restaurants, getRestaurant, restaurantsByDistrict, isUnverifiedRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
 import { getCategory } from "../../data/categories";
 import { city } from "../../data/city";
@@ -43,7 +44,26 @@ const schema = {
     ? { acceptsReservations: restaurant.reservation }
     : {}),
 };
+
+/**
+ * Zurueckgezogener Eintrag: die URL loest weiter auf, aber es gehen weder
+ * Name noch Beschreibung noch schema.org-Daten raus, und die Seite bekommt
+ * noindex. Siehe die Notiz in src/data/restaurants.ts.
+ */
+const unverified = isUnverifiedRestaurant(restaurant.slug);
 ---
+
+{unverified ? (
+  <BaseLayout title="Eintrag nicht verfügbar" description="Dieser Eintrag wird derzeit überprüft und ist vorübergehend nicht verfügbar." noindex>
+    <div class="container-page py-12">
+      <Breadcrumbs items={[
+        { label: "Start", href: "/" },
+        { label: "Restaurants", href: "/restaurants/" },
+      ]} />
+      <UnverifiedNotice backHref="/restaurants/" backLabel="Zur Restaurant-Übersicht" />
+    </div>
+  </BaseLayout>
+) : (
 
 <BaseLayout title={restaurant.name} description={restaurant.shortDesc} alternateUrls={restaurantsEn[restaurant.slug] ? { de: `/restaurants/${restaurant.slug}/`, en: `/en/restaurants/${restaurantsEn[restaurant.slug].slug}/` } : undefined}>
   <article>
@@ -170,3 +190,4 @@ const schema = {
 
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </BaseLayout>
+)}

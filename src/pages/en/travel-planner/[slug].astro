@@ -10,7 +10,7 @@ import { getSight } from "../../../data/sights";
 import { sightsEn } from "../../../i18n/en/sights";
 import { getHotel } from "../../../data/hotels";
 import { hotelsEn } from "../../../i18n/en/hotels";
-import { getRestaurant } from "../../../data/restaurants";
+import { getRestaurant, isUnverifiedRestaurant } from "../../../data/restaurants";
 import { restaurantsEn } from "../../../i18n/en/restaurants";
 import { getDistrict } from "../../../data/districts";
 import { districtsEn } from "../../../i18n/en/districts";
@@ -133,7 +133,10 @@ const schema = {
             {day.slots.map((slot, si) => {
               const slotEn = en.days[di]?.slots[si];
               const sight = slot.sightSlug ? getSight(slot.sightSlug) : null;
-              const restaurant = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+              // Zurueckgezogene Betriebe tauchen auch im Reiseplaner nicht mehr auf.
+              const restaurantRaw = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+              const restaurant =
+                restaurantRaw && !isUnverifiedRestaurant(restaurantRaw.slug) ? restaurantRaw : null;
               const hotel = slot.hotelSlug ? getHotel(slot.hotelSlug) : null;
               const district = slot.districtSlug ? getDistrict(slot.districtSlug) : null;
               return (

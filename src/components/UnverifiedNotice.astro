@@ -1,0 +1,39 @@
+---
+/**
+ * Platzhalter fuer einen zurueckgezogenen Eintrag.
+ *
+ * Steht auf Detailseiten von Betrieben, deren Angaben sich nicht belegen
+ * liessen (siehe Notiz in src/data/hotels.ts bzw. restaurants.ts). Die URL
+ * bleibt erreichbar - kein 404 fuer Besucher und fuer Links von aussen -,
+ * aber es werden weder Name noch Beschreibung noch schema.org-Daten des
+ * Eintrags ausgeliefert. Die Seite traegt zusaetzlich noindex.
+ */
+import ObfuscatedEmail from "./ObfuscatedEmail.astro";
+import { legal } from "../data/legal";
+
+interface Props {
+  locale?: "de" | "en";
+  /** Wohin es zurueckgeht, z.B. "/restaurants/". */
+  backHref: string;
+  backLabel: string;
+}
+const { locale = "de", backHref, backLabel } = Astro.props;
+const isEn = locale === "en";
+---
+
+<div class="max-w-2xl py-6">
+  <p class="eyebrow mb-3">{isEn ? "Entry withdrawn" : "Eintrag zurückgezogen"}</p>
+  <h1 class="text-3xl sm:text-4xl font-medium tracking-tight mb-6" style="color: var(--color-text);">
+    {isEn ? "This entry is currently not available" : "Dieser Eintrag ist derzeit nicht verfügbar"}
+  </h1>
+  <p class="text-lg leading-relaxed mb-4" style="color: var(--color-text-body);">
+    {isEn
+      ? "We could not verify the details of this entry, so we have taken it offline while we check it. We would rather show nothing here than information you cannot rely on."
+      : "Die Angaben zu diesem Eintrag ließen sich nicht überprüfen. Wir haben ihn deshalb vorerst zurückgezogen, bis er geprüft ist. Lieber steht hier nichts als etwas, auf das kein Verlass ist."}
+  </p>
+  <p class="text-base leading-relaxed mb-8" style="color: var(--color-text-body);">
+    {isEn ? "Is this your business? Write to us and we will restore the entry with your own details: " : "Ist das dein Betrieb? Schreib uns, dann stellen wir den Eintrag mit deinen Angaben wieder her: "}
+    <span class="font-semibold" style="color: var(--color-text);"><ObfuscatedEmail email={legal.email} /></span>
+  </p>
+  <a href={backHref} class="btn-primary">{backLabel} &rarr;</a>
+</div>

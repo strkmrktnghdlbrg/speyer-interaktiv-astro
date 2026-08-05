@@ -191,9 +191,40 @@ export const restaurants: Restaurant[] = [
   },
 ];
 
+/**
+ * Zurueckgezogene Eintraege (Pruefung 2026-08-03, zweite Runde 2026-08-05).
+ *
+ * Fuer diese Eintraege gab es drei unabhaengige Fehlanzeigen: kein Datensatz
+ * in OpenStreetMap, keine erreichbare Website, kein Treffer bei gezielter
+ * Suche auf unabhaengigen Quellen (Betreiber-Seiten, Booking/HRS-Property-
+ * Seiten, Gastro-Verzeichnisse der Stadt). Vollstaendig ausgestaltete
+ * Eintraege ohne Adresse - der Typ hat gar kein Adressfeld, deshalb faellt
+ * beim Lesen nichts auf.
+ *
+ * "Cafe Specht" und "Rheinblick Speyer" sind nirgends belegt. Die uebrigen
+ * Speyerer Eintraege liessen sich dagegen bestaetigen (Backmulde, Wirtschaft
+ * zum Halbmond, Cafebar Maximilian).
+ *
+ * Nicht geloescht, sondern nicht mehr veroeffentlicht: raus aus allen Listen,
+ * Bezirks- und Kategorieseiten, der Suche und der Sitemap. Die Detailseite
+ * bleibt unter ihrer URL erreichbar (kein 404 fuer bestehende Links), traegt
+ * aber noindex und einen Hinweis statt Name, Text und schema.org. Zum
+ * Wiederherstellen genuegt es, den Slug hier aus der Menge zu nehmen.
+ */
+export const unverifiedRestaurantSlugs = new Set<string>([
+  "cafe-specht", // Cafe Specht
+  "rheinblick-speyer", // Rheinblick Speyer
+]);
+
+export const isUnverifiedRestaurant = (slug: string) => unverifiedRestaurantSlugs.has(slug);
+
+/** Alles, was oeffentlich gelistet werden darf. Listen nutzen ausschliesslich das. */
+export const publishedRestaurants = restaurants.filter((r) => !isUnverifiedRestaurant(r.slug));
+
+/** Ungefiltert - die Detailseite muss ihre URL weiter aufloesen koennen. */
 export const getRestaurant = (slug: string) =>
   restaurants.find((r) => r.slug === slug);
 export const restaurantsByDistrict = (district: string) =>
-  restaurants.filter((r) => r.district === district);
+  publishedRestaurants.filter((r) => r.district === district);
 export const restaurantsByCategory = (slug: string) =>
-  restaurants.filter((r) => r.categories.includes(slug));
+  publishedRestaurants.filter((r) => r.categories.includes(slug));

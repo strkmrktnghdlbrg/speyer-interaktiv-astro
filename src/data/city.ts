@@ -1,6 +1,6 @@
 import { sights } from "./sights";
 import { hotels } from "./hotels";
-import { restaurants } from "./restaurants";
+import { publishedRestaurants as restaurants } from "./restaurants";
 import { districts } from "./districts";
 
 export const city = {

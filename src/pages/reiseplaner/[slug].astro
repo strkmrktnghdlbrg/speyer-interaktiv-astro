@@ -7,7 +7,7 @@ import Stay22TopHotels from "../../components/Stay22TopHotels.astro";
 import { guides, getGuide, type SlotType } from "../../data/guides";
 import { getSight } from "../../data/sights";
 import { getHotel } from "../../data/hotels";
-import { getRestaurant } from "../../data/restaurants";
+import { getRestaurant, isUnverifiedRestaurant } from "../../data/restaurants";
 import { getDistrict } from "../../data/districts";
 import { city } from "../../data/city";
 import { affiliate } from "../../data/affiliate";
@@ -129,7 +129,10 @@ const schema = {
           <ol class="space-y-6">
             {day.slots.map((slot) => {
               const sight = slot.sightSlug ? getSight(slot.sightSlug) : null;
-              const restaurant = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+              // Zurueckgezogene Betriebe tauchen auch im Reiseplaner nicht mehr auf.
+              const restaurantRaw = slot.restaurantSlug ? getRestaurant(slot.restaurantSlug) : null;
+              const restaurant =
+                restaurantRaw && !isUnverifiedRestaurant(restaurantRaw.slug) ? restaurantRaw : null;
               const hotel = slot.hotelSlug ? getHotel(slot.hotelSlug) : null;
               const district = slot.districtSlug ? getDistrict(slot.districtSlug) : null;
               return (

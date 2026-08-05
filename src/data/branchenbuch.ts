@@ -24,7 +24,7 @@
  * kleinere laufen auf der Kategorie-Seite mit.
  */
 
-import { restaurants } from "./restaurants";
+import { publishedRestaurants as restaurants } from "./restaurants";
 import { hotels } from "./hotels";
 import { districts } from "./districts";
 import osmRaw from "./partners.osm.json";
