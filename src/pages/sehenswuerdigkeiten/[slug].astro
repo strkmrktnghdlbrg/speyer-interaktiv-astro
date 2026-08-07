@@ -64,7 +64,7 @@ const faqSchema = sight.faq?.length
 
 <BaseLayout title={sight.seoTitle ?? sight.name} description={sight.seoDescription ?? sight.shortDesc} alternateUrls={sightsEn[sight.slug] ? { de: `/sehenswuerdigkeiten/${sight.slug}/`, en: `/en/attractions/${sightsEn[sight.slug].slug}/` } : undefined}>
   <article>
-    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+    <div class="relative w-full overflow-hidden h-[46vh] sm:h-[54vh] lg:h-[60vh] max-h-[640px]">
       <ContentImage
       kind="sight"
         imgKey={sight.imageKey}
@@ -72,6 +72,8 @@ const faqSchema = sight.faq?.length
         fallbackLabel={sight.name}
         loading="eager"
         imgClass="w-full h-full object-cover"
+        sizes="100vw"
+        widths={[640, 1024, 1600, 2000]}
       />
     </div>
 

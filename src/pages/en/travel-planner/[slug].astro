@@ -63,7 +63,7 @@ const schema = {
   alternateUrls={{ de: `/reiseplaner/${guide.slug}/`, en: detailUrl("guides", en.slug, locale) }}
 >
   <article>
-    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+    <div class="relative w-full overflow-hidden h-[46vh] sm:h-[54vh] lg:h-[60vh] max-h-[640px]">
       <ContentImage
       kind="article"
         imgKey={guide.imageKey}
@@ -71,6 +71,8 @@ const schema = {
         fallbackLabel={en.title}
         loading="eager"
         imgClass="w-full h-full object-cover"
+        sizes="100vw"
+        widths={[640, 1024, 1600, 2000]}
       />
     </div>
 

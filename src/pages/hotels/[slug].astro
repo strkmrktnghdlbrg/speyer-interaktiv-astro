@@ -35,7 +35,7 @@ const schema = {
 
 <BaseLayout title={hotel.name} description={hotel.shortDesc} alternateUrls={hotelsEn[hotel.slug] ? { de: `/hotels/${hotel.slug}/`, en: `/en/hotels/${hotelsEn[hotel.slug].slug}/` } : undefined}>
   <article>
-    <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+    <div class="relative w-full overflow-hidden h-[46vh] sm:h-[54vh] lg:h-[60vh] max-h-[640px]">
       <ContentImage
       kind="hotel"
         imgKey={hotel.imageKey}

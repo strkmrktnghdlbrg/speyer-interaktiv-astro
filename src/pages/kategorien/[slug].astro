@@ -65,7 +65,7 @@ const schema = {
   description={`Alle ${category.name.toLowerCase()} in ${city.name} auf einen Blick. ${category.shortDesc}`}
   alternateUrls={categoriesEn[category.slug] ? { de: `/kategorien/${category.slug}/`, en: `/en/categories/${categoriesEn[category.slug].slug}/` } : undefined}
 >
-  <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[50vh] overflow-hidden">
+  <div class="relative w-full overflow-hidden h-[34vh] sm:h-[40vh] lg:h-[44vh] max-h-[460px]">
     <HueGradient kind="generic" hue={((sights[0]?.imageHue ?? 1))} label={category.name} />
   </div>
 

@@ -44,7 +44,7 @@ const schema = {
 ---
 
 <BaseLayout title={`${district.name} – Stadtteil in ${city.name}`} description={district.shortDesc} alternateUrls={districtsEn[district.slug] ? { de: `/stadtteile/${district.slug}/`, en: `/en/districts/${districtsEn[district.slug].slug}/` } : undefined}>
-  <div class="aspect-[4/3] sm:aspect-[16/9] relative max-h-[70vh] overflow-hidden">
+  <div class="relative w-full overflow-hidden h-[46vh] sm:h-[54vh] lg:h-[60vh] max-h-[640px]">
     <ContentImage
       kind="district"
       imgKey={district.imageKey}
@@ -52,6 +52,8 @@ const schema = {
       fallbackLabel={district.name}
       loading="eager"
       imgClass="w-full h-full object-cover"
+      sizes="100vw"
+      widths={[640, 1024, 1600, 2000]}
     />
   </div>
 
