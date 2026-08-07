@@ -260,6 +260,18 @@ const latestNews = recentNews(3);
     </section>
   )}
 
+  <!-- Apotheken & Gesundheit -->
+  <section class="section container-page">
+    <div class="apo-home">
+      <p class="apo-home-eyebrow">Gesundheit</p>
+      <h2 class="apo-home-h2">Apotheken in Speyer: Adressen, Notdienst, Versand</h2>
+      <p>In der Altstadt und entlang der Maximilianstraße sind die Wege kurz, in Speyer-Nord, Speyer-West und im Edith-Stein-Viertel verteilt sich die Versorgung. Abends und an Feiertagen entscheidet der Notdienstplan. Welche Apotheken es gibt und wie du die diensthabende findest, steht bei den <a href="/apotheken-speyer/">Apotheken in Speyer</a>.</p>
+      <p>Alles ohne Eile lässt sich günstiger bestellen. Bei rezeptfreien Medikamenten und Pflegeprodukten liegen Versandapotheken oft unter dem Preis vor Ort, wenn der Mindestbestellwert passt. Lieferzeiten und Konditionen für Speyer stehen im <a href="/online-apotheke-speyer/">Online-Apotheken-Vergleich</a>.</p>
+      <h2 class="apo-home-h2" style="margin-top: 2rem;">Fotobox für Feiern in der Domstadt</h2>
+      <p>Hochzeit am Dom, Firmenfeier am Rheinufer, Geburtstag in der Vorderpfalz: Eine Fotobox hält die Abende fest - vom kompakten Standardmodell bis zum Retro-Fotobus, der sich in die historische Kulisse einfügt. Welche Variante wozu passt, wie Anbieter kalkulieren und was man in der Altstadt beim Stellplatz beachten muss, steht im Ratgeber <a href="/fotobox-mieten-speyer/">Fotobox mieten in Speyer</a>.</p>
+    </div>
+  </section>
+
   <section class="section container-page">
     <div
       class="relative overflow-hidden rounded-3xl p-8 sm:p-12"
@@ -301,3 +313,23 @@ const latestNews = recentNews(3);
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  /* Apotheken-Teaser (Startseite) */
+  .apo-home { max-width: 70ch; }
+  .apo-home-eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: .14em;
+    text-transform: uppercase; opacity: .6; margin: 0 0 8px;
+  }
+  .apo-home-h2 {
+    font-size: clamp(24px, 3.2vw, 32px); font-weight: 600; line-height: 1.15;
+    letter-spacing: -.02em; margin: 0 0 14px;
+  }
+  .apo-home p { font-size: 1rem; line-height: 1.75; margin: 0 0 12px; opacity: .88; }
+  .apo-home p:last-child { margin-bottom: 0; }
+  .apo-home a {
+    color: inherit; font-weight: 600; text-decoration: underline;
+    text-underline-offset: 3px; text-decoration-thickness: 1px;
+  }
+  .apo-home a:hover { text-decoration-thickness: 2px; }
+</style>
