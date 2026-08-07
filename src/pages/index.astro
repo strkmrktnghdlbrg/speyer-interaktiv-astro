@@ -282,12 +282,20 @@ const latestNews = recentNews(3);
           <p class="text-xs font-bold uppercase tracking-widest text-white/80 mb-3">
             Für Unternehmen
           </p>
+          {/*
+            Hier stand "Werbe vor Speyerer Lesern pro Monat" samt Monatspreisen
+            von 49 €, 149 € und "ab 250 €". Auf /werben/ gibt es aber 199 € pro
+            JAHR und sonst "auf Anfrage" - keine Monatstarife, kein Banner-
+            produkt. Startseite und Angebotsseite muessen dasselbe sagen.
+            Gleiche Korrektur wie auf koeln-interaktiv f13d1f3.
+          */}
           <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight mb-4">
-            Werbe vor Speyerer Lesern pro Monat
+            Dein Betrieb ganz oben in seiner Branche
           </h2>
           <p class="text-white/90 leading-relaxed mb-6">
-            Premium-Listings, Banner-Werbung in Stadtteil-Hubs oder Sponsoring
-            unseres Newsletters. Drei Tier-Pakete für jedes Budget.
+            Premium-Eintrag im Branchenverzeichnis mit Logo, Beschreibung und
+            Backlink. Dazu gesponserte Artikel und Newsletter-Platzierungen auf
+            Anfrage. Das Angebot richtet sich an Unternehmer.
           </p>
           <a href="/werben/" class="btn-primary bg-white" style="color: var(--color-accent); background: white;">
             Werbe-Pakete ansehen →
@@ -296,10 +304,10 @@ const latestNews = recentNews(3);
         <div class="hidden md:block">
           <div class="grid grid-cols-2 gap-3">
             {[
-              { label: "Basic", price: "0 €", desc: "Free-Listing" },
-              { label: "Premium", price: "49 €", desc: "pro Monat" },
-              { label: "Featured", price: "149 €", desc: "pro Monat" },
-              { label: "Banner", price: "ab 250 €", desc: "pro Monat" },
+              { label: "Basis-Eintrag", price: "0 €", desc: "im Branchenverzeichnis" },
+              { label: "Premium-Partner", price: "199 €", desc: "pro Jahr zzgl. USt" },
+              { label: "Gesponserter Artikel", price: "auf Anfrage", desc: "gekennzeichnet, lektoriert" },
+              { label: "Newsletter", price: "auf Anfrage", desc: "Kanal im Aufbau" },
             ].map((t) => (
               <div class="bg-white/15 backdrop-blur-sm rounded-2xl p-4 border border-white/20">
                 <p class="text-xs font-bold uppercase tracking-widest text-white/70 mb-1">{t.label}</p>
