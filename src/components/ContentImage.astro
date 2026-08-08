@@ -32,7 +32,12 @@ const {
 } = Astro.props;
 
 const entry = imgKey ? getImage(imgKey) : undefined;
-const wrapperClass = aspect ? `${aspect} ${className}` : className;
+// Ohne aspect ist der ELTERN-Container der Rahmen (Hero, Kartenkachel). Die
+// figure muss ihn dann ausfuellen - sonst hat sie Hoehe auto, das h-full am
+// <img> laeuft ins Leere, das Bild behaelt seine natuerliche Hoehe und der
+// Container schneidet einfach unten ab. Genau deshalb war immer nur der obere
+// Bildrand zu sehen und object-position ohne jede Wirkung.
+const wrapperClass = aspect ? `${aspect} ${className}` : `h-full w-full ${className}`;
 ---
 
 {entry ? (
