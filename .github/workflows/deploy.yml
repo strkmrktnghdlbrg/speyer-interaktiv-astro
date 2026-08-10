@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Taeglicher Rebuild: die Stay22-Preise stecken statisch im HTML
+  schedule:
+    - cron: "22 4 * * *"
 
 jobs:
   deploy:
