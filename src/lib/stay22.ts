@@ -214,7 +214,11 @@ export async function searchAccommodations(
   delete safeOptions.minstarrating;
   // Höheres API-Limit holen, damit nach lokalem Filtern noch genug übrig ist.
   if (minGuest || minStar) {
-    safeOptions.limit = Math.max(userLimit * 4, 40);
+    // Die API deckelt `limit` bei 100 und quittiert alles darueber mit
+    // HTTP 400 (VALIDATION_ERROR). Das ist hier real passiert: getTopHotels
+    // multipliziert fuer den Stadt-Filter schon mit 3 (8 -> 30), hier kaeme
+    // dann noch mal *4 dazu (-> 120). Ergebnis war ein leerer Hotelblock.
+    safeOptions.limit = Math.min(Math.max(userLimit * 4, 40), 100);
   }
   if (typeof safeOptions.address === "string") {
     safeOptions.address = safeOptions.address
