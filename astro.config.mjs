@@ -111,6 +111,7 @@ export default defineConfig({
         !page.includes("/en/privacy") &&
         !page.includes("/en/terms") &&
         !page.includes("/404") &&
+        !page.includes("/suche") &&
         !page.includes("/werben/buchen") &&
         !page.includes("/news/"),
     }),
