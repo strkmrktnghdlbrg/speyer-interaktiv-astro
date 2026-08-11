@@ -74,10 +74,23 @@ const cmp = props.cmp ?? (props.offerKey ? props.offerKey.replace(/:/g, "-") : "
 const title = props.title ?? (isEn ? undefined : offer?.title);
 const lead = props.lead ?? (isEn ? undefined : offer?.lead);
 
-const widgetType = mode === "availability" ? "availability" : mode === "auto" ? "auto" : mode;
+/**
+ * mode="city" ohne locationId faellt auf das Activities-Frame zurueck.
+ * Das city.frame wertet data-gyg-q nicht aus, es braucht die numerische
+ * GYG-Location; ohne sie landet der Klick auf der allgemeinen
+ * GetYourGuide-Startseite statt bei der Stadt. Gleiche Loesung wie in
+ * saartanisch-astro, wiener-bezirk-at-astro und berlin-hotels-reservierung.
+ */
+const cityAsActivities = mode === "city" && !locationId;
+const effectiveMode = cityAsActivities ? "activities" : mode;
+const effectiveQ = cityAsActivities ? cityQuery : q;
+
+const widgetType =
+  effectiveMode === "availability" ? "availability" : effectiveMode === "auto" ? "auto" : effectiveMode;
 const frameType =
-  mode === "availability" ? "availability" : mode === "city" ? "city" : "activities";
-const frameUrl = mode === "auto" ? undefined : `https://widget.getyourguide.com/default/${frameType}.frame`;
+  effectiveMode === "availability" ? "availability" : effectiveMode === "city" ? "city" : "activities";
+const frameUrl =
+  effectiveMode === "auto" ? undefined : `https://widget.getyourguide.com/default/${frameType}.frame`;
 ---
 
 {gygEnabled && shouldRender && (
@@ -98,14 +111,14 @@ const frameUrl = mode === "auto" ? undefined : `https://widget.getyourguide.com/
 
     <div
       data-gyg-href={frameUrl}
-      data-gyg-locale-code={affiliate.getYourGuide.locale}
+      data-gyg-locale-code={isEn ? "en-US" : affiliate.getYourGuide.locale}
       data-gyg-currency="EUR"
       data-gyg-widget={widgetType}
       data-gyg-partner-id={affiliate.getYourGuide.partnerId}
       data-gyg-number-of-items={mode === "availability" ? undefined : String(numberOfItems)}
       data-gyg-cmp={cmp ?? "default"}
-      data-gyg-q={mode === "activities" ? q : mode === "city" ? cityQuery : undefined}
-      data-gyg-location-id={mode === "city" ? locationId : undefined}
+      data-gyg-q={effectiveMode === "activities" ? effectiveQ : undefined}
+      data-gyg-location-id={effectiveMode === "city" ? locationId : undefined}
       data-gyg-tour-id={mode === "availability" ? activityId : undefined}
       data-gyg-variant={mode === "availability" ? "horizontal" : undefined}
       class="gyg-widget-host rounded-2xl overflow-hidden"
