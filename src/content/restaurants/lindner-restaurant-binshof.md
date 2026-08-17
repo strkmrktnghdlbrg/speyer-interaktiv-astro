@@ -11,6 +11,10 @@ Das Restaurant im Lindner Hotel & Spa Binshof setzt auf eine internationale Küc
 
 Das Hotel liegt am Binshof nördlich der Innenstadt, eingebettet in eine grüne Umgebung mit Blick auf Wiesen und Waldraender. Der Speisesaal ist hell und großzügig gestaltet, im Sommer lädt die Terrasse zu entspannten Abenden ein. Wer den Aufenthalt mit einem Stadtbummel verbinden möchte, erreicht von hier aus den [Kaiserdom](/sehenswuerdigkeiten/kaiserdom/) und die [Maximilianstraße](/sehenswuerdigkeiten/maximilianstrasse/) in wenigen Autominuten. Weitere Empfehlungen rund um den Stadtteil [Süd](/stadtteile/sued/) und eine Übersicht aller Adressen finden sich im [Restaurants-Verzeichnis](/restaurants/). Gäste, die einen ruhigen Rückzugsort fernab des Trubels suchen, sind im Binshof gut aufgehoben und können den Tag mit einem Glas Wein auf der Terrasse ausklingen lassen.
 
+## Restaurant, Spa und Übernachtung kombinieren
+
+Seine besondere Stellung unter den Speyerer Restaurants verdankt das Haus dem Umfeld: Es gehört zum [Lindner Hotel & Spa Binshof](/hotels/lindner-hotel-spa-binshof/), dem Wellness-Resort vor den Toren der Stadt. Viele Gäste verbinden das Abendessen deshalb mit einem Spa-Tag oder einer Übernachtung — wer diese Kombination sucht, findet in der Übersicht der [Wellness-Hotels in Speyer](/wellness-hotels-speyer/) die Einordnung des Binshofs im Vergleich. Aber auch als reines Ausflugsziel für ein Essen im Grünen funktioniert das Restaurant: Es ist eine der wenigen gehobenen Adressen der Stadt außerhalb der Altstadt-Gassen, mit Parkplatz direkt vor der Tür und Terrasse zum Park. Für Feiern und Bankette ist das Haus entsprechend gefragt.
+
 ## Praktische Hinweise und Reservierung
 
 Eine Reservierung wird besonders an Wochenenden und in der Hauptsaison empfohlen und ist telefonisch oder über die Website möglich. Parkplätze stehen direkt am Hotel zur Verfügung, die Anreise mit dem Auto ist unkompliziert. Mit dem Bus erreicht man den Binshof aus der Innenstadt in rund zwanzig Minuten.
