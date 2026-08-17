@@ -38,6 +38,7 @@ export const sectionPath: Record<string, Record<Locale, string>> = {
   districts: { de: "stadtteile", en: "districts" },
   categories: { de: "kategorien", en: "categories" },
   guides: { de: "reiseplaner", en: "travel-planner" },
+  wissen: { de: "wissenswertes", en: "good-to-know" },
   feste: { de: "feste", en: "festivals" },
   news: { de: "news", en: "news" },
   about: { de: "ueber-uns", en: "about-us" },

@@ -9,6 +9,18 @@ const wissenswertes = defineCollection({
   }),
 });
 
+// Englische Volltexte der Wissenswertes-Artikel, gekeyt nach dem DEUTSCHEN
+// Slug (Dateiname identisch zum DE-Pendant; der EN-URL-Slug kommt aus
+// src/i18n/en/wissenswertes.ts). fahrzeugbeschriftung-marketingkanal bleibt
+// bewusst ohne Uebersetzung (bezahlter Gastartikel, nur DE beauftragt).
+const wissenswertesEn = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/wissenswertes-en" }),
+  schema: z.object({
+    title: z.string(),
+    lead: z.string(),
+  }),
+});
+
 const sights = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/sights" }),
   schema: z.object({
@@ -41,4 +53,4 @@ const districts = defineCollection({
   }),
 });
 
-export const collections = { wissenswertes, sights, hotels, restaurants, districts };
+export const collections = { wissenswertes, wissenswertesEn, sights, hotels, restaurants, districts };

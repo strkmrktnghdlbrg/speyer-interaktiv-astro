@@ -3,6 +3,7 @@ import BlogArticle from "../../layouts/BlogArticle.astro";
 import ContentImage from "../../components/ContentImage.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { wissenswertes, getWissen } from "../../data/wissenswertes";
+import { wissenEn } from "../../i18n/en/wissenswertes";
 import { getEntry, render } from "astro:content";
 import { city } from "../../data/city";
 
@@ -34,6 +35,9 @@ const siblings = [...sameCat, ...others].slice(0, 3);
   description={item.shortDesc}
   category="Wissenswertes"
   publishedAt={item.publishedAt}
+  alternateUrls={wissenEn[item.slug]
+    ? { de: `/wissenswertes/${item.slug}/`, en: `/en/good-to-know/${wissenEn[item.slug].slug}/` }
+    : undefined}
   breadcrumbItems={[
     { label: city.name, href: "/" },
     { label: "Wissenswertes", href: "/wissenswertes/" },

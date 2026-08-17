@@ -1,0 +1,93 @@
+---
+import BlogArticle from "../../../layouts/BlogArticle.astro";
+import ContentImage from "../../../components/ContentImage.astro";
+import GetYourGuideWidget from "../../../components/GetYourGuideWidget.astro";
+import { wissenswertes, getWissen } from "../../../data/wissenswertes";
+import { wissenEn } from "../../../i18n/en/wissenswertes";
+import { getEntry, render } from "astro:content";
+import { city } from "../../../data/city";
+import { t } from "../../../i18n/ui";
+import { homeUrl, indexUrl, detailUrl } from "../../../i18n/config";
+
+export function getStaticPaths() {
+  // Nur uebersetzte Artikel bekommen eine EN-Route.
+  return wissenswertes
+    .filter((w) => wissenEn[w.slug])
+    .map((w) => ({ params: { slug: wissenEn[w.slug].slug }, props: { deSlug: w.slug } }));
+}
+
+const { deSlug } = Astro.props;
+const locale = "en";
+const item = getWissen(deSlug)!;
+const en = wissenEn[deSlug];
+// EN-Collection ist nach dem DEUTSCHEN Slug (Dateiname) gekeyt.
+const entry = await getEntry("wissenswertesEn", deSlug);
+const Content = entry ? (await render(entry)).Content : null;
+
+// Sibling articles: same categories first, then any others — max 3 (nur uebersetzte).
+const translated = wissenswertes.filter((w) => wissenEn[w.slug]);
+const sameCat = translated.filter(
+  (w) =>
+    w.slug !== item.slug &&
+    item.categories.length > 0 &&
+    w.categories.some((c) => item.categories.includes(c))
+);
+const others = translated.filter(
+  (w) => w.slug !== item.slug && !sameCat.includes(w)
+);
+const siblings = [...sameCat, ...others].slice(0, 3);
+---
+
+<BlogArticle
+  title={en.title}
+  lead={en.lead}
+  description={en.shortDesc}
+  category={t(locale, "nav.wissen")}
+  publishedAt={item.publishedAt}
+  locale={locale}
+  alternateUrls={{
+    de: `/wissenswertes/${item.slug}/`,
+    en: detailUrl("wissen", en.slug, locale),
+  }}
+  breadcrumbItems={[
+    { label: city.name, href: homeUrl(locale) },
+    { label: t(locale, "nav.wissen"), href: indexUrl("wissen", locale) },
+    { label: en.title },
+  ]}
+>
+  {item.imageKey && (
+    <div class="not-prose mb-8 rounded-2xl overflow-hidden aspect-[16/9] relative">
+      <ContentImage
+        kind="article"
+        imgKey={item.imageKey}
+        fallbackHue={item.imageHue}
+        fallbackLabel={en.title}
+        loading="eager"
+        sizes="(min-width: 1024px) 48rem, 100vw"
+        widths={[640, 1024, 1536]}
+      />
+    </div>
+  )}
+  {Content ? <Content /> : <p class="text-ink-700 leading-relaxed">{en.lead}</p>}
+
+  <GetYourGuideWidget locale={locale} offerKey={`article:${item.slug}`} />
+
+  {siblings.length > 0 && (
+    <div class="related-block">
+      <h3>More from Good to Know</h3>
+      <ul class="space-y-2 mt-3">
+        {siblings.map((s) => (
+          <li>
+            <a href={detailUrl("wissen", wissenEn[s.slug].slug, locale)} class="font-semibold hover:underline" style="color: var(--color-accent); text-underline-offset: 3px;">
+              {wissenEn[s.slug].title}
+            </a>
+            <p class="text-sm mt-0.5" style="color: var(--color-shadow-graphite);">{wissenEn[s.slug].shortDesc}</p>
+          </li>
+        ))}
+      </ul>
+      <a href={indexUrl("wissen", locale)} class="inline-block mt-4 text-sm font-semibold hover:underline" style="color: var(--color-inkwell-purple); text-underline-offset: 3px;">
+        View all Good to Know articles &rarr;
+      </a>
+    </div>
+  )}
+</BlogArticle>

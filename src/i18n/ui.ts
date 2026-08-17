@@ -12,6 +12,7 @@ export const ui = {
   "nav.districts": { de: "Stadtteile", en: "Districts" },
   "nav.categories": { de: "Kategorien", en: "Categories" },
   "nav.guides": { de: "Reiseplaner", en: "Travel Planner" },
+  "nav.wissen": { de: "Wissenswertes", en: "Good to Know" },
   "nav.feste": { de: "Feste", en: "Festivals" },
   "nav.about": { de: "Über uns", en: "About" },
   "nav.imprint": { de: "Impressum", en: "Imprint" },
