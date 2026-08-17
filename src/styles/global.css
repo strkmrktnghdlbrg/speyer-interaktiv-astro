@@ -403,3 +403,35 @@ h1, h2, h3, h4 {
   color: var(--color-accent);
   font-weight: 800;
 }
+
+/* ===================================================================
+   ACCESSIBILITY
+   =================================================================== */
+
+/* Sichtbarer Tastatur-Fokus fuer Eingaben, deren Default-Outline per
+   Utility entfernt wurde (Such-Eingaben im Header). */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Skip-Link: erster Tab-Stopp jeder Seite, unsichtbar bis fokussiert. */
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  background: var(--color-deep-plum);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  transform: translateY(-250%);
+  transition: transform 150ms ease;
+}
+.skip-link:focus-visible {
+  transform: none;
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}

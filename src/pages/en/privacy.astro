@@ -37,27 +37,43 @@ const locale = "en";
       <h2>{t(locale, "privacy.generalHeading")}</h2>
       <p>{t(locale, "privacy.generalBody")}</p>
 
+      <h2>{t(locale, "privacy.gtmHeading")}</h2>
+      <p>{t(locale, "privacy.gtmBody1")}</p>
+      <p>{t(locale, "privacy.gtmBody2")}</p>
+
       <h2>{t(locale, "privacy.adsenseHeading")}</h2>
       <p set:html={tf(locale, "privacy.adsenseBody", {
-        link: `<a href="https://policies.google.com/privacy" rel="noopener" target="_blank">${t(locale, "privacy.googlePrivacyLinkLabel")}</a>`,
+        link: `<a href="https://policies.google.com/privacy" rel="nofollow noopener" target="_blank">${t(locale, "privacy.googlePrivacyLinkLabel")}</a>`,
       })} />
 
       <h2>{t(locale, "privacy.affiliateHeading")}</h2>
       <p>{t(locale, "privacy.affiliateBody")}</p>
       <ul>
-        <li><a href="https://stay22.com/privacy" rel="noopener" target="_blank">{t(locale, "privacy.affiliateStay22")}</a></li>
-        <li><a href="https://www.getyourguide.com/legal/privacy-policy" rel="noopener" target="_blank">{t(locale, "privacy.affiliateGyg")}</a></li>
-        <li><a href="https://www.booking.com/content/privacy.html" rel="noopener" target="_blank">{t(locale, "privacy.affiliateBooking")}</a></li>
+        <li><a href="https://www.stay22.com/privacy" rel="nofollow noopener" target="_blank">{t(locale, "privacy.affiliateStay22")}</a></li>
+        <li><a href="https://www.getyourguide.com/c/privacy-policy" rel="nofollow noopener" target="_blank">{t(locale, "privacy.affiliateGyg")}</a></li>
+        <li><a href="https://www.booking.com/content/privacy.html" rel="nofollow noopener" target="_blank">{t(locale, "privacy.affiliateBooking")}</a></li>
       </ul>
+
+      <h2>{t(locale, "privacy.serverLogsHeading")}</h2>
+      <p>{t(locale, "privacy.serverLogsBody")}</p>
+
+      <h2>{t(locale, "privacy.cookiesHeading")}</h2>
+      <p>{t(locale, "privacy.cookiesBody")}</p>
 
       <h2>{t(locale, "privacy.rightsHeading")}</h2>
       <ul>
         <li>{t(locale, "privacy.rightsAccess")}</li>
         <li>{t(locale, "privacy.rightsRectification")}</li>
         <li>{t(locale, "privacy.rightsErasure")}</li>
+        <li>{t(locale, "privacy.rightsRestriction")}</li>
+        <li>{t(locale, "privacy.rightsPortability")}</li>
         <li>{t(locale, "privacy.rightsObjection")}</li>
+        <li>{t(locale, "privacy.rightsWithdrawal")}</li>
       </ul>
-      <p>{tf(locale, "privacy.rightsContact", { email: legal.email })}</p>
+      <p>{t(locale, "privacy.rightsContactPre")} <ObfuscatedEmail email={legal.email} />.</p>
+
+      <h2>{t(locale, "privacy.complaintHeading")}</h2>
+      <p>{t(locale, "privacy.complaintBody")}</p>
 
       <h2>{t(locale, "privacy.lastUpdatedHeading")}</h2>
       <p>{t(locale, "privacy.lastUpdatedBody")}</p>

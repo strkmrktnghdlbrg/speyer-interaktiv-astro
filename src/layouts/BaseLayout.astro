@@ -144,6 +144,18 @@ const siteGraph = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
+    {/* Consent Mode v2, Default alles denied — MUSS vor AdSense/GTM stehen.
+        Googles CMP (AdSense Privacy & messaging) aktualisiert die Defaults
+        nach der Banner-Entscheidung; bis dahin setzen Google-Tags keine
+        Cookies und senden nur cookielose Pings. is:inline zwingend, sonst
+        kann Astro die Reihenfolge gegen die Tag-Snippets tauschen. */}
+    {(adsenseEnabled || gtmEnabled) && (
+      <script
+        is:inline
+        set:html={`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',functionality_storage:'denied',personalization_storage:'denied',security_storage:'granted',wait_for_update:500});gtag('set','ads_data_redaction',true);gtag('set','url_passthrough',false);`}
+      />
+    )}
+
     {stay22Enabled && (
       <script
         is:inline
@@ -183,8 +195,11 @@ const siteGraph = {
         ></iframe>
       </noscript>
     )}
+    <a href="#main-content" class="skip-link">
+      {locale === "en" ? "Skip to content" : "Zum Inhalt springen"}
+    </a>
     <Header locale={locale} alternateUrls={alternateUrls} />
-    <main class="flex-1">
+    <main id="main-content" tabindex="-1" class="flex-1">
       <slot />
     </main>
     <Footer locale={locale} />

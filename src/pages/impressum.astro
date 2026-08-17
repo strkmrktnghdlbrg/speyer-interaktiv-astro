@@ -32,10 +32,7 @@ import { city } from "../data/city";
 
       <h2>Kontakt</h2>
       <p>
-        E-Mail: <ObfuscatedEmail email={legal.email} /><br />
-        {legal.phone !== "TODO_PHONE" && (
-          <>Telefon: {legal.phone}<br /></>
-        )}
+        E-Mail: <ObfuscatedEmail email={legal.email} />
       </p>
 
       {legal.vatId !== "TODO_VAT_ID" && (

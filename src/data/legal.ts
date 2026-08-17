@@ -25,9 +25,9 @@ export const legal = {
   // Vertretungsberechtigte (kein Name hinterlegt)
   directors: [],
 
-  // Kontakt
+  // Kontakt — bewusst nur E-Mail, netzwerkweit keine Telefonnummer im Impressum
+  // (§ 5 DDG verlangt nur einen schnellen elektronischen Kontaktweg).
   email: "kontakt@speyer-interaktiv.de",
-  phone: "TODO_PHONE",                        // TODO
 
   // USt-ID (gilt global für alle Webmagics-Sites)
   vatId: "CY10400045Y",
