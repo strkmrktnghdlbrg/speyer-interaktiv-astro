@@ -156,7 +156,11 @@ const siteGraph = {
       />
     )}
 
-    {stay22Enabled && (
+    {/* !noindex: Stay22s LetMeAllez schreibt ALLE GYG-/Booking-Links der
+        Seite in Affiliate-Deeplinks um — auf den (noindex) Rechtsseiten
+        traf das die Datenschutz-Links der Anbieter. Kein noindex-Dokument
+        rendert Stay22-Widgets, der Loader wird dort also nicht gebraucht. */}
+    {stay22Enabled && !noindex && (
       <script
         is:inline
         set:html={`(function(s,t,a,y,twenty,two){s.Stay22=s.Stay22||{};s.Stay22.params={lmaID:'${affiliate.stay22.lmaId}'};twenty=t.createElement(a);two=t.getElementsByTagName(a)[0];twenty.async=1;twenty.src=y;two.parentNode.insertBefore(twenty,two);})(window,document,'script','https://scripts.stay22.com/letmeallez.js');`}
