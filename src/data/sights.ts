@@ -326,6 +326,7 @@ export const sights: Sight[] = [
   },
   {
     slug: "rheinstrand",
+    imageKey: "sight:rheinstrand",
     name: "Rheinstrand Speyer",
     seoTitle: "Rheinstrand Speyer: Strandbar am Rhein, Anfahrt und Parken",
     seoDescription:
@@ -409,7 +410,9 @@ export const sights: Sight[] = [
   {
     slug: "sea-life",
     gygActivityId: "40356",
-    // Keine freilizenzierte Außenaufnahme auf Commons (nur MS Sea Life Schiff) — HueGradient-Placeholder.
+    // Keine freilizenzierte Aufnahme des Speyerer Standorts auf Commons
+    // (nur MS Sea Life Schiff) — Symbolbild-Unterwassertunnel, klar markiert.
+    imageKey: "sight:sea-life",
     name: "Sea Life Speyer",
     categories: ["familie"],
     district: "altstadt",

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumbs from "../../components/Breadcrumbs.astro";
-import HueGradient from "../../components/HueGradient.astro";
+import ContentImage from "../../components/ContentImage.astro";
 import GetYourGuideWidget from "../../components/GetYourGuideWidget.astro";
 import { wissenswertes } from "../../data/wissenswertes";
 import { city } from "../../data/city";
@@ -133,8 +133,14 @@ const epochen = [
             href={`/wissenswertes/${w.slug}/`}
             class="group block rounded-2xl border border-ink-100 bg-white overflow-hidden transition-all hover:border-[var(--color-accent)] hover:shadow-lg"
           >
-            <div class="aspect-[4/3] relative">
-              <HueGradient kind="article" hue={w.imageHue} label={w.title} />
+            <div class="aspect-[4/3] relative overflow-hidden">
+              <ContentImage
+                kind="article"
+                imgKey={w.imageKey}
+                fallbackHue={w.imageHue}
+                fallbackLabel={w.title}
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              />
             </div>
             <div class="p-5">
               <h3 class="text-lg font-bold mb-2 group-hover:text-[var(--color-accent)] transition-colors" style="font-family: var(--font-display);">

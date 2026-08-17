@@ -165,8 +165,9 @@ export const restaurants: Restaurant[] = [
     longDesc:
       "Das Restaurant im Lindner Hotel & Spa Binshof ist das gepflegteste Hotel-Restaurant Speyers - saisonal-internationale Karte, gute Weinauswahl, im Sommer Terrasse mit Blick in den Park. Auch ohne Hotelübernachtung gut zu besuchen, am Wochenende reservieren.",
     imageHue: 3,
-    // Restaurant liegt im Lindner Hotel & Spa Binshof — registriertes Hotelfoto wiederverwenden.
-    imageKey: "hotel:lindner-hotel-spa-binshof",
+    // Eigener Registry-Eintrag (Symbolbild-Speisesaal) statt des Hotel-Außenfotos,
+    // damit Hotel- und Restaurant-Seite nicht dasselbe Bild zeigen.
+    imageKey: "restaurant:lindner-restaurant-binshof",
     openingHours: "Täglich 18:00-22:00",
     websiteUrl: "https://www.lindner.de/speyer-hotel-binshof",
     reservation: true,

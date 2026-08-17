@@ -29,6 +29,7 @@ export type WissenItem = {
 export const wissenswertes: WissenItem[] = [
   {
     slug: "roemisches-speyer",
+    imageKey: "wissen:roemisches-speyer",
     title: "Römisches Speyer - die Anfänge am Rhein",
     legacyWpUrl: "https://speyer-interaktiv.de/roemisches-speyer/",
     shortDesc:
@@ -40,6 +41,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "mittelalterliches-speyer",
+    imageKey: "wissen:mittelalterliches-speyer",
     title: "Mittelalterliches Speyer - Reichsstadt der Kaiser",
     legacyWpUrl: "https://speyer-interaktiv.de/mittelalterliches-speyer/",
     shortDesc:
@@ -51,6 +53,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "reformation",
+    imageKey: "wissen:reformation",
     title: "Speyer und das Zeitalter der Reformation",
     legacyWpUrl: "https://speyer-interaktiv.de/zeitalter-der-reformation/",
     shortDesc:
@@ -62,6 +65,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "dreissigjaehriger-krieg",
+    imageKey: "wissen:dreissigjaehriger-krieg",
     title: "Speyer im Dreißigjährigen Krieg",
     legacyWpUrl: "https://speyer-interaktiv.de/dreissigjaehrigen-krieg/",
     shortDesc:
@@ -73,6 +77,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "salier",
+    imageKey: "wissen:salier",
     title: "Die Salier - Speyers Kaiserdynastie",
     legacyWpUrl: "https://speyer-interaktiv.de/die-salier/",
     shortDesc:
@@ -84,6 +89,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "hexenverfolgung",
+    imageKey: "wissen:hexenverfolgung",
     title: "Die Hexenverfolgung in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/die-hexenverfolgung/",
     shortDesc:
@@ -95,6 +101,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "baukunst",
+    imageKey: "wissen:baukunst",
     title: "Die Baukunst Speyers",
     legacyWpUrl: "https://speyer-interaktiv.de/die-baukunst/",
     shortDesc:
@@ -106,6 +113,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "archaeologische-funde",
+    imageKey: "wissen:archaeologische-funde",
     title: "Archäologische Funde in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/archaeologische-funde/",
     shortDesc:
@@ -117,6 +125,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "kulturerbe",
+    imageKey: "wissen:kulturerbe",
     title: "Speyers Kulturerbe - UNESCO und mehr",
     legacyWpUrl: "https://speyer-interaktiv.de/kulturerbe/",
     shortDesc:
@@ -128,6 +137,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "zeppelin-landung",
+    imageKey: "wissen:zeppelin-landung",
     title: "Die Landung des Grafen Zeppelin in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/die-landung-des-grafen-zeppelin/",
     shortDesc:
@@ -139,6 +149,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "kriegsdenkmaeler",
+    imageKey: "wissen:kriegsdenkmaeler",
     title: "Kriegsdenkmäler in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/kriegsdenkmaeler/",
     shortDesc:
@@ -150,6 +161,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "historische-gasthaeuser",
+    imageKey: "wissen:historische-gasthaeuser",
     title: "Historische Gasthäuser in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/historische-gasthaeuser/",
     shortDesc:
@@ -161,6 +173,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "bim-speyer-zukunft",
+    imageKey: "wissen:bim-speyer-zukunft",
     title: "BIM - Building Information Modeling in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/bim-speyer-zukunft/",
     shortDesc:
@@ -172,6 +185,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "makler-beauftragen",
+    imageKey: "wissen:makler-beauftragen",
     title: "Weshalb du einen Makler beauftragen solltest",
     legacyWpUrl: "https://speyer-interaktiv.de/weshalb-du-einen-makler-beauftragen-solltest/",
     shortDesc:
@@ -183,6 +197,7 @@ export const wissenswertes: WissenItem[] = [
   },
   {
     slug: "hochzeitsplanung",
+    imageKey: "wissen:hochzeitsplanung",
     title: "Hochzeitsplanung in Speyer",
     legacyWpUrl: "https://speyer-interaktiv.de/hochzeitsplanung/",
     shortDesc:

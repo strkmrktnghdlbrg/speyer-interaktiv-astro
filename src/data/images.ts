@@ -65,6 +65,10 @@ const festModules = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/feste/*.{jpg,JPG,jpeg,png,webp}",
   { eager: true }
 );
+const wissenModules = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/images/wissen/*.{jpg,JPG,jpeg,png,webp}",
+  { eager: true }
+);
 
 const folderModules = {
   sights: sightModules,
@@ -72,6 +76,7 @@ const folderModules = {
   hotels: hotelModules,
   restaurants: restaurantModules,
   feste: festModules,
+  wissen: wissenModules,
 } as const;
 
 /**
@@ -249,7 +254,32 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Hasenpfuhlstrasse_32_Portal_Speyer_a.jpg",
     },
   },
-  // sight:sea-life — keine freilizenzierte Außenaufnahme verfügbar (verfügbare Innenaufnahmen <1024px, MS Sea Life ist ein Schiff anderen Bezugs), HueGradient-Fallback aktiv
+  "sight:rheinstrand": {
+    src: asset("sights", "rheinstrand")!,
+    alt: "Rheinpromenade in Speyer, baumgesäumter Uferweg am Rhein nahe dem Rheinstrand",
+    source: "wikimedia",
+    credit: {
+      author: "Kmtextor",
+      license: "CC BY 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_Rheinpromenade.jpg",
+    },
+  },
+  // sight:sea-life — weiterhin keine freilizenzierte Aufnahme des Speyerer
+  // Standorts verfügbar (nur das Ausflugsschiff "MS Sea Life"). Symbolbild:
+  // Unterwassertunnel eines anderen Sea-Life-Aquariums (CC0), klar markiert.
+  "sight:sea-life": {
+    src: asset("sights", "sea-life")!,
+    alt: "Symbolbild: Unterwassertunnel in einem Sea-Life-Aquarium (Illustrationsfoto, nicht das tatsächliche Sea Life Speyer)",
+    source: "wikimedia",
+    illustrative: true,
+    credit: {
+      author: "Jonathan Harker",
+      license: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Oceanarium_tunnel_at_Kelly_Tarlton%27s_Sea_Life_Aquarium,_Auckland,_New_Zealand.jpg",
+    },
+  },
   "sight:pfaelzische-landesbibliothek": {
     src: asset("sights", "pfaelzische-landesbibliothek")!,
     alt: "Pfälzische Landesbibliothek in Speyer, moderner Bibliotheksbau",
@@ -416,16 +446,19 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://commons.wikimedia.org/wiki/File:Rathaus_-_Maximilianstra%C3%9Fe_-_Speyer_-_Germany_2017.jpg",
     },
   },
+  // Kein freilizenziertes Foto des Restaurant-Innenraums verfügbar; vorher
+  // lief hier das Hotel-Außenfoto doppelt. Jetzt eigenes Symbolbild, damit
+  // Hotel- und Restaurant-Seite nicht dasselbe Bild zeigen.
   "restaurant:lindner-restaurant-binshof": {
-    // Gleiches Gebäude wie hotel:lindner-hotel-spa-binshof, kein separates Innenfoto verfügbar
-    src: asset("hotels", "lindner-hotel-spa-binshof")!,
-    alt: "Lindner Hotel & Spa Binshof in Speyer, Gebäude mit dem hoteleigenen Restaurant",
+    src: asset("restaurants", "lindner-restaurant-binshof")!,
+    alt: "Symbolbild: heller, elegant gedeckter Speisesaal eines Hotelrestaurants (Illustrationsfoto, nicht das tatsächliche Restaurant)",
     source: "wikimedia",
+    illustrative: true,
     credit: {
-      author: "Lindner Hotels",
+      author: "Basile Morin",
       license: "CC BY-SA 4.0",
       licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Lindner_Hotel_Binshof.jpg",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Restaurant_room_of_Amantaka_luxury_Resort_%26_Hotel_in_Luang_Prabang_Laos.jpg",
     },
   },
 
@@ -457,6 +490,181 @@ export const images: Record<string, ImageEntry> = {
       sourceUrl: "https://www.pexels.com/photo/a-parade-with-people-dressed-in-costumes-and-a-gold-fish-20331958/",
     },
   },
+
+  // === WISSENSWERTES ===
+  // Hero-Bilder der Hintergrund-Artikel. Sechs eigene Commons-Downloads
+  // (Lizenz per API verifiziert), der Rest verwendet bereits lizenzgeprüfte
+  // Assets aus anderen Sektionen wieder. fahrzeugbeschriftung-marketingkanal
+  // behält bewusst den HueGradient (kein passendes freies Motiv gefunden).
+  "wissen:roemisches-speyer": {
+    src: asset("sights", "historisches-museum-der-pfalz")!,
+    alt: "Historisches Museum der Pfalz in Speyer, Haus der römischen Sammlung",
+    source: "wikimedia",
+    credit: {
+      author: "Altera levatur",
+      license: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer,_Museum_der_Pfalz.JPG",
+    },
+  },
+  "wissen:mittelalterliches-speyer": {
+    src: asset("sights", "altpoertel")!,
+    alt: "Altpörtel in Speyer, mittelalterliches Stadttor der freien Reichsstadt",
+    source: "wikimedia",
+    credit: {
+      author: "Rigorius",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_Altpoertel_Glockenstuhl_20240330_124917.jpg",
+    },
+  },
+  "wissen:reformation": {
+    src: asset("wissen", "reformation")!,
+    alt: "Altar der Gedächtniskirche der Protestation in Speyer",
+    source: "wikimedia",
+    credit: {
+      author: "Immanuel Giel",
+      license: "Public Domain",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Altar_Gedaechtniskirche_Speyer.jpg",
+    },
+  },
+  "wissen:dreissigjaehriger-krieg": {
+    src: asset("districts", "altstadt")!,
+    alt: "Blick über die Speyerer Altstadt zur Domfassade — die Stadt, die Krieg und Zerstörung mehrfach überstand",
+    source: "wikimedia",
+    credit: {
+      author: "Roman Eisele",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_-_Altstadt_-_Altp%C3%B6rtel_-_Blick_auf_Domfassade_und_Kircht%C3%BCrme_mit_Abendsonne.jpg",
+    },
+  },
+  "wissen:salier": {
+    src: asset("wissen", "salier")!,
+    alt: "Krypta des Speyerer Doms, Grablege der salischen Kaiser",
+    source: "wikimedia",
+    credit: {
+      author: "Heribert Bechen",
+      license: "CC BY 2.0",
+      licenseUrl: "https://creativecommons.org/licenses/by/2.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyerer_Dom_(Domkirche_St._Maria_und_St._Stephan)_2018_-_DSC05684_-_Speyer_Krypta_(44898681125).jpg",
+    },
+  },
+  "wissen:hexenverfolgung": {
+    src: asset("wissen", "hexenverfolgung")!,
+    alt: "Historischer Holzschnitt zur Bestrafung vermeintlicher Hexen aus dem Laienspiegel (1508), zeitgenössische Illustration — nicht Speyer-spezifisch",
+    source: "wikimedia",
+    illustrative: true,
+    credit: {
+      author: "Ulrich Tengler, Laienspiegel (1508)",
+      license: "Public Domain",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Punishing-witches-Laienspiegel.jpg",
+    },
+  },
+  "wissen:baukunst": {
+    src: asset("sights", "maximilianstrasse")!,
+    alt: "Maximilianstraße in Speyer, Blickachse zum Dom durch Jahrhunderte Baugeschichte",
+    source: "wikimedia",
+    credit: {
+      author: "PQ3",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Maximilianstra%C3%9FeSpeyer.jpg",
+    },
+  },
+  "wissen:archaeologische-funde": {
+    src: asset("wissen", "archaeologische-funde")!,
+    alt: "Goldener Hut von Schifferstadt im Historischen Museum der Pfalz in Speyer",
+    source: "wikimedia",
+    credit: {
+      author: "Kmtextor",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Goldener_hut_schifferstadt_hist_mus_speyer.jpg",
+    },
+  },
+  "wissen:kulturerbe": {
+    src: asset("sights", "kaiserdom")!,
+    alt: "Speyerer Kaiserdom, seit 1981 UNESCO-Welterbe",
+    source: "wikimedia",
+    credit: {
+      author: "Sail over",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_dom_11.jpg",
+    },
+  },
+  "wissen:zeppelin-landung": {
+    src: asset("wissen", "zeppelin-landung")!,
+    alt: "Zeitgenössische Aufnahme des Zeppelin-Luftschiffs LZ 10 Schwaben (Illustrationsfoto aus der Epoche, nicht die Landung in Speyer)",
+    source: "wikimedia",
+    illustrative: true,
+    credit: {
+      author: "Unbekannt (Digitalisat: Kernpanik)",
+      license: "CC0",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Zeppelin-Luftschiff_Schwaben.jpg",
+    },
+  },
+  "wissen:kriegsdenkmaeler": {
+    src: asset("wissen", "kriegsdenkmaeler")!,
+    alt: "Kriegerbrunnen in Speyer, Denkmal für die Gefallenen",
+    source: "wikimedia",
+    credit: {
+      author: "Immanuel Giel",
+      license: "Public Domain",
+      licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Kriegerbrunnen_Speyer_01.JPG",
+    },
+  },
+  "wissen:historische-gasthaeuser": {
+    src: asset("restaurants", "wirtschaft-zum-halbmond")!,
+    alt: "Fachwerkhaus Halbmond in der Speyerer Sonnengasse, historisches Gasthaus",
+    source: "wikimedia",
+    credit: {
+      author: "Franzfoto",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_-_Sonnengasse_mit_Fachwerkhaus_Halbmond.jpg",
+    },
+  },
+  "wissen:bim-speyer-zukunft": {
+    src: asset("sights", "pfaelzische-landesbibliothek")!,
+    alt: "Pfälzische Landesbibliothek in Speyer, moderner Bibliotheksbau als Beispiel zeitgenössischen Bauens",
+    source: "wikimedia",
+    credit: {
+      author: "3268zauber",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_Labi.JPG",
+    },
+  },
+  "wissen:makler-beauftragen": {
+    src: asset("districts", "sued")!,
+    alt: "Wohnhäuser im Hasenpfuhl-Quartier in Speyer, historischer Wohnbestand",
+    source: "wikimedia",
+    credit: {
+      author: "Sundar1",
+      license: "CC BY-SA 3.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:SpeyerHasenpfuhl1.JPG",
+    },
+  },
+  "wissen:hochzeitsplanung": {
+    src: asset("sights", "dreifaltigkeitskirche")!,
+    alt: "Dreifaltigkeitskirche in Speyer, einer der Trauungsorte der Stadt",
+    source: "wikimedia",
+    credit: {
+      author: "Friedrich Haag",
+      license: "CC BY-SA 4.0",
+      licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Speyer_Gro%C3%9Fe_Himmelsgasse_4_002_2021_02_26.jpg",
+    },
+  },
+  // wissen:fahrzeugbeschriftung-marketingkanal — kein passendes freies Motiv
+  // auf Commons gefunden (nur Bahn-/Tram-Lackierungen), HueGradient bleibt.
 
   // === HOTELS OHNE WIKIMEDIA-FOTO: SYMBOLBILDER ===
   // Keine Wikimedia-Abdeckung für diese 6 Hotels gefunden (siehe Recherche-

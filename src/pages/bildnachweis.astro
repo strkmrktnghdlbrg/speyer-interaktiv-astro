@@ -19,6 +19,7 @@ import { getDistrict } from "../data/districts";
 import { getHotel } from "../data/hotels";
 import { getRestaurant, isUnverifiedRestaurant } from "../data/restaurants";
 import { getFest } from "../data/feste";
+import { getWissen } from "../data/wissenswertes";
 
 type Row = {
   subject: string;
@@ -64,6 +65,10 @@ function resolveEntity(key: string): { subject: string; label: string; href: str
     case "fest": {
       const f = getFest(slug);
       return f ? { subject: f.name, label: f.name, href: `/feste/${slug}/` } : null;
+    }
+    case "wissen": {
+      const w = getWissen(slug);
+      return w ? { subject: w.title, label: w.title, href: `/wissenswertes/${slug}/` } : null;
     }
     default:
       return null;
