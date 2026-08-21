@@ -81,6 +81,8 @@ const anliegen = [
         </h2>
         <form action="https://api.web3forms.com/submit" method="POST" class="card p-6 space-y-5">
           <input type="hidden" name="access_key" value={formKey} />
+          <input type="hidden" name="site_domain" value="speyer-interaktiv.de" />
+          <input type="hidden" name="from_name" value="speyer-interaktiv.de" />
           <input type="hidden" name="subject" value={`Kontaktanfrage über ${city.name}-interaktiv.de`} />
           <!-- Honeypot gegen Spam-Bots -->
           <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" aria-hidden="true" />
