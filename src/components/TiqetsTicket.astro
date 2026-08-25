@@ -1,0 +1,66 @@
+---
+/**
+ * Tiqets-Tickethinweis (AWIN mid 8616, Konto 514869).
+ *
+ * Rendert genau einen Link auf das nachgeschlagene Tiqets-Ziel der Seite.
+ * Ohne Eintrag in `tiqetsTargets` rendert nichts - so entsteht nie ein Link
+ * auf eine Tiqets-Seite ohne Bestand.
+ *
+ * Eigene, bewusst zurueckhaltende Optik ueber scoped styles: der Block soll
+ * sich in jedes Portal einfuegen, ohne von dessen Utility-Klassen abzuhaengen.
+ */
+import { tiqetsLink, type TiqetsTarget } from "../data/awin";
+
+interface Props {
+  target?: TiqetsTarget | null;
+  clickref?: string;
+}
+
+const { target, clickref } = Astro.props;
+const href = target ? tiqetsLink(target, clickref) : null;
+---
+
+{target && href && (
+  <aside class="tiqets-hinweis">
+    <p class="tiqets-label">Anzeige</p>
+    <p class="tiqets-lead">{target.lead}</p>
+    <p>
+      <a href={href} target="_blank" rel="sponsored nofollow noopener">{target.label}</a>
+    </p>
+    <p class="tiqets-disclaimer">
+      Provisionslink: Buchst du darüber, erhalten wir eine Provision. Für dich
+      ändert sich am Preis nichts.
+    </p>
+  </aside>
+)}
+
+<style>
+  .tiqets-hinweis {
+    margin: 2.5rem auto;
+    max-width: 44rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.75rem;
+    line-height: 1.6;
+  }
+  .tiqets-label {
+    margin: 0 0 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+  .tiqets-lead {
+    margin: 0 0 0.75rem;
+  }
+  .tiqets-hinweis a {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .tiqets-disclaimer {
+    margin: 0.75rem 0 0;
+    font-size: 0.75rem;
+    opacity: 0.7;
+  }
+</style>

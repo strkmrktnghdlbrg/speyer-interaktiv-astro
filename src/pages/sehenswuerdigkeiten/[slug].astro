@@ -15,6 +15,8 @@ import { city } from "../../data/city";
 import HotelCard from "../../components/HotelCard.astro";
 import { sightsEn } from "../../i18n/en/sights";
 import { getEntry, render } from "astro:content";
+import TiqetsTicket from "../../components/TiqetsTicket.astro";
+import { tiqetsFuer } from "../../data/awin";
 
 export function getStaticPaths() {
   return sights.map((s) => ({ params: { slug: s.slug } }));
@@ -60,6 +62,8 @@ const faqSchema = sight.faq?.length
       })),
     }
   : null;
+// Tiqets fuehrt nur fuer Technik Museum und SEA LIFE Tickets - sonst rendert nichts.
+const tiqetsTarget = tiqetsFuer(`sight:${sight.slug}`);
 ---
 
 <BaseLayout title={sight.seoTitle ?? sight.name} description={sight.seoDescription ?? sight.shortDesc} alternateUrls={sightsEn[sight.slug] ? { de: `/sehenswuerdigkeiten/${sight.slug}/`, en: `/en/attractions/${sightsEn[sight.slug].slug}/` } : undefined}>
@@ -225,6 +229,8 @@ const faqSchema = sight.faq?.length
       ) : (
         <GetYourGuideWidget offerKey={`sight:${sight.slug}`} />
       )}
+
+      <TiqetsTicket target={tiqetsTarget} clickref={`sight-${sight.slug}`} />
 
       <MapEmbed
         lat={sight.coordinates[0]}

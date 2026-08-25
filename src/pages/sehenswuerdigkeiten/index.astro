@@ -7,6 +7,8 @@ import MapEmbed from "../../components/MapEmbed.astro";
 import { sights } from "../../data/sights";
 import { city } from "../../data/city";
 import { getDistrict } from "../../data/districts";
+import TiqetsTicket from "../../components/TiqetsTicket.astro";
+import { tiqetsFuer } from "../../data/awin";
 
 // Die Top-Liste ist die eigentliche Rankingseite: sortierte Empfehlung mit
 // Begruendung, Dauer und Preis. Die Karten darunter bleiben als vollstaendige
@@ -66,6 +68,7 @@ const itemListLd = {
     url: `${city.domain}/sehenswuerdigkeiten/${s.slug}/`,
   })),
 };
+const tiqetsTarget = tiqetsFuer("page:sehenswuerdigkeiten");
 ---
 
 <BaseLayout title={title} description={description} alternateUrls={{ de: "/sehenswuerdigkeiten/", en: "/en/attractions/" }}>
@@ -185,4 +188,5 @@ const itemListLd = {
 
     <GetYourGuideWidget offerKey="page:sehenswuerdigkeiten" />
   </div>
+  <TiqetsTicket target={tiqetsTarget} clickref="sehenswuerdigkeiten" />
 </BaseLayout>
