@@ -3,6 +3,15 @@ import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
 import tailwind from "@tailwindcss/vite";
 
+/**
+ * Affiliate-Links laufen portfolioweit ueber ein robots-gesperrtes /go/-Gate,
+ * damit Crawler und Link-Checker keine Klicks in den Partnerprogrammen
+ * erzeugen. Die Integration arbeitet auf dem fertigen HTML - das passt hier,
+ * weil `output: "static"` alles prerendert; einzige SSR-Route ist /news/*,
+ * und dort stehen keine Affiliate-Links.
+ */
+import outboundGate from "./integrations/outbound-gate.mjs";
+
 import { unverifiedRestaurantSlugs } from "./src/data/restaurants.ts";
 import { restaurantsEn } from "./src/i18n/en/restaurants.ts";
 
@@ -101,6 +110,7 @@ export default defineConfig({
     "/thema/freizeit": "/sehenswuerdigkeiten",
   },
   integrations: [
+    outboundGate({ siteName: "speyer-interaktiv.de" }),
     sitemap({
       filter: (page) =>
         !isWithdrawn(page) &&
